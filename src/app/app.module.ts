@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 import { RouterModule }   from '@angular/router';
 import {CompanyComponent} from './company.component';
 import {AppComponent} from "./app.component";
+import {BranchComponent} from "./branches.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    CompanyComponent
+    CompanyComponent,
+    BranchComponent
   ],
   imports: [
     BrowserModule,
@@ -19,6 +21,10 @@ import {AppComponent} from "./app.component";
       {
         path: 'company',
         component: CompanyComponent
+      },
+      {
+        path: 'branches',
+        component: BranchComponent
       }
     ])
   ],
