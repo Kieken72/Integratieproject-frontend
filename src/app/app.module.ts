@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {RouterModule, Routes, Router}   from '@angular/router';
+import {RouterModule}   from '@angular/router';
 import {CompanyComponent} from './company.component';
 import {AppComponent} from "./app.component";
 import {BranchComponent} from "./branches.component";
@@ -20,7 +20,7 @@ import {BranchComponent} from "./branches.component";
     RouterModule.forRoot([
       {
         path: 'company',
-        component: CompanyComponent
+        component: CompanyComponent,
       },
       {
         path: 'branches',
@@ -29,7 +29,10 @@ import {BranchComponent} from "./branches.component";
     ])
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas:[
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 
 export class AppModule {}
