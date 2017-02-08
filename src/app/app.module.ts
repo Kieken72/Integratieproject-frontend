@@ -1,19 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {NgModule} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {RouterModule}   from '@angular/router';
-import {CompanyComponent} from './company.component';
+import {CompanyComponent} from '../company/company.component';
 import {AppComponent} from "./app.component";
-import {BranchComponent} from "./branches.component";
+import {BranchComponent} from "../branches/branches.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CompanyComponent,
-    BranchComponent
-  ],
-  imports: [
+   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -28,11 +23,14 @@ import {BranchComponent} from "./branches.component";
       }
     ])
   ],
+  declarations: [
+    AppComponent,
+    CompanyComponent,
+    BranchComponent
+  ],
   providers: [],
-  bootstrap: [AppComponent],
-  schemas:[
-    CUSTOM_ELEMENTS_SCHEMA
-  ]
+  bootstrap: [AppComponent]
+
 })
 
 export class AppModule {}
