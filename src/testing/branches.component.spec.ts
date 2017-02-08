@@ -3,7 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {BranchComponent} from "../branches/branches.component";
 
 
-describe('AppComponent', () => {
+describe('BranchComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],

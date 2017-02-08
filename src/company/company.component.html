@@ -2,23 +2,24 @@
   {{title}}
 </h1>
 
+<div ng-controller="companyCtrl">
 <div class="col-md-4">
 <form>
   <div class="form-group">
     <label for="Name">Naam</label>
-    <input class="form-control input-lg" id="Name" type="text">
+    <input class="form-control input-lg" id="Name" type="text" ng-model="name">
   </div>
   <div class="form-group">
     <label for="VAT">BTW nummer</label>
-    <input class="form-control input-lg" id="VAT" type="text">
+    <input class="form-control input-lg" id="VAT" type="text" ng-model="vat">
   </div>
   <div class="form-group">
     <label for="Adress">Adres</label>
-    <input class="form-control input-lg" id="Adress" type="text">
+    <input class="form-control input-lg" id="Adress" type="text" ng-model="address">
   </div>
-  <button class="btn btn-default">Maak nieuw bedrijf</button>
+  <input type="submit" value="Maak nieuw bedrijf" ng-click="submit()" class="btn btn-default"/>
 </form>
   <hr/>
 </div>
-
+</div>
 
