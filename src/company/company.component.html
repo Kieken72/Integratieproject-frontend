@@ -3,15 +3,19 @@
 </h1>
 <h2>My Companies</h2>
 <ul>
+  <li ng-repeat="(Name) in Company">
+  {{Name}}
+  </li>
   <li *ngFor="let company of companies">
-    {{company.name}} | {{company.vat}} | {{company.address}}
+    {{company.Name}} | {{company.VATNumber}} | {{company.Street}}
   </li>
 </ul>
 
 <div>
   <label>Company name:</label> <input #CompanyName />
   <label>Company VAT:</label> <input #CompanyVAT />
-  <button class="btn btn-default" (click)="addCompany(CompanyName.value,CompanyVAT.value); CompanyName.value=''">
+  <label>Company address:</label> <input #CompanyAddress />
+  <button class="btn btn-default" (click)="addCompany(CompanyName.value,CompanyVAT.value, CompanyAddress.value); CompanyName.value=''">
     Add
   </button>
 </div>

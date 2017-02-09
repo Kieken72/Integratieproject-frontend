@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Company} from "./model/company";
 import {Http, Headers} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
+import * as http from "selenium-webdriver/http";
 
 @Injectable()
 export class CompanyService {
@@ -13,7 +14,7 @@ export class CompanyService {
     //COMPANIES.push(company);
 
   }
-  private companiesUrl = 'api/companies';
+  private companiesUrl = 'http://leisurebooker.azurewebsites.net/api/companies';
   constructor(private  http:Http){}
   private headers = new Headers({'Content-Type': 'application/json'});
 
@@ -23,9 +24,9 @@ export class CompanyService {
 
   getCompanies():Promise<Company[]>{
     return this.http.get(this.companiesUrl)
-      .toPromise()
-      .then(response => response.json().data as Company[])
-      .catch(this.handleError);
+     .toPromise()
+     .then(response => response.json().data as Company[])
+     .catch(this.handleError);
   }
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
@@ -38,8 +39,8 @@ export class CompanyService {
     });
   }
 
-  create(cname: string, cvat: string): Promise<Company> {
-    return this.http.post(this.companiesUrl, JSON.stringify({name: cname, vat : cvat}), {headers: this.headers})
+  create(cname: string, cvat: string, caddress: string): Promise<Company> {
+    return this.http.post(this.companiesUrl, JSON.stringify({name: cname, vat : cvat, address: caddress}), {headers: this.headers})
       .toPromise()
       .then(res => res.json().data)
       .catch(this.handleError);

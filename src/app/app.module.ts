@@ -4,23 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {RouterModule}   from '@angular/router';
 
-
-
 import {CompanyComponent} from '../company/company.component';
 import {AppComponent} from "./app.component";
 import {BranchComponent} from "../branches/branches.component";
 import {CompanyService} from "../company/company.service";
-import {InMemoryDataService} from "./in-memory-data.service";
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-
-
 
 @NgModule({
    imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-     InMemoryWebApiModule.forRoot(InMemoryDataService),
     RouterModule.forRoot([
       {
         path: 'company',

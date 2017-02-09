@@ -1,6 +1,9 @@
 export class Company{
-  public name : string;
-  public vat: string;
-  public address: string;
+  public Name : string;
+  public VATNumber: string;
+  public Street: string;
+  public Number: string;
+  public Box: string;
+  public CityId: string;
 
 }
