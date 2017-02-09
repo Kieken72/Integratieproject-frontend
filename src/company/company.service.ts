@@ -1,7 +1,3 @@
-import {Response,} from 'angular2/http';
-
-import {AuthHttp} from 'angular2-jwt';
-
 import { Injectable } from '@angular/core';
 import {Company} from "./model/company";
 import {Http, Headers} from "@angular/http";
@@ -42,9 +38,8 @@ export class CompanyService {
     });
   }
 
-  create(company:Company): Promise<Company> {
-
-    return this.http.post(this.companiesUrl, JSON.stringify({company}), {headers: this.headers})
+  create(cname: string, cvat: string): Promise<Company> {
+    return this.http.post(this.companiesUrl, JSON.stringify({name: cname, vat : cvat}), {headers: this.headers})
       .toPromise()
       .then(res => res.json().data)
       .catch(this.handleError);

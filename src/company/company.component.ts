@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { CompanyService} from './company.service';
 import {Company} from "./model/company";
+import {composeAsyncValidators} from "@angular/forms/src/directives/shared";
 
 @Component({
   selector: 'my-company',
@@ -8,7 +9,7 @@ import {Company} from "./model/company";
   styleUrls: ['../app/app.component.css']
 })
 export class CompanyComponent implements OnInit{
-  private companies: Company[];
+  companies: Company[] = new Array();
   ngOnInit(): void {
     this.getCompanies();
   }
@@ -16,7 +17,7 @@ export class CompanyComponent implements OnInit{
   constructor(private companyService:CompanyService){}
 
   title = 'Nieuw bedrijf!';
-  private company: Company;
+  private company: Company = new Company();
 
   getCompanies():void{
     this.companyService.getCompanies().then(companies => this.companies = companies);
@@ -28,7 +29,7 @@ export class CompanyComponent implements OnInit{
     this.company.vat = cvat;
 
     if (!cname) { return; }
-    this.companyService.create(this.company)
+    this.companyService.create(cname, cvat)
       .then(company => {
         this.companies.push(company);
       });
