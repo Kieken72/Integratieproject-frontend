@@ -14,7 +14,8 @@ export class CompanyService {
     //COMPANIES.push(company);
 
   }
-  private companiesUrl = 'http://leisurebooker.azurewebsites.net/api/companies';
+  //private companiesUrl = 'http://leisurebooker.azurewebsites.net/api/companies';
+  private companiesUrl = '/api/companies';
   constructor(private  http:Http){}
   private headers = new Headers({'Content-Type': 'application/json'});
 
@@ -23,10 +24,11 @@ export class CompanyService {
   }*/
 
   getCompanies():Promise<Company[]>{
+
     return this.http.get(this.companiesUrl)
-     .toPromise()
-     .then(response => response.json().data as Company[])
-     .catch(this.handleError);
+      .toPromise()
+      .then(response => response.json().data as Company[])
+      .catch(this.handleError);
   }
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only

@@ -4,7 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {RouterModule}   from '@angular/router';
 
-import {CompanyComponent} from './company/company.component';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data.service';
+
+import {CompanyComponent} from '../company/company.component';
 import {AppComponent} from "./app.component";
 import {BranchComponent} from "./branches/branches.component";
 import {CompanyService} from "./company/company.service";
@@ -15,6 +18,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+
+     InMemoryWebApiModule.forRoot(InMemoryDataService),
     RouterModule.forRoot([
       {
         path: 'company',
