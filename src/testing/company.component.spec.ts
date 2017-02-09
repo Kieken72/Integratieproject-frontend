@@ -1,8 +1,6 @@
-
-
 import { TestBed, async } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {CompanyComponent} from "../company/company.component";
+import {CompanyComponent} from "../app/company/company.component";
 
 
 describe('CompanyComponent', () => {

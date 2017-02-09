@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {RouterModule}   from '@angular/router';
 
-import {CompanyComponent} from '../company/company.component';
+import {CompanyComponent} from './company/company.component';
 import {AppComponent} from "./app.component";
-import {BranchComponent} from "../branches/branches.component";
-import {CompanyService} from "../company/company.service";
+import {BranchComponent} from "./branches/branches.component";
+import {CompanyService} from "./company/company.service";
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 @NgModule({
    imports: [
@@ -28,7 +29,8 @@ import {CompanyService} from "../company/company.service";
   declarations: [
     AppComponent,
     CompanyComponent,
-    BranchComponent
+    BranchComponent,
+    NavbarComponent
   ],
   providers: [CompanyService],
   bootstrap: [AppComponent]

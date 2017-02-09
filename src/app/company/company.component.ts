@@ -5,7 +5,7 @@ import {Company} from "./model/company";
 @Component({
   selector: 'my-company',
   templateUrl: 'company.component.html',
-  styleUrls: ['../app/app.component.css']
+  styleUrls: ['company.component.css']
 })
 export class CompanyComponent implements OnInit{
   companies: Company[] = new Array();

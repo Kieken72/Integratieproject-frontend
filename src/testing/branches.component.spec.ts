@@ -1,6 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {BranchComponent} from "../branches/branches.component";
+import {BranchComponent} from "../app/branches/branches.component";
 
 
 describe('BranchComponent', () => {

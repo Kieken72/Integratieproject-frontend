@@ -1,0 +1,61 @@
+<h1>
+  {{title}}
+</h1>
+<h2>My Companies</h2>
+<ul>
+  <li ng-repeat="(Name) in Company">
+  {{Name}}
+  </li>
+  <li *ngFor="let company of companies">
+    {{company.Name}} | {{company.VATNumber}} | {{company.Street}}
+  </li>
+</ul>
+
+<form class="form-horizontal">
+  <div class="form-group">
+    <label for="companyName" class="col-sm-3 control-label">Name:</label>
+    <div class="col-sm-9">
+      <input class="form-control" id="companyName" #CompanyName/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="companyVat" class="col-sm-3 control-label">VAT:</label>
+    <div class="col-sm-9">
+      <input class="form-control" id="companyVat" #CompanyVAT/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="companyAddress" class="col-sm-3 control-label">Address:</label>
+    <div class="col-sm-9">
+      <input class="form-control" id="companyAddress" #CompanyAddress/>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
+      <button class="btn btn-default" (click)="addCompany(CompanyName.value,CompanyVAT.value, CompanyAddress.value); CompanyName.value=''">Add</button>
+    </div>
+  </div>
+</form>
+
+
+<!--<div ng-controller="companyCtrl">
+<div class="col-md-4">
+<form>
+  <div class="form-group">
+    <label for="Name">Naam</label>
+    <input class="form-control input-lg" id="Name" type="text" ng-model="name">
+  </div>
+  <div class="form-group">
+    <label for="VAT">BTW nummer</label>
+    <input class="form-control input-lg" id="VAT" type="text" ng-model="vat">
+  </div>
+  <div class="form-group">
+    <label for="Adress">Adres</label>
+    <input class="form-control input-lg" id="Adress" type="text" ng-model="address">
+  </div>
+  <input type="submit" value="Maak nieuw bedrijf" (click)="postCompany()" class="btn btn-default"/>
+</form>
+  <hr/>
+</div>
+</div>-->
+

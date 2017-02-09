@@ -1,5 +1,29 @@
+<div class="site-wrapper">
 
-<h1>{{title}}</h1>
-<a routerLink='/company'>Maak een nieuw bedrijf</a>
-<a routerLink='/branches'>Maak een nieuw filiaal</a>
-<router-outlet> </router-outlet>
+  <div class="site-wrapper-inner">
+
+    <div class="cover-container">
+
+      <app-navbar></app-navbar>
+
+      <router-outlet> </router-outlet>
+      <div class="inner cover">
+
+        <h1 class="cover-heading">{{title}}</h1>
+        <p class="lead">Nen hele blabla</p>
+        <p class="lead">
+          <a href="#" class="btn btn-lg btn-default">Learn more</a>
+        </p>
+      </div>
+
+      <div class="mastfoot">
+        <div class="inner">
+          <p>Leisurebooker a project for Integration Project 2 <a href="http://kdg.be">@kdg</a></p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
