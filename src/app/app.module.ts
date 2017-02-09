@@ -7,11 +7,11 @@ import {RouterModule}   from '@angular/router';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 
-import {CompanyComponent} from '../company/company.component';
 import {AppComponent} from "./app.component";
 import {BranchComponent} from "./branches/branches.component";
 import {CompanyService} from "./company/company.service";
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import {CompanyComponent} from "./company/company.component";
 
 @NgModule({
    imports: [
