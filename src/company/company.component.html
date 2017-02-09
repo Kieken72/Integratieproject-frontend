@@ -10,7 +10,8 @@
 
 <div>
   <label>Company name:</label> <input #CompanyName />
-  <button class="btn btn-default" (click)="add(CompanyName.value); CompanyName.value=''">
+  <label>Company VAT:</label> <input #CompanyVAT />
+  <button class="btn btn-default" (click)="addCompany(CompanyName.value,CompanyVAT.value); CompanyName.value=''">
     Add
   </button>
 </div>

@@ -42,8 +42,9 @@ export class CompanyService {
     });
   }
 
-  create(name: string): Promise<Company> {
-    return this.http.post(this.companiesUrl, JSON.stringify({name: name}), {headers: this.headers})
+  create(company:Company): Promise<Company> {
+
+    return this.http.post(this.companiesUrl, JSON.stringify({company}), {headers: this.headers})
       .toPromise()
       .then(res => res.json().data)
       .catch(this.handleError);

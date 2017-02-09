@@ -16,15 +16,19 @@ export class CompanyComponent implements OnInit{
   constructor(private companyService:CompanyService){}
 
   title = 'Nieuw bedrijf!';
+  private company: Company;
 
   getCompanies():void{
     this.companyService.getCompanies().then(companies => this.companies = companies);
   }
 
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.companyService.create(name)
+  addCompany(cname: string, cvat:string): void {
+
+    this.company.name = cname;
+    this.company.vat = cvat;
+
+    if (!cname) { return; }
+    this.companyService.create(this.company)
       .then(company => {
         this.companies.push(company);
       });
