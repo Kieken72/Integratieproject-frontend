@@ -3,13 +3,14 @@
 </h1>
 <h2>My Companies</h2>
 <ul>
-  <li ng-repeat="(Name) in Company">
+  <li ng-repeat="(Name) in companies">
   {{Name}}
   </li>
   <li *ngFor="let company of companies">
-    {{company.name}} | {{company.VATNumber}} | {{company.Street}}
+    {{company.Name}} | {{company.VATNumber}} | {{company.Street}}
   </li>
 </ul>
+
 
 <form class="form-horizontal">
   <div class="form-group">
@@ -36,6 +37,7 @@
     </div>
   </div>
 </form>
+
 <!--
 <h2>My Companies</h2>
 <ul>

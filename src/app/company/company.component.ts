@@ -8,7 +8,7 @@ import {Company} from "./model/company";
   styleUrls: ['company.component.css']
 })
 export class CompanyComponent implements OnInit{
-  companies: Company[] = new Array();
+  companies: Company[];
   ngOnInit(): void {
     this.getCompanies();
   }
@@ -19,7 +19,9 @@ export class CompanyComponent implements OnInit{
   private company: Company = new Company();
 
   getCompanies():void{
-    this.companyService.getCompanies().map(response=>response.json());}
+    //this.companyService.getCompanies().map(res => this.companies = res);//s.map(response=>response.json());
+    this.companyService.getCompanies().subscribe(data => this.companies= data || console.log(data));
+  }
 
   /*addCompany(cname: string, cvat:string, caddress:string): void {
 
