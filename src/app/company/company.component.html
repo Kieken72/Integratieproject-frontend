@@ -3,11 +3,11 @@
 </h1>
 <h2>My Companies</h2>
 <ul>
-  <li ng-repeat="(Name) in companies">
-  {{Name}}
-  </li>
   <li *ngFor="let company of companies">
-    {{company.Name}} | {{company.VATNumber}} | {{company.Street}}
+    <br><u>Company Info:</u>
+    {{company.Name}} | {{company.VATNumber}} | {{company.Street}} | {{company.Number}} | {{company.Box}}
+    | {{company.CityId}} | <br><u>Company City:</u>
+    {{company.City.Id}} | {{company.City.PostalCode}} | {{company.City.Name}} | {{company.City.Province}}
   </li>
 </ul>
 

@@ -19,16 +19,6 @@ export class CompanyComponent implements OnInit{
   private company: Company = new Company();
 
   getCompanies():void{
-    //this.companyService.getCompanies().map(res => this.companies = res);//s.map(response=>response.json());
-    this.companyService.getCompanies().subscribe(data => this.companies= data || console.log(data));
+    this.companyService.getCompanies().subscribe(data => this.companies= data);
   }
-
-  /*addCompany(cname: string, cvat:string, caddress:string): void {
-
-    if (!cname) { return; }
-    this.companyService.create(cname, cvat, caddress)
-      .then(company => {
-        this.companies.push(company);
-      });
-  }*/
 }

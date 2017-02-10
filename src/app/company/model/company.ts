@@ -5,5 +5,4 @@ export class Company{
   public Number: string;
   public Box: string;
   public CityId: string;
-
 }
