@@ -1,6 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {CompanyComponent} from "../app/company/company.component";
+import {CompanyService} from "../app/company/company.service";
+import {HttpModule} from "@angular/http";
 
 
 describe('CompanyComponent', () => {
@@ -10,6 +12,8 @@ describe('CompanyComponent', () => {
       declarations: [
         CompanyComponent
       ],
+      providers:[CompanyService],
+      imports: [HttpModule]
     });
     TestBed.compileComponents();
   });
