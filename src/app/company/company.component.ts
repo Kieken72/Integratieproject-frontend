@@ -19,15 +19,14 @@ export class CompanyComponent implements OnInit{
   private company: Company = new Company();
 
   getCompanies():void{
-    this.companyService.getCompanies().then(companies => this.companies = companies);
-  }
+    this.companyService.getCompanies().map(response=>response.json());}
 
-  addCompany(cname: string, cvat:string, caddress:string): void {
+  /*addCompany(cname: string, cvat:string, caddress:string): void {
 
     if (!cname) { return; }
     this.companyService.create(cname, cvat, caddress)
       .then(company => {
         this.companies.push(company);
       });
-  }
+  }*/
 }

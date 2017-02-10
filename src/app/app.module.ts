@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import {RouterModule}   from '@angular/router';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
+//import { InMemoryDataService }  from './in-memory-data.service';
 
 import {AppComponent} from "./app.component";
 import {BranchComponent} from "./branches/branches.component";
@@ -18,8 +18,7 @@ import {CompanyComponent} from "./company/company.component";
     BrowserModule,
     FormsModule,
     HttpModule,
-
-     InMemoryWebApiModule.forRoot(InMemoryDataService),
+    // InMemoryWebApiModule.forRoot(InMemoryDataService),
     RouterModule.forRoot([
       {
         path: 'company',

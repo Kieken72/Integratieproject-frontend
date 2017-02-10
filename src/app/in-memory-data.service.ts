@@ -1,5 +1,5 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-export class InMemoryDataService implements InMemoryDbService {
+/*export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     let companies = [
       {name:"Involved" ,vat:"BE 0498.331.125" ,address:"Veldkant 33A"},
@@ -10,4 +10,4 @@ export class InMemoryDataService implements InMemoryDbService {
     ];
     return {companies};
   }
-}
+}*/
