@@ -20,7 +20,7 @@ import {CompanyComponent} from "./company/company.component";
     // InMemoryWebApiModule.forRoot(InMemoryDataService),
     RouterModule.forRoot([
       {
-        path: 'company',
+        path: 'manage/company',
         component: CompanyComponent,
       },
       {
