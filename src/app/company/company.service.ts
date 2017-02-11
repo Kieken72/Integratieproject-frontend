@@ -13,10 +13,14 @@ export class CompanyService {
     //COMPANIES.push(company);
   }
   private companiesUrl = 'http://leisurebooker.azurewebsites.net/api/companies';
-  //private companiesUrl = '/api/companies';
 
+  private citiesUrl = 'http://leisurebooker.azurewebsites.net/api/cities';
 
   private headers = new Headers({'Content-Type': 'application/json'});
+
+  getCities(){
+    return this.http.get(this.citiesUrl).map(res => res.json())
+  }
 
   getCompanies(){
     return this.http.get(this.companiesUrl).map(res => res.json())
