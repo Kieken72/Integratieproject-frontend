@@ -15,8 +15,10 @@
 <form class="form-horizontal">
   <div class="form-group">
     <label for="companyCity" class="col-sm-3 control-label">City:</label>
-    <div id="search-component" class="form-control">
-      <input #searchBox id="companyCity" (keyup)="search(searchBox.value)" />
+    <div class="col-sm-9">
+    <div id="search-component" class="">
+      <input #searchBox id="companyCity" class="form-control" (keyup)="search(searchBox.value)" />
+    </div>
     </div>
 
     <!--<div class="col-sm-9">
