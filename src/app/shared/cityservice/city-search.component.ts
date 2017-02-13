@@ -16,7 +16,8 @@ import {City} from "../../company/model/city";
 @Component({
   moduleId: module.id,
   selector: 'city-search',
-  providers: [CitySearchService]
+  templateUrl: '../../company/company.component',
+  providers: [CitySearchService],
 })
 export class CitySearchComponent implements OnInit {
   cities: Observable<City[]>
