@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {Company} from "./model/company";
 import {Http, Headers} from "@angular/http";
 import 'rxjs/add/operator/map';
+import {Observable} from "rxjs";
+import {City} from "./model/city";
 
 @Injectable()
 export class CompanyService {
@@ -17,13 +19,17 @@ export class CompanyService {
   private headers = new Headers({'Content-Type': 'application/json'});
 
 getCities(){
-    return this.http.get(this.citiesUrl).map(res => res.json())
+    return this.http.get(this.citiesUrl).map(res => res.json());
   }
 
   getCompanies(){
-    return this.http.get(this.companiesUrl).map(res => res.json())
+    return this.http.get(this.companiesUrl).map(res => res.json());
   }
-
+  search(term: string): Observable<City[]> {
+    return this.http
+      .get(this.citiesUrl)
+      .map(response => response.json());
+  }
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
