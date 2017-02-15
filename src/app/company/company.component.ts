@@ -6,7 +6,8 @@ import {City} from "./model/city";
 @Component({
   selector: 'my-company',
   templateUrl: 'company.component.html',
-  styleUrls: ['company.component.css']
+  styleUrls: ['company.component.css'],
+  providers: [CompanyService]
 })
 export class CompanyComponent implements OnInit{
   companies: Company[];
