@@ -11,6 +11,7 @@ import {BranchComponent} from "./branches/branches.component";
 import {CompanyService} from "./company/company.service";
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import {CompanyComponent} from "./company/company.component";
+import {CitySearchComponent} from "./shared/cityservice/city-search.component";
 
 @NgModule({
    imports: [
@@ -33,7 +34,7 @@ import {CompanyComponent} from "./company/company.component";
     AppComponent,
     CompanyComponent,
     BranchComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   providers: [CompanyService],
   bootstrap: [AppComponent]
