@@ -1,30 +1,28 @@
-
-
 <h1>
   {{title}}
 </h1>
 <h2>My Companies</h2>
-<!--<ul>
+<ul>
   <li *ngFor="let company of companies">
-    <br><u>Company Info:</u>
+    <u>Company Info:</u>
     {{company.Name}} | {{company.VATNumber}} | {{company.Street}} | {{company.Number}} | {{company.Box}}
     | {{company.CityId}} | <br><u>Company City:</u>
     {{company.City.Id}} | {{company.City.PostalCode}} | {{company.City.Name}} | {{company.City.Province}}
   </li>
-</ul>-->
+</ul>
 
 
 <form class="form-horizontal">
   <div class="form-group">
-    <label for="companyCity" class="col-sm-3 control-label">City:</label>
+     <label for="companyCity" class="col-sm-3 control-label">City:</label>
+    <!-- <div class="col-sm-9">
+     <input id="companyCity" name="CityId" class="form-control" auto-complete [(ngModel)]="company.CityId"  [source]="cities"  />
+     </div>-->
     <div class="col-sm-9">
-    <input id="companyCity" class="form-control" auto-complete [(ngModel)]="company.CityId" [source]="cities" />
-    </div>
-   <!-- <div class="col-sm-9">
-      <select class="form-control">
-        <option id="companyCity" *ngFor="let city of cities" [ngValue]="city.Id">{{city.PostalCode}} | {{city.Name}}</option>
-      </select>
-    </div>-->
+       <select name="cityId"  [(ngModel)]="cityid" class="form-control">
+         <option id="companyCity" *ngFor="let city of cities" [ngValue]="city.Id" #CityId>{{city.PostalCode}} | {{city.Name}}</option>
+       </select>
+     </div>
   </div>
   <div class="form-group">
     <label for="companyName" class="col-sm-3 control-label">Name:</label>
@@ -39,17 +37,32 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="companyAddress" class="col-sm-3 control-label">Address:</label>
+  <label for="companyStreet" class="col-sm-3 control-label">Street:</label>
+  <div class="col-sm-9">
+    <input class="form-control" id="companyStreet" #CompanyStreet/>
+  </div>
+</div>
+
+  <div class="form-group">
+    <label for="companyStreetNumber" class="col-sm-3 control-label">Number:</label>
     <div class="col-sm-9">
-      <input class="form-control" id="companyAddress" #CompanyAddress/>
+      <input class="form-control" id="companyStreetNumber" type="number" #CompanyStreetNumber/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="companyBox" class="col-sm-3 control-label">Box:</label>
+    <div class="col-sm-9">
+      <input class="form-control" id="companyBox" #CompanyBox/>
     </div>
   </div>
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
-      <button class="btn btn-default" (click)="addCompany(CompanyName.value,CompanyVAT.value, CompanyAddress.value); CompanyName.value=''">Add</button>
+      <button class="btn btn-default"
+              (click)="addCompany(CompanyName.value,CompanyVAT.value, CompanyStreet.value,CompanyStreetNumber.value,CompanyBox.value, 343)">Add</button>
     </div>
   </div>
-
+<!-- addCompany(name:string,VAT:string,street:string, streetNumber:number, box:string,cityId:string) -->
 </form>
 
 <!--

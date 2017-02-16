@@ -8,20 +8,30 @@ import {City} from "./model/city";
 @Injectable()
 export class CompanyService {
   constructor(private  http:Http){}
-//TODO: nog uitwerken
-  public postCompany (company : Company){
-    /*var apiURL = this.apiPrefix + 'api/sessions';
-    return this.authHttp.post(apiURL, JSON.stringify(company));*/
-    //COMPANIES.push(company);
-  }
+
   private companiesUrl = 'http://leisurebooker.azurewebsites.net/api/companies';
   private citiesUrl = 'http://leisurebooker.azurewebsites.net/api/cities';
   private headers = new Headers({'Content-Type': 'application/json'});
 
-getCities(){
-    return this.http.get(this.citiesUrl).map(res => res.json());
+private company:Company = new Company();
+  public postCompany (_name:string,_VAT:string,_street:string, _streetNumber:string, _box:string,_cityId:string){
+    this.company.Name = _name;
+    this.company.Box = _box;
+    this.company.VATNumber = _VAT;
+    this.company.Street = _street;
+    this.company.Number = _streetNumber;
+    this.company.CityId = _cityId;
+    console.log(this.company);
+
+
+    return this.http.post(this.companiesUrl, JSON.stringify(this.company));
+
   }
 
+
+  getCities() {
+    return this.http.get(this.citiesUrl).map(res => res.json());
+  }
   getCompanies(){
     return this.http.get(this.companiesUrl).map(res => res.json());
   }
