@@ -28,10 +28,6 @@ private company:Company = new Company();
 
   }
 
-
-  getCities() {
-    return this.http.get(this.citiesUrl).map(res => res.json());
-  }
   getCompanies(){
     return this.http.get(this.companiesUrl).map(res => res.json());
   }
