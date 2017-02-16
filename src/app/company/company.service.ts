@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Company} from "./model/company";
-import {Http, Headers} from "@angular/http";
+import {Http, Headers, RequestOptions, Response} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
 import {City} from "./model/city";
@@ -23,8 +23,9 @@ private company:Company = new Company();
     this.company.CityId = _cityId;
     console.log(this.company);
 
-
-    return this.http.post(this.companiesUrl, JSON.stringify(this.company));
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+  return this.http.post(this.companiesUrl, JSON.stringify(this.company), options);
 
   }
 
