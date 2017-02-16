@@ -5,6 +5,6 @@ export class Company{
   public Street: string;
   public Number: string;
   public Box: string;
-  public CityId:string;
- // public City: City;
+ // public CityId:string;
+ public City: City;
 }

@@ -1,1 +1,19 @@
 <h1>{{title}}</h1>
+
+
+<h2>Branches</h2>
+<ul>
+  <li *ngFor="let branche of branches">
+    <br><u>Branch Info:</u>
+    ID: {{branche.Id}}<br/>
+    Name: {{branche.Name}}<br/>
+    Street: {{branche.Street}}<br/>
+    Number: {{branche.Number}}<br/>
+    Box: {{branche.Box}} <br/>
+    CityId: {{branche.CityId}}<br/>
+    PhoneNumber: {{branche.PhoneNumber}}<br/>
+    Email: {{branche.Email}}<br/>
+    CompanyID: {{branche.CompanyId}}
+
+  </li>
+</ul>
