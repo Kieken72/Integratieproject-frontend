@@ -12,20 +12,25 @@ export class CompanyService {
   private companiesUrl = 'http://leisurebooker.azurewebsites.net/api/companies';
 
   private headers = new Headers({'Content-Type': 'application/json'});
-
+private retCompany:Company = new Company();
 private company:Company = new Company();
   public postCompany (_name:string,_VAT:string,_street:string, _streetNumber:string, _box:string,_cityId:string){
+    let cityids = _cityId.split(":");
     this.company.Name = _name;
     this.company.Box = _box;
     this.company.VATNumber = _VAT;
     this.company.Street = _street;
     this.company.Number = _streetNumber;
-    this.company.CityId = _cityId;
+    this.company.CityId = cityids[1];
     console.log(this.company);
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-  return this.http.post(this.companiesUrl, JSON.stringify(this.company), options);
+    return this.http.post(this.companiesUrl, JSON.stringify(this.company), options).map((res:Response)=>res.json()).subscribe(
+    (res:Company) => {
+      this.retCompany = res;
+      console.log("VALUE RECEIVED: ",res);
+    });
 
   }
 

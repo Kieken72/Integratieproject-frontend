@@ -13,6 +13,7 @@ import {CompanyComponent} from "./company/company.component";
 import {Ng2AutoCompleteModule, Ng2AutoComplete} from 'ng2-auto-complete';
 import {CitySearchComponent} from "./shared/cityservice/city-search.component";
 import {BranchService} from "./branches/branche.service";
+import {CityService} from "./shared/cityservice/city.service";
 
 @NgModule({
    imports: [
@@ -37,7 +38,7 @@ import {BranchService} from "./branches/branche.service";
     BranchComponent,
     NavbarComponent
   ],
-  providers: [CompanyService, BranchService],
+  providers: [CompanyService,CityService, BranchService],
   bootstrap: [AppComponent]
 
 })
