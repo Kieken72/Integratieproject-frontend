@@ -26,7 +26,7 @@ import {BranchService} from "./branches/branche.service";
         component: CompanyComponent,
       },
       {
-        path: 'branches',
+        path: 'manage/branches',
         component: BranchComponent
       }
     ])

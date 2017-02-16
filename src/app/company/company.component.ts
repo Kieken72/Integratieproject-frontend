@@ -2,11 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import { CompanyService} from './company.service';
 import {Company} from "./model/company";
 import {City} from "./model/city";
+import {CityService} from "../shared/cityservice/city.service";
 @Component({
   selector: 'my-company',
   templateUrl: 'company.component.html',
   styleUrls: ['company.component.css'],
-  providers: [CompanyService]
+  providers: [CompanyService, CityService]
 })
 export class CompanyComponent implements OnInit{
   companies: Company[];
@@ -16,11 +17,11 @@ export class CompanyComponent implements OnInit{
     this.getCities();
   }
 
-  constructor(private companyService:CompanyService){}
+  constructor(private companyService:CompanyService, private cityService:CityService){}
 
   title = 'Nieuw bedrijf!';
   getCities():void{
-    this.companyService.getCities().subscribe(data => this.cities= data);
+    this.cityService.getCities().subscribe(data => this.cities= data);
 }
   getCompanies():void{
     this.companyService.getCompanies().subscribe(data => this.companies= data);
