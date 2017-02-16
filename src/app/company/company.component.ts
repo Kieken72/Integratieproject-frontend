@@ -10,6 +10,7 @@ import {CityService} from "../shared/cityservice/city.service";
   providers: [CompanyService, CityService]
 })
 export class CompanyComponent implements OnInit{
+  cityid:number;
   companies: Company[];
   cities: City[];
   ngOnInit(): void {
@@ -28,22 +29,7 @@ export class CompanyComponent implements OnInit{
   }
 
 
-  private company:Company = new Company();
-  addCompany(cityId:string,name:string,VAT:string,street:string, streetNumber:string, box:string){
-    this.company.Name =name;
-    this.company.VATNumber=VAT;
-    //this.company.CityId = cityId;
-    this.company.Street = street;
-    this.company.Number = streetNumber;
-    this.company.Box = box;
-
-    this.companyService.postCompany(this.company);
-  }
-
-  myListFormatter(data: any): string {
-    let html: string = "";
-    html += data[this.company.City.PostalCode] ? `<b>(${data[this.company.City.PostalCode]})</b>` : "";
-
-    return html;
+  addCompany(name:string, VAT:string, street:string, streetNumber:string, box:string ,cityId:string){
+    this.companyService.postCompany(name,VAT,street,streetNumber,box,cityId,);
   }
 }
