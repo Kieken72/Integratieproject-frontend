@@ -24,8 +24,8 @@
        <select name="cityId"  [(ngModel)]="cityid" class="form-control">
          <option id="companyCity" *ngFor="let city of cities" [ngValue]="city.Id" #CityId>{{city.PostalCode}} | {{city.Name}}</option>
        </select>
-     </div>
-  </div>
+
+    </div>
   <div class="form-group">
     <label for="companyName" class="col-sm-3 control-label">Name:</label>
     <div class="col-sm-9">
@@ -63,6 +63,7 @@
       <button class="btn btn-default"
               (click)="addCompany(CompanyName.value,CompanyVAT.value, CompanyStreet.value,CompanyStreetNumber.value,CompanyBox.value, 343)">Add</button>
     </div>
+  </div>
   </div>
 <!-- addCompany(name:string,VAT:string,street:string, streetNumber:number, box:string,cityId:string) -->
 </form>
