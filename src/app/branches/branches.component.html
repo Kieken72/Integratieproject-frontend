@@ -1,6 +1,55 @@
 <h1>{{title}}</h1>
 
 
+<form class="form-horizontal">
+  <div class="form-group">
+    <label for="brancheName" class="col-sm-3 control-label">Filiaal naam:</label>
+    <div class="col-sm-9">
+      <input class="form-control" id="brancheName" #BrancheName/>
+    </div>
+  </div>
+  <div class="form-group">
+  <label for="brancheStreet" class="col-sm-3 control-label">Straat:</label>
+  <div class="col-sm-9">
+    <input class="form-control" id="brancheStreet" #BrancheStreet/>
+  </div>
+</div>
+  <div class="form-group">
+    <label for="brancheNumber" class="col-sm-3 control-label">Nummer:</label>
+    <div class="col-sm-9">
+      <input class="form-control" id="brancheNumber" #BrancheNumber/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="brancheBox" class="col-sm-3 control-label">Postbus:</label>
+    <div class="col-sm-9">
+      <input class="form-control" id="brancheBox" #BrancheBox/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="companyCity" class="col-sm-3 control-label">City:</label>
+    <div class="col-sm-9">
+      <select class="form-control" >
+        <option id="companyCity" *ngFor="let city of cities" [ngValue]="city.Id">{{city.PostalCode}} | {{city.Name}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="branchePhoneNumber" class="col-sm-3 control-label">Telefoon nummer:</label>
+    <div class="col-sm-9">
+      <input class="form-control" id="branchePhoneNumber" #BranchePhoneNumber/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="brancheEmail" class="col-sm-3 control-label">E-mail:</label>
+    <div class="col-sm-9">
+      <input class="form-control" id="brancheEmail" #BrancheEmail/>
+    </div>
+  </div>
+</form>
+
+
+
 <h2>Branches</h2>
 <ul>
   <li *ngFor="let branche of branches">
@@ -17,3 +66,6 @@
 
   </li>
 </ul>
+
+
+
