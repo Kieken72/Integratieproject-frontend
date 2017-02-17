@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {RouterModule}   from '@angular/router';
+import {RouterModule, Routes}   from '@angular/router';
 
 
 import {AppComponent} from "./app.component";
@@ -14,6 +14,20 @@ import {Ng2AutoCompleteModule, Ng2AutoComplete} from 'ng2-auto-complete';
 import {CitySearchComponent} from "./shared/cityservice/city-search.component";
 import {BranchService} from "./branches/branche.service";
 import {CityService} from "./shared/cityservice/city.service";
+import { BookerComponent } from './booker/booker.component';
+
+
+const appRoutes: Routes = [
+  { path: 'booker', component: BookerComponent },
+  { path: 'manage', children:[
+    { path: 'company', component: CompanyComponent },
+    { path: 'branch', component: BranchComponent },
+  ]},
+  { path: '', redirectTo: 'booker', pathMatch: 'full' }
+
+]
+
+
 
 @NgModule({
    imports: [
@@ -21,24 +35,14 @@ import {CityService} from "./shared/cityservice/city.service";
     FormsModule,
     HttpModule, Ng2AutoCompleteModule,
     // InMemoryWebApiModule.forRoot(InMemoryDataService),
-    RouterModule.forRoot([
-      {
-        path: 'manage/company',
-        component: CompanyComponent,
-      },
-      {
-        path: 'manage/branches',
-        component: BranchComponent
-
-
-      }
-    ])
+    RouterModule.forRoot(appRoutes)
   ],
   declarations: [
     AppComponent,
     CompanyComponent,
     BranchComponent,
-    NavbarComponent
+    NavbarComponent,
+    BookerComponent
   ],
   providers: [CompanyService,CityService, BranchService],
   bootstrap: [AppComponent]
