@@ -6,15 +6,16 @@ import {RouterModule, Routes}   from '@angular/router';
 
 
 import {AppComponent} from "./app.component";
-import {BranchComponent} from "./branches/branches.component";
-import {CompanyService} from "./company/company.service";
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import {CompanyComponent} from "./company/company.component";
+import {BranchComponent} from "./manager/branches/branches.component";
+import {CompanyService} from "./manager/company/company.service";
+import {CompanyComponent} from "./manager/company/company.component";
 import {Ng2AutoCompleteModule, Ng2AutoComplete} from 'ng2-auto-complete';
 import {CitySearchComponent} from "./shared/cityservice/city-search.component";
-import {BranchService} from "./branches/branche.service";
+import {BranchService} from "./manager/branches/branche.service";
 import {CityService} from "./shared/cityservice/city.service";
 import { BookerComponent } from './booker/booker.component';
+import { BookerNavbarComponent } from './booker/booker-navbar/booker-navbar.component';
+import { ManagerNavbarComponent } from './manager/manager-navbar/manager-navbar.component';
 
 
 const appRoutes: Routes = [
@@ -41,8 +42,9 @@ const appRoutes: Routes = [
     AppComponent,
     CompanyComponent,
     BranchComponent,
-    NavbarComponent,
-    BookerComponent
+    BookerComponent,
+    BookerNavbarComponent,
+    ManagerNavbarComponent
   ],
   providers: [CompanyService,CityService, BranchService],
   bootstrap: [AppComponent]

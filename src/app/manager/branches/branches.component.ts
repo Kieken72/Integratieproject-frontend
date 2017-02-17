@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {Branche} from "./model/branche";
 import {BranchService} from "./branche.service";
-import {CityService} from "../shared/cityservice/city.service";
+import {CityService} from "../../shared/cityservice/city.service";
 import {City} from "../company/model/city";
 
 @Component({

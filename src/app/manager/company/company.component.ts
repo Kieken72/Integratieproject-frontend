@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { CompanyService} from './company.service';
 import {Company} from "./model/company";
 import {City} from "./model/city";
-import {CityService} from "../shared/cityservice/city.service";
+import {CityService} from "../../shared/cityservice/city.service";
 @Component({
   selector: 'my-company',
   templateUrl: 'company.component.html',
