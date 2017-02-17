@@ -2,18 +2,15 @@ import { Injectable } from '@angular/core';
 import {Company} from "./model/company";
 import {Http, Headers, RequestOptions, Response} from "@angular/http";
 import 'rxjs/add/operator/map';
-import {Observable} from "rxjs";
-import {City} from "./model/city";
 
 @Injectable()
 export class CompanyService {
   constructor(private  http:Http){}
 
   private companiesUrl = 'http://leisurebooker.azurewebsites.net/api/companies';
+  private retCompany:Company = new Company();
+  private company:Company = new Company();
 
-  private headers = new Headers({'Content-Type': 'application/json'});
-private retCompany:Company = new Company();
-private company:Company = new Company();
   public postCompany (_name:string,_VAT:string,_street:string, _streetNumber:string, _box:string,_cityId:string){
     let cityids = _cityId.split(":");
     this.company.Name = _name;
@@ -31,7 +28,6 @@ private company:Company = new Company();
       this.retCompany = res;
       console.log("VALUE RECEIVED: ",res);
     });
-
   }
 
   getCompanies(){

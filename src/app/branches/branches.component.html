@@ -29,7 +29,7 @@
   <div class="form-group">
     <label for="companyCity" class="col-sm-3 control-label">City:</label>
     <div class="col-sm-9">
-      <select class="form-control" >
+      <select class="form-control" name="cityId" [(ngModel)]="cityid" #CityId >
         <option id="companyCity" *ngFor="let city of cities" [ngValue]="city.Id">{{city.PostalCode}} | {{city.Name}}</option>
       </select>
     </div>
@@ -44,6 +44,12 @@
     <label for="brancheEmail" class="col-sm-3 control-label">E-mail:</label>
     <div class="col-sm-9">
       <input class="form-control" id="brancheEmail" #BrancheEmail/>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
+      <button class="btn btn-default"
+              (click)="addBranche(BrancheName.value, BrancheStreet.value, BrancheNumber.value, BrancheBox.value, CityId.value, BranchePhoneNumber.value, BrancheEmail.value )">Add</button>
     </div>
   </div>
 </form>
