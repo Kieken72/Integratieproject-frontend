@@ -29,6 +29,8 @@ import {CityService} from "./shared/cityservice/city.service";
       {
         path: 'manage/branches',
         component: BranchComponent
+
+
       }
     ])
   ],
