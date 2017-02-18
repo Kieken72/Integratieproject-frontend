@@ -1,0 +1,37 @@
+
+<div class="row">
+  <div class="col-md-10">
+  <div class="jumbotron">
+    <h1>Navbar example</h1>
+    <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+    <p>To see the difference between static and fixed top navbars, just scroll.</p>
+    <p>
+      <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs »</a>
+    </p>
+  </div>
+
+  <h3>Activiteiten</h3>
+  <div class="table-responsive">
+    <table class="table table-hover table-condensed">
+      <tbody>
+        <tr>
+          <td><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></td>
+          <td class="no-wrap">Bericht hier</td>
+          <td>zo 19 feb</td>
+          <td>18:00</td>
+          <td>2 personen</td>
+          <td>achternaam</td>
+          <td>x uur geleden</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <div class="col-md-2">
+    <div class="well text-center">
+      <h4>{{currentTime | async | date:'EEE d MMMM'}}</h4>
+      <h3>{{currentTime | async | date:'hh:mm'}}</h3>
+    </div>
+    <button class="btn btn-success btn-lg">Nieuwe reservering</button>
+  </div>
+</div>

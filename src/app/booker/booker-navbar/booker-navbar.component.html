@@ -1,12 +1,10 @@
-<div class="masthead clearfix">
-  <div class="inner">
-    <h3 class="masthead-brand">Leisurebooker</h3>
-    <nav>
-      <ul class="nav masthead-nav">
-        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/']">Home</a></li>
-        <li [routerLinkActive]="['active']"><a [routerLink]="['../manage/company']">Maak een nieuw bedrijf</a></li>
-        <li [routerLinkActive]="['active']"><a [routerLink]="['../manage/branch']">Maak een nieuw filiaal</a></li>
-      </ul>
-    </nav>
-  </div>
+<div class="header clearfix">
+  <nav>
+    <ul class="nav nav-pills pull-right">
+      <li role="presentation" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['search']">Zoeken</a></li>
+      <li role="presentation" [routerLinkActive]="['active']"><a [routerLink]="['contact']">Contact</a></li>
+      <li role="presentation" [routerLinkActive]="['active']"><a [routerLink]="['../manager']">LeisureManager</a></li>
+    </ul>
+  </nav>
+  <h3 class="text-muted">{{title}}</h3>
 </div>

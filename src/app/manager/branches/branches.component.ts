@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {Branche} from "./model/branche";
+import {Branch} from "./model/branch";
 import {BranchService} from "./branche.service";
 import {CityService} from "../../shared/cityservice/city.service";
-import {City} from "../company/model/city";
+import {City} from "../../shared/cityservice/city";
 
 @Component({
   selector: 'my-branches',
@@ -12,7 +12,7 @@ import {City} from "../company/model/city";
 })
 export class BranchComponent {
   title = 'Nieuw filiaal!';
-  branches: Branche[];
+  branches: Branch[];
   cities: City[];
   cityid:number;
 

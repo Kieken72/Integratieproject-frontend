@@ -1,18 +1,6 @@
 
 
-<h1>
-  {{title}}
-</h1>
-<h2>My Companies</h2>
-<ul>
-  <li *ngFor="let company of companies">
-    <u>Company Info:</u>
-    {{company.Name}} | {{company.VATNumber}} | {{company.Street}} | {{company.Number}} | {{company.Box}}
-    | {{company.CityId}} | <br><u>Company City:</u>
-    {{company.City.Id}} | {{company.City.PostalCode}} | {{company.City.Name}} | {{company.City.Province}}
-  </li>
-</ul>
-
+<h1>{{title}}</h1>
 
 <form class="form-horizontal">
   <div class="form-group">
@@ -65,49 +53,28 @@
               (click)="addCompany(CompanyName.value,CompanyVAT.value, CompanyStreet.value,CompanyStreetNumber.value,CompanyBox.value, CityId[0].value)">Add</button>
     </div>
   </div>
-
-<!-- addCompany(name:string,VAT:string,street:string, streetNumber:number, box:string,cityId:string) -->
 </form>
 
-<!--
 <h2>My Companies</h2>
-<ul>
-  <li ng-repeat="(Name) in Company">
-    {{Name}}
-  </li>
-  <li *ngFor="let company of companies">
-    {{company.Name}} | {{company.VATNumber}} | {{company.Street}}
-  </li>
-</ul>
 
-<div>
-  <label>Company name:</label> <input #CompanyName />
-  <label>Company VAT:</label> <input #CompanyVAT />
-  <label>Company address:</label> <input #CompanyAddress />
-  <button class="btn btn-default" (click)="addCompany(CompanyName.value,CompanyVAT.value, CompanyAddress.value); CompanyName.value=''">
-    Add
-  </button>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <caption>Caption here?</caption>
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>VAT Number</th>
+      <th>Address</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let company of companies">
+      <th scope="row">{{company.Id}}</th>
+      <td>{{company.Name}}</td>
+      <td>{{company.VATNumber}}</td>
+      <td>{{company.Street}} {{company.Number}} {{company.Box}}, {{company.City.PostalCode}} {{company.City.Name}}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>
-
--->
-<!--<div ng-controller="companyCtrl">
-<div class="col-md-4">
-<form>
-  <div class="form-group">
-    <label for="Name">Naam</label>
-    <input class="form-control input-lg" id="Name" type="text" ng-model="name">
-  </div>
-  <div class="form-group">
-    <label for="VAT">BTW nummer</label>
-    <input class="form-control input-lg" id="VAT" type="text" ng-model="vat">
-  </div>
-  <div class="form-group">
-    <label for="Adress">Adres</label>
-    <input class="form-control input-lg" id="Adress" type="text" ng-model="address">
-  </div>
-  <input type="submit" value="Maak nieuw bedrijf" (click)="postCompany()" class="btn btn-default"/>
-</form>
-  <hr/>
-</div>
-</div>-->
-
