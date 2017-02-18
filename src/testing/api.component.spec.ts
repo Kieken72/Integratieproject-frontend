@@ -2,7 +2,7 @@ import {TestBed, inject, async} from '@angular/core/testing';
 
 import {CompanyComponent} from "../app/manager/company/company.component";
 import {CompanyService} from "../app/manager/company/company.service";
-import {HttpModule} from "@angular/http";
+import {HttpModule, Response} from "@angular/http";
 import {request} from "http";
 import {CityService} from "../app/shared/cityservice/city.service";
 import {Company} from "../app/manager/company/model/company";
@@ -43,7 +43,6 @@ describe('Service: companies', () => {
       console.log("got 1 or more cities");
     });
   })));
-
 
   /*it('should be json', () => {
     return request(CompanyService).getHeader('Content-Type').toString()  == 'application/json; charset=utf-8';
