@@ -1,9 +1,12 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {TestBed, inject, async} from '@angular/core/testing';
 
-import {CompanyComponent} from "../app/company/company.component";
-import {CompanyService} from "../app/company/company.service";
+import {CompanyComponent} from "../app/manager/company/company.component";
+import {CompanyService} from "../app/manager/company/company.service";
 import {HttpModule} from "@angular/http";
 import {request} from "http";
+import {CityService} from "../app/shared/cityservice/city.service";
+import {Company} from "../app/manager/company/model/company";
+import {City} from "../app/shared/cityservice/city";
 
 
 describe('Service: companies', () => {
@@ -12,17 +15,37 @@ describe('Service: companies', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        CompanyService,
+        CompanyService,CityService
       ],
       imports:[HttpModule]
     });
   });
 
-  it('expect to be defined', inject([CompanyService], (service: CompanyService) => {
+  it('expect companyservice to be defined', inject([CompanyService], (service: CompanyService) => {
     expect(service).toBeDefined();
+    console.log("companyservice is defined");
   }));
 
-  it('should be json', () => {
-    return request(CompanyService).getHeader('Content-Type').toString()  == 'application/json; charset=utf-8';
+  it('expect cityservice to be defined', inject([CityService], (service: CityService) => {
+    expect(service).toBeDefined();
+    console.log("cityservice is defined");
+  }));
+
+  it('should get companies',async( inject([CompanyService],(service:CompanyService)=>{
+    service.getCompanies().subscribe((companies:Company[])=>{
+      expect(companies.length).toBeGreaterThanOrEqual(1);
+      console.log("got 1 or more companies");
     });
+  })));
+  it('should get cities',async( inject([CityService],(service:CityService)=>{
+    service.getCities().subscribe((cities:City[])=>{
+      expect(cities.length).toBeGreaterThanOrEqual(1);
+      console.log("got 1 or more cities");
+    });
+  })));
+
+
+  /*it('should be json', () => {
+    return request(CompanyService).getHeader('Content-Type').toString()  == 'application/json; charset=utf-8';
+    });*/
   });
