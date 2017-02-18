@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers, RequestOptions, Response} from "@angular/http";
-import {Branche} from "./model/branche";
+import {Branch} from "./model/branch";
 /**
  * Created by Emmanuel on 16/02/2017.
  */
@@ -8,8 +8,8 @@ import {Branche} from "./model/branche";
 export class BranchService {
   constructor(private  http:Http){}
   private branchesUrl = 'http://leisurebooker.azurewebsites.net/api/branches';
-  private branche:Branche = new Branche();
-  private retBranche:Branche = new Branche();
+  private branche:Branch = new Branch();
+  private retBranche:Branch = new Branch();
 
   getBranches(){
     return this.http.get(this.branchesUrl).map(res => res.json());
@@ -32,7 +32,7 @@ export class BranchService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.branchesUrl, JSON.stringify(this.branche), options).map((res:Response)=>res.json()).subscribe(
-      (res:Branche) => {
+      (res:Branch) => {
         this.retBranche = res;
         console.log("VALUE RECEIVED: ",res);
       });

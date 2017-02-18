@@ -1,6 +1,5 @@
 <h1>{{title}}</h1>
 
-
 <form class="form-horizontal">
   <div class="form-group">
     <label for="brancheName" class="col-sm-3 control-label">Filiaal naam:</label>
@@ -54,24 +53,31 @@
   </div>
 </form>
 
-
-
 <h2>Branches</h2>
-<ul>
-  <li *ngFor="let branche of branches">
-    <br><u>Branch Info:</u>
-    ID: {{branche.Id}}<br/>
-    Name: {{branche.Name}}<br/>
-    Street: {{branche.Street}}<br/>
-    Number: {{branche.Number}}<br/>
-    Box: {{branche.Box}} <br/>
-    CityId: {{branche.CityId}}<br/>
-    PhoneNumber: {{branche.PhoneNumber}}<br/>
-    Email: {{branche.Email}}<br/>
-    CompanyID: {{branche.CompanyId}}
 
-  </li>
-</ul>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <caption>Caption here?</caption>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let branch of branches">
+        <th scope="row">{{branch.Id}}</th>
+        <td>{{branch.Name}}</td>
+        <td>{{branch.Street}} {{branch.Number}} {{branch.Box}}, {{branch.City.PostalCode}} {{branch.City.Name}}</td>
+        <td><a href="mailto:{{branch.Email}}">{{branch.Email}}</a></td>
+        <td>{{branch.PhoneNumber}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 
 

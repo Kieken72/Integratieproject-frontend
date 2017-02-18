@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookerNavbarComponent implements OnInit {
 
+  private title = "LeisureBooker"
   constructor() { }
 
   ngOnInit() {

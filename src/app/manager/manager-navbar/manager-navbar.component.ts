@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagerNavbarComponent implements OnInit {
 
+  private title = "LeisureManager";
   constructor() { }
 
   ngOnInit() {
