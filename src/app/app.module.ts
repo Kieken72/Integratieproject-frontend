@@ -8,7 +8,7 @@ import {BranchComponent} from "./manager/branches/branches.component";
 import {CompanyService} from "./manager/company/company.service";
 import {CompanyComponent} from "./manager/company/company.component";
 import {Ng2AutoCompleteModule, Ng2AutoComplete} from 'ng2-auto-complete';
-import {BranchService} from "./manager/branches/branche.service";
+import {BranchService} from "./shared/branch.service";
 import {CityService} from "./shared/cityservice/city.service";
 import { BookerComponent } from './booker/booker.component';
 import { BookerNavbarComponent } from './booker/booker-navbar/booker-navbar.component';
@@ -20,12 +20,18 @@ import { ManagerMessagesComponent } from './manager/manager-messages/manager-mes
 import { ManagerCalendarComponent } from './manager/manager-calendar/manager-calendar.component';
 import { ManagerGuestsComponent } from './manager/manager-guests/manager-guests.component';
 import { ManagerStatisticsComponent } from './manager/manager-statistics/manager-statistics.component';
+import { BookerListComponent } from './booker/booker-list/booker-list.component';
+import {SearchService} from "./booker/shared/search.service";
+import { DefaultPipe } from './shared/default.pipe';
+import { BookerDetailComponent } from './booker/booker-detail/booker-detail.component';
 
 
 const appRoutes: Routes = [
 
   { path: 'booker', component: BookerComponent, children: [
     { path: 'search', component: BookerSearchComponent },
+    { path: 'list', component: BookerListComponent },
+    { path: 'detail/:id', component: BookerDetailComponent},
     { path: '', redirectTo: 'search', pathMatch: 'full'},
     //{ path: 'results' },
     //{ path: 'details/:id'}
@@ -69,9 +75,12 @@ const appRoutes: Routes = [
     ManagerMessagesComponent,
     ManagerCalendarComponent,
     ManagerGuestsComponent,
-    ManagerStatisticsComponent
+    ManagerStatisticsComponent,
+    BookerListComponent,
+    DefaultPipe,
+    BookerDetailComponent
   ],
-  providers: [{ provide: LOCALE_ID, useValue: "nl-BE" },CompanyService,CityService, BranchService],
+  providers: [{ provide: LOCALE_ID, useValue: "nl-BE" },CompanyService,CityService, BranchService, SearchService],
   bootstrap: [AppComponent]
 
 })

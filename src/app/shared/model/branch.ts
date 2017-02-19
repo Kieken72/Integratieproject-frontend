@@ -1,4 +1,5 @@
-import {City} from "../../../shared/cityservice/city";
+import {City} from "../cityservice/city";
+import {OperationHour} from "./operationhour";
 /**
  * Created by Emmanuel on 16/02/2017.
  */
@@ -13,4 +14,6 @@ export class Branch{
   public PhoneNumber: string;
   public Email: string;
   public CompanyId: string;
+  public Picture: string;
+  public OpeningHours: OperationHour[]
 }

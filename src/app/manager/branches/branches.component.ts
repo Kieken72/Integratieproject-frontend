@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {Branch} from "./model/branch";
-import {BranchService} from "./branche.service";
+import {Branch} from "../../shared/model/branch";
+import {BranchService} from "../../shared/branch.service";
 import {CityService} from "../../shared/cityservice/city.service";
 import {City} from "../../shared/cityservice/city";
 

@@ -1,0 +1,67 @@
+
+<div class="row lists">
+  <div class="col-md-12">
+    <div class="well">
+      <div class="form-inline">
+        <div class="form-group">
+            <input [(ngModel)]="search.location" class="form-control" id="where" placeholder="Locatie">
+        </div>
+        <div class="form-group">
+          <input type="date" [ngModel]="search.date | date: 'yyyy-MM-dd'" (ngModelChange)="dateChanged($event)" class="form-control"  id="date">
+        </div>
+        <div class="form-group">
+            <input type="time" [ngModel]="search.time | date: 'H:mm'" class="form-control" id="time">
+        </div>
+        <div class="form-group">
+           <select [(ngModel)]="search.amount" class="form-control">
+             <option *ngFor="let person of persons" [ngValue]="person">{{person}} personen</option>
+           </select>
+        </div>
+
+  </div>
+    </div>
+  </div>
+  <div class="col-md-4" *ngFor="let branch of branches">
+    <div class="profile-card text-center">
+
+      <img class="img-responsive" src="http://leisurebooker.azurewebsites.net/{{branch.Picture | default: 'Content/bowling.jpg'}}">
+      <div class="profile-info">
+        <h2 class="hvr-underline-from-center">{{branch.Name}}</h2>
+        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        <a href="http://www.twitter.com/mike_youngg"><i class="glyphicon glyphicon-earphone"></i></a>
+        <a href="mailto:{{branch.Email}}"><i class="glyphicon glyphicon-envelope"></i></a>
+        <a href="#"><i class="glyphicon glyphicon-star"></i></a>
+        <div class="btn btn-success" [routerLink]="['../detail/', branch.Id]">Reserveren</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="table-responsive">
+  <table class="table table-hover">
+    <caption>Caption here?</caption>
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let branch of branches">
+      <th scope="row">{{branch.Id}}</th>
+      <td>{{branch.Name}}</td>
+      <td>{{branch.Street}} {{branch.Number}} {{branch.Box}}, {{branch.City.PostalCode}} {{branch.City.Name}}</td>
+      <td><a href="mailto:{{branch.Email}}">{{branch.Email}}</a></td>
+      <td>{{branch.PhoneNumber}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
