@@ -27,6 +27,7 @@ import { BookerDetailComponent } from './booker/booker-detail/booker-detail.comp
 import { LoginComponent } from './shared/login/login.component';
 import { AccountComponent } from './shared/account/account.component';
 import { UserService} from "./shared/user.service";
+import {LoggedInGuard} from "./shared/logged-in.guard";
 
 
 const appRoutes: Routes = [
@@ -40,7 +41,7 @@ const appRoutes: Routes = [
     //{ path: 'details/:id'}
   ]},
   { path: 'manager', component: ManagerComponent, children:[
-    { path: 'dashboard', component: ManagerDashboardComponent },
+    { path: 'dashboard', component: ManagerDashboardComponent, canActivate:[LoggedInGuard] },
     { path: 'calendar', component: ManagerCalendarComponent },
     { path: 'messages', component: ManagerMessagesComponent },
     { path: 'guests', component: ManagerGuestsComponent },
@@ -87,8 +88,8 @@ const appRoutes: Routes = [
     LoginComponent,
     AccountComponent
   ],
-  providers: [{ provide: LOCALE_ID, useValue: "nl-BE" },CompanyService,CityService, BranchService, SearchService, UserService],
-  bootstrap: [AppComponent]
+  providers: [{ provide: LOCALE_ID, useValue: "nl-BE" },CompanyService,CityService, BranchService, SearchService, UserService, LoggedInGuard],
+  bootstrap: [AppComponent],
 
 })
 
