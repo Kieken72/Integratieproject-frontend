@@ -3,6 +3,7 @@ export class BookerSearch {
   time: Date;
   amount: number;
   location: string;
+
   constructor(){
     this.amount = 2;
   }

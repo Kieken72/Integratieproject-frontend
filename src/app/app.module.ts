@@ -24,6 +24,8 @@ import { BookerListComponent } from './booker/booker-list/booker-list.component'
 import {SearchService} from "./booker/shared/search.service";
 import { DefaultPipe } from './shared/default.pipe';
 import { BookerDetailComponent } from './booker/booker-detail/booker-detail.component';
+import { LoginComponent } from './shared/login/login.component';
+import { AccountComponent } from './shared/account/account.component';
 
 
 const appRoutes: Routes = [
@@ -47,6 +49,8 @@ const appRoutes: Routes = [
     { path: 'branch', component: BranchComponent },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   ]},
+  { path: 'login', component: LoginComponent },
+  { path: 'account', component: LoginComponent },
   { path: '', redirectTo: 'booker', pathMatch: 'full'},
 
 ]
@@ -78,7 +82,9 @@ const appRoutes: Routes = [
     ManagerStatisticsComponent,
     BookerListComponent,
     DefaultPipe,
-    BookerDetailComponent
+    BookerDetailComponent,
+    LoginComponent,
+    AccountComponent
   ],
   providers: [{ provide: LOCALE_ID, useValue: "nl-BE" },CompanyService,CityService, BranchService, SearchService],
   bootstrap: [AppComponent]
