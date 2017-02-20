@@ -7,6 +7,8 @@ import {request} from "http";
 import {CityService} from "../app/shared/cityservice/city.service";
 import {Company} from "../app/manager/company/model/company";
 import {City} from "../app/shared/cityservice/city";
+import {CityRESTService} from "../app/shared/city-rest.service";
+
 
 
 describe('Service: companies', () => {
@@ -15,7 +17,7 @@ describe('Service: companies', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        CompanyService,CityService
+        CompanyService,CityService,{provide:'ApiBase',useValue:"http://leisurebooker.azurewebsites.net/api/"}
       ],
       imports:[HttpModule]
     });
