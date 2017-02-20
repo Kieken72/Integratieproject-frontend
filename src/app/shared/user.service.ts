@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers} from "@angular/http";
+import {Router} from "@angular/router";
 /**
  * Created by Emmanuel on 20/02/2017.
  */
@@ -10,7 +11,7 @@ export class UserService{
   private companiesUrl = 'http://leisurebooker.azurewebsites.net/api/token';
 
 
-  constructor(private http: Http){
+  constructor(private http: Http, public router: Router){
     this.loggedIn = !!localStorage.getItem('auth_token');
   }
 
@@ -31,6 +32,7 @@ export class UserService{
   logout(){
     localStorage.removeItem('auth_token');
     this.loggedIn = false;
+    this.router.navigate(['login']);
   }
 
   isLoggedIn(){

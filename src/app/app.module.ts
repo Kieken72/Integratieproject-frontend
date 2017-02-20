@@ -40,9 +40,9 @@ const appRoutes: Routes = [
     //{ path: 'results' },
     //{ path: 'details/:id'}
   ]},
-  { path: 'manager', component: ManagerComponent, children:[
+  { path: 'manager', component: ManagerComponent,  children:[
     { path: 'dashboard', component: ManagerDashboardComponent, canActivate:[LoggedInGuard] },
-    { path: 'calendar', component: ManagerCalendarComponent },
+    { path: 'calendar', component: ManagerCalendarComponent, canActivate:[LoggedInGuard] },
     { path: 'messages', component: ManagerMessagesComponent },
     { path: 'guests', component: ManagerGuestsComponent },
     { path: 'statistics', component: ManagerStatisticsComponent },
