@@ -28,7 +28,9 @@ app.use(forceSSL());
 app.use(express.static(__dirname + '/dist'));
 // Start the app by listening on the default
 // Heroku port
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 8080, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 // For all GET requests, send back index.html
 // so that PathLocationStrategy can be used
 app.get('/*', function(req, res) {
