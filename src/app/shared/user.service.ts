@@ -17,13 +17,14 @@ export class UserService{
   login(Username, Password){
     let headers = new Headers();
     headers.append('Content-type', 'application/x-www-form-urlencoded');
-    var body = 'Username=Username?Password=Password&grant_type=password';
+    var body = 'Username='+Username+'&Password='+Password+'&grant_type=password';
     return this.http.post(this.companiesUrl, body, {headers})
-      .map(res => res.json()).map((res) => {if(res.succes){
-          localStorage.setItem('auth_token', res.auth_token);
+      .map(res => res.json()).map((res) => {if(res.access_token){
+          localStorage.setItem('auth_token', res.access_token);
           this.loggedIn = true;
       }
-      return res.succes;
+      console.log(res.access_token);
+      return res.access_token;
     });
   }
 
