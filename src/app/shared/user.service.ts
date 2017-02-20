@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {Injectable, Inject} from "@angular/core";
 import {Http, Headers} from "@angular/http";
 import {Router} from "@angular/router";
 /**
@@ -8,10 +8,10 @@ import {Router} from "@angular/router";
 @Injectable()
 export class UserService{
   private loggedIn = false;
-  private companiesUrl = 'https://leisurebooker.azurewebsites.net/api/token';
+  //private companiesUrl = 'https://leisurebooker.azurewebsites.net/api/token';
 
 
-  constructor(private http: Http, public router: Router){
+  constructor(private http: Http,@Inject('ApiBase') private apiBase:string, public router: Router){
     this.loggedIn = !!localStorage.getItem('auth_token');
   }
 
@@ -19,7 +19,7 @@ export class UserService{
     let headers = new Headers();
     headers.append('Content-type', 'application/x-www-form-urlencoded');
     var body = 'Username='+Username+'&Password='+Password+'&grant_type=password';
-    return this.http.post(this.companiesUrl, body, {headers})
+    return this.http.post(this.apiBase+'token', body, {headers})
       .map(res => res.json()).map((res) => {if(res.access_token){
           localStorage.setItem('auth_token', res.access_token);
           this.loggedIn = true;
