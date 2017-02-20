@@ -2,22 +2,24 @@ import {TestBed, inject, async} from '@angular/core/testing';
 
 import {CompanyComponent} from "../app/manager/company/company.component";
 import {CompanyService} from "../app/manager/company/company.service";
-import {HttpModule, Response} from "@angular/http";
+import {HttpModule, Response, Request, RequestMethod, RequestOptions} from "@angular/http";
 import {request} from "http";
 import {CityService} from "../app/shared/cityservice/city.service";
 import {Company} from "../app/manager/company/model/company";
 import {City} from "../app/shared/cityservice/city";
-import {CityRESTService} from "../app/shared/city-rest.service";
+import {BranchService} from "../app/shared/branch.service";
+import {Branch} from "../app/shared/model/branch";
 
 
 
-describe('Service: companies', () => {
+describe('Service: API', () => {
 
   beforeEach(() => {
 
     TestBed.configureTestingModule({
       providers: [
-        CompanyService,CityService,{provide:'ApiBase',useValue:"http://leisurebooker.azurewebsites.net/api/"}
+        CompanyService,CityService,BranchService,
+        {provide:'ApiBase',useValue:"http://leisurebooker.azurewebsites.net/api/"}
       ],
       imports:[HttpModule]
     });
@@ -46,7 +48,25 @@ describe('Service: companies', () => {
     });
   })));
 
-  /*it('should be json', () => {
-    return request(CompanyService).getHeader('Content-Type').toString()  == 'application/json; charset=utf-8';
-    });*/
-  });
+  it('should get branches',async( inject([BranchService],(service:BranchService)=>{
+    service.getBranches().subscribe((branches:Branch[])=>{
+      expect(branches.length).toBeGreaterThanOrEqual(1);
+      console.log("got 1 or more branches");
+    });
+  })));
+
+  it('should get branches by postal 2550',async( inject([BranchService],(service:BranchService)=>{
+    service.getBranchesByPostal('2550').subscribe((branches:Branch[])=>{
+      expect(branches.length).toBeGreaterThanOrEqual(1);
+      console.log("got 1 or more branches with postal code 2550");
+    });
+  })));
+
+  it('should get branch by number',async( inject([BranchService],(service:BranchService)=>{
+    service.getBranch(1).subscribe((branch:Branch)=>{
+      expect(branch.Id).toBe(1);
+      console.log("got 1 branch by number");
+    });
+  })));
+
+});

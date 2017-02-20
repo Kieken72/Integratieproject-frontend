@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 export class CompanyService {
   constructor(private  http:Http,@Inject('ApiBase') private apiBase:string){}
 
-  private companyResponse:Company = new Company();
+  private companyResponse = new Company();
   private company:Company = new Company();
 
   getCompanies(){
