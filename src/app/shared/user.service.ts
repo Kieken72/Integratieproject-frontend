@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
 @Injectable()
 export class UserService{
   private loggedIn = false;
-  private companiesUrl = 'http://leisurebooker.azurewebsites.net/api/token';
+  private companiesUrl = 'https://leisurebooker.azurewebsites.net/api/token';
 
 
   constructor(private http: Http, public router: Router){

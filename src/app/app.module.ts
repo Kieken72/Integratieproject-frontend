@@ -89,7 +89,7 @@ const appRoutes: Routes = [
     AccountComponent
   ],
   providers: [{ provide: LOCALE_ID, useValue: "nl-BE" },
-    {provide:'ApiBase',useValue:"http://leisurebooker.azurewebsites.net/api/"},
+    {provide:'ApiBase',useValue:"https://leisurebooker.azurewebsites.net/api/"},
     CompanyService,CityService, BranchService, SearchService, UserService, LoggedInGuard],
   bootstrap: [AppComponent]
 
