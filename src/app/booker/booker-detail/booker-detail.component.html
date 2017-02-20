@@ -7,6 +7,7 @@
       <div class="col-md-12">
         <img class="img-responsive" src="http://leisurebooker.azurewebsites.net/{{branch.Picture | default: 'Content/bowling.jpg'}}">
         <h2>{{branch.Name}}</h2>
+        <p>{{branch.Description}}</p>
       </div>
       <div class="col-md-4">
         <div class="table-responsive">
@@ -21,6 +22,9 @@
             </tbody>
           </table></div>
         </div>
+      <div class="col-md-4">
+        <ul><li *ngFor="let fac of branch.AdditionalInfos">{{fac.Value}}</li></ul>
+      </div>
     </div>
   </div>
   <div class="col-md-4">
