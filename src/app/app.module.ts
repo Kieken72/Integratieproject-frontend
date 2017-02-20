@@ -26,6 +26,7 @@ import { DefaultPipe } from './shared/default.pipe';
 import { BookerDetailComponent } from './booker/booker-detail/booker-detail.component';
 import { LoginComponent } from './shared/login/login.component';
 import { AccountComponent } from './shared/account/account.component';
+import {UserService} from "./shared/user.service";
 
 
 const appRoutes: Routes = [
@@ -86,7 +87,7 @@ const appRoutes: Routes = [
     LoginComponent,
     AccountComponent
   ],
-  providers: [{ provide: LOCALE_ID, useValue: "nl-BE" },CompanyService,CityService, BranchService, SearchService],
+  providers: [{ provide: LOCALE_ID, useValue: "nl-BE" },CompanyService,CityService, BranchService, SearchService, UserService],
   bootstrap: [AppComponent]
 
 })
