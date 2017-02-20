@@ -27,6 +27,7 @@ import { BookerDetailComponent } from './booker/booker-detail/booker-detail.comp
 import { LoginComponent } from './shared/login/login.component';
 import { AccountComponent } from './shared/account/account.component';
 import { UserService} from "./shared/user.service";
+import {LoggedInGuard} from "./shared/logged-in.guard";
 
 
 const appRoutes: Routes = [
@@ -39,9 +40,9 @@ const appRoutes: Routes = [
     //{ path: 'results' },
     //{ path: 'details/:id'}
   ]},
-  { path: 'manager', component: ManagerComponent, children:[
-    { path: 'dashboard', component: ManagerDashboardComponent },
-    { path: 'calendar', component: ManagerCalendarComponent },
+  { path: 'manager', component: ManagerComponent,  children:[
+    { path: 'dashboard', component: ManagerDashboardComponent, canActivate:[LoggedInGuard] },
+    { path: 'calendar', component: ManagerCalendarComponent, canActivate:[LoggedInGuard] },
     { path: 'messages', component: ManagerMessagesComponent },
     { path: 'guests', component: ManagerGuestsComponent },
     { path: 'statistics', component: ManagerStatisticsComponent },
@@ -89,7 +90,7 @@ const appRoutes: Routes = [
   ],
   providers: [{ provide: LOCALE_ID, useValue: "nl-BE" },
     {provide:'ApiBase',useValue:"http://leisurebooker.azurewebsites.net/api/"},
-    CompanyService,CityService, BranchService, SearchService, UserService],
+    CompanyService,CityService, BranchService, SearchService, UserService, LoggedInGuard],
   bootstrap: [AppComponent]
 
 })
