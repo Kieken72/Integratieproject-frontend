@@ -11,7 +11,7 @@ export class UserService{
   //private companiesUrl = 'https://leisurebooker.azurewebsites.net/api/token';
 
 
-  constructor(private http: Http,@Inject('ApiBase') private apiBase:string, public router: Router){
+  constructor(private http: Http,@Inject('ApiBase') private apiBase:string,@Inject('AuthBase') private authBase:string, public router: Router){
     this.loggedIn = !!localStorage.getItem('auth_token');
   }
 
@@ -19,7 +19,7 @@ export class UserService{
     let headers = new Headers();
     headers.append('Content-type', 'application/x-www-form-urlencoded');
     var body = 'Username='+Username+'&Password='+Password+'&grant_type=password';
-    return this.http.post(this.apiBase+'token', body, {headers})
+    return this.http.post(this.authBase+'token', body, {headers})
       .map(res => res.json()).map((res) => {if(res.access_token){
           localStorage.setItem('auth_token', res.access_token);
           this.loggedIn = true;
