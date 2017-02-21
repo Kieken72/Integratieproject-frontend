@@ -19,7 +19,7 @@ describe('Service: API', () => {
     TestBed.configureTestingModule({
       providers: [
         CompanyService,CityService,BranchService,
-        {provide:'ApiBase',useValue:"http://leisurebooker.azurewebsites.net/api/"}
+        {provide:'ApiBase',useValue:"https://leisurebooker.azurewebsites.net/api/"}
       ],
       imports:[HttpModule]
     });
