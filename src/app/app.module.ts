@@ -26,8 +26,9 @@ import { DefaultPipe } from './shared/default.pipe';
 import { BookerDetailComponent } from './booker/booker-detail/booker-detail.component';
 import { LoginComponent } from './shared/login/login.component';
 import { AccountComponent } from './shared/account/account.component';
-import { UserService} from "./shared/user.service";
-import {LoggedInGuard} from "./shared/logged-in.guard";
+import { UserService } from "./shared/user.service";
+import { LoggedInGuard } from "./shared/logged-in.guard";
+import { Typeahead } from "ng2-typeahead";
 
 
 const appRoutes: Routes = [
@@ -86,7 +87,8 @@ const appRoutes: Routes = [
     DefaultPipe,
     BookerDetailComponent,
     LoginComponent,
-    AccountComponent
+    AccountComponent,
+    Typeahead
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
