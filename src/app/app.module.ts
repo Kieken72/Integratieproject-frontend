@@ -24,12 +24,13 @@ import { BookerListComponent } from './booker/booker-list/booker-list.component'
 import { SearchService} from "./booker/shared/search.service";
 import { DefaultPipe } from './shared/default.pipe';
 import { BookerDetailComponent } from './booker/booker-detail/booker-detail.component';
-import { LoginComponent } from './shared/login/login.component';
-import { AccountComponent } from './shared/account/account.component';
-import { UserService } from "./shared/user.service";
+import { LoginComponent } from './account/login/login.component';
+import { UserService } from "./account/shared/user.service";
 import { LoggedInGuard } from "./shared/logged-in.guard";
 import { Typeahead } from "ng2-typeahead";
 import {AlertModule, TimepickerModule, DatepickerModule, TabsModule} from "ng2-bootstrap";
+import { AccountComponent } from './account/account.component';
+import { AccountDetailComponent } from './account/account-detail/account-detail.component';
 
 
 
@@ -40,8 +41,6 @@ const appRoutes: Routes = [
     { path: 'list', component: BookerListComponent },
     { path: 'detail/:id', component: BookerDetailComponent},
     { path: '', redirectTo: 'search', pathMatch: 'full'},
-    //{ path: 'results' },
-    //{ path: 'details/:id'}
   ]},
   { path: 'manager', component: ManagerComponent,  children:[
     { path: 'dashboard', component: ManagerDashboardComponent, canActivate:[LoggedInGuard] },
@@ -54,9 +53,12 @@ const appRoutes: Routes = [
     { path: 'branch', component: BranchComponent,  canActivate:[LoggedInGuard] },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   ]},
-  { path: 'login', component: LoginComponent },
-  { path: 'account', component: LoginComponent },
+  { path: 'account', component: AccountComponent, children: [
+    { path: 'login', component: LoginComponent },
+    { path: 'details', component: AccountDetailComponent, canActivate:[LoggedInGuard] },
+  ]},
   { path: '', redirectTo: 'booker', pathMatch: 'full'},
+
 
 ]
 
@@ -94,7 +96,9 @@ const appRoutes: Routes = [
     BookerDetailComponent,
     LoginComponent,
     AccountComponent,
-    Typeahead
+    Typeahead,
+    AccountComponent,
+    AccountDetailComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },

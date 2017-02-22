@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../user.service";
+import {UserService} from "../shared/user.service";
 import {Router} from "@angular/router";
 
 declare const FB:any;
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: 'login.component.html',
+  styleUrls: ['login.component.css']
 })
 export class LoginComponent implements OnInit {
 

@@ -1,9 +1,9 @@
 import {TestBed, inject, async} from '@angular/core/testing';
 import {HttpModule, Response, Request, RequestMethod, RequestOptions} from "@angular/http";
-import {UserService} from "../app/shared/user.service";
+import {UserService} from "../app/account/shared/user.service";
 import {Router} from "@angular/router";
-import {Token} from "../app/shared/model/token";
-import {ProfileService} from "../app/shared/profile.service";
+import {Token} from "../app/account/shared/model/token";
+import {ProfileService} from "../app/account/shared/profile.service";
 
 describe('Service: oAuth', () => {
 

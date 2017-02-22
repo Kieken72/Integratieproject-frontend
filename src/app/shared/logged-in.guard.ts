@@ -1,6 +1,6 @@
 import {CanActivate, Router} from "@angular/router";
 import {Injectable} from "@angular/core";
-import {UserService} from "./user.service";
+import {UserService} from "../account/shared/user.service";
 /**
  * Created by Emmanuel on 20/02/2017.
  */

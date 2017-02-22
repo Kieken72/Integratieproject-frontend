@@ -4,6 +4,7 @@
 
 import {Injectable, Inject} from "@angular/core";
 import {Http, Headers} from "@angular/http";
+
 @Injectable()
 export class ProfileService{
   constructor(private http: Http,@Inject('ApiBase') private apiBase:string){}
