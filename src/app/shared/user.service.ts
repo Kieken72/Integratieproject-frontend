@@ -20,7 +20,8 @@ export class UserService{
     headers.append('Content-type', 'application/x-www-form-urlencoded');
     var body = 'Username='+Username+'&Password='+Password+'&grant_type=password';
     return this.http.post(this.authBase+'token', body, {headers})
-      .map(res => res.json()).map((res) => {if(res.access_token){
+      .map(res => res.json())
+      .map((res) => {if(res.access_token){
           localStorage.setItem('auth_token', res.access_token);
           this.loggedIn = true;
       }
