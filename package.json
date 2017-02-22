@@ -32,8 +32,7 @@
     "ng2-typeahead": "^1.2.0",
     "rxjs": "^5.0.1",
     "ts-helpers": "^1.1.1",
-    "zone.js": "^0.7.2",
-    "typings": "^0.6.8"
+    "zone.js": "^0.7.2"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^2.3.1",
@@ -50,7 +49,8 @@
     "protractor": "~4.0.13",
     "ts-node": "1.2.1",
     "tslint": "^4.3.0",
-    "typescript": "~2.0.3"
+    "typescript": "~2.0.3",
+    "typings": "2.1.0"
   },
   "engines": {
     "node": "6.9.2",
