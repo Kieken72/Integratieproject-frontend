@@ -1,9 +1,10 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {BookerSearch} from "../shared/model/booker-search";
 import {SearchService} from "../shared/search.service";
-import { Typeahead } from 'ng2-typeahead';
 import {CityService} from "../../shared/cityservice/city.service";
 import {City} from "../../shared/cityservice/city";
+
+
 
 @Component({
   selector: 'app-booker-search',
@@ -12,6 +13,8 @@ import {City} from "../../shared/cityservice/city";
 })
 export class BookerSearchComponent implements OnInit, OnDestroy {
 
+
+  //public mytime: Date = new Date();
   private search: BookerSearch;
   private persons: number[];
 
@@ -32,7 +35,6 @@ export class BookerSearchComponent implements OnInit, OnDestroy {
 
   returnCities(cities){
     this.cities = cities;
-    this.selectedCity = this.cities[338];
   }
   ngOnDestroy(){
     this.searchService.searchParameters = this.search;
@@ -50,10 +52,7 @@ export class BookerSearchComponent implements OnInit, OnDestroy {
   }
 
   public citySelected(city){
-    console.log(city);
     this.search.city = city ? city : null;
-
-    this.search.location = city?city.PostalCode:"";
   }
 
 }

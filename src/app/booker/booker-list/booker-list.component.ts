@@ -35,7 +35,7 @@ export class BookerListComponent implements OnInit, OnDestroy {
 
   ngOnInit():void {
     this.search = this.searchService.searchParameters;
-    this.branchService.getBranchesByPostal(this.search.location).subscribe(data => this.branches = data);
+    this.branchService.getBranchesByPostal(this.search.city.PostalCode).subscribe(data => this.branches = data);
     this.persons = this.searchService.persons;
 
     this.cities = this.searchService.cities;

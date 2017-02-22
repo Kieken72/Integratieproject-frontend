@@ -18,7 +18,7 @@
         <input type="date" [ngModel]="search.date | date: 'yyyy-MM-dd'" (ngModelChange)="dateChanged($event)" class="form-control"  id="date">
       </div>
       <div class="form-group">
-        <input type="time" [ngModel]="search.time | date: 'H:mm'" class="form-control" id="time">
+        <timepicker id="time"[(ngModel)]="search.time" [showMeridian]="false" [showSpinners]="false"></timepicker>
       </div>
       <div class="form-group">
         <select [(ngModel)]="search.amount" class="form-control">

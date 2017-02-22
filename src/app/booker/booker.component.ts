@@ -5,7 +5,7 @@ import { Typeahead } from "ng2-typeahead";
   selector: 'app-booker',
   templateUrl: './booker.component.html',
   styleUrls: ['./booker.component.css'],
-  encapsulation: ViewEncapsulation.None
+  //encapsulation: ViewEncapsulation.None
 })
 export class BookerComponent implements OnInit {
 

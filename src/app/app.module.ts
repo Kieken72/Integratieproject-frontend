@@ -29,6 +29,8 @@ import { AccountComponent } from './shared/account/account.component';
 import { UserService } from "./shared/user.service";
 import { LoggedInGuard } from "./shared/logged-in.guard";
 import { Typeahead } from "ng2-typeahead";
+import {AlertModule, TimepickerModule, DatepickerModule, TabsModule} from "ng2-bootstrap";
+
 
 
 const appRoutes: Routes = [
@@ -66,6 +68,10 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     Ng2AutoCompleteModule,
+     AlertModule.forRoot(),
+     TimepickerModule.forRoot(),
+     DatepickerModule.forRoot(),
+     TabsModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
   declarations: [

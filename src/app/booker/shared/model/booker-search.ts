@@ -4,7 +4,6 @@ export class BookerSearch {
   date: Date;
   time: Date;
   amount: number;
-  location: string;
   city: City;
 
   constructor(){
