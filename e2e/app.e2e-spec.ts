@@ -27,5 +27,12 @@ describe('Testbooker', ()=> {
 
     expect(whereelement.getText()).toBe('Waar');
   });
+  it('should check date label', () => {
+    browser.get('/booker/search');
+    const dateLocator = by.id('date');
+    const whereelement = element(dateLocator)
+
+    expect(whereelement.getText()).toBe('Datum');
+  });
 })
 
