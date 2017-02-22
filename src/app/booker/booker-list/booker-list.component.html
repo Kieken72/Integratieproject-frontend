@@ -1,26 +1,33 @@
 
 <div class="row lists">
-  <div class="col-md-12">
-    <div class="well">
-      <div class="form-inline">
-        <div class="form-group">
-            <input [(ngModel)]="search.location" class="form-control" id="where" placeholder="Locatie">
-        </div>
-        <div class="form-group">
-          <input type="date" [ngModel]="search.date | date: 'yyyy-MM-dd'" (ngModelChange)="dateChanged($event)" class="form-control"  id="date">
-        </div>
-        <div class="form-group">
-            <input type="time" [ngModel]="search.time | date: 'H:mm'" class="form-control" id="time">
-        </div>
-        <div class="form-group">
-           <select [(ngModel)]="search.amount" class="form-control">
-             <option *ngFor="let person of persons" [ngValue]="person">{{person}} personen</option>
-           </select>
-        </div>
-
-  </div>
+  <div class="col-md-12 well">
+    <div class="col-md-4">
+      <div class="form-group">
+        <typeahead
+          [(ngModel)]="selectedCity"
+          [list]="cities"
+          [searchProperty]="'Name'" [displayProperty]="'Name'"
+          [maxSuggestions]="10"
+          (suggestionSelected)="citySelected($event)"
+          placeholder="Begin typing a city">
+        </typeahead>
+      </div>
+    </div>
+    <div class="col-md-8 form-inline pull-right">
+      <div class="form-group">
+        <input type="date" [ngModel]="search.date | date: 'yyyy-MM-dd'" (ngModelChange)="dateChanged($event)" class="form-control"  id="date">
+      </div>
+      <div class="form-group">
+        <input type="time" [ngModel]="search.time | date: 'H:mm'" class="form-control" id="time">
+      </div>
+      <div class="form-group">
+        <select [(ngModel)]="search.amount" class="form-control">
+          <option *ngFor="let person of persons" [ngValue]="person">{{person}} personen</option>
+        </select>
+      </div>
     </div>
   </div>
+  <div class="col-md-12">
   <div class="col-md-4" *ngFor="let branch of branches">
     <div class="profile-card text-center">
 
@@ -36,6 +43,8 @@
 
     </div>
   </div>
+  </div>
+
 </div>
 
 
