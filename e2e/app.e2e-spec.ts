@@ -1,7 +1,7 @@
 import { MyAppPage } from './app.po';
 import {browser, element, by, protractor} from "protractor";
 
-describe('Testbooker', function() {
+describe('Testbooker', ()=> {
 
   /*let page: MyAppPage;
   beforeEach(() => {
@@ -21,11 +21,11 @@ describe('Testbooker', function() {
   });*/
 
   it('should check page', () => {
-    browser.get('/booker/detail/1');
-    let reserveForm = element(by.id("where"));
- let test = protractor.By.id('where');
-    //expect(browser.isElementPresent(reserveForm)).toBe(true);
-    expect(test.)
+    browser.get('/booker/search');
+    const whereLocator = by.id('waar');
+    const whereelement = element(whereLocator)
+
+    expect(whereelement.getText()).toBe('Waar');
   });
 })
 
