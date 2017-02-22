@@ -1,6 +1,9 @@
 .lists{
   margin-top: 20px;
 }
+.form-group{
+  margin-bottom: 0;
+}
 
 .profile-card {
   background-color: #222222;

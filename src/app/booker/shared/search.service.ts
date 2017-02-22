@@ -1,8 +1,23 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {BookerSearch} from "./model/booker-search";
+import {City} from "../../shared/cityservice/city";
 
 @Injectable()
-export class SearchService {
+export class SearchService{
+  set cities(value: City[]) {
+    this._cities = value;
+  }
+  get cities(): City[] {
+    return this._cities;
+  }
+
+
+  private _searchParameters :BookerSearch;
+
+  private _persons: number[];
+
+  private _cities: City[]
+
   get persons(): number[] {
     return this._persons;
   }
@@ -17,12 +32,9 @@ export class SearchService {
     this._searchParameters = value;
   }
 
-  private _searchParameters :BookerSearch;
-
-  private _persons: number[];
-
   constructor() {
     this._persons = [1,2,3,4,5,6,7,8,9,10,11,12,13,15];
   }
+
 
 }
