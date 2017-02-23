@@ -18,9 +18,7 @@ describe('companyTest', ()=> {
     passElement.sendKeys("MySuperP@ssword!");
     const buttonElement = element(by.id('singlebutton'));
     buttonElement.click();
-    //const warningElement = element(by.id('warning'));
-    //expect(!warningElement.isPresent());
-  browser.sleep(2000);
+    browser.sleep(2000);
     expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/manager/dashboard');
   })
 

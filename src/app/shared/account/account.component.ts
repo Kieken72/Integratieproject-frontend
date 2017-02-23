@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-account',
@@ -10,6 +11,7 @@ export class AccountComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

@@ -21,6 +21,7 @@ export class ProfileService{
     let headers = new Headers();
     //headers.append('Content-type', 'application/x-www-form-urlencoded');
     //let authToken = localStorage.getItem('auth_token');
+    console.log(token);
     headers.append('Authorization', 'Bearer '+token);
         return this.http.get(this.apiBase+'accounts',{headers}).map(res => res.json())
   }
