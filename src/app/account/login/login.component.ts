@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(email, password).subscribe(
       (result) => {
         if(result){
-          this.router.navigate(['manager']);
+          this.router.navigate(['./manager']);
         }
     },
       (error)=>{
