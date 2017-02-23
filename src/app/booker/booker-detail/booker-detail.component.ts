@@ -5,6 +5,7 @@ import {BookerSearch} from "../shared/model/booker-search";
 import {Branch} from "../../shared/model/branch";
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
+import {UserService} from "../../account/shared/user.service";
 
 @Component({
   selector: 'app-booker-detail',
@@ -16,9 +17,15 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
   private branch: Branch;
   private search: BookerSearch;
   private persons: number[];
+
+  private operationHours:string[];
+
+  private isLogged:boolean;
+
   constructor(
     private searchService: SearchService,
     private branchService: BranchService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private location: Location
   ) { }
@@ -28,8 +35,17 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
     this.persons = this.searchService.persons;
     this.route.params
       .switchMap((params: Params) => this.branchService.getBranch(+params['id']))
-      .subscribe(branch => this.branch = branch);
+      .subscribe(branch => this.whenBranchLoads(branch));
+
+    this.isLogged = this.userService.isLoggedIn();
+
   }
+
+  whenBranchLoads(branch){
+    this.branch = branch;
+    this.operationHours = this.branchService.openingHours(branch);
+  }
+
   ngOnDestroy(){
     this.searchService.searchParameters = this.search;
   }

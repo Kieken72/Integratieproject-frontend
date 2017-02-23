@@ -3,6 +3,7 @@
     <ul class="nav nav-pills pull-right">
       <li role="presentation" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['search']">Zoeken</a></li>
       <li role="presentation" [routerLinkActive]="['active']"><a [routerLink]="['contact']">Contact</a></li>
+      <li *ngIf="isLoggedIn==true" role="presentation" [routerLinkActive]="['active']"><a [routerLink]="['../account/details']">Mijn Profiel</a></li>
       <li role="presentation" [routerLinkActive]="['active']"><a [routerLink]="['../manager']">LeisureManager</a></li>
     </ul>
   </nav>

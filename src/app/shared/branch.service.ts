@@ -1,6 +1,8 @@
 import {Injectable, Inject} from "@angular/core";
 import {Http, Headers, RequestOptions, Response} from "@angular/http";
 import {Branch} from "./model/branch";
+import {forEach} from "@angular/router/src/utils/collection";
+import {DisplayOperationHour} from "./model/operationhour";
 /**
  * Created by Emmanuel on 16/02/2017.
  */
@@ -45,5 +47,38 @@ export class BranchService {
 
   getBranch(number: number) {
     return this.http.get(this.apiBase+'branches/'+number).map(res => res.json());
+  }
+
+  openingHours(branch:Branch){
+    var weekdagen = ["Zondag", "Maandag", "Dinsdag","Woensdag","Donderdag","Vrijdag","Zaterdag"];
+    var operationHours: any[] = [];
+    for(var i = 0; i < weekdagen.length; i++){
+
+      var hours = branch.OpeningHours.filter(o=>o.Day==i);
+
+
+      var temp = '';
+      if(hours.length==0){
+        temp="Gesloten";
+      }
+      else {
+        var first = true;
+        for(let oh of hours ){
+          var start = oh.FromTime.substr(0, 5);
+          var end = oh.ToTime.substr(0, 5);
+
+          if(first){
+            temp = start +" - " + end;
+            first=false;
+          } else {
+            temp+= ', ' +start +" - " + end;
+          }
+        }
+      }
+      var operation = new DisplayOperationHour(weekdagen[i],temp);
+      console.log(operation);
+      operationHours.push(operation);
+    }
+    return operationHours;
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../../account/shared/user.service";
 
 @Component({
   selector: 'app-booker-navbar',
@@ -7,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookerNavbarComponent implements OnInit {
 
+  private isLoggedIn: boolean;
   private title = "LeisureBooker"
-  constructor() { }
+  constructor(private userService:UserService) { }
 
   ngOnInit() {
+    this.isLoggedIn = this.userService.isLoggedIn();
   }
 
 }
