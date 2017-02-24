@@ -46,6 +46,10 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
     this.operationHours = this.branchService.openingHours(branch);
   }
 
+  goBack(){
+    this.location.back();
+  }
+
   ngOnDestroy(){
     this.searchService.searchParameters = this.search;
   }
