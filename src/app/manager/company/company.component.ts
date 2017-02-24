@@ -28,6 +28,6 @@ export class CompanyComponent implements OnInit{
     this.companyService.getCompanies().subscribe(data => this.companies= data);
   }
   addCompany(name:string, VAT:string, street:string, streetNumber:string, box:string ,cityId:string){
-    this.companyService.postCompany(name,VAT,street,streetNumber,box,cityId,);
+    this.companyService.postCompany(name,VAT,street,streetNumber,box,cityId);
   }
 }
