@@ -1,6 +1,6 @@
 <div class="row detail">
   <div class="col-md-12">
-    <p>< Ga terug naar zoekresultaten</p>
+    <p><a (click)="goBack()">< Ga terug naar zoekresultaten</a></p>
   </div>
   <div class="col-md-8">
     <div class="row" *ngIf="branch!=null">
@@ -17,7 +17,6 @@
                 <th scope="row">{{open.Day}}</th>
                 <td>{{open.Times}}</td>
               </tr>
-
             </tbody>
           </table></div>
         </div>
@@ -59,7 +58,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button *ngIf="isLogged==false" class="btn btn-warning">Aanmelden</button>
+          <button *ngIf="isLogged==false" class="btn btn-warning" [routerLink]="['../../../account/login']">Aanmelden</button>
           <button *ngIf="isLogged==true" class="btn btn-default">Reserveren</button>
         </div>
       </div>

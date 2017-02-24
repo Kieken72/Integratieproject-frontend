@@ -31,6 +31,7 @@ import { Typeahead } from "ng2-typeahead";
 import {AlertModule, TimepickerModule, DatepickerModule, TabsModule} from "ng2-bootstrap";
 import { AccountComponent } from './account/account.component';
 import { AccountDetailComponent } from './account/account-detail/account-detail.component';
+import { RegisterComponent } from './account/register/register.component';
 
 
 
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
   ]},
   { path: 'account', component: AccountComponent, children: [
     { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
     { path: 'details', component: AccountDetailComponent, canActivate:[LoggedInGuard] },
   ]},
   { path: '', redirectTo: 'booker', pathMatch: 'full'},
@@ -98,7 +100,8 @@ const appRoutes: Routes = [
     AccountComponent,
     Typeahead,
     AccountComponent,
-    AccountDetailComponent
+    AccountDetailComponent,
+    RegisterComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
