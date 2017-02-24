@@ -28,10 +28,11 @@ import { LoginComponent } from './account/login/login.component';
 import { UserService } from "./account/shared/user.service";
 import { LoggedInGuard } from "./shared/logged-in.guard";
 import { Typeahead } from "ng2-typeahead";
-import {AlertModule, TimepickerModule, DatepickerModule, TabsModule} from "ng2-bootstrap";
+import {AlertModule, TimepickerModule, DatepickerModule, TabsModule, ModalModule} from "ng2-bootstrap";
 import { AccountComponent } from './account/account.component';
 import { AccountDetailComponent } from './account/account-detail/account-detail.component';
 import { RegisterComponent } from './account/register/register.component';
+import {ReservationService} from "./shared/reservation.service";
 
 
 
@@ -76,6 +77,7 @@ const appRoutes: Routes = [
      TimepickerModule.forRoot(),
      DatepickerModule.forRoot(),
      TabsModule.forRoot(),
+     ModalModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
   declarations: [
@@ -107,7 +109,13 @@ const appRoutes: Routes = [
     { provide: LOCALE_ID, useValue: "nl-BE" },
     { provide:'ApiBase',useValue:"https://leisurebooker.azurewebsites.net/api/" },
     { provide:'AuthBase',useValue:"https://leisurebooker.azurewebsites.net/oauth/" },
-    CompanyService,CityService, BranchService, SearchService, UserService, LoggedInGuard],
+    CompanyService,
+    CityService,
+    BranchService,
+    SearchService,
+    UserService,
+    LoggedInGuard,
+    ReservationService],
   bootstrap: [AppComponent]
 
 })

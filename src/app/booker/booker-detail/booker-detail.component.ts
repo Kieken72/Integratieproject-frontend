@@ -6,6 +6,9 @@ import {Branch} from "../../shared/model/branch";
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import {UserService} from "../../account/shared/user.service";
+import {Reservation} from "../../shared/model/reservation";
+import {Checkbranch} from "../../shared/model/checkbranch";
+import {ReservationService} from "../../shared/reservation.service";
 
 @Component({
   selector: 'app-booker-detail',
@@ -26,6 +29,7 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
     private searchService: SearchService,
     private branchService: BranchService,
     private userService: UserService,
+    private reservationService: ReservationService,
     private route: ActivatedRoute,
     private location: Location
   ) { }
@@ -45,9 +49,30 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
     this.branch = branch;
     this.operationHours = this.branchService.openingHours(branch);
   }
+  private dateChanged(newDate) {
+    this.search.date= new Date(newDate);
+    console.log(this.search.date.toJSON());
 
+    this.search.date.setHours(this.search.time.getHours()+1);
+    this.search.date.setMinutes(this.search.time.getMinutes());
+    console.log(this.search.date.toJSON());
+  }
   goBack(){
     this.location.back();
+  }
+
+  tryThis(){
+    var param = new Checkbranch();
+    param.DateTime = this.search.date;
+    param.DateTime.setHours(this.search.time.getHours()+1);
+    param.DateTime.setMinutes(this.search.time.getMinutes());
+
+    param.Amount = this.search.amount;
+
+    var dataA:Branch;
+    console.log(param);
+    this.reservationService.isBranchAvailable(this.branch.Id, param).subscribe(data=>dataA=data);
+    console.log(dataA.CheckMessage);
   }
 
   ngOnDestroy(){

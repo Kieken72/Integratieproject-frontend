@@ -57,6 +57,10 @@ export class BookerListComponent implements OnInit, OnDestroy {
       this.refreshBranches(city.PostalCode);
     }
   }
+  private dateChanged(newDate) {
+  this.search.date= new Date(newDate);
+  console.log(this.search.date);
+}
 
   private refreshBranches(postal){
 

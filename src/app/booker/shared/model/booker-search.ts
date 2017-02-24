@@ -8,5 +8,7 @@ export class BookerSearch {
 
   constructor(){
     this.amount = 2;
+    this.time = new Date();
+    this.date = new Date();
   }
 }

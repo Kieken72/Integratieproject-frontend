@@ -45,11 +45,6 @@ export class BookerSearchComponent implements OnInit, OnDestroy {
     this.search.date= new Date(newDate);
     console.log(this.search.date);
   }
-  private timeChanged(newTime){
-    console.log(newTime);
-    this.search.time = new Date(newTime);
-    console.log(this.search.time);
-  }
 
   public citySelected(city){
     this.search.city = city ? city : null;
