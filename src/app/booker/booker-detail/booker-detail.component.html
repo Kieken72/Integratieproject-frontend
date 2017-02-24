@@ -59,7 +59,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button *ngIf="isLogged==false" class="btn btn-warning">Aanmelden</button>
+          <button *ngIf="isLogged==false" class="btn btn-warning" [routerLink]="['../../../account/login']">Aanmelden</button>
           <button *ngIf="isLogged==true" class="btn btn-default">Reserveren</button>
         </div>
       </div>
