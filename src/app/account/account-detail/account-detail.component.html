@@ -1,3 +1,22 @@
 <p>
-  account-detail works!
+  Userinfo:
 </p>
+
+<div *ngIf="user!=null">
+  Email: {{user.Email}} <br/>
+  Firstname: {{user.Firstname}}<br/>
+  Surname: {{user.Surname}}<br/>
+ Roles:
+  <div *ngFor="let role of user.Roles">
+    {{role}}
+  </div>
+
+  <div *ngFor="let reservation of user.Reservations">
+    <hr/>
+    Reservation ID: {{reservation.Id}} | Branch ID: {{reservation.BranchId}} | Space ID: {{reservation.SpaceId}} <br/>
+    Amount of persons: {{reservation.AmountOfPersons}}<br/>
+    Date: {{reservation.DateTime}} | End time: {{reservation.EndDateTime}}<br/>
+    Messages: {{reservation.Messages}} <br/>
+  </div>
+
+</div>

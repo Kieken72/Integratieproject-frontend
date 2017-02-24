@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ProfileService} from "../shared/profile.service";
+import {User} from "./model/user";
+import {BranchService} from "../../shared/branch.service";
+import {Branch} from "../../shared/model/branch";
 
 @Component({
   selector: 'app-account-detail',
@@ -8,25 +11,28 @@ import {ProfileService} from "../shared/profile.service";
   providers: [ProfileService]
 })
 export class AccountDetailComponent implements OnInit {
-
-  constructor( private profileService:ProfileService){
+  private user: User;
+  private branches: Branch[];
+  constructor( private profileService:ProfileService, private branchService:BranchService){
   };
 
   ngOnInit() {
-    var profile = this.profileService.getProfileWithToken(localStorage.getItem('auth_token')).subscribe((data)=>this.checkData(data));
-    return profile;
+    this.getBranches();
+    this.profileService.getProfileWithToken(localStorage.getItem('auth_token')).subscribe((data)=>this.getBranchName(data));
   }
 
-  checkData(data):void {
-  console.log('data: '+data.Id);
-  console.log('data: '+data.Url);
-  console.log('data: '+data.Firstname);
-  console.log('data: '+data.Roles.length);
-  console.log('data: '+data.Roles[0]);
-  console.log('data: '+data.Roles[1]);
-};
+  getBranchName(data):void {
+    data.Reservations.forEach((cBranch) => {
+      this.branches.forEach((branch) => {
+        if(branch.Id == cBranch.BranchId){
+          cBranch.BranchId = branch.Name;
+        };
+      });
+    });
+    this.user = data;
+  };
 
-
-
-
+  getBranches():void{
+    this.branchService.getBranches().subscribe(data => this.branches = data);
+  }
 }
