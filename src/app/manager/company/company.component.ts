@@ -30,4 +30,12 @@ export class CompanyComponent implements OnInit{
   addCompany(name:string, VAT:string, street:string, streetNumber:string, box:string ,cityId:string){
     this.companyService.postCompany(name,VAT,street,streetNumber,box,cityId);
   }
+  reset(name:any, VAT:any, street:any, streetNumber:any, box:any ,cityId:any){
+    name.value='';
+    street.value='';
+    streetNumber.value='';
+    box.value='';
+    cityId.value='';
+
+  }
 }

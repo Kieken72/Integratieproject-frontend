@@ -50,7 +50,8 @@
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
       <button class="btn btn-default"
-              (click)="addCompany(CompanyName.value,CompanyVAT.value, CompanyStreet.value,CompanyStreetNumber.value,CompanyBox.value, CityId[0].value)" id="btnSendCompany">Add</button>
+              (click)="addCompany(CompanyName.value,CompanyVAT.value, CompanyStreet.value,CompanyStreetNumber.value,CompanyBox.value, CityId[0].value);
+reset(CompanyName,CompanyVAT, CompanyStreet,CompanyStreetNumber,CompanyBox, CityId)" id="btnSendCompany">Add</button>
     </div>
   </div>
 </form>
