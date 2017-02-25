@@ -32,10 +32,9 @@
 </div>
 <div class="form-group">
   <div class="col-sm-offset-2 col-sm-10">
-    <button id="search" class="btn btn-default" (click)="createAccount(AccountFirstname.value,AccountLastName.value,AccountEmail.value,
-    AccountPassword.value,AccountConfirmPassword.value)" >Registreer</button>
-
-
+   <button id="search" class="btn btn-default" (click)="createAccount(AccountFirstname.value,AccountLastName.value,AccountEmail.value,
+    AccountPassword.value,AccountConfirmPassword.value);reset(AccountFirstname,AccountLastName,AccountEmail,
+    AccountPassword,AccountConfirmPassword)" >Registreer</button>
   </div>
 </div>
 
