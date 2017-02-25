@@ -24,6 +24,10 @@ export class ReservationService {
     return this.http.post(this.apiBase+'reservations', JSON.stringify(reservation), options).map((res:Response)=>res.json());
   }
 
+  getReservationByBranch(branchId:number){
+    return this.http.get(this.apiBase+'reservations/branch/'+branchId).map(res => res.json());
+  }
+
 
 
 

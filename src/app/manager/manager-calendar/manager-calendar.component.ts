@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ReservationService} from "../../shared/reservation.service";
+import {Reservation} from "../../shared/model/reservation";
 
 @Component({
   selector: 'app-manager-calendar',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagerCalendarComponent implements OnInit {
 
-  constructor() { }
+  private reservations:Reservation[];
+  constructor(private reservationService:ReservationService) { }
 
   ngOnInit() {
+    this.reservationService.getReservationByBranch(2).subscribe(data=>this.reservations = data);
   }
 
 }
