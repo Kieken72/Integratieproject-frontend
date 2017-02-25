@@ -3,6 +3,7 @@ import {Http, Headers, RequestOptions, Response} from "@angular/http";
 import {Branch} from "./model/branch";
 import {forEach} from "@angular/router/src/utils/collection";
 import {DisplayOperationHour} from "./model/operationhour";
+import {DisplayFacility} from "./model/additional-info";
 /**
  * Created by Emmanuel on 16/02/2017.
  */
@@ -49,13 +50,11 @@ export class BranchService {
     return this.http.get(this.apiBase+'branches/'+number).map(res => res.json());
   }
 
-  openingHours(branch:Branch){
+  public openingHours(branch:Branch){
     var weekdagen = ["Zondag", "Maandag", "Dinsdag","Woensdag","Donderdag","Vrijdag","Zaterdag"];
     var operationHours: any[] = [];
     for(var i = 0; i < weekdagen.length; i++){
-
       var hours = branch.OpeningHours.filter(o=>o.Day==i);
-
 
       var temp = '';
       if(hours.length==0){
@@ -76,9 +75,75 @@ export class BranchService {
         }
       }
       var operation = new DisplayOperationHour(weekdagen[i],temp);
-      console.log(operation);
       operationHours.push(operation);
     }
     return operationHours;
+  }
+
+  public paymentFacilities(branch:Branch){
+    var facilities = branch.AdditionalInfos;
+    console.log(facilities);
+    facilities = facilities.filter(a=>a.Type == 0);
+    var payments: DisplayFacility[]=[];
+
+    for(var fa of facilities){
+      var displayFacility = new DisplayFacility(fa.Type);
+      switch (fa.Value){
+        case "MASTERCARD":
+          displayFacility.Class="cc-mastercard";
+          break;
+        case "VISA":
+          displayFacility.Class="cc-visa";
+          break;
+        case "CASH":
+          displayFacility.Class="money";
+          break;
+        case "PAYPAL":
+          displayFacility.Class="paypal";
+          break;
+        case "BANCONTACT":
+          displayFacility.Class="credit-card";
+          break;
+      }
+      payments.push(displayFacility);
+    }
+    return payments;
+  }
+  public accesabilityFacilities(branch:Branch){
+    var facilities = branch.AdditionalInfos;
+    console.log(facilities);
+    facilities = facilities.filter(a=>a.Type == 2);
+    var accesabilities: DisplayFacility[]=[];
+
+    for(var fa of facilities){
+      var displayFacility = new DisplayFacility(fa.Type);
+      switch (fa.Value){
+        case "WHEELCHAIR":
+          displayFacility.Class="wheelchair";
+          break;
+        case "DEAF":
+          displayFacility.Class="deafness";
+          break;
+      }
+      accesabilities.push(displayFacility);
+    }
+    return accesabilities;
+  }
+  public otherFacilities(branch:Branch){
+    var facilities = branch.AdditionalInfos;
+    console.log(facilities);
+    facilities = facilities.filter(a=>a.Type == 1);
+    var others: DisplayFacility[]=[];
+
+    for(var fa of facilities){
+      var displayFacility = new DisplayFacility(fa.Type);
+      switch (fa.Value){
+        case "WIFI":
+          displayFacility.Class="wifi";
+          break;
+      }
+      others.push(displayFacility);
+    }
+    return others;
   }
 }

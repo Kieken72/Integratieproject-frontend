@@ -1,22 +1,40 @@
+<div class="row">
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-12">
+        <div *ngIf="user!=null">
+          Email: {{user.Email}} <br/>
+          Firstname: {{user.Firstname}}<br/>
+          Surname: {{user.Surname}}<br/>
+          Roles:
+          <div *ngFor="let role of user.Roles">
+            {{role}}
+          </div>
+
+          <div *ngFor="let reservation of user.Reservations">
+            <hr/>
+            Reservation ID: {{reservation.Id}} | Branch ID: {{reservation.BranchId}} | Space ID: {{reservation.SpaceId}} <br/>
+            Amount of persons: {{reservation.AmountOfPersons}}<br/>
+            Date: {{reservation.DateTime}} | End time: {{reservation.EndDateTime}}<br/>
+            Messages: {{reservation.Messages}} <br/>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="row">
+      <div class="col-md-12 well">
+        <h2>Uw statistieken</h2>
+        Aantal reservaties: {{user?.Reservations.length}}<br>
+        Aantal favorieten: 0
+      </div>
+    </div>
+  </div>
+</div>
 <p>
   Userinfo:
 </p>
 
-<div *ngIf="user!=null">
-  Email: {{user.Email}} <br/>
-  Firstname: {{user.Firstname}}<br/>
-  Surname: {{user.Surname}}<br/>
- Roles:
-  <div *ngFor="let role of user.Roles">
-    {{role}}
-  </div>
 
-  <div *ngFor="let reservation of user.Reservations">
-    <hr/>
-    Reservation ID: {{reservation.Id}} | Branch ID: {{reservation.BranchId}} | Space ID: {{reservation.SpaceId}} <br/>
-    Amount of persons: {{reservation.AmountOfPersons}}<br/>
-    Date: {{reservation.DateTime}} | End time: {{reservation.EndDateTime}}<br/>
-    Messages: {{reservation.Messages}} <br/>
-  </div>
-
-</div>

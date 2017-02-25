@@ -21,5 +21,11 @@ export class Branch{
   public OpeningHours: OperationHour[];
 
   public Available: boolean;
-  public CheckMessage: number;
+  public Message: CheckMessage;
+}
+
+export enum CheckMessage{
+  Closed,
+  Full,
+  Free
 }

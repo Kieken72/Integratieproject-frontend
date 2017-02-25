@@ -20,7 +20,6 @@ export class BookerComponent implements OnInit {
   }
 
   isBackgroundRoute(){
-    console.log(this.router.url);
     if(this.router.url === '/booker/search' || this.router.url ==='/booker/list'){
       return true;
     }

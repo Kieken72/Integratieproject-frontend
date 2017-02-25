@@ -16,8 +16,9 @@ export class ReservationService {
   }
 
   postNewReservation(reservation:Newreservation){
-    let token = localStorage.getItem('auth_token');
-    let headers = new Headers([{ 'Content-Type': 'application/json' }, {'Authorisation':'Bearer token'}]);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', 'Bearer '+authToken);
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.apiBase+'reservations', JSON.stringify(reservation), options).map((res:Response)=>res.json());

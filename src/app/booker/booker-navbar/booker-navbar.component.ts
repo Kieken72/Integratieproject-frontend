@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {UserService} from "../../account/shared/user.service";
 
 @Component({
@@ -8,8 +8,10 @@ import {UserService} from "../../account/shared/user.service";
 })
 export class BookerNavbarComponent implements OnInit {
 
+  @Input() backgroundImage: boolean;
+
   private isLoggedIn: boolean;
-  private title = "LeisureBooker"
+
   constructor(private userService:UserService) { }
 
   ngOnInit() {

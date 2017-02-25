@@ -19,12 +19,18 @@
   font-weight: bold;
 }
 
+.nav.black a {
+  color: #000000;
+}
+
 .nav-pills>li.active>a,
 .nav-pills>li.active>a:focus,
 .nav-pills>li.active>a:hover{
   color: #fff;
   background-color: #62e577;
 }
+
+
 .nav>li>a:focus,
 .nav>li>a:hover{
   background-color: #62e577;
