@@ -39,23 +39,20 @@ export class CompanyService {
     });
   }
   public putCompany (_id: string,_name:string,_VAT:string,_street:string, _streetNumber:string, _box:string,_cityId:string){
-    let cityids = _cityId.split(":");
+    //let cityids = _cityId.split(":");
+    this.companyToPut.Id = _id;
     this.companyToPut.Name = _name;
     this.companyToPut.Box = _box;
     this.companyToPut.VATNumber = _VAT;
     this.companyToPut.Street = _street;
     this.companyToPut.Number = _streetNumber;
-    this.companyToPut.CityId = cityids[1].trim();
+    this.companyToPut.CityId = _cityId;
     console.log(this.companyToPut);
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
     let options = new RequestOptions({ headers: headers });
-    return this.http.put(this.apiBase+'companies/'+_id, JSON.stringify(this.companyToPut), options).map((res:Response)=>res.json()).subscribe(
-      (res:Company) => {
-        this.companyResponse = res;
-        console.log("VALUE RECEIVED: ",res);
-      });
+    return this.http.put(this.apiBase+'companies/'+_id, JSON.stringify(this.companyToPut), options).map((res:Response)=>res);
   }
 
 

@@ -5,12 +5,23 @@
 
   <form #companyEditForm="ngForm" class="form-horizontal">
     <div class="form-group">
-      <label for="companyCity" class="col-sm-3 control-label">City:</label>
+      <label for="cityWhere" class="col-sm-3 control-label">City:</label>
       <!-- <div class="col-sm-9">
        <input id="companyCity" name="CityId" class="form-control" auto-complete [(ngModel)]="company.CityId"  [source]="cities"  />
        </div>-->
       <div class="col-sm-9">
-        <select name="cityId" id="cid" [(ngModel)]="cityid" class="form-control" required [(ngModel)]="company.City" name="city" #city="ngModel" #CityId>
+        <typeahead
+          id="where"
+          [(ngModel)]="selectedCity"
+          [list]="cities"
+          [searchProperty]="'Name'" [displayProperty]="'Name'"
+          [maxSuggestions]="10"
+          (suggestionSelected)="citySelected($event)"
+          placeholder="Begin typing a city"
+          required
+          name="cityWhere" #cityWhere="ngModel">
+        </typeahead>
+        <!--<select name="cityId" id="cid" [(ngModel)]="cityid" class="form-control" required [(ngModel)]="company.City" name="city" #city="ngModel" #CityId>
           <option id="companyCity"  *ngFor="let city of cities" [ngValue]="city.Id" >{{city.PostalCode}} | {{city.Name}}</option>
         </select>
         <div *ngIf="city.errors && (city.dirty || city.touched)"
@@ -18,7 +29,7 @@
           <div [hidden]="!city.errors.required">
             Plaats mag niet leeg zijn.
           </div>
-        </div>
+        </div>-->
 
       </div>
     </div>
@@ -78,7 +89,7 @@
     <div class="form-group">
       <label for="companyBox" class="col-sm-3 control-label">Box:</label>
       <div class="col-sm-9">
-        <input class="form-control" id="companyBox" #CompanyBox/>
+        <input class="form-control" id="companyBox" name="box" #CompanyBox [(ngModel)]="company.Box" />
 
       </div>
     </div>
@@ -86,8 +97,7 @@
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
       <button class="btn btn-default" [disabled]="!companyEditForm.form.valid"
-              (click)="editCompany(company.Id,CompanyName.value,CompanyVAT.value, CompanyStreet.value,CompanyStreetNumber.value,CompanyBox.value, CityId[0].value);
-reset(CompanyName,CompanyVAT, CompanyStreet,CompanyStreetNumber,CompanyBox, CityId)" id="btnSendCompany">Wijzig</button>
+              (click)="editCompany()" id="btnSendCompany">Wijzig</button>
     </div>
   </div>
 
