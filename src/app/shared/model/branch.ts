@@ -5,7 +5,7 @@ import {AdditionalInfo} from "./additional-info";
  * Created by Emmanuel on 16/02/2017.
  */
 export class Branch{
-  public Id: string;
+  public Id: number;
   public Name:string;
   public Street: string;
   public Number:string;
@@ -19,4 +19,13 @@ export class Branch{
   public Description: string;
   public AdditionalInfos: AdditionalInfo[];
   public OpeningHours: OperationHour[];
+
+  public Available: boolean;
+  public Message: CheckMessage;
+}
+
+export enum CheckMessage{
+  Closed,
+  Full,
+  Free
 }

@@ -32,6 +32,14 @@
             <td>'STATUS'</td>
             <td>GERESERVEERD OP</td>
           </tr>
+          <tr *ngFor="let reservation of reservations">
+            <th scope="row">{{reservation.AccountId}}</th>
+            <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{reservation.AmountOfPersons}}</td>
+            <td>{{reservation.SpaceId}}</td>
+            <td></td>
+            <td>{{reservation.Cancelled}}</td>
+            <td>{{reservation.DateTime}}</td>
+          </tr>
         </tbody>
       </table>
     </div>
