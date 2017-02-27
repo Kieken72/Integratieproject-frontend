@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../shared/user.service";
-import {Router} from "@angular/router";
+import {Router, NavigationEnd} from "@angular/router";
 import {Location} from "@angular/common";
 
 @Component({
@@ -23,9 +23,14 @@ export class LoginComponent implements OnInit {
     this.userService.login(email, password).subscribe(
       (result) => {
         if(result){
-          this.location.back();
+          if(localStorage.getItem('previous_url')== '/account/register'){
+            localStorage.removeItem('previous_url');
+            this.router.navigate(['booker/search'])
+          }else{
+            this.location.back();
+          }
         }
-    },
+      },
       (error)=>{
         if(error.status == 400){
           this.errorMessage = "The username or password is invalid."
@@ -34,5 +39,11 @@ export class LoginComponent implements OnInit {
         }
       })
   }
-
+  redirect(val:string){
+    if(val =='/account/register'){
+      this.router.navigate(['booker/search'])
+    }else{
+      this.location.back();
+    }
+  }
 }
