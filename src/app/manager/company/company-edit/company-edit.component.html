@@ -1,7 +1,7 @@
 <div class="row" *ngIf="company!=null">
   <h1>Edit company ID: {{company.Name}}</h1>
 {{company.Name}}
-
+{{company.Id}}
 
   <form #companyEditForm="ngForm" class="form-horizontal">
     <div class="form-group">
@@ -11,7 +11,7 @@
        </div>-->
       <div class="col-sm-9">
         <select name="cityId" id="cid" [(ngModel)]="cityid" class="form-control" required [(ngModel)]="company.City" name="city" #city="ngModel" #CityId>
-          <option id="companyCity" *ngFor="let city of cities" [ngValue]="city.Id" >{{city.PostalCode}} | {{city.Name}}</option>
+          <option id="companyCity"  *ngFor="let city of cities" [ngValue]="city.Id" >{{city.PostalCode}} | {{city.Name}}</option>
         </select>
         <div *ngIf="city.errors && (city.dirty || city.touched)"
              class="alert alert-danger">
@@ -86,8 +86,8 @@
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
       <button class="btn btn-default" [disabled]="!companyEditForm.form.valid"
-              (click)="addCompany(CompanyName.value,CompanyVAT.value, CompanyStreet.value,CompanyStreetNumber.value,CompanyBox.value, CityId[0].value);
-reset(CompanyName,CompanyVAT, CompanyStreet,CompanyStreetNumber,CompanyBox, CityId)" id="btnSendCompany">Add</button>
+              (click)="editCompany(company.Id,CompanyName.value,CompanyVAT.value, CompanyStreet.value,CompanyStreetNumber.value,CompanyBox.value, CityId[0].value);
+reset(CompanyName,CompanyVAT, CompanyStreet,CompanyStreetNumber,CompanyBox, CityId)" id="btnSendCompany">Wijzig</button>
     </div>
   </div>
 

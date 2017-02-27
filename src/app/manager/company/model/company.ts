@@ -1,5 +1,6 @@
 import {City} from "../../../shared/cityservice/city";
 export class Company{
+  public Id: string;
   public Name: string;
   public VATNumber: string;
   public Street: string;

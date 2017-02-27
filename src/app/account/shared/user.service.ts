@@ -30,11 +30,7 @@ export class UserService{
     let options = new RequestOptions({ headers: headers });
 
 
-    return this.http.post(this.apiBase+'accounts/create',JSON.stringify(this.registration),options).map((res:Response)=>res.json()).subscribe(
-      (res:Register) => {
-        this.registrationResponse = res;
-        console.log("VALUE RECEIVED: ",res);
-      });;
+    return this.http.post(this.apiBase+'accounts/create',JSON.stringify(this.registration),options).map((res:Response)=>res.json());
   };
 
   login(Username, Password){
