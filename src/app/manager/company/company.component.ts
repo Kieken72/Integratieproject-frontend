@@ -39,6 +39,7 @@ export class CompanyComponent implements OnInit{
     streetNumber.value='';
     box.value='';
     cityId.value='';
-
   }
+
+
 }

@@ -107,6 +107,7 @@ reset(CompanyName,CompanyVAT, CompanyStreet,CompanyStreetNumber,CompanyBox, City
       <th>Name</th>
       <th>VAT Number</th>
       <th>Address</th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
@@ -115,7 +116,10 @@ reset(CompanyName,CompanyVAT, CompanyStreet,CompanyStreetNumber,CompanyBox, City
       <td>{{company.Name}}</td>
       <td>{{company.VATNumber}}</td>
       <td>{{company.Street}} {{company.Number}} {{company.Box}}, {{company.City.PostalCode}} {{company.City.Name}}</td>
+      <td><button class="btn btn-default">Wijzig</button></td>
     </tr>
     </tbody>
   </table>
 </div>
+
+<router-outlet></router-outlet>

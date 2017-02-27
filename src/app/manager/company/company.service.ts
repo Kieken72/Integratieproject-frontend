@@ -14,6 +14,10 @@ export class CompanyService {
     return this.http.get(this.apiBase+'companies').map(res => res.json());
   }
 
+  getCompany(number: number){
+    return this.http.get(this.apiBase+'companies/'+number).map(res => res.json());
+  }
+
   public postCompany (_name:string,_VAT:string,_street:string, _streetNumber:string, _box:string,_cityId:string){
     let cityids = _cityId.split(":");
     this.company.Name = _name;
