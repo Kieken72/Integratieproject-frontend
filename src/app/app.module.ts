@@ -33,7 +33,11 @@ import { AccountComponent } from './account/account.component';
 import { AccountDetailComponent } from './account/account-detail/account-detail.component';
 import { RegisterComponent } from './account/register/register.component';
 import {ReservationService} from "./shared/reservation.service";
-import { CompanyEditComponent } from './manager/company-edit/company-edit.component';
+import { CompanyEditComponent } from './manager/company/company-edit/company-edit.component';
+import { CompanyNewComponent } from './manager/company/company-new/company-new.component';
+import { CompanyDetailComponent } from './manager/company/company-detail/company-detail.component';
+import { CompanyListComponent } from './manager/company/company-list/company-list.component';
+import {Company} from "./manager/company/model/company";
 
 
 
@@ -53,7 +57,11 @@ const appRoutes: Routes = [
     { path: 'statistics', component: ManagerStatisticsComponent,  canActivate:[LoggedInGuard] },
     { path: 'calendar', component: ManagerCalendarComponent,  canActivate:[LoggedInGuard] },
     { path: 'company', component: CompanyComponent,  canActivate:[LoggedInGuard], children:[
+      { path: "list" , component: CompanyListComponent, canActivate: [LoggedInGuard] },
       { path: 'edit/:id', component: CompanyEditComponent,  canActivate:[LoggedInGuard] },
+      { path: 'detail/:id', component: CompanyDetailComponent,  canActivate:[LoggedInGuard] },
+      { path: 'new', component: CompanyNewComponent,  canActivate:[LoggedInGuard] },
+      { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
     { path: 'branch', component: BranchComponent,  canActivate:[LoggedInGuard] },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -107,7 +115,10 @@ const appRoutes: Routes = [
     AccountComponent,
     AccountDetailComponent,
     RegisterComponent,
-    CompanyEditComponent
+    CompanyEditComponent,
+    CompanyNewComponent,
+    CompanyDetailComponent,
+    CompanyListComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },

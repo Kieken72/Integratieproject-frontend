@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Params, ActivatedRoute} from "@angular/router";
-import {CompanyService} from "../company/company.service";
-import {Company} from "../company/model/company";
+import {Company} from "../model/company";
+import {CompanyService} from "../company.service";
 
 @Component({
   selector: 'app-company-edit',

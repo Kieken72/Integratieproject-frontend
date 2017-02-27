@@ -10,36 +10,12 @@ import {CityService} from "../../shared/cityservice/city.service";
   providers: [CompanyService, CityService]
 })
 export class CompanyComponent implements OnInit{
-  cityid:number;
-  companies: Company[];
-  cities: City[];
-
-  company = new Company();
 
   ngOnInit(): void {
-    this.getCompanies();
-    this.getCities();
   }
 
-  constructor(private companyService:CompanyService, private cityService:CityService){}
+  constructor(){}
 
-  title = 'Nieuw bedrijf!';
-  getCities():void{
-    this.cityService.getCities().subscribe(data => this.cities= data);
-}
-  getCompanies():void{
-    this.companyService.getCompanies().subscribe(data => this.companies= data);
-  }
-  addCompany(name:string, VAT:string, street:string, streetNumber:string, box:string ,cityId:string){
-    this.companyService.postCompany(name,VAT,street,streetNumber,box,cityId);
-  }
-  reset(name:any, VAT:any, street:any, streetNumber:any, box:any ,cityId:any){
-    name.value='';
-    street.value='';
-    streetNumber.value='';
-    box.value='';
-    cityId.value='';
-  }
 
 
 }
