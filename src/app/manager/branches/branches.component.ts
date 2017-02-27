@@ -16,6 +16,8 @@ export class BranchComponent {
   cities: City[];
   cityid:number;
 
+  branch = new Branch();
+
   ngOnInit(): void {
     this.getBranches();
     this.getCities();
