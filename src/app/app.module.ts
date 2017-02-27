@@ -38,6 +38,10 @@ import { CompanyNewComponent } from './manager/company/company-new/company-new.c
 import { CompanyDetailComponent } from './manager/company/company-detail/company-detail.component';
 import { CompanyListComponent } from './manager/company/company-list/company-list.component';
 import {Company} from "./manager/company/model/company";
+import { BranchListComponent } from './manager/branches/branch-list/branch-list.component';
+import { BranchDetailComponent } from './manager/branches/branch-detail/branch-detail.component';
+import { BranchEditComponent } from './manager/branches/branch-edit/branch-edit.component';
+import { BranchNewComponent } from './manager/branches/branch-new/branch-new.component';
 
 
 
@@ -63,7 +67,13 @@ const appRoutes: Routes = [
       { path: 'new', component: CompanyNewComponent,  canActivate:[LoggedInGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
-    { path: 'branch', component: BranchComponent,  canActivate:[LoggedInGuard] },
+    { path: 'branch', component: BranchComponent,  canActivate:[LoggedInGuard], children:[
+      { path: "list" , component: BranchListComponent, canActivate: [LoggedInGuard] },
+      { path: 'edit/:id', component: BranchEditComponent,  canActivate:[LoggedInGuard] },
+      { path: 'detail/:id', component: BranchDetailComponent,  canActivate:[LoggedInGuard] },
+      { path: 'new', component: BranchNewComponent,  canActivate:[LoggedInGuard] },
+      { path: '', redirectTo: 'list', pathMatch: 'full'},
+    ] },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   ]},
   { path: 'account', component: AccountComponent, children: [
@@ -118,7 +128,11 @@ const appRoutes: Routes = [
     CompanyEditComponent,
     CompanyNewComponent,
     CompanyDetailComponent,
-    CompanyListComponent
+    CompanyListComponent,
+    BranchListComponent,
+    BranchDetailComponent,
+    BranchEditComponent,
+    BranchNewComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
