@@ -52,6 +52,16 @@ export class UserService{
     });
   }
 
+  getAccountById(id:string){
+
+    let headers = new Headers();
+    headers.append('Content-type', 'application/x-www-form-urlencoded');
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', 'Bearer '+authToken);
+
+    return this.http.get(this.apiBase+'accounts/user/'+id,{headers}).map(res => res.json())
+  }
+
   logout(){
     localStorage.removeItem('auth_token');
     this.loggedIn = false;
