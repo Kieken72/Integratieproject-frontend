@@ -25,6 +25,7 @@ export class CompanyService {
     console.log(this.company);
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.apiBase+'companies', JSON.stringify(this.company), options).map((res:Response)=>res.json()).subscribe(
     (res:Company) => {
