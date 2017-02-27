@@ -33,6 +33,7 @@ import { AccountComponent } from './account/account.component';
 import { AccountDetailComponent } from './account/account-detail/account-detail.component';
 import { RegisterComponent } from './account/register/register.component';
 import {ReservationService} from "./shared/reservation.service";
+import { CompanyEditComponent } from './manager/company-edit/company-edit.component';
 
 
 
@@ -51,7 +52,9 @@ const appRoutes: Routes = [
     { path: 'guests', component: ManagerGuestsComponent,  canActivate:[LoggedInGuard] },
     { path: 'statistics', component: ManagerStatisticsComponent,  canActivate:[LoggedInGuard] },
     { path: 'calendar', component: ManagerCalendarComponent,  canActivate:[LoggedInGuard] },
-    { path: 'company', component: CompanyComponent,  canActivate:[LoggedInGuard] },
+    { path: 'company', component: CompanyComponent,  canActivate:[LoggedInGuard], children:[
+      { path: 'edit/:id', component: CompanyEditComponent,  canActivate:[LoggedInGuard] },
+    ] },
     { path: 'branch', component: BranchComponent,  canActivate:[LoggedInGuard] },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   ]},
@@ -103,7 +106,8 @@ const appRoutes: Routes = [
     Typeahead,
     AccountComponent,
     AccountDetailComponent,
-    RegisterComponent
+    RegisterComponent,
+    CompanyEditComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },

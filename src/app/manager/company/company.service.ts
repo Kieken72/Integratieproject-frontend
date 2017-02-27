@@ -14,6 +14,10 @@ export class CompanyService {
     return this.http.get(this.apiBase+'companies').map(res => res.json());
   }
 
+  getCompany(number: number){
+    return this.http.get(this.apiBase+'companies/'+number).map(res => res.json());
+  }
+
   public postCompany (_name:string,_VAT:string,_street:string, _streetNumber:string, _box:string,_cityId:string){
     let cityids = _cityId.split(":");
     this.company.Name = _name;
@@ -25,6 +29,7 @@ export class CompanyService {
     console.log(this.company);
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.apiBase+'companies', JSON.stringify(this.company), options).map((res:Response)=>res.json()).subscribe(
     (res:Company) => {
