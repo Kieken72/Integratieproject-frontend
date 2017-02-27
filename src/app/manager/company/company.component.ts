@@ -13,6 +13,9 @@ export class CompanyComponent implements OnInit{
   cityid:number;
   companies: Company[];
   cities: City[];
+
+  company = new Company();
+
   ngOnInit(): void {
     this.getCompanies();
     this.getCities();
