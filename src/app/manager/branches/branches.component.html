@@ -40,13 +40,7 @@
   <div class="form-group">
     <label for="brancheBox" class="col-sm-3 control-label">Postbus:</label>
     <div class="col-sm-9">
-      <input class="form-control" id="brancheBox" required [(ngModel)]="branch.Box" name="box" #box="ngModel" #BrancheBox/>
-      <div *ngIf="box.errors && (box.dirty || box.touched)"
-           class="alert alert-danger">
-        <div [hidden]="!box.errors.required">
-          Postbus mag niet leeg zijn.
-        </div>
-      </div>
+      <input class="form-control" id="brancheBox" #BrancheBox/>
     </div>
   </div>
   <div class="form-group">
