@@ -13,7 +13,7 @@
 
           <div *ngFor="let reservation of user.Reservations">
             <hr/>
-            Reservation ID: {{reservation.Id}} | Branch ID: {{reservation.BranchId}} | Space ID: {{reservation.SpaceId}} <br/>
+            Reservation ID: {{reservation.Id}} | <a [routerLink]="['../../booker/detail/' , reservation.BranchId]">Branch ID: {{reservation.BranchName}} </a>| Space ID: {{reservation.SpaceId}} <br/>
             Amount of persons: {{reservation.AmountOfPersons}}<br/>
             Date: {{reservation.DateTime}} | End time: {{reservation.EndDateTime}}<br/>
             Messages: {{reservation.Messages}} <br/>
