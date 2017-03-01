@@ -34,8 +34,6 @@ export class CompanyEditComponent implements OnInit {
     this.cityService.getCities().subscribe(data => {this.cities= data; this.selectedCity = this.cities.find(e=>e.Id==this.company.CityId)});
   }
 
-
-
   public citySelected(city){
     this.city = city ? city : null;
   }

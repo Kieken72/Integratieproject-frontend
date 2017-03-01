@@ -33,9 +33,7 @@ export class BranchComponent {
     this.cityService.getCities().subscribe(data => this.cities= data);
   }
 
-  addBranche(brancheName: string, brancheStreet: string, brancheNumber: string, brancheBox:string, cityId:string, branchePhoneNumber:string, brancheEmail:string){
-    this.brancheService.postBranche(brancheName, brancheStreet, brancheNumber, brancheBox, cityId, branchePhoneNumber, brancheEmail);
-  }
+
 }
 
 

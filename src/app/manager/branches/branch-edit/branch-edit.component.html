@@ -1,3 +1,105 @@
-<p>
-  branch-edit works!
-</p>
+<div class="row" *ngIf="branch!=null">
+  <h1>Edit company ID: {{branch.Name}}</h1>
+  {{branch.Name}}
+  {{branch.Id}}
+
+  <form #companyEditForm="ngForm" class="form-horizontal">
+    <div class="form-group">
+      <label for="where" class="col-sm-3 control-label">City:</label>
+      <!-- <div class="col-sm-9">
+       <input id="companyCity" name="CityId" class="form-control" auto-complete [(ngModel)]="company.CityId"  [source]="cities"  />
+       </div>-->
+      <div class="col-sm-9">
+        <typeahead
+          id="where"
+          [(ngModel)]="selectedCity"
+          [list]="cities"
+          [searchProperty]="'Name'" [displayProperty]="'Name'"
+          [maxSuggestions]="10"
+          (suggestionSelected)="citySelected($event)"
+          placeholder="Begin typing a city"
+          required
+          name="cityWhere" #cityWhere="ngModel">
+        </typeahead>
+        <!--<select name="cityId" id="cid" [(ngModel)]="cityid" class="form-control" required [(ngModel)]="company.City" name="city" #city="ngModel" #CityId>
+          <option id="companyCity"  *ngFor="let city of cities" [ngValue]="city.Id" >{{city.PostalCode}} | {{city.Name}}</option>
+        </select>
+        <div *ngIf="city.errors && (city.dirty || city.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!city.errors.required">
+            Plaats mag niet leeg zijn.
+          </div>
+        </div>-->
+
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="companyName" class="col-sm-3 control-label" id="lblCompanyName">Name:</label>
+      <div class="col-sm-9">
+        <input class="form-control" id="companyName" required [(ngModel)]="branch.Name" name="name" #name="ngModel" #CompanyName/>
+        <div *ngIf="name.errors && (name.dirty || name.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!name.errors.required">
+            Naam mag niet leeg zijn.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--<div class="form-group">
+      <label for="companyVat" class="col-sm-3 control-label">VAT:</label>
+      <div class="col-sm-9">
+        <input class="form-control" id="companyVat" pattern="[(BE)[0-9]{12}]*" required [(ngModel)]="company.VATNumber" name="vat" #vat="ngModel" #CompanyVAT/>
+        <div *ngIf="vat.errors && (vat.dirty || vat.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!vat.errors.required">
+            BTW mag niet leeg zijn.
+          </div>
+          <div [hidden]="!vat.errors.pattern">
+            BTW nummer moet beginnen met "BE" en gevolgd worden door 10 cijfers.
+          </div>
+        </div>
+      </div>
+    </div>-->
+    <div class="form-group">
+      <label for="companyStreet" class="col-sm-3 control-label">Street:</label>
+      <div class="col-sm-9">
+        <input class="form-control" id="companyStreet" required [(ngModel)]="branch.Street" name="street" #street="ngModel" #CompanyStreet/>
+        <div *ngIf="street.errors && (street.dirty || street.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!street.errors.required">
+            Straat mag niet leeg zijn.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="companyStreetNumber" class="col-sm-3 control-label">Number:</label>
+      <div class="col-sm-9">
+        <input class="form-control" id="companyStreetNumber" type="number" required [(ngModel)]="branch.Number" name="num" #num="ngModel" #CompanyStreetNumber/>
+        <div *ngIf="num.errors && (num.dirty || num.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!num.errors.required">
+            Nummer mag niet leeg zijn.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="companyBox" class="col-sm-3 control-label">Box:</label>
+      <div class="col-sm-9">
+        <input class="form-control" id="companyBox" name="box" #CompanyBox [(ngModel)]="branch.Box" />
+
+      </div>
+    </div>
+  </form>
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
+      <button class="btn btn-default" [disabled]="!companyEditForm.form.valid"
+              (click)="editBranch()" id="btnSendCompany">Wijzig</button>
+    </div>
+  </div>
+
+
+</div>

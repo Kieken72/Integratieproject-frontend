@@ -13,6 +13,7 @@ export class BranchService {
 
   private branch:Branch = new Branch();
   private branchResponse:Branch = new Branch();
+  private branchToPut= new Branch();
 
   getBranches(){
     return this.http.get(this.apiBase+'branches').map(res => res.json());
@@ -22,15 +23,15 @@ export class BranchService {
     return this.http.get(this.apiBase+'branches/by-postal/'+postalCode).map(res=>res.json());
   }
 
-  public postBranche (_brancheName: string, _brancheStreet: string, _brancheNumber: string, _brancheBox:string, _cityId:string, _branchePhoneNumber:string, _brancheEmail:string){
-    let cityids = _cityId.split(":");
-    this.branch.Name = _brancheName;
-    this.branch.Street = _brancheStreet;
-    this.branch.Number = _brancheNumber;
-    this.branch.Box = _brancheBox;
-    this.branch.CityId = cityids[1];
-    this.branch.PhoneNumber = _branchePhoneNumber;
-    this.branch.Email = _brancheEmail;
+  public postBranche (_branchName: string, _branchStreet: string, _branchNumber: string, _branchBox:string, _cityId:string, _branchPhoneNumber:string, _branchEmail:string){
+    //let cityids = _cityId.split(":");
+    this.branch.Name = _branchName;
+    this.branch.Street = _branchStreet;
+    this.branch.Number = _branchNumber;
+    this.branch.Box = _branchBox;
+    this.branch.CityId = _cityId;
+    this.branch.PhoneNumber = _branchPhoneNumber;
+    this.branch.Email = _branchEmail;
     this.branch.CompanyId = "1"; //TODO: CompanyId to fix
 
     console.log(this.branch);
@@ -44,6 +45,24 @@ export class BranchService {
         console.log("VALUE RECEIVED: ",res);
       });
 
+  }
+
+  public putBranch (_id: number,_name:string,_street:string, _streetNumber:string, _box:string,_cityId:string,_branchePhoneNumber:string, _brancheEmail:string){
+    //let cityids = _cityId.split(":");
+    this.branchToPut.Id = _id;
+    this.branchToPut.Name = _name;
+    this.branchToPut.Box = _box;
+    this.branchToPut.Street = _street;
+    this.branchToPut.Number = _streetNumber;
+    this.branchToPut.CityId = _cityId;
+    this.branchToPut.Email = _brancheEmail;
+    this.branchToPut.PhoneNumber = _branchePhoneNumber;
+    console.log(this.branchToPut);
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
+    let options = new RequestOptions({ headers: headers });
+    return this.http.put(this.apiBase+'companies/'+_id, JSON.stringify(this.branchToPut), options).map((res:Response)=>res);
   }
 
   getBranch(number: number) {
