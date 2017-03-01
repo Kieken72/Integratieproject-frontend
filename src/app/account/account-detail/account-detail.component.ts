@@ -13,6 +13,8 @@ import {Branch} from "../../shared/model/branch";
 export class AccountDetailComponent implements OnInit {
   private user: User;
   private branches: Branch[];
+  private type: string[];
+
   constructor( private profileService:ProfileService, private branchService:BranchService){
   };
 
@@ -25,7 +27,7 @@ export class AccountDetailComponent implements OnInit {
     data.Reservations.forEach((cBranch) => {
       this.branches.forEach((branch) => {
         if(branch.Id == cBranch.BranchId){
-          cBranch.BranchId = branch.Name;
+          cBranch.BranchName = branch.Name;
         };
       });
     });
