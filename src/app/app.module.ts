@@ -49,6 +49,8 @@ import { SpacesComponent } from './manager/manager-settings/spaces/spaces.compon
 import { SpaceNewComponent } from './manager/manager-settings/spaces/space-new/space-new.component';
 import { RoomEditComponent } from './manager/manager-settings/rooms/room-edit/room-edit.component';
 import { SpaceArrangeComponent } from './manager/manager-settings/spaces/space-arrange/space-arrange.component';
+import {ProfileService} from "./account/shared/profile.service";
+import {ManagerGuard} from "./shared/manager.guard";
 
 
 
@@ -61,34 +63,34 @@ const appRoutes: Routes = [
     { path: '', redirectTo: 'search', pathMatch: 'full'},
   ]},
   { path: 'manager', component: ManagerComponent,  children:[
-    { path: 'dashboard', component: ManagerDashboardComponent, canActivate:[LoggedInGuard] },
-    { path: 'calendar', component: ManagerCalendarComponent, canActivate:[LoggedInGuard] },
-    { path: 'messages', component: ManagerMessagesComponent,  canActivate:[LoggedInGuard] },
-    { path: 'guests', component: ManagerGuestsComponent,  canActivate:[LoggedInGuard] },
-    { path: 'statistics', component: ManagerStatisticsComponent,  canActivate:[LoggedInGuard] },
-    { path: 'calendar', component: ManagerCalendarComponent,  canActivate:[LoggedInGuard] },
-    { path: 'company', component: CompanyComponent,  canActivate:[LoggedInGuard], children:[
-      { path: "list" , component: CompanyListComponent, canActivate: [LoggedInGuard] },
-      { path: 'edit/:id', component: CompanyEditComponent,  canActivate:[LoggedInGuard] },
-      { path: 'detail/:id', component: CompanyDetailComponent,  canActivate:[LoggedInGuard] },
-      { path: 'new', component: CompanyNewComponent,  canActivate:[LoggedInGuard] },
+    { path: 'dashboard', component: ManagerDashboardComponent, canActivate:[ManagerGuard] },
+    { path: 'calendar', component: ManagerCalendarComponent, canActivate:[ManagerGuard] },
+    { path: 'messages', component: ManagerMessagesComponent,  canActivate:[ManagerGuard] },
+    { path: 'guests', component: ManagerGuestsComponent,  canActivate:[ManagerGuard] },
+    { path: 'statistics', component: ManagerStatisticsComponent,  canActivate:[ManagerGuard] },
+    { path: 'calendar', component: ManagerCalendarComponent,  canActivate:[ManagerGuard] },
+    { path: 'company', component: CompanyComponent,  canActivate:[ManagerGuard], children:[
+      { path: "list" , component: CompanyListComponent, canActivate: [ManagerGuard] },
+      { path: 'edit/:id', component: CompanyEditComponent,  canActivate:[ManagerGuard] },
+      { path: 'detail/:id', component: CompanyDetailComponent,  canActivate:[ManagerGuard] },
+      { path: 'new', component: CompanyNewComponent,  canActivate:[ManagerGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
-    { path: 'branch', component: BranchComponent,  canActivate:[LoggedInGuard], children:[
-      { path: "list" , component: BranchListComponent, canActivate: [LoggedInGuard] },
-      { path: 'edit/:id', component: BranchEditComponent,  canActivate:[LoggedInGuard] },
-      { path: 'detail/:id', component: BranchDetailComponent,  canActivate:[LoggedInGuard] },
-      { path: 'new', component: BranchNewComponent,  canActivate:[LoggedInGuard] },
+    { path: 'branch', component: BranchComponent,  canActivate:[ManagerGuard], children:[
+      { path: "list" , component: BranchListComponent, canActivate: [ManagerGuard] },
+      { path: 'edit/:id', component: BranchEditComponent,  canActivate:[ManagerGuard] },
+      { path: 'detail/:id', component: BranchDetailComponent,  canActivate:[ManagerGuard] },
+      { path: 'new', component: BranchNewComponent,  canActivate:[ManagerGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
-    { path: 'settings', component: ManagerSettingsComponent, canActivate: [LoggedInGuard], children: [
-      { path: 'rooms', component: RoomsComponent, canActivate: [LoggedInGuard], children:[
-        { path: 'new', component: RoomNewComponent, canActivate: [LoggedInGuard] },
+    { path: 'settings', component: ManagerSettingsComponent, canActivate: [ManagerGuard], children: [
+      { path: 'rooms', component: RoomsComponent, canActivate: [ManagerGuard], children:[
+        { path: 'new', component: RoomNewComponent, canActivate: [ManagerGuard] },
         { path: '', redirectTo: 'new', pathMatch: 'full'},
       ]},
-      { path: 'spaces', component: SpacesComponent, canActivate: [LoggedInGuard], children:[
-        { path: 'new', component: SpaceNewComponent, canActivate: [LoggedInGuard] },
-        { path: 'arrange', component: SpaceArrangeComponent, canActivate: [LoggedInGuard] },
+      { path: 'spaces', component: SpacesComponent, canActivate: [ManagerGuard], children:[
+        { path: 'new', component: SpaceNewComponent, canActivate: [ManagerGuard] },
+        { path: 'arrange', component: SpaceArrangeComponent, canActivate: [ManagerGuard] },
         { path: '', redirectTo: 'new', pathMatch: 'full'},
       ]},
     ]},
@@ -103,8 +105,6 @@ const appRoutes: Routes = [
 
 
 ]
-
-
 
 @NgModule({
    imports: [
@@ -168,7 +168,9 @@ const appRoutes: Routes = [
     BranchService,
     SearchService,
     UserService,
+    ProfileService,
     LoggedInGuard,
+    ManagerGuard,
     ReservationService],
   bootstrap: [AppComponent]
 

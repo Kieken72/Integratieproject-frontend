@@ -2,6 +2,7 @@ import {Injectable, Inject} from "@angular/core";
 import {Http, Headers, RequestOptions, Response} from "@angular/http";
 import {Router} from "@angular/router";
 import {Register} from "./model/register";
+import {ProfileService} from "./profile.service";
 /**
  * Created by Emmanuel on 20/02/2017.
  */
@@ -9,15 +10,15 @@ import {Register} from "./model/register";
 @Injectable()
 export class UserService{
   private loggedIn = false;
-  //private companiesUrl = 'https://leisurebooker.azurewebsites.net/api/token';
-
 
   constructor(private http: Http,@Inject('ApiBase') private apiBase:string,@Inject('AuthBase') private authBase:string,
-              public router: Router){
+              public router: Router,private profileService: ProfileService){
     this.loggedIn = !!localStorage.getItem('auth_token');
   }
   private registration:Register = new Register();
   private registrationResponse = new Register();
+
+
   register(_firstName: string,_lastName: string, _email:string, _password:string,_confirmedPassword:string){
 
     this.registration.Firstname = _firstName;
@@ -44,8 +45,14 @@ export class UserService{
           this.loggedIn = true;
       }
       console.log(res.access_token);
+      this.profileService.getProfile().subscribe((data)=>this.saveRoles(data));
       return res.access_token;
     });
+  }
+
+  saveRoles(data){
+    localStorage.setItem('roles',JSON.stringify(data.Roles));
+    console.log('roles : '+ localStorage.getItem('roles'));
   }
 
   getAccountById(id:string){
@@ -66,4 +73,9 @@ export class UserService{
   isLoggedIn(){
     return this.loggedIn;
   }
+
+  getRoles(){
+    return localStorage.getItem('roles');
+  }
+
 }
