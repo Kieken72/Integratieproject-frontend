@@ -80,7 +80,7 @@ export class UserService{
   }
 
   getRoles(){
-    this.profileService.getProfile().subscribe((data)=>this.saveRoles(data));
+    //this.profileService.getProfile().subscribe((data)=>this.saveRoles(data));
     return localStorage.getItem('roles');
   }
 
