@@ -1,5 +1,4 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {$} from "protractor";
 
 @Component({
   selector: 'app-room-new',
@@ -7,16 +6,25 @@ import {$} from "protractor";
   styleUrls: ['room-new.component.css']
 })
 export class RoomNewComponent implements OnInit {
-
-  constructor() { }
+  private Id:number = 0;
+  constructor() {}
 
   ngOnInit() {
   }
 
-  add() {
-    var objectToDrag = document.createElement('div');
-    objectToDrag.setAttribute('class', 'object');
+  add(event) {
+var target = event.target;
+var id = target.attributes.id.value;
+if(id == 1){
+  var objectToDrag = document.createElement('div');
+  objectToDrag.setAttribute('class', 'object');
+}else{
+  var objectToDrag = document.createElement('div');
+  objectToDrag.setAttribute('class', 'object2');
+}
 
+    objectToDrag.setAttribute('id', this.Id.toString());
+    this.Id++;
     var room = document.getElementById('room');
     room.appendChild(objectToDrag);
 
@@ -42,7 +50,8 @@ export class RoomNewComponent implements OnInit {
         objectToDrag.style.top = (deltaY + startDivPos.y) + "px";
 
         objectToDrag.textContent = "X:" + event.clientX.toString() + " Y:" + event.clientY.toString()
-          + " left: " + objectToDrag.style.left.toString() + " top: " + objectToDrag.style.top.toString();
+          + " left: " + objectToDrag.style.left.toString() + " top: " + objectToDrag.style.top.toString()
+        + " ID:" +objectToDrag.id.toString();
 
         var parentRect = room.getBoundingClientRect();
         var childRect = objectToDrag.getBoundingClientRect();
@@ -58,9 +67,12 @@ export class RoomNewComponent implements OnInit {
     }
 
     objectToDrag.onmouseup = function (event) {
-
       dragging = false;
     }
+  }
+
+  save(){
+    alert("Write to DB logic")
   }
 
 }

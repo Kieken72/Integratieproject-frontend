@@ -84,9 +84,9 @@ const appRoutes: Routes = [
       { path: 'new', component: BranchNewComponent,  canActivate:[ManagerGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
-    { path: 'settings', component: ManagerSettingsComponent, canActivate: [ManagerGuard], children: [
-      { path: 'rooms', component: RoomsComponent, canActivate: [ManagerGuard], children:[
-        { path: 'new', component: RoomNewComponent, canActivate: [ManagerGuard] },
+    { path: 'settings', component: ManagerSettingsComponent, canActivate: [LoggedInGuard], children: [
+      { path: 'rooms', component: RoomsComponent, canActivate: [LoggedInGuard], children:[
+        { path: 'new', component: RoomNewComponent, canActivate: [LoggedInGuard] },
         { path: '', redirectTo: 'new', pathMatch: 'full'},
       ]},
       { path: 'spaces', component: SpacesComponent, canActivate: [ManagerGuard], children:[
