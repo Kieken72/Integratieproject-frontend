@@ -10,6 +10,9 @@ import {ProfileService} from "./profile.service";
 @Injectable()
 export class UserService{
   private loggedIn = false;
+  private isAuthorized:boolean;
+
+  private allowedRole = "Manager";
 
   constructor(private http: Http,@Inject('ApiBase') private apiBase:string,@Inject('AuthBase') private authBase:string,
               public router: Router,private profileService: ProfileService){
@@ -42,10 +45,10 @@ export class UserService{
       .map(res => res.json())
       .map((res) => {if(res.access_token){
           localStorage.setItem('auth_token', res.access_token);
+         this.profileService.getProfile().subscribe((data)=>this.saveRoles(data));
           this.loggedIn = true;
       }
       console.log(res.access_token);
-      this.profileService.getProfile().subscribe((data)=>this.saveRoles(data));
       return res.access_token;
     });
   }
@@ -53,6 +56,7 @@ export class UserService{
   saveRoles(data){
     localStorage.setItem('roles',JSON.stringify(data.Roles));
     console.log('roles : '+ localStorage.getItem('roles'));
+
   }
 
   getAccountById(id:string){
@@ -67,6 +71,7 @@ export class UserService{
 
   logout(){
     localStorage.removeItem('auth_token');
+    localStorage.removeItem('roles');
     this.loggedIn = false;
   }
 
@@ -76,6 +81,24 @@ export class UserService{
 
   getRoles(){
     return localStorage.getItem('roles');
+  }
+
+  isAuthorizedUser(){
+
+    return this.isAuthorized;
+  }
+  checkRoles(roles){
+    var _roles = JSON.parse(roles);
+    if(_roles !=null){
+      var role = _roles.filter(u_role => u_role===this.allowedRole);
+      if(role == this.allowedRole ){
+        this.isAuthorized=true;
+        return this.isAuthorized;
+      }
+    }else{
+      this.isAuthorized=false;
+    }
+
   }
 
 }

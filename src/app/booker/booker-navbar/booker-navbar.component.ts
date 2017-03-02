@@ -13,20 +13,18 @@ export class BookerNavbarComponent implements OnInit {
   private isLoggedIn: boolean;
   private isAuthorized:boolean;
   private userRoles :string;
-  private allowedRole = "Manager";
 
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService) {
+
+  }
 
   ngOnInit() {
     this.isLoggedIn = this.userService.isLoggedIn();
-    this.userRoles = JSON.parse(localStorage.getItem('roles'));
-    this.checkRoles(this.userRoles);
+    this.isAuthorized =this.userService.isAuthorizedUser();
   }
-  checkRoles(roles){
-    var role = roles.filter(u_role => u_role===this.allowedRole);
-    if(role == this.allowedRole ){
-      this.isAuthorized=true;
-      return this.isAuthorized;
-    }
+
+  logout(){
+    this.isAuthorized=false;
+    this.userService.logout();
   }
 }

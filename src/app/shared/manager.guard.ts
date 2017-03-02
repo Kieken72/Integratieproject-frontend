@@ -7,17 +7,22 @@ import {UserService} from "../account/shared/user.service";
 @Injectable()
 export class ManagerGuard implements CanActivate{
   constructor(private user: UserService, public router: Router){}
+
+  private isAuthorized:boolean;
   private role:string = 'Manager';
   canActivate(){
     let roles = (this.user.getRoles()).split(',');
     var role = roles.filter(u_role => u_role===this.role);
     if(role[0] == this.role){
-      console.log('rolesfilters');
+      this.isAuthorized=true;
       return this.user.isLoggedIn();
 
     }else{
+      alert('je moet beschikken over een manager rol om dit te kunnen zien');
       this.router.navigate(['account/login']);
     }
 
   }
+
+
 }

@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
         if(result){
           if(localStorage.getItem('previous_url')== '/account/register'){
             localStorage.removeItem('previous_url');
+            this.userService.checkRoles(localStorage.getItem('roles'));
             this.router.navigate(['booker/search'])
           }else{
             this.location.back();
