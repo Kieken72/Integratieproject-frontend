@@ -41,10 +41,10 @@ app-root, app-booker{
 
 /* Applies a grabbing hand on top of the div that's draggable*/
 .object{
-  cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab;
-}
+   cursor: grab;
+   cursor: -moz-grab;
+   cursor: -webkit-grab;
+ }
 /*  Apply a "closed-hand" cursor during drag operation. */
 .object:active {
   cursor: grabbing;
@@ -55,6 +55,28 @@ app-root, app-booker{
 
 .object{
   height: 200px;
+  width: 100px;
+  border: solid 1px;
+  background-color: black;
+  position: absolute;
+  color: white;
+}
+
+.object2{
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+/*  Apply a "closed-hand" cursor during drag operation. */
+.object2:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+
+.object2{
+  height: 100px;
   width: 100px;
   border: solid 1px;
   background-color: black;
