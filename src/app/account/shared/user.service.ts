@@ -56,7 +56,7 @@ export class UserService{
   saveRoles(data){
     localStorage.setItem('roles',JSON.stringify(data.Roles));
     console.log('roles : '+ localStorage.getItem('roles'));
-
+    this.checkRoles(localStorage.getItem('roles'));
   }
 
   getAccountById(id:string){
@@ -80,7 +80,7 @@ export class UserService{
   }
 
   getRoles(){
-    //this.profileService.getProfile().subscribe((data)=>this.saveRoles(data));
+    this.profileService.getProfile().subscribe((data)=>this.saveRoles(data));
     return localStorage.getItem('roles');
   }
 
