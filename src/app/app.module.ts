@@ -66,7 +66,7 @@ const appRoutes: Routes = [
   { path: 'manager', component: ManagerComponent,  children:[
     { path: 'dashboard', component: ManagerDashboardComponent, canActivate:[ManagerGuard] },
     { path: 'calendar', component: ManagerCalendarComponent, canActivate:[ManagerGuard] },
-    { path: 'messages', component: ManagerMessagesComponent,  canActivate:[ManagerGuard] },
+    { path: 'messages', component: ManagerMessagesComponent,  canActivate:[LoggedInGuard] },
     { path: 'guests', component: ManagerGuestsComponent,  canActivate:[ManagerGuard] },
     { path: 'statistics', component: ManagerStatisticsComponent,  canActivate:[ManagerGuard] },
     { path: 'calendar', component: ManagerCalendarComponent,  canActivate:[ManagerGuard] },
@@ -84,9 +84,9 @@ const appRoutes: Routes = [
       { path: 'new', component: BranchNewComponent,  canActivate:[ManagerGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
-    { path: 'settings', component: ManagerSettingsComponent, canActivate: [LoggedInGuard], children: [
-      { path: 'rooms', component: RoomsComponent, canActivate: [LoggedInGuard], children:[
-        { path: 'new', component: RoomNewComponent, canActivate: [LoggedInGuard] },
+    { path: 'settings', component: ManagerSettingsComponent, canActivate: [ManagerGuard], children: [
+      { path: 'rooms', component: RoomsComponent, canActivate: [ManagerGuard], children:[
+        { path: 'new', component: RoomNewComponent, canActivate: [ManagerGuard] },
         { path: '', redirectTo: 'new', pathMatch: 'full'},
       ]},
       { path: 'spaces', component: SpacesComponent, canActivate: [ManagerGuard], children:[

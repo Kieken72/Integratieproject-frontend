@@ -44,13 +44,13 @@ export class UserService{
     return this.http.post(this.authBase+'token', body, {headers})
       .map(res => res.json())
       .map((res) => {if(res.access_token){
-          localStorage.setItem('auth_token', res.access_token);
-         this.profileService.getProfile().subscribe((data)=>this.saveRoles(data));
-          this.loggedIn = true;
+        localStorage.setItem('auth_token', res.access_token);
+        this.profileService.getProfile().subscribe((data)=>this.saveRoles(data));
+        this.loggedIn = true;
       }
-      console.log(res.access_token);
-      return res.access_token;
-    });
+        console.log(res.access_token);
+        return res.access_token;
+      });
   }
 
   saveRoles(data){
@@ -80,20 +80,21 @@ export class UserService{
   }
 
   getRoles(){
+    this.profileService.getProfile().subscribe((data)=>this.saveRoles(data));
     return localStorage.getItem('roles');
   }
 
   isAuthorizedUser(){
-
-    return this.isAuthorized;
+    //return this.isAuthorized;
+    let roles = this.getRoles();
+    return this.checkRoles(roles);
   }
   checkRoles(roles){
     var _roles = JSON.parse(roles);
     if(_roles !=null){
       var role = _roles.filter(u_role => u_role===this.allowedRole);
       if(role == this.allowedRole ){
-        this.isAuthorized=true;
-        return this.isAuthorized;
+        return this.isAuthorized=true;
       }
     }else{
       this.isAuthorized=false;

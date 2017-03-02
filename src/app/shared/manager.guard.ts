@@ -11,14 +11,14 @@ export class ManagerGuard implements CanActivate{
   private isAuthorized:boolean;
   private role:string = 'Manager';
   canActivate(){
-    let roles = (this.user.getRoles()).split(',');
+    let roles = JSON.parse(this.user.getRoles());
     var role = roles.filter(u_role => u_role===this.role);
-    if(role[0] == this.role){
+    if(role[2] == this.role){
       this.isAuthorized=true;
       return this.user.isLoggedIn();
 
     }else{
-      alert('je moet beschikken over een manager rol om dit te kunnen zien');
+      alert('je moet beschikken over een manager rol om dit te kunnen zien!');
       this.router.navigate(['account/login']);
     }
 

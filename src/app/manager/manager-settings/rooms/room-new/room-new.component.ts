@@ -72,7 +72,16 @@ if(id == 1){
   }
 
   save(){
-    alert("Write to DB logic")
+    alert("Post to DB logic")
+    /*
+    WHAT WE NEED:
+    ======================
+    - Room id
+    - Object id
+    - Object position: ex: top and left?
+    - Is it a table of baan of other?
+
+     */
   }
 
 }
