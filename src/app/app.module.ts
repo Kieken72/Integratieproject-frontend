@@ -49,6 +49,7 @@ import { SpacesComponent } from './manager/manager-settings/spaces/spaces.compon
 import { SpaceNewComponent } from './manager/manager-settings/spaces/space-new/space-new.component';
 import { RoomEditComponent } from './manager/manager-settings/rooms/room-edit/room-edit.component';
 import { SpaceArrangeComponent } from './manager/manager-settings/spaces/space-arrange/space-arrange.component';
+import { Draggable } from 'ng2draggable/draggable.directive';
 import {ProfileService} from "./account/shared/profile.service";
 import {ManagerGuard} from "./shared/manager.guard";
 
@@ -157,7 +158,8 @@ const appRoutes: Routes = [
     SpacesComponent,
     SpaceNewComponent,
     RoomEditComponent,
-    SpaceArrangeComponent
+    SpaceArrangeComponent,
+    Draggable
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
