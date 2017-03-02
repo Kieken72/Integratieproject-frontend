@@ -114,6 +114,20 @@
           </table>
         </div>
       </div>
+      <div class="well col-md-12" *ngIf="branch!=null">
+        <strong>{{reservationCount | number : '1.0'}}</strong>
+        <accordion>
+          <accordion-group *ngFor="let review of branch.Reviews">
+            <div accordion-heading>
+              {{review.User.Name}}
+              <i class="pull-right float-xs-right fa"
+                 [ngClass]="{'fa-thumbs-down': !review.Result, 'fa-thumbs-up': review.Result}"></i>
+            </div>
+            {{review.Text}}
+          </accordion-group>
+        </accordion>
+
+      </div>
     </div>
   </div>
 </div>

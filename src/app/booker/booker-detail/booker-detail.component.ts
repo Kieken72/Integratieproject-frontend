@@ -34,6 +34,7 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
   private accesFacilities: DisplayFacility[];
   private reservation: Reservation;
   public CheckMessage = CheckMessage;
+  private reservationCount: number;
 
   constructor(
     private searchService: SearchService,
@@ -61,8 +62,11 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
     this.paymentFacilities = this.branchService.paymentFacilities(branch);
     this.otherFacilities = this.branchService.otherFacilities(branch);
     this.accesFacilities = this.branchService.accesabilityFacilities(branch);
-    console.log(this.otherFacilities);
-    console.log(this.accesFacilities);
+
+    var good = this.branch.Reviews.filter(e=>e.Result).length;
+    var total = this.branch.Reviews.length;
+    this.reservationCount = good/total*5;
+
   }
   private dateChanged(newDate) {
     this.search.date= new Date(newDate);
