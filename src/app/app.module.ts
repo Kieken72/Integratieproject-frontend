@@ -42,6 +42,13 @@ import { BranchListComponent } from './manager/branches/branch-list/branch-list.
 import { BranchDetailComponent } from './manager/branches/branch-detail/branch-detail.component';
 import { BranchEditComponent } from './manager/branches/branch-edit/branch-edit.component';
 import { BranchNewComponent } from './manager/branches/branch-new/branch-new.component';
+import { ManagerSettingsComponent } from './manager/manager-settings/manager-settings.component';
+import { RoomsComponent } from './manager/manager-settings/rooms/rooms.component';
+import { RoomNewComponent } from './manager/manager-settings/rooms/room-new/room-new.component';
+import { SpacesComponent } from './manager/manager-settings/spaces/spaces.component';
+import { SpaceNewComponent } from './manager/manager-settings/spaces/space-new/space-new.component';
+import { RoomEditComponent } from './manager/manager-settings/rooms/room-edit/room-edit.component';
+import { SpaceArrangeComponent } from './manager/manager-settings/spaces/space-arrange/space-arrange.component';
 
 
 
@@ -74,6 +81,17 @@ const appRoutes: Routes = [
       { path: 'new', component: BranchNewComponent,  canActivate:[LoggedInGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
+    { path: 'settings', component: ManagerSettingsComponent, canActivate: [LoggedInGuard], children: [
+      { path: 'rooms', component: RoomsComponent, canActivate: [LoggedInGuard], children:[
+        { path: 'new', component: RoomNewComponent, canActivate: [LoggedInGuard] },
+        { path: '', redirectTo: 'new', pathMatch: 'full'},
+      ]},
+      { path: 'spaces', component: SpacesComponent, canActivate: [LoggedInGuard], children:[
+        { path: 'new', component: SpaceNewComponent, canActivate: [LoggedInGuard] },
+        { path: 'arrange', component: SpaceArrangeComponent, canActivate: [LoggedInGuard] },
+        { path: '', redirectTo: 'new', pathMatch: 'full'},
+      ]},
+    ]},
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   ]},
   { path: 'account', component: AccountComponent, children: [
@@ -132,7 +150,14 @@ const appRoutes: Routes = [
     BranchListComponent,
     BranchDetailComponent,
     BranchEditComponent,
-    BranchNewComponent
+    BranchNewComponent,
+    ManagerSettingsComponent,
+    RoomsComponent,
+    RoomNewComponent,
+    SpacesComponent,
+    SpaceNewComponent,
+    RoomEditComponent,
+    SpaceArrangeComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
