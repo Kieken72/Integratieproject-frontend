@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
             localStorage.removeItem('previous_url');
             this.router.navigate(['booker/search'])
           }else{
-            this.userService.checkRoles(localStorage.getItem('roles'));
+            //this.userService.checkRoles(localStorage.getItem('roles'));
             this.location.back();
           }
         }
@@ -38,7 +38,8 @@ export class LoginComponent implements OnInit {
         } else {
           this.errorMessage = "Something bad."
         }
-      })
+      });
+
   }
   redirect(val:string){
     if(val =='/account/register'){

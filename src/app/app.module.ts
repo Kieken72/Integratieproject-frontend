@@ -66,7 +66,7 @@ const appRoutes: Routes = [
   { path: 'manager', component: ManagerComponent,  children:[
     { path: 'dashboard', component: ManagerDashboardComponent, canActivate:[ManagerGuard] },
     { path: 'calendar', component: ManagerCalendarComponent, canActivate:[ManagerGuard] },
-    { path: 'messages', component: ManagerMessagesComponent,  canActivate:[LoggedInGuard] },
+    { path: 'messages', component: ManagerMessagesComponent,  canActivate:[ManagerGuard] },
     { path: 'guests', component: ManagerGuestsComponent,  canActivate:[ManagerGuard] },
     { path: 'statistics', component: ManagerStatisticsComponent,  canActivate:[ManagerGuard] },
     { path: 'calendar', component: ManagerCalendarComponent,  canActivate:[ManagerGuard] },
@@ -100,7 +100,7 @@ const appRoutes: Routes = [
   { path: 'account', component: AccountComponent, children: [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'details', component: AccountDetailComponent, canActivate:[LoggedInGuard] },
+    { path: 'details', component: AccountDetailComponent, canActivate:[ManagerGuard] },
   ]},
   { path: '', redirectTo: 'booker', pathMatch: 'full'},
 
