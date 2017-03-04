@@ -20,7 +20,6 @@ export class BookerNavbarComponent implements OnInit {
 
   ngOnInit() {
     this.isLoggedIn = this.userService.isLoggedIn();
-    this.userService.getRoles();
     this.isAuthorized =this.userService.isAuthorizedUser();
   }
 
