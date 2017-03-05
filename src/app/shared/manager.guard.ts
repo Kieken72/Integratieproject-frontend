@@ -13,7 +13,7 @@ export class ManagerGuard implements CanActivate{
   canActivate(){
     let roles = JSON.parse(this.user.getRoles());
     var role = roles.filter(u_role => u_role===this.role);
-    if(role[2] == this.role){
+    if(role[0] == this.role){
       this.isAuthorized=true;
       return this.user.isLoggedIn();
 

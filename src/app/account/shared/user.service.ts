@@ -10,7 +10,7 @@ import {ProfileService} from "./profile.service";
 @Injectable()
 export class UserService{
   private loggedIn = false;
-  private isAuthorized:boolean;
+  private isAuthorized:any;
 
   private allowedRole = "Manager";
 
@@ -45,18 +45,21 @@ export class UserService{
       .map(res => res.json())
       .map((res) => {if(res.access_token){
         localStorage.setItem('auth_token', res.access_token);
-        this.profileService.getProfile().subscribe((data)=>this.saveRoles(data));
+        this.getProfile();
         this.loggedIn = true;
       }
         console.log(res.access_token);
         return res.access_token;
       });
   }
-
+  getProfile(){
+   return this.profileService.getProfile().subscribe((data)=>this.saveRoles(data));
+  }
   saveRoles(data){
     localStorage.setItem('roles',JSON.stringify(data.Roles));
     console.log('roles : '+ localStorage.getItem('roles'));
-    this.checkRoles(localStorage.getItem('roles'));
+    return this.checkRoles(localStorage.getItem('roles'));
+
   }
 
   getAccountById(id:string){
