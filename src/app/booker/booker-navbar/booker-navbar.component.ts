@@ -13,7 +13,7 @@ export class BookerNavbarComponent implements OnInit {
 
   private isLoggedIn: boolean;
   private isAuthorized:boolean;
-  private userRoles ;
+  private userRoles :string;
 
   constructor(private userService:UserService) {
 
@@ -21,7 +21,6 @@ export class BookerNavbarComponent implements OnInit {
 
   ngOnInit() {
     this.isLoggedIn = this.userService.isLoggedIn();
-    //this.userService.getRoles();
     this.isAuthorized =this.userService.isAuthorizedUser();
   }
 
