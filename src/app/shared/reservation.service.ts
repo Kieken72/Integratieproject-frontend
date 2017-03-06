@@ -2,12 +2,13 @@ import {Injectable, Inject} from "@angular/core";
 import {Http, Headers, RequestOptions, Response} from "@angular/http";
 import {Newreservation} from "./model/newreservation";
 import {Checkbranch} from "./model/checkbranch";
+import {Message} from "../booker/booker-reservationdetail/model/message";
 
 
 @Injectable()
 export class ReservationService {
   constructor(private  http:Http,@Inject('ApiBase') private apiBase:string ){}
-
+  private message:Message = new Message();
   //private branch:Branch = new Branch();
   //private branchResponse:Branch = new Branch();
 
@@ -26,6 +27,24 @@ export class ReservationService {
 
   getReservationByBranch(branchId:number){
     return this.http.get(this.apiBase+'reservations/branch/'+branchId).map(res => res.json());
+  }
+
+  postMessage(resId: string, branchId: string, text: string){
+    this.message.branchId = branchId;
+    this.message.reservationId = resId;
+    this.message.text = text;
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(this.apiBase+'messages/', JSON.stringify(this.message), options).map((res:Response)=>res);
+  }
+
+  getMessages(number:string){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(this.apiBase+'messages/' + number, options).map(res=>res.json());
   }
 
 

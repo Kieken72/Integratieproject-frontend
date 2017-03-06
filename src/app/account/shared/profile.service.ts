@@ -35,7 +35,7 @@ export class ProfileService{
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiBase+'accounts', JSON.stringify(this.userToPut), options).map((res:Response)=>res);
+    return this.http.put(this.apiBase+'accounts/', JSON.stringify(this.userToPut), options).map((res:Response)=>res);
 
   }
 }

@@ -16,7 +16,7 @@
             Reservation ID: {{reservation.Id}} | <a [routerLink]="['../../booker/detail/' , reservation.BranchId]">Branch ID: {{reservation.BranchName}} </a>| Space ID: {{reservation.SpaceId}} <br/>
             Amount of persons: {{reservation.AmountOfPersons}}<br/>
             Date: {{reservation.DateTime}} | End time: {{reservation.EndDateTime}}<br/>
-            Messages: {{reservation.Messages}} <br/>
+            <button id="details" class="btn btn-default" [routerLink]="['../../manager/reservationdetail/', reservation.Id ]">Details</button>
           </div>
 
         </div>

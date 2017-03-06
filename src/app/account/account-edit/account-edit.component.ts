@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../account-detail/model/user";
 import {ProfileService} from "../shared/profile.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-account-edit',
@@ -10,7 +11,7 @@ import {ProfileService} from "../shared/profile.service";
 })
 export class AccountEditComponent implements OnInit {
   private user: User;
-  constructor( private profileService:ProfileService){
+  constructor( private profileService:ProfileService, private route:Router){
   };
 
   ngOnInit() {
@@ -21,7 +22,8 @@ export class AccountEditComponent implements OnInit {
   };
 
   editAccount(){
-    this.profileService.putAccount(this.user.Firstname, this.user.Surname).subscribe(data=>console.log(data));
+    this.profileService.putAccount(this.user.Firstname, this.user.Surname).subscribe((data)=>console.log(data),(error)=>console.log(error),()=>this.route.navigate(['../account/details']));
+
   }
 
 

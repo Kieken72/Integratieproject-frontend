@@ -1,6 +1,6 @@
 export class Reservation{
   public Id: string;
-  public AmountOfPersons: string;
+  public AmountOfPersons: number;
   public DateTime: string;
   public EndDateTime: string;
   public SpaceId: string;
