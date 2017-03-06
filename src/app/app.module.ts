@@ -54,6 +54,7 @@ import {ProfileService} from "./account/shared/profile.service";
 import {ManagerGuard} from "./shared/manager.guard";
 import { AccountEditComponent } from './account/account-edit/account-edit.component';
 import { BookerReviewComponent } from './booker/booker-review/booker-review.component';
+import { AccountNavbarComponent } from './account/account-navbar/account-navbar.component';
 
 
 
@@ -164,7 +165,8 @@ const appRoutes: Routes = [
     RoomEditComponent,
     SpaceArrangeComponent,
     AccountEditComponent,
-    BookerReviewComponent
+    BookerReviewComponent,
+    AccountNavbarComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },

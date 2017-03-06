@@ -43,7 +43,16 @@ export class BookerSearchComponent implements OnInit, OnDestroy {
 
   private dateChanged(newDate) {
     this.search.date= new Date(newDate);
-    console.log(this.search.date);
+  }
+  private timeChanged(newTime: Date){
+    var minutes = newTime.getMinutes();
+    var quarterHours = Math.round(minutes/30);
+    if (quarterHours == 2){
+      newTime.setHours(newTime.getHours()+1);
+    }
+    var rounded = (quarterHours*30)%60;
+    newTime.setMinutes(rounded);
+    this.search.time = newTime;
   }
 
   public citySelected(city){
