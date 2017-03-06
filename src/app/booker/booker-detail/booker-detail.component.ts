@@ -36,6 +36,9 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
   public CheckMessage = CheckMessage;
   private reservationCount: number;
 
+  private latitude : any;
+  private longitude: any;
+
   constructor(
     private searchService: SearchService,
     private branchService: BranchService,
@@ -56,6 +59,15 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
 
   }
 
+  getCoordinates(branch:Branch){
+    this.branchService.getCoordinates(branch).subscribe((data)=>this.setCoordinates(data))
+  }
+  setCoordinates(data){
+    this.latitude = data.results[0].geometry.location.lat;
+    this.longitude = data.results[0].geometry.location.lng;
+    console.log('lat: '+ this.latitude + ' long : ' + this.longitude);
+  }
+
   whenBranchLoads(branch){
     this.branch = branch;
     this.operationHours = this.branchService.openingHours(branch);
@@ -66,7 +78,7 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
     var good = this.branch.Reviews.filter(e=>e.Result).length;
     var total = this.branch.Reviews.length;
     this.reservationCount = good/total*5;
-
+    this.getCoordinates(this.branch);
   }
   private dateChanged(newDate) {
     this.search.date= new Date(newDate);

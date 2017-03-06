@@ -83,4 +83,7 @@ app-root, app-booker{
   position: absolute;
   color: white;
 }
-
+/*Google Maps*/
+.sebm-google-map-container {
+  height: 300px;
+}
