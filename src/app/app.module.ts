@@ -169,7 +169,7 @@ const appRoutes: Routes = [
     SpaceArrangeComponent,
     AccountEditComponent,
     BookerReviewComponent,
-    AccountNavbarComponent
+    AccountNavbarComponent,
     BookerReviewComponent,
     BookerReservationdetailComponent
   ],
