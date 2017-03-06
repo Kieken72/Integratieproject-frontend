@@ -7,6 +7,7 @@ export class User{
   Url: string;
   Id: string;
   Email: string;
+  Phone: string;
   Firstname: string;
   Surname: string;
   Roles: UserRole[];

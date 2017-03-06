@@ -1,0 +1,15 @@
+<div class="header clearfix">
+  <nav>
+    <ul class="nav nav-pills pull-right black">
+      <li role="presentation" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['../booker/search']">Zoeken</a></li>
+      <li role="presentation" [routerLinkActive]="['active']"><a [routerLink]="['contact']">Contact</a></li>
+      <li *ngIf="isLoggedIn==true" role="presentation" [routerLinkActive]="['active']"><a [routerLink]="['../account/details']">Mijn Profiel</a></li>
+      <li *ngIf="isAuthorized==true" role="presentation" [routerLinkActive]="['active']"><a [routerLink]="['../manager']">LeisureManager</a></li>
+      <li *ngIf="isLoggedIn==false" role="presentation" [routerLinkActive]="['active']"><a [routerLink]="['../account/login']">Log In</a></li>
+      <li *ngIf="isLoggedIn==true" role="presentation" [routerLinkActive]="['active']" ><a [routerLink]="['../account/login']" (click)="logout()">Log Uit</a></li>
+    </ul>
+  </nav>
+  <h3 class="text-muted">
+    <img style="width: 400px;" src="assets/leisurebooker_black.png"/>
+  </h3>
+</div>
