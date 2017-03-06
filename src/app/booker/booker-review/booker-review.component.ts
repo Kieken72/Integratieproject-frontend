@@ -24,11 +24,11 @@ export class BookerReviewComponent implements OnInit {
     this.user=data;
   }
 
-  //TODO:variable reservationID + fix Post
+  //TODO:variable reservationID
   postReview(text : string){
     this.review.Text = text;
     this.review.Public= true;
-    this.review.ReservationId = 2;
+    this.review.ReservationId = 5;
 
     console.log(this.review);
     return this.reservationService.postReview(this.review).subscribe(response =>console.log(response));
