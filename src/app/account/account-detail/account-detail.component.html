@@ -10,7 +10,7 @@
           <div *ngFor="let role of user.Roles">
             {{role}}
           </div>
-
+          <button id="editAccount" class="btn btn-default" [routerLink]="['../edit']">Pas mijn account aan</button>
           <div *ngFor="let reservation of user.Reservations">
             <hr/>
             Reservation ID: {{reservation.Id}} | <a [routerLink]="['../../booker/detail/' , reservation.BranchId]">Branch ID: {{reservation.BranchName}} </a>| Space ID: {{reservation.SpaceId}} <br/>

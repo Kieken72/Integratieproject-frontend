@@ -102,7 +102,8 @@ const appRoutes: Routes = [
   { path: 'account', component: AccountComponent, children: [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'details', component: AccountDetailComponent, canActivate:[ManagerGuard] },
+    { path: 'details', component: AccountDetailComponent, canActivate:[LoggedInGuard] },
+    { path: 'edit', component: AccountEditComponent, canActivate: [LoggedInGuard]}
   ]},
   { path: '', redirectTo: 'booker', pathMatch: 'full'},
 
