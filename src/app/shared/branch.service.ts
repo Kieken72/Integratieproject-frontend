@@ -165,4 +165,10 @@ export class BranchService {
     }
     return others;
   }
+
+  getCoordinates(branch:Branch){
+    return this.http
+      .get('https://maps.googleapis.com/maps/api/geocode/json?address='+branch.Street+'+'
+        +branch.Number+',+'+branch.City.PostalCode+'+'+branch.City.Name+'&key=AIzaSyCiJDhAZiQWh-hTj-EBeDB7YR9EXmijx9g').map(res =>res.json());
+  }
 }

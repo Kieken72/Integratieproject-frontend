@@ -58,7 +58,7 @@ import { AccountNavbarComponent } from './account/account-navbar/account-navbar.
 
 import { BookerReservationdetailComponent } from './booker/booker-reservationdetail/booker-reservationdetail.component';
 
-
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 const appRoutes: Routes = [
 
@@ -128,6 +128,9 @@ const appRoutes: Routes = [
      TabsModule.forRoot(),
      ModalModule.forRoot(),
      AccordionModule.forRoot(),
+     AgmCoreModule.forRoot({
+       apiKey: 'AIzaSyCiJDhAZiQWh-hTj-EBeDB7YR9EXmijx9g'
+     }),
     RouterModule.forRoot(appRoutes)
   ],
   declarations: [
