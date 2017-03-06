@@ -1,24 +1,58 @@
 <div class="row" >
   <div *ngIf="reservations!=null">
 
-    <div *ngFor=" let reservation of reservations">
-      Reservation ID: {{reservation.Id}} | <a [routerLink]="['../../../booker/detail/' , reservation.BranchId]">Branch ID: {{reservation.BranchName}} </a>| Space ID: {{reservation.SpaceId}} <br/>
-      Amount of persons: {{reservation.AmountOfPersons}}<br/>
-      Date: {{reservation.DateTime}} | End time: {{reservation.EndDateTime}}<br/>
+    <div class = "panel panel-default" *ngFor=" let reservation of reservations">
+      <div class="panel-heading resume-heading">
+      Reservatie ID: {{reservation.Id}} | <a [routerLink]="['../../../booker/detail/' , reservation.BranchId]">Filaal ID: {{reservation.BranchName}} </a>| Ruimte ID: {{reservation.SpaceId}} <br/>
+      Aantal personen: {{reservation.AmountOfPersons}}<br/>
+      Datum: {{reservation.DateTime}} | Tot: {{reservation.EndDateTime}}<br/>
+      </div>
     </div>
 
 
   </div>
+
+
 
   <div *ngIf="messages!=null">
-    <div *ngFor="let mess of messages">
-      {{mess.text}}
-    </div>
+
+
+    <div class="chat">
+      <div class="chat-history">
+        <ul class="chat-ul">
+          <div *ngFor="let mess of messages">
+            <div *ngIf="user.Id!=mess.UserId">
+          <li>
+            <div class="message-data">
+              <span class="message-data-name"><i class="fa fa-circle you"></i> {{mess.User.Name}} {{mess.User.Surname}} ({{mess.DateTime}}) </span>
+            </div>
+            <div class="message you-message">
+              {{mess.Text}}
+            </div>
+          </li>
+          </div>
+            <div *ngIf="user.Id==mess.UserId">
+            <li class="clearfix">
+              <div class="message-data align-right">
+                <span class="message-data-name"> {{mess.User.Name}} {{mess.User.Surname}} ({{mess.DateTime}}) </span> <i class="fa fa-circle me"></i>
+              </div>
+              <div class="message me-message float-right">  {{mess.Text}}  </div>
+            </li>
+            </div>
+          </div>
+          <div class="col-md-11">
+          <textarea [(ngModel)]="message.text"  class="form-control"  id="text" #Text></textarea>
+          <button id="send" class="btn btn-default" (click)="sendMessage()">Verzend</button>
+          </div>
+        </ul>
+
+      </div> <!-- end chat-history -->
+
+
+
+    </div> <!-- end chat -->
+
   </div>
 
-<div class="col-md-5">
-<textarea [(ngModel)]="message.text"  class="form-control"  id="text" #Text></textarea>
-  <button id="send" class="btn btn-default" (click)="sendMessage()">Verzend</button>
 
-</div>
 </div>
