@@ -3,6 +3,9 @@ import {ProfileService} from "../shared/profile.service";
 import {User} from "./model/user";
 import {BranchService} from "../../shared/branch.service";
 import {Branch} from "../../shared/model/branch";
+import {forEach} from "@angular/router/src/utils/collection";
+import {Reservation} from "../../shared/model/reservation";
+
 
 @Component({
   selector: 'app-account-detail',
@@ -13,7 +16,9 @@ import {Branch} from "../../shared/model/branch";
 export class AccountDetailComponent implements OnInit {
   private user: User;
   private branches: Branch[];
+
   private type: string[];
+
 
   constructor( private profileService:ProfileService, private branchService:BranchService){
   };
@@ -37,4 +42,7 @@ export class AccountDetailComponent implements OnInit {
   getBranches():void{
     this.branchService.getBranches().subscribe(data => this.branches = data);
   }
+
+
+
 }

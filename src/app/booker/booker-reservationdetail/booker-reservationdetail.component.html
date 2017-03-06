@@ -1,0 +1,24 @@
+<div class="row" >
+  <div *ngIf="reservations!=null">
+
+    <div *ngFor=" let reservation of reservations">
+      Reservation ID: {{reservation.Id}} | <a [routerLink]="['../../../booker/detail/' , reservation.BranchId]">Branch ID: {{reservation.BranchName}} </a>| Space ID: {{reservation.SpaceId}} <br/>
+      Amount of persons: {{reservation.AmountOfPersons}}<br/>
+      Date: {{reservation.DateTime}} | End time: {{reservation.EndDateTime}}<br/>
+    </div>
+
+
+  </div>
+
+  <div *ngIf="messages!=null">
+    <div *ngFor="let mess of messages">
+      {{mess.text}}
+    </div>
+  </div>
+
+<div class="col-md-5">
+<textarea [(ngModel)]="message.text"  class="form-control"  id="text" #Text></textarea>
+  <button id="send" class="btn btn-default" (click)="sendMessage()">Verzend</button>
+
+</div>
+</div>

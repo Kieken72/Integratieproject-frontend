@@ -94,7 +94,8 @@
                 </div>
                 </div>
                 <div *ngIf="reservation!=null">
-                  <p>U reservatie is bevestigd.<br>op {{reservation.DateTime}} met {{reservation.AmountOfPersons}}</p>
+                  <p>
+                    U reservatie is bevestigd.<br>Op {{reservation.DateTime | date: 'short'}} met {{reservation.AmountOfPersons}} in {{branch.Name}} te {{branch.City.Name}}.</p>
                 </div>
               </div>
             </div>

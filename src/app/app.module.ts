@@ -32,7 +32,7 @@ import {AlertModule, TimepickerModule, DatepickerModule, TabsModule, ModalModule
 import { AccountComponent } from './account/account.component';
 import { AccountDetailComponent } from './account/account-detail/account-detail.component';
 import { RegisterComponent } from './account/register/register.component';
-import {ReservationService} from "./shared/reservation.service";
+import { ReservationService } from "./shared/reservation.service";
 import { CompanyEditComponent } from './manager/company/company-edit/company-edit.component';
 import { CompanyNewComponent } from './manager/company/company-new/company-new.component';
 import { CompanyDetailComponent } from './manager/company/company-detail/company-detail.component';
@@ -54,6 +54,9 @@ import {ProfileService} from "./account/shared/profile.service";
 import {ManagerGuard} from "./shared/manager.guard";
 import { AccountEditComponent } from './account/account-edit/account-edit.component';
 import { BookerReviewComponent } from './booker/booker-review/booker-review.component';
+import { AccountNavbarComponent } from './account/account-navbar/account-navbar.component';
+
+import { BookerReservationdetailComponent } from './booker/booker-reservationdetail/booker-reservationdetail.component';
 
 
 
@@ -74,6 +77,7 @@ const appRoutes: Routes = [
     { path: 'guests', component: ManagerGuestsComponent,  canActivate:[ManagerGuard] },
     { path: 'statistics', component: ManagerStatisticsComponent,  canActivate:[ManagerGuard] },
     { path: 'calendar', component: ManagerCalendarComponent,  canActivate:[ManagerGuard] },
+    { path: 'reservationdetail/:id', component: BookerReservationdetailComponent},
     { path: 'company', component: CompanyComponent,  canActivate:[ManagerGuard], children:[
       { path: "list" , component: CompanyListComponent, canActivate: [ManagerGuard] },
       { path: 'edit/:id', component: CompanyEditComponent,  canActivate:[ManagerGuard] },
@@ -104,7 +108,8 @@ const appRoutes: Routes = [
   { path: 'account', component: AccountComponent, children: [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'details', component: AccountDetailComponent, canActivate:[ManagerGuard] },
+    { path: 'details', component: AccountDetailComponent, canActivate:[LoggedInGuard] },
+    { path: 'edit', component: AccountEditComponent, canActivate: [LoggedInGuard]}
   ]},
   { path: '', redirectTo: 'booker', pathMatch: 'full'},
 
@@ -165,7 +170,10 @@ const appRoutes: Routes = [
     RoomEditComponent,
     SpaceArrangeComponent,
     AccountEditComponent,
-    BookerReviewComponent
+    BookerReviewComponent,
+    AccountNavbarComponent
+    BookerReviewComponent,
+    BookerReservationdetailComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
