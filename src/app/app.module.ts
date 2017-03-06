@@ -52,6 +52,7 @@ import { SpaceArrangeComponent } from './manager/manager-settings/spaces/space-a
 
 import {ProfileService} from "./account/shared/profile.service";
 import {ManagerGuard} from "./shared/manager.guard";
+import { AccountEditComponent } from './account/account-edit/account-edit.component';
 
 
 
@@ -159,7 +160,8 @@ const appRoutes: Routes = [
     SpacesComponent,
     SpaceNewComponent,
     RoomEditComponent,
-    SpaceArrangeComponent
+    SpaceArrangeComponent,
+    AccountEditComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
