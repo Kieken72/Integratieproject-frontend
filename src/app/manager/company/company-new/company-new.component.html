@@ -7,7 +7,7 @@
      <input id="companyCity" name="CityId" class="form-control" auto-complete [(ngModel)]="company.CityId"  [source]="cities"  />
      </div>-->
     <div class="col-sm-9">
-      <select name="cityId" id="cid" [(ngModel)]="cityid" class="form-control" required [(ngModel)]="company.City" name="city" #city="ngModel" #CityId>
+      <select name="cityId" id="cid"  class="form-control" required [(ngModel)]="company.City" name="city" #city="ngModel" #CityId>
         <option id="companyCity" *ngFor="let city of cities" [ngValue]="city.Id" >{{city.PostalCode}} | {{city.Name}}</option>
       </select>
       <div *ngIf="city.errors && (city.dirty || city.touched)"

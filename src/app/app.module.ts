@@ -66,6 +66,8 @@ const appRoutes: Routes = [
     { path: 'search', component: BookerSearchComponent },
     { path: 'list', component: BookerListComponent },
     { path: 'detail/:id', component: BookerDetailComponent},
+
+    { path: 'review', component: BookerReviewComponent},
     { path: '', redirectTo: 'search', pathMatch: 'full'},
   ]},
   { path: 'manager', component: ManagerComponent,  children:[

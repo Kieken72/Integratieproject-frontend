@@ -3,6 +3,7 @@ import {Http, Headers, RequestOptions, Response} from "@angular/http";
 import {Newreservation} from "./model/newreservation";
 import {Checkbranch} from "./model/checkbranch";
 import {Message} from "../booker/booker-reservationdetail/model/message";
+import {Review} from "./model/review";
 
 
 @Injectable()
@@ -27,6 +28,18 @@ export class ReservationService {
 
   getReservationByBranch(branchId:number){
     return this.http.get(this.apiBase+'reservations/branch/'+branchId).map(res => res.json());
+  }
+
+  postReview(review:Review){
+    let headers = new Headers();
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Content-Type','application/json');
+    headers.append('Authorization', 'Bearer '+authToken);
+    let options = new RequestOptions({ headers: headers });
+    console.log(headers);
+    console.log(JSON.stringify(review));
+    return this.http.post(this.apiBase+'reviews/', JSON.stringify(review), options).map((res:Response)=>res.json());
+
   }
 
   postMessage(resId: string, branchId: string, text: string){
