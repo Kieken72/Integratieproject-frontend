@@ -56,7 +56,7 @@ export class UserService{
    return this.profileService.getProfile().subscribe((data)=>this.saveRoles(data));
   }
   saveRoles(data){
-    localStorage.setItem('roles',JSON.stringify(data.Roles));
+    localStorage.setItem('roles',JSON.stringify(data.Roles));;
     console.log('roles : '+ localStorage.getItem('roles'));
     return this.checkRoles(localStorage.getItem('roles'));
 
@@ -89,8 +89,6 @@ export class UserService{
 
   isAuthorizedUser(){
     return this.isAuthorized;
-
-
     //let roles = this.getRoles();
     //return this.checkRoles(roles);
   }
