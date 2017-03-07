@@ -60,12 +60,14 @@ import { BookerReservationdetailComponent } from './booker/booker-reservationdet
 
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import {FacebookService} from "ng2-facebook-sdk";
+import { BookerMapComponent } from './booker/booker-map/booker-map.component';
 
 const appRoutes: Routes = [
 
   { path: 'booker', component: BookerComponent, children: [
     { path: 'search', component: BookerSearchComponent },
     { path: 'list', component: BookerListComponent },
+    { path: 'map', component: BookerMapComponent },
     { path: 'detail/:id', component: BookerDetailComponent},
     { path: 'reservation/:id', component: BookerReservationdetailComponent},
     { path: 'review', component: BookerReviewComponent},
@@ -176,7 +178,8 @@ const appRoutes: Routes = [
     BookerReviewComponent,
     AccountNavbarComponent,
     BookerReviewComponent,
-    BookerReservationdetailComponent
+    BookerReservationdetailComponent,
+    BookerMapComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },

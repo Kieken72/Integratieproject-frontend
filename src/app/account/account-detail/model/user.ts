@@ -8,8 +8,8 @@ export class User{
   Id: string;
   Email: string;
   Phone: string;
-  Firstname: string;
-  Surname: string;
+  Name: string;
+  Lastname: string;
   Roles: UserRole[];
   Reservations: Reservation[];
 }
