@@ -71,6 +71,7 @@ export class BookerReservationdetailComponent implements OnInit {
 
       this.reservationService.getMessages(cRes.Id).subscribe((data) => this.messages = data);
     });
+    location.reload();
     //this.rout.navigate(['../../manager/reservationdetail/', this.currentReservationId]);
 
   }
