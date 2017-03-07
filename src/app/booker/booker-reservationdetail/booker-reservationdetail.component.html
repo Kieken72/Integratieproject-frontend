@@ -1,3 +1,5 @@
+<!--GOED! Nu kijken of reservatie inderdaad van deze persoon is-->
+
 <div class="row" >
   <div *ngIf="reservations!=null">
 
@@ -24,7 +26,7 @@
             <div *ngIf="user.Id!=mess.UserId">
           <li>
             <div class="message-data">
-              <span class="message-data-name"><i class="fa fa-circle you"></i> {{mess.User.Name}} {{mess.User.Surname}} ({{mess.DateTime}}) </span>
+              <span class="message-data-name"><i class="fa fa-circle you"></i> {{mess.User.Name}} {{mess.User.Surname}} ({{mess.DateTime | date: 'medium'}}) </span>
             </div>
             <div class="message you-message">
               {{mess.Text}}
@@ -34,7 +36,7 @@
             <div *ngIf="user.Id==mess.UserId">
             <li class="clearfix">
               <div class="message-data align-right">
-                <span class="message-data-name"> {{mess.User.Name}} {{mess.User.Surname}} ({{mess.DateTime}}) </span> <i class="fa fa-circle me"></i>
+                <span class="message-data-name"> {{mess.User.Name}} {{mess.User.Surname}} ({{mess.DateTime | date: 'medium'}}) </span> <i class="fa fa-circle me"></i>
               </div>
               <div class="message me-message float-right">  {{mess.Text}}  </div>
             </li>

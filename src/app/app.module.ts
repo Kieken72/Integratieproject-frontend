@@ -59,6 +59,7 @@ import { AccountNavbarComponent } from './account/account-navbar/account-navbar.
 import { BookerReservationdetailComponent } from './booker/booker-reservationdetail/booker-reservationdetail.component';
 
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import {FacebookService} from "ng2-facebook-sdk";
 
 const appRoutes: Routes = [
 
@@ -66,7 +67,7 @@ const appRoutes: Routes = [
     { path: 'search', component: BookerSearchComponent },
     { path: 'list', component: BookerListComponent },
     { path: 'detail/:id', component: BookerDetailComponent},
-
+    { path: 'reservation/:id', component: BookerReservationdetailComponent},
     { path: 'review', component: BookerReviewComponent},
     { path: '', redirectTo: 'search', pathMatch: 'full'},
   ]},
@@ -77,7 +78,6 @@ const appRoutes: Routes = [
     { path: 'guests', component: ManagerGuestsComponent,  canActivate:[ManagerGuard] },
     { path: 'statistics', component: ManagerStatisticsComponent,  canActivate:[ManagerGuard] },
     { path: 'calendar', component: ManagerCalendarComponent,  canActivate:[ManagerGuard] },
-    { path: 'reservationdetail/:id', component: BookerReservationdetailComponent},
     { path: 'company', component: CompanyComponent,  canActivate:[ManagerGuard], children:[
       { path: "list" , component: CompanyListComponent, canActivate: [ManagerGuard] },
       { path: 'edit/:id', component: CompanyEditComponent,  canActivate:[ManagerGuard] },
@@ -190,7 +190,9 @@ const appRoutes: Routes = [
     ProfileService,
     LoggedInGuard,
     ManagerGuard,
-    ReservationService],
+    ReservationService,
+    FacebookService
+  ],
   bootstrap: [AppComponent]
 
 })

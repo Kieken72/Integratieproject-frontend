@@ -12,6 +12,7 @@ import {ReservationService} from "../../shared/reservation.service";
 import {Newreservation} from "../../shared/model/newreservation";
 import {DisplayFacility} from "../../shared/model/additional-info";
 import {DisplayOperationHour} from "../../shared/model/operationhour";
+import {FacebookService, FacebookInitParams} from "ng2-facebook-sdk";
 
 @Component({
   selector: 'app-booker-detail',
@@ -45,8 +46,16 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private reservationService: ReservationService,
     private route: ActivatedRoute,
-    private location: Location
-  ) { }
+    private location: Location,
+    private fbService: FacebookService
+  ) {
+    let fbParams: FacebookInitParams = {
+      appId: '603823796474644',
+      xfbml: true,
+      version: 'v2.6'
+    };
+    this.fbService.init(fbParams);
+  }
 
   ngOnInit() {
     this.search = this.searchService.searchParameters;
@@ -125,4 +134,11 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
     this.searchService.searchParameters = this.search;
   }
 
+
+  shareToFacebook(){
+    this.fbService.ui({
+      method: 'share',
+      href: 'https://integratieproject.herokuapp.com/booker/detail/'+this.branch.Id
+    });
+  }
 }
