@@ -43,8 +43,11 @@
             </div>
           </div>
           <div class="col-md-11">
-          <textarea [(ngModel)]="message.text"  class="form-control"  id="text" #Text></textarea>
-          <button id="send" class="btn btn-default" (click)="sendMessage()">Verzend</button>
+
+              <textarea [(ngModel)]="message.text"  class="form-control"  id="text" #Text></textarea>
+
+              <button id="send" class="btn btn-default"  (click)="sendMessage()">Verzend</button>
+
           </div>
         </ul>
 
