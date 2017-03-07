@@ -99,6 +99,7 @@
                 <div *ngIf="reservation!=null">
                   <p>
                     U reservatie is bevestigd.<br>Op {{reservation.DateTime | date: 'short'}} met {{reservation.AmountOfPersons}} in {{branch.Name}} te {{branch.City.Name}}.</p>
+                  <p><button class="btn btn-primary" (click)="shareToFacebook()">Share to Facebook</button></p>
                 </div>
               </div>
             </div>
