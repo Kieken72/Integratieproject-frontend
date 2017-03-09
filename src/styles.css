@@ -87,3 +87,6 @@ app-root, app-booker{
 .sebm-google-map-container {
   height: 300px;
 }
+.sebm-google-map-container-branches {
+  height: 600px;
+}

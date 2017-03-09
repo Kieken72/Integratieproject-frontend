@@ -37,6 +37,7 @@ export class AccountDetailComponent implements OnInit {
       });
     });
     this.user = data;
+    console.log(this.user);
   };
 
   getBranches():void{

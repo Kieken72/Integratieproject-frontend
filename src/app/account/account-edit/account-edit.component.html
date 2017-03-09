@@ -5,7 +5,7 @@
     <div class="form-group">
       <label for="accountFirstName" class="col-sm-3 control-label" id="lblAccountFirstName">Voornaam:</label>
       <div class="col-sm-3">
-        <input class="form-control" id="accountFirstName" required [(ngModel)]="user.Firstname" name="firstname" #firstname="ngModel" #FirstName/>
+        <input class="form-control" id="accountFirstName" required [(ngModel)]="user.Name" name="firstname" #firstname="ngModel" #FirstName/>
         <div *ngIf="firstname.errors && (firstname.dirty || firstname.touched)"
              class="alert alert-danger">
           <div [hidden]="!firstname.errors.required">
@@ -18,7 +18,7 @@
     <div class="form-group">
       <label for="accountLastName" class="col-sm-3 control-label" id="lblAccountLastName">Achternaam:</label>
       <div class="col-sm-3">
-        <input class="form-control" id="accountLastName" required [(ngModel)]="user.Surname" name="lastname" #lastname="ngModel" #LastName/>
+        <input class="form-control" id="accountLastName" required [(ngModel)]="user.Lastname" name="lastname" #lastname="ngModel" #LastName/>
         <div *ngIf="lastname.errors && (lastname.dirty || lastname.touched)"
              class="alert alert-danger">
           <div [hidden]="!lastname.errors.required">
