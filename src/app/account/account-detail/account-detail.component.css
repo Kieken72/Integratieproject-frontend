@@ -5,3 +5,7 @@
 .list-group{
   margin-bottom: 0;
 }
+
+.cancelled{
+  text-decoration: line-through;
+}
