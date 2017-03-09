@@ -13,15 +13,15 @@ export class RoomNewComponent implements OnInit {
   }
 
   add(event) {
-var target = event.target;
-var id = target.attributes.id.value;
-if(id == 1){
-  var objectToDrag = document.createElement('div');
-  objectToDrag.setAttribute('class', 'object');
-}else{
-  var objectToDrag = document.createElement('div');
-  objectToDrag.setAttribute('class', 'object2');
-}
+    var target = event.target;
+    var id = target.attributes.id.value;
+    if(id == 1){
+      var objectToDrag = document.createElement('div');
+      objectToDrag.setAttribute('class', 'object');
+    }else{
+      var objectToDrag = document.createElement('div');
+      objectToDrag.setAttribute('class', 'object2');
+    }
 
     objectToDrag.setAttribute('id', this.Id.toString());
     this.Id++;

@@ -4,6 +4,7 @@ import {Branch} from "./model/branch";
 import {forEach} from "@angular/router/src/utils/collection";
 import {DisplayOperationHour} from "./model/operationhour";
 import {DisplayFacility} from "./model/additional-info";
+import {City} from "./cityservice/city";
 /**
  * Created by Emmanuel on 16/02/2017.
  */
@@ -170,5 +171,10 @@ export class BranchService {
     return this.http
       .get('https://maps.googleapis.com/maps/api/geocode/json?address='+branch.Street+'+'
         +branch.Number+',+'+branch.City.PostalCode+'+'+branch.City.Name+'&key=AIzaSyCiJDhAZiQWh-hTj-EBeDB7YR9EXmijx9g').map(res =>res.json());
+  }
+  getCenterCoordinate(city:any){
+    return this.http
+      .get('https://maps.googleapis.com/maps/api/geocode/json?address='
+        +city.PostalCode+'+'+city.Name+'&key=AIzaSyCiJDhAZiQWh-hTj-EBeDB7YR9EXmijx9g').map(res =>res.json());
   }
 }
