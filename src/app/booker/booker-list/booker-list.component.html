@@ -35,43 +35,13 @@
       <div class="profile-info">
         <h2 class="hvr-underline-from-center">{{branch.Name}}</h2>
         <div>{{branch.Description}}</div>
-        <a href="http://www.twitter.com/mike_youngg"><i class="glyphicon glyphicon-earphone"></i></a>
-        <a href="mailto:{{branch.Email}}"><i class="glyphicon glyphicon-envelope"></i></a>
-        <a href="#"><i class="glyphicon glyphicon-star"></i></a>
+        <a tooltip="{{branch.PhoneNumber}}"><i class="glyphicon glyphicon-earphone"></i></a>
+        <a tooltip="{{branch.Email}}" href="mailto:{{branch.Email}}"><i class="glyphicon glyphicon-envelope"></i></a>
+        <a><i class="glyphicon glyphicon-star"></i></a>
         <div class="btn btn-success" [routerLink]="['../detail/', branch.Id]">Reserveren</div>
       </div>
 
     </div>
   </div>
   </div>
-
 </div>
-
-
-
-
-<!--
-<div class="table-responsive">
-  <table class="table table-hover">
-    <caption>Caption here?</caption>
-    <thead>
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Email</th>
-      <th>Phone Number</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let branch of branches">
-      <th scope="row">{{branch.Id}}</th>
-      <td>{{branch.Name}}</td>
-      <td>{{branch.Street}} {{branch.Number}} {{branch.Box}}, {{branch.City.PostalCode}} {{branch.City.Name}}</td>
-      <td><a href="mailto:{{branch.Email}}">{{branch.Email}}</a></td>
-      <td>{{branch.PhoneNumber}}</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
--->

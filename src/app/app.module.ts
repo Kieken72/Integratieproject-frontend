@@ -7,7 +7,6 @@ import { AppComponent} from "./app.component";
 import { BranchComponent} from "./manager/branches/branches.component";
 import { CompanyService} from "./manager/company/company.service";
 import { CompanyComponent} from "./manager/company/company.component";
-import { Ng2AutoCompleteModule, Ng2AutoComplete} from 'ng2-auto-complete';
 import { BranchService} from "./shared/branch.service";
 import { CityService} from "./shared/cityservice/city.service";
 import { BookerComponent } from './booker/booker.component';
@@ -28,7 +27,10 @@ import { LoginComponent } from './account/login/login.component';
 import { UserService } from "./account/shared/user.service";
 import { LoggedInGuard } from "./shared/logged-in.guard";
 import { Typeahead } from "ng2-typeahead";
-import {AlertModule, TimepickerModule, DatepickerModule, TabsModule, ModalModule, AccordionModule} from "ng2-bootstrap";
+import {
+  AlertModule, TimepickerModule, DatepickerModule, TabsModule, ModalModule, AccordionModule,
+  TooltipModule
+} from "ng2-bootstrap";
 import { AccountComponent } from './account/account.component';
 import { AccountDetailComponent } from './account/account-detail/account-detail.component';
 import { RegisterComponent } from './account/register/register.component';
@@ -37,7 +39,7 @@ import { CompanyEditComponent } from './manager/company/company-edit/company-edi
 import { CompanyNewComponent } from './manager/company/company-new/company-new.component';
 import { CompanyDetailComponent } from './manager/company/company-detail/company-detail.component';
 import { CompanyListComponent } from './manager/company/company-list/company-list.component';
-import {Company} from "./manager/company/model/company";
+import {Company } from "./manager/company/model/company";
 import { BranchListComponent } from './manager/branches/branch-list/branch-list.component';
 import { BranchDetailComponent } from './manager/branches/branch-detail/branch-detail.component';
 import { BranchEditComponent } from './manager/branches/branch-edit/branch-edit.component';
@@ -123,13 +125,13 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    Ng2AutoCompleteModule,
      AlertModule.forRoot(),
      TimepickerModule.forRoot(),
      DatepickerModule.forRoot(),
      TabsModule.forRoot(),
      ModalModule.forRoot(),
      AccordionModule.forRoot(),
+     TooltipModule.forRoot(),
      AgmCoreModule.forRoot({
        apiKey: 'AIzaSyCiJDhAZiQWh-hTj-EBeDB7YR9EXmijx9g'
      }),

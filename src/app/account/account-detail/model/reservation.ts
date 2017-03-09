@@ -1,3 +1,4 @@
+import {Message} from "../../../booker/booker-reservationdetail/model/message";
 export class Reservation{
   public Id: string;
   public AmountOfPersons: number;
@@ -7,7 +8,7 @@ export class Reservation{
   public BranchId: string;
   public BranchName: string;
   public AccountId: string;
-  public Messages: string;
+  public Messages: Message[];
   public Review: string;
   public Cancelled: string;
 }

@@ -7,6 +7,7 @@ import {BookerSearch} from "../shared/model/booker-search";
 import {SearchService} from "../shared/search.service";
 import {City} from "../../shared/cityservice/city";
 import { Typeahead } from 'ng2-typeahead';
+import {CityService} from "../../shared/cityservice/city.service";
 
 @Component({
   selector: 'app-booker-list',
@@ -19,7 +20,7 @@ export class BookerListComponent implements OnInit, OnDestroy {
   private search: BookerSearch;
   private persons: number[];
 
-  private selectedCity:any;
+  private selectedCity:any = null;
   private cities: City[];
 
 
@@ -28,7 +29,8 @@ export class BookerListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private location: Location,
     private branchService: BranchService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private cityService: CityService
   ) {
 
   }
@@ -36,12 +38,17 @@ export class BookerListComponent implements OnInit, OnDestroy {
   ngOnInit():void {
     this.search = this.searchService.searchParameters;
     if(this.search.city != null){
+      console.log(this.search.city!=null);
       this.branchService.getBranchesByPostal(this.search.city.PostalCode).subscribe(data => this.branches = data);
       this.selectedCity = this.search.city;
-
     }
     this.persons = this.searchService.persons;
     this.cities = this.searchService.cities;
+    if(this.cities == null){
+      this.cityService.getCities().subscribe(
+        data => this.cities = data
+      );
+    }
 
 
   }
@@ -58,13 +65,15 @@ export class BookerListComponent implements OnInit, OnDestroy {
     this.search.city = city ? city : null;
 
     if(city !== null){
-      this.refreshBranches(city.PostalCode);
+      if(city.PostalCode !== null){
+        console.log("notnull -> "+city!==null+" "+city.PostalCode!==null);
+        this.refreshBranches(city.PostalCode);
+      }
     }
   }
   private dateChanged(newDate) {
-  this.search.date= new Date(newDate);
-  console.log(this.search.date);
-}
+    this.search.date= new Date(newDate);
+  }
 
   private refreshBranches(postal){
 

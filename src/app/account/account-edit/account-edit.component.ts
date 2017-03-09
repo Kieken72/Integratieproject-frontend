@@ -22,7 +22,7 @@ export class AccountEditComponent implements OnInit {
   };
 
   editAccount(){
-    this.profileService.putAccount(this.user.Firstname, this.user.Surname).subscribe((data)=>console.log(data),(error)=>console.log(error),()=>this.route.navigate(['../account/details']));
+    this.profileService.putAccount(this.user.Name, this.user.Lastname).subscribe((data)=>console.log(data),(error)=>console.log(error),()=>this.route.navigate(['../account/details']));
 
   }
 
