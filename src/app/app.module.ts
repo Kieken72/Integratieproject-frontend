@@ -29,7 +29,7 @@ import { LoggedInGuard } from "./shared/logged-in.guard";
 import { Typeahead } from "ng2-typeahead";
 import {
   AlertModule, TimepickerModule, DatepickerModule, TabsModule, ModalModule, AccordionModule,
-  TooltipModule
+  TooltipModule, CarouselModule
 } from "ng2-bootstrap";
 import { AccountComponent } from './account/account.component';
 import { AccountDetailComponent } from './account/account-detail/account-detail.component';
@@ -39,7 +39,6 @@ import { CompanyEditComponent } from './manager/company/company-edit/company-edi
 import { CompanyNewComponent } from './manager/company/company-new/company-new.component';
 import { CompanyDetailComponent } from './manager/company/company-detail/company-detail.component';
 import { CompanyListComponent } from './manager/company/company-list/company-list.component';
-import {Company } from "./manager/company/model/company";
 import { BranchListComponent } from './manager/branches/branch-list/branch-list.component';
 import { BranchDetailComponent } from './manager/branches/branch-detail/branch-detail.component';
 import { BranchEditComponent } from './manager/branches/branch-edit/branch-edit.component';
@@ -63,6 +62,7 @@ import { BookerReservationdetailComponent } from './booker/booker-reservationdet
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import {FacebookService} from "ng2-facebook-sdk";
 import { BookerMapComponent } from './booker/booker-map/booker-map.component';
+import {ManagerService} from "./manager/manager.service";
 
 const appRoutes: Routes = [
 
@@ -76,12 +76,11 @@ const appRoutes: Routes = [
     { path: '', redirectTo: 'search', pathMatch: 'full'},
   ]},
   { path: 'manager', component: ManagerComponent,  children:[
-    { path: 'dashboard', component: ManagerDashboardComponent, canActivate:[ManagerGuard] },
+    { path: 'dashboard', component: ManagerDashboardComponent, canActivate:[LoggedInGuard] },
     { path: 'calendar', component: ManagerCalendarComponent, canActivate:[LoggedInGuard] },
-    { path: 'messages', component: ManagerMessagesComponent,  canActivate:[ManagerGuard] },
+    { path: 'messages', component: ManagerMessagesComponent,  canActivate:[LoggedInGuard] },
     { path: 'guests', component: ManagerGuestsComponent,  canActivate:[ManagerGuard] },
     { path: 'statistics', component: ManagerStatisticsComponent,  canActivate:[ManagerGuard] },
-    { path: 'calendar', component: ManagerCalendarComponent,  canActivate:[ManagerGuard] },
     { path: 'company', component: CompanyComponent,  canActivate:[ManagerGuard], children:[
       { path: "list" , component: CompanyListComponent, canActivate: [ManagerGuard] },
       { path: 'edit/:id', component: CompanyEditComponent,  canActivate:[ManagerGuard] },
@@ -132,6 +131,7 @@ const appRoutes: Routes = [
      ModalModule.forRoot(),
      AccordionModule.forRoot(),
      TooltipModule.forRoot(),
+     CarouselModule.forRoot(),
      AgmCoreModule.forRoot({
        apiKey: 'AIzaSyCiJDhAZiQWh-hTj-EBeDB7YR9EXmijx9g'
      }),
@@ -196,7 +196,8 @@ const appRoutes: Routes = [
     LoggedInGuard,
     ManagerGuard,
     ReservationService,
-    FacebookService
+    FacebookService,
+    ManagerService
   ],
   bootstrap: [AppComponent]
 
