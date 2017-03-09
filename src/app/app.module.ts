@@ -94,9 +94,9 @@ const appRoutes: Routes = [
       { path: 'new', component: BranchNewComponent,  canActivate:[ManagerGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
-    { path: 'settings', component: ManagerSettingsComponent, canActivate: [ManagerGuard], children: [
-      { path: 'rooms', component: RoomsComponent, canActivate: [ManagerGuard], children:[
-        { path: 'new', component: RoomNewComponent, canActivate: [ManagerGuard] },
+    { path: 'settings', component: ManagerSettingsComponent, children: [
+      { path: 'rooms', component: RoomsComponent,  children:[
+        { path: 'new', component: RoomNewComponent },
         { path: '', redirectTo: 'new', pathMatch: 'full'},
       ]},
       { path: 'spaces', component: SpacesComponent, canActivate: [ManagerGuard], children:[

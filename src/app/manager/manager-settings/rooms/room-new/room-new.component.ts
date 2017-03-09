@@ -1,4 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {Space} from "../model/space";
+import {$SPACE} from "@angular/compiler/src/chars";
 
 @Component({
   selector: 'app-room-new',
@@ -6,25 +8,32 @@ import {Component, OnInit, Input} from '@angular/core';
   styleUrls: ['room-new.component.css']
 })
 export class RoomNewComponent implements OnInit {
-  private Id:number = 0;
+  private space: Space  = new Space();
+  private persons: number[];
   constructor() {}
 
   ngOnInit() {
+    this.persons = [1,2,3,4,5,6,7,8,9,10,11,12,13,15];
   }
 
   add(event) {
-var target = event.target;
-var id = target.attributes.id.value;
-if(id == 1){
-  var objectToDrag = document.createElement('div');
-  objectToDrag.setAttribute('class', 'object');
-}else{
-  var objectToDrag = document.createElement('div');
-  objectToDrag.setAttribute('class', 'object2');
-}
+    var spaceToSave: Space = this.space;
+    var target = event.target;
+    var id = target.attributes.id.value;
 
-    objectToDrag.setAttribute('id', this.Id.toString());
-    this.Id++;
+    if(id == 1){
+      var objectToDrag = document.createElement('div');
+      objectToDrag.setAttribute('class', 'object');
+    }else{
+      var objectToDrag = document.createElement('div');
+      objectToDrag.setAttribute('class', 'object2');
+    }
+
+    objectToDrag.setAttribute('id', this.space.spaceName);
+    objectToDrag.setAttribute('minPers', this.space.minNumberOfPersons.toString());
+    objectToDrag.setAttribute('numPers', this.space.numberOfPerons.toString());
+    objectToDrag.setAttribute('enabled', this.space.enabled.toString());
+
     var room = document.getElementById('room');
     room.appendChild(objectToDrag);
 
@@ -41,6 +50,9 @@ if(id == 1){
       dragging = true;
     }
 
+    objectToDrag.textContent = this.space.spaceName + "(" + this.space.numberOfPerons + "pers.)"
+    + " min: " + this.space.minNumberOfPersons + "pers.";
+
     objectToDrag.onmousemove = function (event) {
       if (dragging) {
         let deltaX = event.clientX - startMousePos.x;
@@ -49,14 +61,9 @@ if(id == 1){
         objectToDrag.style.left = (deltaX + startDivPos.x) + "px";
         objectToDrag.style.top = (deltaY + startDivPos.y) + "px";
 
-        objectToDrag.textContent = "X:" + event.clientX.toString() + " Y:" + event.clientY.toString()
-          + " left: " + objectToDrag.style.left.toString() + " top: " + objectToDrag.style.top.toString()
-        + " ID:" +objectToDrag.id.toString();
-
         var parentRect = room.getBoundingClientRect();
         var childRect = objectToDrag.getBoundingClientRect();
         if (!(parentRect.left <= childRect.left && parentRect.right >= childRect.right && parentRect.bottom >= childRect.bottom && parentRect.top <= childRect.top)) {
-          //alert("Object out of area");
           outOfArea = true;
           objectToDrag.style.backgroundColor = "red";
         }else{
@@ -69,19 +76,19 @@ if(id == 1){
     objectToDrag.onmouseup = function (event) {
       dragging = false;
     }
+
+    var saveBtn = document.getElementById('saveBtn');
+    saveBtn.addEventListener('click',function(){
+      //alert("Naam nieuwe baan: " +    spaceToSave.spaceName + " Linkse positie: " + objectToDrag.style.left);
+      alert("Naam nieuwe baan: " +    objectToDrag.id
+        + " Linkse positie: "  + objectToDrag.style.left
+        + " Top positie: "  + objectToDrag.style.top
+        + " Min pers: " + objectToDrag.getAttribute('minPers')
+        + " Aantal pers: " + objectToDrag.getAttribute('numPers')
+        + " Beschikbaar: " + objectToDrag.getAttribute('enabled'));
+
+      //ik mis: room id en branche id
+    });
+
   }
-
-  save(){
-    alert("Post to DB logic")
-    /*
-    WHAT WE NEED:
-    ======================
-    - Room id
-    - Object id
-    - Object position: ex: top and left?
-    - Is it a table of baan of other?
-
-     */
-  }
-
 }
