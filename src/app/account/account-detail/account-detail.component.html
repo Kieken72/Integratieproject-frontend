@@ -44,7 +44,7 @@
                 <td><a [routerLink]="['../../booker/detail/' , reservation.BranchId]">{{reservation.BranchName}}</a></td>
                 <td>{{reservation.AmountOfPersons}}</td>
                 <td>{{reservation.DateTime | date: 'shortTime'}}</td>
-                <th><a [routerLink]="['../../booker/reservation/' , reservation.BranchId]">Berichten <span class="badge">{{reservation.Messages.length}}</span></a></th>
+                <th><a [routerLink]="['../../booker/reservation/' , reservation.Id]">Berichten <span class="badge">{{reservation.Messages.length}}</span></a></th>
 
               </tr>
             </tbody>

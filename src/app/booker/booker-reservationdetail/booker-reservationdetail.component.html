@@ -13,7 +13,15 @@
 
 
   </div>
+  <div *ngIf="messages==null">
+    <div class="col-md-11">
+      Stuur een eerste bericht
+      <textarea [(ngModel)]="message.text"  class="form-control"  id="textNew" #TextNew></textarea>
 
+      <button id="sendNew" class="btn btn-default"  (click)="sendMessage()">Verzend</button>
+
+    </div>
+  </div>
 
 
   <div *ngIf="messages!=null">
