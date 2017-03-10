@@ -26,8 +26,11 @@ export class BookerMapComponent implements OnInit {
       this.branchService.getCenterCoordinate(this.search.city).subscribe((data) => {
         this.centerCoordinate.latitude=data.results[0].geometry.location.lat;
         this.centerCoordinate.longitude = data.results[0].geometry.location.lng;
-        this.centerCoordinate.branchName = 'Lalalala';
-      });    }
+      });
+    } else {
+      this.centerCoordinate.latitude = 51.218165;
+      this.centerCoordinate.longitude =  4.401046;
+    }
 
    this.branchService.getBranches().subscribe((data)=>this.branches = data,(error) => console.log(error),()=>this.getCoordinates(this.branches));
   }
