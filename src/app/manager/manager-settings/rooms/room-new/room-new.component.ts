@@ -1,6 +1,8 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Space} from "../model/space";
-import {$SPACE} from "@angular/compiler/src/chars";
+import {Params, ActivatedRoute} from "@angular/router";
+import {BranchService} from "../../../../shared/branch.service";
+import {Branch} from "../../../../shared/model/branch";
 
 @Component({
   selector: 'app-room-new',
@@ -10,10 +12,19 @@ import {$SPACE} from "@angular/compiler/src/chars";
 export class RoomNewComponent implements OnInit {
   private space: Space  = new Space();
   private persons: number[];
-  constructor() {}
+  private branch:Branch;
+  constructor(private route: ActivatedRoute, private branchService:BranchService) {}
 
   ngOnInit() {
+    this.route.params
+      .switchMap((params: Params) => this.branchService.getBranch(+params['id']))
+      .subscribe(branch => this.whenBranchLoads(branch));
     this.persons = [1,2,3,4,5,6,7,8,9,10,11,12,13,15];
+  }
+
+  whenBranchLoads(company){
+    this.branch = company;
+    console.log(this.branch);
   }
 
   add(event) {

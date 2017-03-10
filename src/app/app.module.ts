@@ -97,7 +97,7 @@ const appRoutes: Routes = [
     ] },
     { path: 'settings', component: ManagerSettingsComponent, children: [
       { path: 'rooms', component: RoomsComponent,  children:[
-        { path: 'new', component: RoomNewComponent },
+        { path: 'new/:id', component: RoomNewComponent },
         { path: '', redirectTo: 'new', pathMatch: 'full'},
       ]},
       { path: 'spaces', component: SpacesComponent, canActivate: [ManagerGuard], children:[

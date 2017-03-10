@@ -6,4 +6,14 @@ Hier lijst van alle rooms <br/>
 
 
 
-<button class="btn btn-default" [routerLink]="['../settings/rooms/new']" > Nieuwe kamer </button>
+
+
+
+<div *ngIf="branches!=null">
+
+  <div *ngFor="let branch of branches">
+    {{branch.Name}} <button class="btn btn-default" [routerLink]="['../settings/rooms/new', branch.Id]" > Nieuwe kamer </button>
+
+  </div>
+
+</div>
