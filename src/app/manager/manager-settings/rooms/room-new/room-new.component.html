@@ -1,8 +1,25 @@
 
  <h1>Beheer je ruimte</h1>
+ <div class="form-group">
+   <label for="roomEnabled" class="col-sm-3 control-label" id="lblRoomEnabled">Beschikbaar:</label>
+   <div class="col-sm-9">
+     <select required [(ngModel)]="room.enabled" name="roomEnabled" #roomEnabled="ngModel" #RoomEnabled class="form-control" id="roomEnabled">
+       <option  [ngValue]="true" >Ja</option>
+       <option  [ngValue]="false" >Neen</option>
+     </select>
+   </div>
+ </div>
+ <div class="form-group">
+   <label for="roomName" class="col-sm-3 control-label" id="lblRoomName">Kamer naam:</label>
+   <div class="col-sm-9">
+     <input class="form-control" id="roomName" required [(ngModel)]="room.name" name="roomName" #roomName="ngModel" #RoomName/>
+   </div>
+ </div>
  <div class="btn btn-default" data-toggle="modal" data-target="#poolModal" >Nieuwe baan</div>
  <div class="btn btn-default" data-toggle="modal" data-target="#tableModal">Nieuwe tafel</div>
+ <div class="btn btn-default" (click)="newRoom()" >Maak kamer</div>
  <div class="btn btn-default" id="saveBtn" >Slaag kamer op</div>
+
 
   <div class="col-md-9">
     <div class="room" id="room">

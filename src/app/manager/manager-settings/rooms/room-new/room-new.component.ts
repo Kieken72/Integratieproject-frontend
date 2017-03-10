@@ -3,17 +3,23 @@ import {Space} from "../model/space";
 import {Params, ActivatedRoute} from "@angular/router";
 import {BranchService} from "../../../../shared/branch.service";
 import {Branch} from "../../../../shared/model/branch";
+import {RoomService} from "../../../../shared/room.service";
+import {Room} from "../model/room";
 
 @Component({
   selector: 'app-room-new',
   templateUrl: 'room-new.component.html',
-  styleUrls: ['room-new.component.css']
+  styleUrls: ['room-new.component.css'],
+  providers: [RoomService]
 })
 export class RoomNewComponent implements OnInit {
   private space: Space  = new Space();
   private persons: number[];
   private branch:Branch;
-  constructor(private route: ActivatedRoute, private branchService:BranchService) {}
+  private room:Room = new Room();
+  private postedRoom:Room = new Room();
+  private isPosted: boolean = false;
+  constructor(private route: ActivatedRoute, private branchService:BranchService, private roomService:RoomService) {}
 
   ngOnInit() {
     this.route.params
@@ -27,10 +33,18 @@ export class RoomNewComponent implements OnInit {
     console.log(this.branch);
   }
 
+  newRoom(){
+    var postedRoom;
+    this.roomService.postRoom(this.branch.Id, this.room.enabled, "60", "70", this.room.name).subscribe((data)=>this.postedRoom = data );
+  }
+
   add(event) {
+    var croomService = this.roomService;
     var spaceToSave: Space = this.space;
+    var cBranch = this.branch;
     var target = event.target;
     var id = target.attributes.id.value;
+    var cRoom = this.postedRoom.Id;
 
     if(id == 1){
       var objectToDrag = document.createElement('div');
@@ -88,18 +102,27 @@ export class RoomNewComponent implements OnInit {
       dragging = false;
     }
 
+
     var saveBtn = document.getElementById('saveBtn');
     saveBtn.addEventListener('click',function(){
-      //alert("Naam nieuwe baan: " +    spaceToSave.spaceName + " Linkse positie: " + objectToDrag.style.left);
-      alert("Naam nieuwe baan: " +    objectToDrag.id
-        + " Linkse positie: "  + objectToDrag.style.left
-        + " Top positie: "  + objectToDrag.style.top
-        + " Min pers: " + objectToDrag.getAttribute('minPers')
-        + " Aantal pers: " + objectToDrag.getAttribute('numPers')
-        + " Beschikbaar: " + objectToDrag.getAttribute('enabled'));
+        /*alert("Naam nieuwe baan: " +    objectToDrag.id
+          + " Linkse positie: "  + objectToDrag.style.left
+          + " Top positie: "  + objectToDrag.style.top
+          + " Min pers: " + objectToDrag.getAttribute('minPers')
+          + " Aantal pers: " + objectToDrag.getAttribute('numPers')
+          + " Beschikbaar: " + objectToDrag.getAttribute('enabled')
+          + "Room enabled" + cRoom.enabled
+          + "Room naam" + cRoom.name);*/
+        alert(cRoom);
 
-      //ik mis: room id en branche id
+      var spaceType;
+      if(objectToDrag.getAttribute('class') == "object"){
+        spaceType = 0;
+      }else{
+        spaceType = 1;
+      }
+
+      croomService.postSpaces(objectToDrag.id, objectToDrag.getAttribute('enabled'), objectToDrag.getAttribute('numPers'), objectToDrag.getAttribute('minPers'), cRoom, objectToDrag.style.left, objectToDrag.style.top, spaceType ).subscribe((data)=>console.log(data) );
     });
-
   }
 }

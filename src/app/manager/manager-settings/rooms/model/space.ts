@@ -1,9 +1,16 @@
+import {Newreservation} from "../../../../shared/model/newreservation";
 /**
  * Created by Emmanuel on 09/03/2017.
  */
 export class Space{
   spaceName:string;
-  numberOfPerons: number;
-  minNumberOfPersons: number;
-  enabled: boolean;
+  enabled: string;
+  numberOfPerons: string;
+  minNumberOfPersons: string;
+  roomId:number;
+  x:string;
+  y:string;
+  type:number;
+  reservations: Newreservation[];
+
 }
