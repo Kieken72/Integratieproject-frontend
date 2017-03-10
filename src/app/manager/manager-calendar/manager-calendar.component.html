@@ -85,9 +85,9 @@
                 </p>
               </div>
               <div class="col-md-4">
-                <p><button class="btn btn-success btn-modal btn-lg">Aangekomen</button></p>
-                <p><button  class="btn btn-warning btn-modal btn-lg">Niet opgedaagd</button></p>
-                <p><button  class="btn btn-danger btn-modal btn-lg">Annuleer</button></p>
+                <p><button class="btn btn-success btn-modal btn-lg" (click)="Arrived(currentReservation.Id)">Aangekomen</button></p>
+                <p><button  class="btn btn-warning btn-modal btn-lg" (click)="NoShow(currentReservation.Id)">Niet opgedaagd</button></p>
+                <p><button  class="btn btn-danger btn-modal btn-lg" (click)="Cancel(currentReservation.Id)">Annuleer</button></p>
               </div>
             </div>
             <h3>Activiteiten</h3>

@@ -34,4 +34,18 @@ export class ManagerCalendarComponent implements OnInit {
     this.reservationDetailModal.show();
   }
 
+  Arrived(id:number){
+    console.log(id);
+    this.reservationService.arrivedReservation(id).subscribe(data=>console.log(data));
+  }
+
+  NoShow(id:number){
+
+    console.log(id);
+    this.reservationService.noShowReservation(id).subscribe(data=>console.log(data));
+  }
+  Cancel(id:number){
+    console.log(id);
+    this.reservationService.cancelManagerReservation(id).subscribe(data=>console.log(data));
+  }
 }
