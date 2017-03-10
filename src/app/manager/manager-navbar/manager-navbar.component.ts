@@ -1,6 +1,7 @@
-import {Component, OnInit, Injectable} from '@angular/core';
+import {Component, OnInit, Injectable, OnDestroy} from '@angular/core';
 import {Router} from "@angular/router";
 import {UserService} from "../../account/shared/user.service";
+import {ManagerService} from "../manager.service";
 
 @Component({
   selector: 'app-manager-navbar',
@@ -8,12 +9,23 @@ import {UserService} from "../../account/shared/user.service";
   styleUrls: ['./manager-navbar.component.css']
 })
 
-export class ManagerNavbarComponent implements OnInit {
+export class ManagerNavbarComponent implements OnInit,OnDestroy {
+
+  ngOnDestroy(): void {
+    console.log(this.branchId);
+    this.managerService.branchId = this.branchId;
+  }
 
   private title = "LeisureManager";
-  constructor(public router: Router, private userService: UserService) { }
+  private branchId:number;
+  constructor(public router: Router, private userService: UserService, private managerService: ManagerService) { }
 
+  changeBranch(event){
+    this.managerService.branchId = this.branchId;
+    console.log(this.branchId);
+  }
   ngOnInit() {
+    this.branchId = this.managerService.branchId;
   }
 
   logout() {

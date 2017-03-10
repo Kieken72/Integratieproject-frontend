@@ -39,7 +39,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let reservation of user.Reservations">
+              <tr *ngFor="let reservation of user.Reservations" [class.cancelled]="reservation.Cancelled">
                 <th scope="row">{{reservation.DateTime | date: 'fullDate'}}</th>
                 <td><a [routerLink]="['../../booker/detail/' , reservation.BranchId]">{{reservation.BranchName}}</a></td>
                 <td>{{reservation.AmountOfPersons}}</td>

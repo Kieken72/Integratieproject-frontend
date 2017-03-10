@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ReservationService} from "../../shared/reservation.service";
 import {Reservation} from "../../shared/model/reservation";
-import {UserService} from "../../account/shared/user.service";
+import {ManagerService} from "../manager.service";
+import {ModalDirective} from "ng2-bootstrap";
 
 @Component({
   selector: 'app-manager-calendar',
@@ -10,13 +11,27 @@ import {UserService} from "../../account/shared/user.service";
 })
 export class ManagerCalendarComponent implements OnInit {
 
+
+  @ViewChild('reservationDetailModal') public reservationDetailModal:ModalDirective;
+
   private reservations:Reservation[];
-  constructor(private reservationService:ReservationService) { }
+
+  private currentReservation:Reservation;
+  constructor(private reservationService:ReservationService, private managerService: ManagerService) { }
 
   ngOnInit() {
-    this.reservationService.getReservationByBranch(1).subscribe(data=>this.reservations = data);
+    this.reservationService.getReservationByBranch(this.managerService.branchId).subscribe(data=>this.reservations = data);
+    console.log(this.reservationDetailModal);
 
 
+  }
+
+  showModal(id:number) :void{
+    console.log(id);
+    this.currentReservation  = this.reservations.filter(e=>e.Id == id)[0];
+    console.log(this.currentReservation);
+
+    this.reservationDetailModal.show();
   }
 
 }
