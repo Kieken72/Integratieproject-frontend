@@ -89,15 +89,55 @@
     <div class="form-group">
       <label for="companyBox" class="col-sm-3 control-label">Box:</label>
       <div class="col-sm-9">
-        <input class="form-control" id="companyBox" name="box" #CompanyBox [(ngModel)]="branch.Box" />
+        <input class="form-control" id="companyBox" name="box"  [(ngModel)]="branch.Box" />
 
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="branchPhone" class="col-sm-3 control-label">Telefoon:</label>
+      <div class="col-sm-9">
+        <input class="form-control" id="branchPhone" name="phone"  [(ngModel)]="branch.PhoneNumber" />
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="branchEmail" class="col-sm-3 control-label">Email:</label>
+      <div class="col-sm-9">
+        <input class="form-control" id="branchEmail" name="email"  [(ngModel)]="branch.Email" />
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="branchDescription" class="col-sm-3 control-label">Beschrijving:</label>
+      <div class="col-sm-9">
+        <textarea class="form-control" id="branchDescription" name="description"  [(ngModel)]="branch.Description"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group" *ngFor="let addInfo of branch.AdditionalInfos" >
+      <label for="{{addInfo.Type}}" class="col-sm-3 control-label" >Extra Info:</label>
+      <div class="col-sm-9" >
+        <input class="form-control" id="{{addInfo.Type}}"  name={{addInfo.Type}} [(ngModel)]="addInfo.Value"/>
+      </div>
+    </div>
+
+    <div class="form-group" *ngFor="let opening of branch.OpeningHours" >
+      <label  class="col-sm-3 control-label" >Openingsuren dag {{opening.Day}}</label>
+      <div class="col-sm-4" >
+        <input class="form-control"  name="{{opening.Day}}|{{opening.FromTime}}" [(ngModel)]="opening.FromTime"/>
+      </div>
+      <div class="col-sm-4" >
+        <input class="form-control"  name="{{opening.Day}}|{{opening.ToTime}}"  [(ngModel)]="opening.ToTime"/>
       </div>
     </div>
   </form>
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
       <button class="btn btn-default" [disabled]="!companyEditForm.form.valid"
-              (click)="editBranch()" id="btnSendCompany">Wijzig</button>
+              (click)="editBranch()" id="btnSend">Wijzig</button>
     </div>
   </div>
 

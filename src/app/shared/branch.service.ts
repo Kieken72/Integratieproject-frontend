@@ -2,9 +2,10 @@ import {Injectable, Inject} from "@angular/core";
 import {Http, Headers, RequestOptions, Response} from "@angular/http";
 import {Branch} from "./model/branch";
 import {forEach} from "@angular/router/src/utils/collection";
-import {DisplayOperationHour} from "./model/operationhour";
-import {DisplayFacility} from "./model/additional-info";
+import {DisplayOperationHour, OperationHour} from "./model/operationhour";
+import {DisplayFacility, AdditionalInfo} from "./model/additional-info";
 import {City} from "./cityservice/city";
+import {Address} from "cluster";
 /**
  * Created by Emmanuel on 16/02/2017.
  */
@@ -48,7 +49,8 @@ export class BranchService {
 
   }
 
-  public putBranch (_id: number,_name:string,_street:string, _streetNumber:string, _box:string,_cityId:string,_branchePhoneNumber:string, _brancheEmail:string){
+  public putBranch (_id: number,_name:string,_street:string, _streetNumber:string, _box:string,_cityId:string
+    ,_branchePhoneNumber:string, _brancheEmail:string, _branchDescription:string,_branchAdditionalInfo:AdditionalInfo[],_branchOpeningHours: OperationHour[]){
     //let cityids = _cityId.split(":");
     this.branchToPut.Id = _id;
     this.branchToPut.Name = _name;
@@ -58,6 +60,9 @@ export class BranchService {
     this.branchToPut.CityId = _cityId;
     this.branchToPut.Email = _brancheEmail;
     this.branchToPut.PhoneNumber = _branchePhoneNumber;
+    this.branchToPut.Description= _branchDescription;
+    this.branchToPut.OpeningHours=_branchOpeningHours;
+    this.branchToPut.AdditionalInfos=_branchAdditionalInfo;
     console.log(this.branchToPut);
 
     let headers = new Headers({ 'Content-Type': 'application/json' });

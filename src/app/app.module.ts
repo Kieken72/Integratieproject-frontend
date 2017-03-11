@@ -88,9 +88,9 @@ const appRoutes: Routes = [
       { path: 'new', component: CompanyNewComponent,  canActivate:[ManagerGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
-    { path: 'branch', component: BranchComponent,  canActivate:[ManagerGuard], children:[
+    { path: 'branch', component: BranchComponent,  canActivate:[LoggedInGuard], children:[
       { path: "list" , component: BranchListComponent, canActivate: [ManagerGuard] },
-      { path: 'edit/:id', component: BranchEditComponent,  canActivate:[ManagerGuard] },
+      { path: 'edit/:id', component: BranchEditComponent,  canActivate:[LoggedInGuard] },
       { path: 'detail/:id', component: BranchDetailComponent,  canActivate:[ManagerGuard] },
       { path: 'new', component: BranchNewComponent,  canActivate:[ManagerGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
