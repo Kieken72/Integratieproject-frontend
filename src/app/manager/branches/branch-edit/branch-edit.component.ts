@@ -5,6 +5,7 @@ import {Params, ActivatedRoute} from "@angular/router";
 import {CityService} from "../../../shared/cityservice/city.service";
 import {City} from "../../../shared/cityservice/city";
 import {OperationHour} from "../../../shared/model/operationhour";
+import {AdditionalInfo} from "../../../shared/model/additional-info";
 
 export class Weekday{
   public Id: number;
@@ -72,10 +73,14 @@ export class BranchEditComponent implements OnInit {
   removeOperationHour(entity){
     this.branch.OpeningHours = this.branch.OpeningHours.filter(item => item !== entity);
   }
- addOperationHour(){
-    console.log(this.branch.OpeningHours.length);
-    this.branch.OpeningHours.push(new OperationHour());
-   console.log(this.branch.OpeningHours.length);
+  removeAdditionalInfo(entity){
+    this.branch.AdditionalInfos = this.branch.AdditionalInfos.filter(item => item !== entity);
   }
+ addOperationHour(){
+    this.branch.OpeningHours.push(new OperationHour());
+  }
+  addAdditionalInfo(){
+  this.branch.AdditionalInfos.push(new AdditionalInfo());
+}
 
 }
