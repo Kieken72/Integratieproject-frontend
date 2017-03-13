@@ -20,8 +20,8 @@ export class ManagerCalendarComponent implements OnInit {
   constructor(private reservationService:ReservationService, private managerService: ManagerService) { }
 
   ngOnInit() {
+    console.log(this.managerService.branchId);
     this.reservationService.getReservationByBranch(this.managerService.branchId).subscribe(data=>this.reservations = data);
-    console.log(this.reservationDetailModal);
 
 
   }

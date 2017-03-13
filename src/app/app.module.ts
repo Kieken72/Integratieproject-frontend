@@ -63,6 +63,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 import {FacebookService} from "ng2-facebook-sdk";
 import { BookerMapComponent } from './booker/booker-map/booker-map.component';
 import {ManagerService} from "./manager/manager.service";
+import { PhonePipe } from './shared/phone.pipe';
 
 const appRoutes: Routes = [
 
@@ -89,10 +90,10 @@ const appRoutes: Routes = [
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
     { path: 'branch', component: BranchComponent,  canActivate:[LoggedInGuard], children:[
-      { path: "list" , component: BranchListComponent, canActivate: [ManagerGuard] },
+      { path: "list" , component: BranchListComponent, canActivate: [LoggedInGuard] },
       { path: 'edit/:id', component: BranchEditComponent,  canActivate:[LoggedInGuard] },
-      { path: 'detail/:id', component: BranchDetailComponent,  canActivate:[ManagerGuard] },
-      { path: 'new', component: BranchNewComponent,  canActivate:[ManagerGuard] },
+      { path: 'detail/:id', component: BranchDetailComponent,  canActivate:[LoggedInGuard] },
+      { path: 'new', component: BranchNewComponent,  canActivate:[LoggedInGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
     { path: 'settings', component: ManagerSettingsComponent, children: [
@@ -181,7 +182,8 @@ const appRoutes: Routes = [
     AccountNavbarComponent,
     BookerReviewComponent,
     BookerReservationdetailComponent,
-    BookerMapComponent
+    BookerMapComponent,
+    PhonePipe
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
