@@ -40,8 +40,10 @@ export class BranchEditComponent implements OnInit {
     this.city = city ? city : null;
   }
 
-  editBranch(brancheId:number,brancheName: string, brancheStreet: string, brancheNumber: string, brancheBox:string, cityId:string, branchePhoneNumber:string, brancheEmail:string){
-    this.branchService.putBranch(this.branch.Id, this.branch.Name, this.branch.Street, this.branch.Number, this.branch.Box, this.branch.CityId, this.branch.PhoneNumber, this.branch.Email);
+  editBranch(){
+    this.branchService.putBranch(
+      this.branch.Id, this.branch.Name, this.branch.Street, this.branch.Number, this.branch.Box,
+      this.branch.CityId, this.branch.PhoneNumber, this.branch.Email,this.branch.Description,this.branch.AdditionalInfos,this.branch.OpeningHours) ;
   }
 
 }

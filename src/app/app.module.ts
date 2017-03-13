@@ -64,6 +64,7 @@ import {FacebookService} from "ng2-facebook-sdk";
 import { BookerMapComponent } from './booker/booker-map/booker-map.component';
 import {ManagerService} from "./manager/manager.service";
 import {RoomService} from "./shared/room.service";
+import { PhonePipe } from './shared/phone.pipe';
 
 const appRoutes: Routes = [
 
@@ -73,7 +74,7 @@ const appRoutes: Routes = [
     { path: 'map', component: BookerMapComponent },
     { path: 'detail/:id', component: BookerDetailComponent},
     { path: 'reservation/:id', component: BookerReservationdetailComponent},
-    { path: 'review', component: BookerReviewComponent},
+    { path: 'review/:id', component: BookerReviewComponent},
     { path: '', redirectTo: 'search', pathMatch: 'full'},
   ]},
   { path: 'manager', component: ManagerComponent,  children:[
@@ -89,11 +90,11 @@ const appRoutes: Routes = [
       { path: 'new', component: CompanyNewComponent,  canActivate:[ManagerGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
-    { path: 'branch', component: BranchComponent,  canActivate:[ManagerGuard], children:[
-      { path: "list" , component: BranchListComponent, canActivate: [ManagerGuard] },
-      { path: 'edit/:id', component: BranchEditComponent,  canActivate:[ManagerGuard] },
-      { path: 'detail/:id', component: BranchDetailComponent,  canActivate:[ManagerGuard] },
-      { path: 'new', component: BranchNewComponent,  canActivate:[ManagerGuard] },
+    { path: 'branch', component: BranchComponent,  canActivate:[LoggedInGuard], children:[
+      { path: "list" , component: BranchListComponent, canActivate: [LoggedInGuard] },
+      { path: 'edit/:id', component: BranchEditComponent,  canActivate:[LoggedInGuard] },
+      { path: 'detail/:id', component: BranchDetailComponent,  canActivate:[LoggedInGuard] },
+      { path: 'new', component: BranchNewComponent,  canActivate:[LoggedInGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
     { path: 'settings', component: ManagerSettingsComponent, children: [
@@ -183,7 +184,8 @@ const appRoutes: Routes = [
     AccountNavbarComponent,
     BookerReviewComponent,
     BookerReservationdetailComponent,
-    BookerMapComponent
+    BookerMapComponent,
+    PhonePipe
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },

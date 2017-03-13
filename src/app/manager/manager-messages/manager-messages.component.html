@@ -20,29 +20,11 @@
           </tr>
         </thead>
         <tbody>
-        <tr>
-          <th scope="row">Naam reservé</th>
+        <tr *ngFor="let message of messages">
+          <th scope="row">{{message.User.Lastname}} {{message.User.Name}} </th>
           <td>Bericht bij reservering</td>
-          <td>--RESERVATIE LINK--</td>
-          <td>DATUM</td>
-        </tr>
-        <tr>
-          <th scope="row">Naam reservé</th>
-          <td>Bericht bij reservering</td>
-          <td>--RESERVATIE LINK--</td>
-          <td>DATUM</td>
-        </tr>
-        <tr>
-          <th scope="row">Naam reservé</th>
-          <td>Bericht bij reservering</td>
-          <td>--RESERVATIE LINK--</td>
-          <td>DATUM</td>
-        </tr>
-        <tr>
-          <th scope="row">Naam reservé</th>
-          <td>Bericht bij reservering</td>
-          <td>--RESERVATIE LINK--</td>
-          <td>DATUM</td>
+          <td><a [routerLink]="['../../booker/reservation/', message.ReservationId]">{{message.ReservationId}}</a></td>
+          <td>{{message.DateTime}}</td>
         </tr>
         </tbody>
       </table>

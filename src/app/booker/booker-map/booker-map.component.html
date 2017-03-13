@@ -1,4 +1,4 @@
-<sebm-google-map  class="sebm-google-map-container-branches" [latitude]="centerCoordinate.latitude" [longitude]="centerCoordinate.longitude" >
+<sebm-google-map class="sebm-google-map-container-branches" [latitude]="centerCoordinate.latitude" [longitude]="centerCoordinate.longitude" >
   <sebm-google-map-marker *ngFor="let coordinate of coordinates"  [latitude]="coordinate.latitude" [longitude]="coordinate.longitude">
     <sebm-google-map-info-window [disableAutoPan]="true">
      <button class="btn btn-primary btn-lg " [routerLink]="['../detail',coordinate.branchId]">{{coordinate.branchName}}</button>
