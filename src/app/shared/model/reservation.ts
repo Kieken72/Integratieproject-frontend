@@ -12,4 +12,5 @@ export class Reservation {
   public CreatedOn: Date;
   public Arrived : boolean;
   public Passed: boolean;
+  public Cancelled: boolean;
 }
