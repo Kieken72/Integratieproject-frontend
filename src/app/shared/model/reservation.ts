@@ -10,4 +10,5 @@ export class Reservation {
   public UserId: string;
   public User: ShortUser;
   public CreatedOn: Date;
+  public Arrived : boolean;
 }

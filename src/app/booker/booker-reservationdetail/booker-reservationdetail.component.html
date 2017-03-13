@@ -9,6 +9,9 @@
       Aantal personen: {{reservation.AmountOfPersons}}<br/>
       Datum: {{reservation.DateTime}} | Tot: {{reservation.EndDateTime}}<br/>
       </div>
+
+      <button *ngIf="reservation.Arrived" id="review" class="btn btn-default"  [routerLink]="['../../review/' , reservation.Id]">Schrijf een review</button>
+
     </div>
 
 

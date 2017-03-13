@@ -72,7 +72,7 @@ const appRoutes: Routes = [
     { path: 'map', component: BookerMapComponent },
     { path: 'detail/:id', component: BookerDetailComponent},
     { path: 'reservation/:id', component: BookerReservationdetailComponent},
-    { path: 'review', component: BookerReviewComponent},
+    { path: 'review/:id', component: BookerReviewComponent},
     { path: '', redirectTo: 'search', pathMatch: 'full'},
   ]},
   { path: 'manager', component: ManagerComponent,  children:[

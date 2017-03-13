@@ -120,7 +120,7 @@
     <div class="form-group" *ngFor="let addInfo of branch.AdditionalInfos" >
       <label for="{{addInfo.Type}}" class="col-sm-3 control-label" >Extra Info:</label>
       <div class="col-sm-9" >
-        <input class="form-control" id="{{addInfo.Type}}"  name={{addInfo.Type}} [(ngModel)]="addInfo.Value"/>
+        <input class="form-control" id="{{addInfo.Type}}"  name={{addInfo.Value}} [(ngModel)]="addInfo.Value"/>
       </div>
     </div>
 
