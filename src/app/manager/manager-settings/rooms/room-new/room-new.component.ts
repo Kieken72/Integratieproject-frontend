@@ -54,9 +54,9 @@ export class RoomNewComponent implements OnInit {
       objectToDrag.setAttribute('class', 'object2');
     }
 
-    objectToDrag.setAttribute('id', this.space.spaceName);
-    objectToDrag.setAttribute('minPers', this.space.minNumberOfPersons.toString());
-    objectToDrag.setAttribute('numPers', this.space.numberOfPerons.toString());
+    objectToDrag.setAttribute('id', this.space.Name);
+    objectToDrag.setAttribute('minPers', this.space.MinPersons.toString());
+    objectToDrag.setAttribute('numPers', this.space.Persons.toString());
     objectToDrag.setAttribute('enabled', this.space.enabled.toString());
 
     var room = document.getElementById('room');
@@ -75,8 +75,8 @@ export class RoomNewComponent implements OnInit {
       dragging = true;
     }
 
-    objectToDrag.textContent = this.space.spaceName + "(" + this.space.numberOfPerons + "pers.)"
-    + " min: " + this.space.minNumberOfPersons + "pers.";
+    objectToDrag.textContent = this.space.Name + "(" + this.space.Persons + "pers.)"
+    + " min: " + this.space.MinPersons + "pers.";
 
     objectToDrag.onmousemove = function (event) {
       if (dragging) {
@@ -122,7 +122,15 @@ export class RoomNewComponent implements OnInit {
         spaceType = 1;
       }
 
-      croomService.postSpaces(objectToDrag.id, objectToDrag.getAttribute('enabled'), objectToDrag.getAttribute('numPers'), objectToDrag.getAttribute('minPers'), cRoom, objectToDrag.style.left, objectToDrag.style.top, spaceType ).subscribe((data)=>console.log(data) );
+      var left = objectToDrag.style.left
+      left.substring(0, left.length-2);
+
+      var top = objectToDrag.style.top
+      top.substring(0, top.length-2);
+
+      croomService.postSpaces(objectToDrag.id, objectToDrag.getAttribute('enabled'),
+        parseInt(objectToDrag.getAttribute('numPers')), parseInt(objectToDrag.getAttribute('minPers')),
+        cRoom, parseInt(left), parseInt(top), spaceType ).subscribe((data)=>console.log(data) );
     });
   }
 }

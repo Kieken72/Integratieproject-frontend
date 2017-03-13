@@ -3,13 +3,13 @@ import {Newreservation} from "../../../../shared/model/newreservation";
  * Created by Emmanuel on 09/03/2017.
  */
 export class Space{
-  spaceName:string;
+  Name:string;
   enabled: string;
-  numberOfPerons: string;
-  minNumberOfPersons: string;
+  Persons: number;
+  MinPersons: number;
   roomId:number;
-  x:string;
-  y:string;
+  x:number;
+  y:number;
   type:number;
   reservations: Newreservation[];
 

@@ -63,6 +63,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 import {FacebookService} from "ng2-facebook-sdk";
 import { BookerMapComponent } from './booker/booker-map/booker-map.component';
 import {ManagerService} from "./manager/manager.service";
+import {RoomService} from "./shared/room.service";
 
 const appRoutes: Routes = [
 
@@ -98,6 +99,7 @@ const appRoutes: Routes = [
     { path: 'settings', component: ManagerSettingsComponent, children: [
       { path: 'rooms', component: RoomsComponent,  children:[
         { path: 'new/:id', component: RoomNewComponent },
+        { path: 'edit/:id', component: RoomEditComponent },
         { path: '', redirectTo: 'new', pathMatch: 'full'},
       ]},
       { path: 'spaces', component: SpacesComponent, canActivate: [ManagerGuard], children:[
@@ -197,7 +199,8 @@ const appRoutes: Routes = [
     ManagerGuard,
     ReservationService,
     FacebookService,
-    ManagerService
+    ManagerService,
+    RoomService
   ],
   bootstrap: [AppComponent]
 

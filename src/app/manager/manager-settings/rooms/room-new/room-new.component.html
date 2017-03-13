@@ -42,7 +42,7 @@
            <div class="form-group">
              <label for="poolName" class="col-sm-3 control-label" id="lblPoolName">Baan naam:</label>
              <div class="col-sm-9">
-               <input class="form-control" id="poolName" required [(ngModel)]="space.spaceName" name="poolName" #poolName="ngModel" #PoolName/>
+               <input class="form-control" id="poolName" required [(ngModel)]="space.Name" name="poolName" #poolName="ngModel" #PoolName/>
                <div *ngIf="poolName.errors && (poolName.dirty || poolName.touched)"
                     class="alert alert-danger">
                  <div [hidden]="!poolName.errors.required">
@@ -54,7 +54,7 @@
            <div class="form-group">
              <label for="poolPers" class="col-sm-3 control-label" id="lblPoolPers">Aantal personen:</label>
              <div class="col-sm-9">
-               <select required [(ngModel)]="space.numberOfPerons" name="poolPers" #poolPers="ngModel" #PoolPers class="form-control" id="poolPers">
+               <select required [(ngModel)]="space.Persons" name="poolPers" #poolPers="ngModel" #PoolPers class="form-control" id="poolPers">
                <option *ngFor="let person of persons" [ngValue]="person">{{person}} personen</option>
                </select>
                <div *ngIf="poolPers.errors && (poolPers.dirty || poolPers.touched)"
@@ -69,7 +69,7 @@
            <div class="form-group">
              <label for="poolPersMin" class="col-sm-3 control-label" id="lblPoolPersMin">Aantal min personen:</label>
              <div class="col-sm-9">
-               <select required [(ngModel)]="space.minNumberOfPersons" name="poolPersMin" #poolPersMin="ngModel" #PoolPersMin class="form-control" id="poolPersMin">
+               <select required [(ngModel)]="space.MinPersons" name="poolPersMin" #poolPersMin="ngModel" #PoolPersMin class="form-control" id="poolPersMin">
                  <option *ngFor="let person of persons" [ngValue]="person">{{person}} personen</option>
                </select>
                <div *ngIf="poolPersMin.errors && (poolPersMin.dirty || poolPersMin.touched)"
@@ -119,7 +119,7 @@
            <div class="form-group">
              <label for="tableName" class="col-sm-3 control-label" id="lbltableName">Tafel naam:</label>
              <div class="col-sm-9">
-               <input class="form-control" id="tableName" required [(ngModel)]="space.spaceName" name="tableName" #tableName="ngModel" #TableName/>
+               <input class="form-control" id="tableName" required [(ngModel)]="space.Name" name="tableName" #tableName="ngModel" #TableName/>
                <div *ngIf="tableName.errors && (tableName.dirty || tableName.touched)"
                     class="alert alert-danger">
                  <div [hidden]="!tableName.errors.required">
@@ -131,7 +131,7 @@
            <div class="form-group">
              <label for="tablePers" class="col-sm-3 control-label" id="lblTablePers">Aantal personen:</label>
              <div class="col-sm-9">
-               <select required [(ngModel)]="space.numberOfPerons" name="tablePers" #tablePers="ngModel" #TablePers class="form-control" id="tablePers">
+               <select required [(ngModel)]="space.Persons" name="tablePers" #tablePers="ngModel" #TablePers class="form-control" id="tablePers">
                  <option *ngFor="let person of persons" [ngValue]="person">{{person}} personen</option>
                </select>
                <div *ngIf="tablePers.errors && (tablePers.dirty || tablePers.touched)"
@@ -146,7 +146,7 @@
            <div class="form-group">
              <label for="tablePersMin" class="col-sm-3 control-label" id="lblTablePersMin">Aantal min personen:</label>
              <div class="col-sm-9">
-               <select required [(ngModel)]="space.minNumberOfPersons" name="tablePersMin" #tablePersMin="ngModel" #TablePersMin class="form-control" id="tablePersMin">
+               <select required [(ngModel)]="space.MinPersons" name="tablePersMin" #tablePersMin="ngModel" #TablePersMin class="form-control" id="tablePersMin">
                  <option *ngFor="let person of persons" [ngValue]="person">{{person}} personen</option>
                </select>
                <div *ngIf="tablePersMin.errors && (tablePersMin.dirty || tablePersMin.touched)"

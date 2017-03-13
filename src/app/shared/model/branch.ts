@@ -2,6 +2,7 @@ import {City} from "../cityservice/city";
 import {OperationHour} from "./operationhour";
 import {AdditionalInfo} from "./additional-info";
 import {Review} from "./review";
+import {Room} from "../../manager/manager-settings/rooms/model/room";
 /**
  * Created by Emmanuel on 16/02/2017.
  */
@@ -23,6 +24,7 @@ export class Branch{
   public Reviews: Review[];
   public Available: boolean;
   public Message: CheckMessage;
+  public Rooms: Room[]
 }
 
 
