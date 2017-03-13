@@ -12,7 +12,7 @@ import {Space} from "../model/space";
 export class RoomEditComponent implements OnInit {
   private room:Room;
 
-  private spaces:Space[];
+  private spaces:Space[] = new Array();
 
   constructor(private route: ActivatedRoute, private roomService:RoomService) { }
 
@@ -25,23 +25,25 @@ export class RoomEditComponent implements OnInit {
   whenRoomLoads(cRoom){
     this.room = cRoom;
 
-    this.room.spaces.forEach((cSpace)=>{
+    this.room.Spaces.forEach((cSpace)=>{
       this.spaces.push(cSpace);
+      this.generateObjects(cSpace);
     })
 
-    this.generateObjects();
+
   }
 
-  generateObjects(){
+  generateObjects(space:Space){
     var room = document.getElementById('room');
 
-    /*this.room.spaces.forEach((cRoom)=>{
-      var objectToDrag = document.createElement('div');
-      room.appendChild(objectToDrag);
-      objectToDrag.setAttribute('class', 'object');
-      objectToDrag.setAttribute('top', cRoom.x + "px");
-    })*/
 
+      var objectToDrag = document.createElement('div');
+
+      objectToDrag.setAttribute('class', 'object');
+      objectToDrag.setAttribute('top', space.x + "px");
+      objectToDrag.setAttribute('id', space.Name);
+
+    room.appendChild(objectToDrag);
 
 
   }

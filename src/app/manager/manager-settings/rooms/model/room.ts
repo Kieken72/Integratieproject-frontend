@@ -9,6 +9,6 @@ export class Room{
   width:string;
   height:string;
   branchId:number;
-  spaces:Space[];
+  Spaces:Space[];
 
 }
