@@ -108,17 +108,17 @@
       <form #oh="ngForm" class="form-horizontal row">
         <div class="col-md-12">
 
-        <div class="form-group" *ngFor="let opening of branch.OpeningHours" >
-          <label  class="col-sm-3 control-label" >Openingsuren dag {{opening.Day}}</label>
+        <div class="form-group" *ngFor="let opening of branch.OpeningHours;let i = index" [attr.data-index]="i" >
+          <label  class="col-sm-2 control-label" >Openingsuren dag {{opening.Day}}</label>
           <div class="col-sm-3">
-            <select [(ngModel)]="opening.Day" name="dag" class="form-control" id="day">
-              <option [ngValue]="1">Maandag</option>
-              <option [ngValue]="2">Dinsdag</option>
-              <option [ngValue]="3">Woensdag</option>
-              <option [ngValue]="4">Donderdag</option>
-              <option [ngValue]="5">Vrijdag</option>
-              <option [ngValue]="6">Zaterdag</option>
-              <option [ngValue]="0">Zondag</option>
+            <select [(ngModel)]="opening.Day" name="dag{{opening.Day}}" class="form-control">
+              <option [attr.value]="1" [attr.selected]="opening.Day == 1 ? true : null">Maandag</option>
+              <option [attr.value]="2" [attr.selected]="opening.Day == 2 ? true : null">Dinsdag</option>
+              <option [attr.value]="3" [attr.selected]="opening.Day == 3 ? true : null">Woensdag</option>
+              <option [attr.value]="4" [attr.selected]="opening.Day == 4 ? true : null">Donderdag</option>
+              <option [attr.value]="5" [attr.selected]="opening.Day == 5 ? true : null">Vrijdag</option>
+              <option [attr.value]="6" [attr.selected]="opening.Day == 6 ? true : null">Zaterdag</option>
+              <option [attr.value]="0" [attr.selected]="opening.Day == 0 ? true : null">Zondag</option>
             </select>
           </div>
           <div class="col-sm-3" >
@@ -127,14 +127,21 @@
           <div class="col-sm-3" >
             <input class="form-control"  name="{{opening.Day}}|{{opening.ToTime}}"  [(ngModel)]="opening.ToTime"/>
           </div>
-        </div>
-          <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9">
-              <button class="btn btn-default" [disabled]="!oh.form.valid"
-                      (click)="editBranch()" id="btnSendOh">Wijzig</button>
-            </div>
+          <div class="col-sm-1">
+            <button class="btn btn-danger" (click)="removeOperationHour(opening)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
           </div>
         </div>
+            <div class="col-sm-offset-11 col-sm-1">
+              <button class="btn btn-success" (click)="addOperationHour()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+          </div>
+
+        </div><div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+          <button class="btn btn-default" [disabled]="!oh.form.valid"
+                  (click)="editBranch()" id="btnSendOh">Wijzig</button>
+        </div>
+      </div>
+
       </form>
     </tab>
     <tab heading='Extra Info'>
@@ -142,19 +149,19 @@
         <div class="col-md-12">
 
 
-        <div class="form-group" *ngFor="let addInfo of branch.AdditionalInfos" >
+        <div class="form-group" *ngFor="let addInfo of branch.AdditionalInfos;let i = index" [attr.data-index]="i" >
           <label for="{{addInfo.Type}}" class="col-sm-3 control-label" >Extra Info:</label>
           <div class="col-sm-4" >
-            <select [(ngModel)]="addInfo.Type" name="type" class="form-control" id="type">
-              <option [ngValue]="0">PaymentMethod</option>
-              <option [ngValue]="1">Facility</option>
-              <option [ngValue]="2">Accessibility</option>
-              <option [ngValue]="3">Atmosphere</option>
-              <option [ngValue]="4">Image</option>
-              <option [ngValue]="5">Video</option>
-              <option [ngValue]="6">Homepage</option>
-              <option [ngValue]="7">Facebook</option>
-              <option [ngValue]="8">Twitter</option>
+            <select [(ngModel)]="addInfo.Type" name="{{addInfo.Type}}" class="form-control">
+              <option [attr.value]="0" [attr.selected]="addInfo.Type == 0 ? true : null">PaymentMethod</option>
+              <option [attr.value]="1" [attr.selected]="addInfo.Type == 1 ? true : null">Facility</option>
+              <option [attr.value]="2" [attr.selected]="addInfo.Type == 2 ? true : null">Accessibility</option>
+              <option [attr.value]="3" [attr.selected]="addInfo.Type == 3 ? true : null">Atmosphere</option>
+              <option [attr.value]="4" [attr.selected]="addInfo.Type == 4 ? true : null">Image</option>
+              <option [attr.value]="5" [attr.selected]="addInfo.Type == 5 ? true : null">Video</option>
+              <option [attr.value]="6" [attr.selected]="addInfo.Type == 6 ? true : null">Homepage</option>
+              <option [attr.value]="7" [attr.selected]="addInfo.Type == 7 ? true : null">Facebook</option>
+              <option [attr.value]="8" [attr.selected]="addInfo.Type == 8 ? true : null">Twitter</option>
             </select>
           </div>
           <div class="col-sm-4" >
