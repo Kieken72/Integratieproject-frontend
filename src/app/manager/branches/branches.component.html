@@ -22,7 +22,7 @@
         <td>{{branch.Name}}</td>
         <td>{{branch.Street}} {{branch.Number}} {{branch.Box}}, {{branch.City.PostalCode}} {{branch.City.Name}}</td>
         <td><a href="mailto:{{branch.Email}}">{{branch.Email}}</a></td>
-        <td>{{branch.PhoneNumber}}</td>
+        <td>{{branch.PhoneNumber | phone}}</td>
       </tr>
     </tbody>
   </table>
