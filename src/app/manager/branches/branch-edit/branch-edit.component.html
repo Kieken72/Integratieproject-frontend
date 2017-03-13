@@ -3,143 +3,174 @@
   {{branch.Name}}
   {{branch.Id}}
 
-  <form #companyEditForm="ngForm" class="form-horizontal">
-    <div class="form-group">
-      <label for="where" class="col-sm-3 control-label">City:</label>
-      <!-- <div class="col-sm-9">
-       <input id="companyCity" name="CityId" class="form-control" auto-complete [(ngModel)]="company.CityId"  [source]="cities"  />
-       </div>-->
-      <div class="col-sm-9">
-        <typeahead
-          id="where"
-          [(ngModel)]="selectedCity"
-          [list]="cities"
-          [searchProperty]="'Name'" [displayProperty]="'Name'"
-          [maxSuggestions]="10"
-          (suggestionSelected)="citySelected($event)"
-          placeholder="Begin typing a city"
-          required
-          name="cityWhere" #cityWhere="ngModel">
-        </typeahead>
-        <!--<select name="cityId" id="cid" [(ngModel)]="cityid" class="form-control" required [(ngModel)]="company.City" name="city" #city="ngModel" #CityId>
-          <option id="companyCity"  *ngFor="let city of cities" [ngValue]="city.Id" >{{city.PostalCode}} | {{city.Name}}</option>
-        </select>
-        <div *ngIf="city.errors && (city.dirty || city.touched)"
-             class="alert alert-danger">
-          <div [hidden]="!city.errors.required">
-            Plaats mag niet leeg zijn.
-          </div>
-        </div>-->
 
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="companyName" class="col-sm-3 control-label" id="lblCompanyName">Name:</label>
-      <div class="col-sm-9">
-        <input class="form-control" id="companyName" required [(ngModel)]="branch.Name" name="name" #name="ngModel" #CompanyName/>
-        <div *ngIf="name.errors && (name.dirty || name.touched)"
-             class="alert alert-danger">
-          <div [hidden]="!name.errors.required">
-            Naam mag niet leeg zijn.
+
+<div class="col-md-12">
+  <tabset>
+    <tab heading='Algemene gegevens'>
+      <form #edit="ngForm" class="form-horizontal row">
+        <div class="col-md-12">
+        <div class="form-group">
+          <label for="where" class="col-sm-3 control-label">City:</label>
+          <div class="col-sm-9">
+            <typeahead
+              id="where"
+              [(ngModel)]="selectedCity"
+              [list]="cities"
+              [searchProperty]="'Name'" [displayProperty]="'Name'"
+              [maxSuggestions]="10"
+              (suggestionSelected)="citySelected($event)"
+              placeholder="Begin typing a city"
+              required
+              name="cityWhere" #cityWhere="ngModel">
+            </typeahead>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="companyName" class="col-sm-3 control-label" id="lblCompanyName">Name:</label>
+          <div class="col-sm-9">
+            <input class="form-control" id="companyName" required [(ngModel)]="branch.Name" name="name" #name="ngModel" #CompanyName/>
+            <div *ngIf="name.errors && (name.dirty || name.touched)"
+                 class="alert alert-danger">
+              <div [hidden]="!name.errors.required">
+                Naam mag niet leeg zijn.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="companyStreet" class="col-sm-3 control-label">Street:</label>
+          <div class="col-sm-9">
+            <input class="form-control" id="companyStreet" required [(ngModel)]="branch.Street" name="street" #street="ngModel" #CompanyStreet/>
+            <div *ngIf="street.errors && (street.dirty || street.touched)"
+                 class="alert alert-danger">
+              <div [hidden]="!street.errors.required">
+                Straat mag niet leeg zijn.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="companyStreetNumber" class="col-sm-3 control-label">Number:</label>
+          <div class="col-sm-9">
+            <input class="form-control" id="companyStreetNumber" type="number" required [(ngModel)]="branch.Number" name="num" #num="ngModel" #CompanyStreetNumber/>
+            <div *ngIf="num.errors && (num.dirty || num.touched)"
+                 class="alert alert-danger">
+              <div [hidden]="!num.errors.required">
+                Nummer mag niet leeg zijn.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="companyBox" class="col-sm-3 control-label">Box:</label>
+          <div class="col-sm-9">
+            <input class="form-control" id="companyBox" name="box"  [(ngModel)]="branch.Box" />
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="branchPhone" class="col-sm-3 control-label">Telefoon:</label>
+          <div class="col-sm-9">
+            <input class="form-control" id="branchPhone" name="phone"  [(ngModel)]="branch.PhoneNumber" />
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="branchEmail" class="col-sm-3 control-label">Email:</label>
+          <div class="col-sm-9">
+            <input class="form-control" id="branchEmail" name="email"  [(ngModel)]="branch.Email" />
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="branchDescription" class="col-sm-3 control-label">Beschrijving:</label>
+          <div class="col-sm-9">
+            <textarea class="form-control" id="branchDescription" name="description"  [(ngModel)]="branch.Description"></textarea>
+          </div>
+        </div>
+          <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+              <button class="btn btn-default" [disabled]="!edit.form.valid"
+                      (click)="editBranch()" id="btnSend">Wijzig</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </tab>
+    <tab heading='Openingsuren'>
+      <form #oh="ngForm" class="form-horizontal row">
+        <div class="col-md-12">
+
+        <div class="form-group" *ngFor="let opening of branch.OpeningHours" >
+          <label  class="col-sm-3 control-label" >Openingsuren dag {{opening.Day}}</label>
+          <div class="col-sm-3">
+            <select [(ngModel)]="opening.Day" name="dag" class="form-control" id="day">
+              <option [ngValue]="1">Maandag</option>
+              <option [ngValue]="2">Dinsdag</option>
+              <option [ngValue]="3">Woensdag</option>
+              <option [ngValue]="4">Donderdag</option>
+              <option [ngValue]="5">Vrijdag</option>
+              <option [ngValue]="6">Zaterdag</option>
+              <option [ngValue]="0">Zondag</option>
+            </select>
+          </div>
+          <div class="col-sm-3" >
+            <input class="form-control"  name="{{opening.Day}}|{{opening.FromTime}}" [(ngModel)]="opening.FromTime"/>
+          </div>
+          <div class="col-sm-3" >
+            <input class="form-control"  name="{{opening.Day}}|{{opening.ToTime}}"  [(ngModel)]="opening.ToTime"/>
+          </div>
+        </div>
+          <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+              <button class="btn btn-default" [disabled]="!oh.form.valid"
+                      (click)="editBranch()" id="btnSendOh">Wijzig</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </tab>
+    <tab heading='Extra Info'>
+      <form #info="ngForm" class="form-horizontal row">
+        <div class="col-md-12">
+
+
+        <div class="form-group" *ngFor="let addInfo of branch.AdditionalInfos" >
+          <label for="{{addInfo.Type}}" class="col-sm-3 control-label" >Extra Info:</label>
+          <div class="col-sm-4" >
+            <select [(ngModel)]="addInfo.Type" name="type" class="form-control" id="type">
+              <option [ngValue]="0">PaymentMethod</option>
+              <option [ngValue]="1">Facility</option>
+              <option [ngValue]="2">Accessibility</option>
+              <option [ngValue]="3">Atmosphere</option>
+              <option [ngValue]="4">Image</option>
+              <option [ngValue]="5">Video</option>
+              <option [ngValue]="6">Homepage</option>
+              <option [ngValue]="7">Facebook</option>
+              <option [ngValue]="8">Twitter</option>
+            </select>
+          </div>
+          <div class="col-sm-4" >
+            <input class="form-control" id="{{addInfo.Type}}"  name={{addInfo.Value}} [(ngModel)]="addInfo.Value"/>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-sm-offset-3 col-sm-9">
+            <button class="btn btn-default" [disabled]="!info.form.valid"
+                    (click)="editBranch()" id="btnSendInfo">Wijzig</button>
           </div>
         </div>
       </div>
-    </div>
-    <!--<div class="form-group">
-      <label for="companyVat" class="col-sm-3 control-label">VAT:</label>
-      <div class="col-sm-9">
-        <input class="form-control" id="companyVat" pattern="[(BE)[0-9]{12}]*" required [(ngModel)]="company.VATNumber" name="vat" #vat="ngModel" #CompanyVAT/>
-        <div *ngIf="vat.errors && (vat.dirty || vat.touched)"
-             class="alert alert-danger">
-          <div [hidden]="!vat.errors.required">
-            BTW mag niet leeg zijn.
-          </div>
-          <div [hidden]="!vat.errors.pattern">
-            BTW nummer moet beginnen met "BE" en gevolgd worden door 10 cijfers.
-          </div>
-        </div>
-      </div>
-    </div>-->
-    <div class="form-group">
-      <label for="companyStreet" class="col-sm-3 control-label">Street:</label>
-      <div class="col-sm-9">
-        <input class="form-control" id="companyStreet" required [(ngModel)]="branch.Street" name="street" #street="ngModel" #CompanyStreet/>
-        <div *ngIf="street.errors && (street.dirty || street.touched)"
-             class="alert alert-danger">
-          <div [hidden]="!street.errors.required">
-            Straat mag niet leeg zijn.
-          </div>
-        </div>
-      </div>
-    </div>
+      </form>
 
-    <div class="form-group">
-      <label for="companyStreetNumber" class="col-sm-3 control-label">Number:</label>
-      <div class="col-sm-9">
-        <input class="form-control" id="companyStreetNumber" type="number" required [(ngModel)]="branch.Number" name="num" #num="ngModel" #CompanyStreetNumber/>
-        <div *ngIf="num.errors && (num.dirty || num.touched)"
-             class="alert alert-danger">
-          <div [hidden]="!num.errors.required">
-            Nummer mag niet leeg zijn.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="companyBox" class="col-sm-3 control-label">Box:</label>
-      <div class="col-sm-9">
-        <input class="form-control" id="companyBox" name="box"  [(ngModel)]="branch.Box" />
-
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="branchPhone" class="col-sm-3 control-label">Telefoon:</label>
-      <div class="col-sm-9">
-        <input class="form-control" id="branchPhone" name="phone"  [(ngModel)]="branch.PhoneNumber" />
-
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="branchEmail" class="col-sm-3 control-label">Email:</label>
-      <div class="col-sm-9">
-        <input class="form-control" id="branchEmail" name="email"  [(ngModel)]="branch.Email" />
-
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="branchDescription" class="col-sm-3 control-label">Beschrijving:</label>
-      <div class="col-sm-9">
-        <textarea class="form-control" id="branchDescription" name="description"  [(ngModel)]="branch.Description"></textarea>
-      </div>
-    </div>
-
-    <div class="form-group" *ngFor="let addInfo of branch.AdditionalInfos" >
-      <label for="{{addInfo.Type}}" class="col-sm-3 control-label" >Extra Info:</label>
-      <div class="col-sm-9" >
-        <input class="form-control" id="{{addInfo.Type}}"  name={{addInfo.Type}} [(ngModel)]="addInfo.Value"/>
-      </div>
-    </div>
-
-    <div class="form-group" *ngFor="let opening of branch.OpeningHours" >
-      <label  class="col-sm-3 control-label" >Openingsuren dag {{opening.Day}}</label>
-      <div class="col-sm-4" >
-        <input class="form-control"  name="{{opening.Day}}|{{opening.FromTime}}" [(ngModel)]="opening.FromTime"/>
-      </div>
-      <div class="col-sm-4" >
-        <input class="form-control"  name="{{opening.Day}}|{{opening.ToTime}}"  [(ngModel)]="opening.ToTime"/>
-      </div>
-    </div>
-  </form>
-  <div class="form-group">
-    <div class="col-sm-offset-3 col-sm-9">
-      <button class="btn btn-default" [disabled]="!companyEditForm.form.valid"
-              (click)="editBranch()" id="btnSend">Wijzig</button>
-    </div>
-  </div>
-
-
+    </tab>
+  </tabset>
+</div>
 </div>
