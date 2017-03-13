@@ -57,7 +57,7 @@ export class RoomNewComponent implements OnInit {
     objectToDrag.setAttribute('id', this.space.Name);
     objectToDrag.setAttribute('minPers', this.space.MinPersons.toString());
     objectToDrag.setAttribute('numPers', this.space.Persons.toString());
-    objectToDrag.setAttribute('enabled', this.space.enabled.toString());
+    objectToDrag.setAttribute('enabled', this.space.Enabled.toString());
 
     var room = document.getElementById('room');
     room.appendChild(objectToDrag);

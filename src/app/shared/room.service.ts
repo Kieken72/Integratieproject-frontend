@@ -29,19 +29,36 @@ export class RoomService{
 
   postSpaces(_name:string, _enabled:string, _persons:number, _minPersons:number, _roomId:number, _x:number, _y:number, _type:number){
     this.space.Name = _name;
-    this.space.enabled = _enabled;
+    this.space.Enabled = _enabled;
     this.space.Persons = _persons;
     this.space.MinPersons = _minPersons;
     this.space.roomId = _roomId;
-    this.space.x = _x;
-    this.space.y = _y;
-    this.space.type = _type;
+    this.space.X = _x;
+    this.space.Y = _y;
+    this.space.Type = _type;
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let authToken = localStorage.getItem('auth_token');
     headers.append('Authorization', 'Bearer '+authToken);
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.apiBase+'branches/space', JSON.stringify(this.space), options).map((res:Response)=>res.json());
+  };
+
+  putSpace(_id: number, _name:string, _enabled:string, _persons:number, _minPersons:number, _roomId:number, _x:number, _y:number, _type:number){
+    this.space.Name = _name;
+    this.space.Enabled = _enabled;
+    this.space.Persons = _persons;
+    this.space.MinPersons = _minPersons;
+    this.space.roomId = _roomId;
+    this.space.X = _x;
+    this.space.Y = _y;
+    this.space.Type = _type;
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', 'Bearer '+authToken);
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.put(this.apiBase+'branches/space/'+_id, JSON.stringify(this.space), options).map((res:Response)=>res.json());
   };
 
   getFullBranch(id:any){
