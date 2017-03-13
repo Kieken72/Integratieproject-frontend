@@ -4,7 +4,7 @@ export class AdditionalInfo {
 
   constructor() {
     this.Type = 0;
-    this.Value = "";
+    this.Value = "Default";
   }
 }
 
