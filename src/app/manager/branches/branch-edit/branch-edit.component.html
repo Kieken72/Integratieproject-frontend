@@ -143,13 +143,11 @@
               <div class="btn-group pull-right" role="group">
                 <button class="btn btn-success" (click)="addOperationHour()"> <i class="fa fa-plus" aria-hidden="true"></i> </button>
                 <button class="btn btn-primary" [disabled]="!oh.form.valid"
-                      (click)="editBranch()" id="btnSendOh"> <i class="fa fa-floppy-o" aria-hidden="true"></i> </button>
+                      (click)="editOpeningHours()" id="btnSendOh"> <i class="fa fa-floppy-o" aria-hidden="true"></i> </button>
               </div>
             </div>
           </div>
-
         </div>
-
       </form>
     </tab>
     <tab heading='Extra Info'>
@@ -177,25 +175,20 @@
                 <input class="form-control" id="{{addInfo.Type}}"  name={{addInfo.Value}} [(ngModel)]="addInfo.Value"/><div class="input-group-btn">
                 <button class="btn btn-danger" type="button"  (click)="removeAdditionalInfo(addInfo)"> <i class="fa fa-trash-o" aria-hidden="true"></i> </button>
               </div>
-
               </div>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-10 col-sm-2">
               <div class="btn-group pull-right" role="group">
-                <button class="btn btn-success" (click)="addAdditionalInfo()"> <i class="fa fa-plus" aria-hidden="true"></i> </button>
+                <button class="btn btn-success" (click)="addAdditionalInfo()"><i class="fa fa-plus" aria-hidden="true"></i> </button>
                 <button class="btn btn-primary" [disabled]="!info.form.valid"
-                        (click)="editBranch()" id="btnSendInfo"> <i class="fa fa-floppy-o" aria-hidden="true"></i> </button>
+                        (click)="editAdditionalInfo()" id="btnSendInfo"> <i class="fa fa-floppy-o" aria-hidden="true"></i> </button>
               </div>
             </div>
           </div>
-
-
-
       </div>
       </form>
-
     </tab>
   </tabset>
 </div>
