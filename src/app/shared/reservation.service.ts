@@ -26,8 +26,9 @@ export class ReservationService {
     return this.http.post(this.apiBase+'reservations', JSON.stringify(reservation), options).map((res:Response)=>res.json());
   }
 
-  getReservationByBranch(branchId:number){
-    return this.http.get(this.apiBase+'reservations/branch/'+branchId).map(res => res.json());
+  getReservationByBranch(branchId:number, date:Date){
+    console.log('/'+date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear());
+    return this.http.get(this.apiBase+'reservations/branch/'+branchId+'/'+date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear()).map(res => res.json());
   }
 
   postReview(review:Review){
@@ -62,30 +63,38 @@ export class ReservationService {
 
 
   cancelReservation(id:number){
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
+    let headers = new Headers();
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Content-Type','application/json');
+    headers.append('Authorization', 'Bearer '+authToken);
     let options = new RequestOptions({ headers: headers });
-    return this.http.delete(this.apiBase+'reservations/' + id, options).map(res=>res.json());
+    return this.http.delete(this.apiBase+'reservations/' + id,options).map(res=>res.json());
   }
 
   cancelManagerReservation(id:number){
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
+    let headers = new Headers();
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Content-Type','application/json');
+    headers.append('Authorization', 'Bearer '+authToken);
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiBase+'reservations/cancel/' + id, options).map(res=>res.json());
+    return this.http.post(this.apiBase+'reservations/cancel/' + id, null, options).map(res=>res.json());
   }
   noShowReservation(id:number){
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
+    let headers = new Headers();
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Content-Type','application/json');
+    headers.append('Authorization', 'Bearer '+authToken);
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiBase+'reservations/noshow/' + id, options).map(res=>res.json());
+    return this.http.post(this.apiBase+'reservations/noshow/' + id, null, options).map(res=>res.json());
   }
   arrivedReservation(id:number){
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
+    let headers = new Headers();
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Content-Type','application/json');
+    headers.append('Authorization', 'Bearer '+authToken);
     let options = new RequestOptions({ headers: headers });
     console.log(options);
-    return this.http.post(this.apiBase+'reservations/arrived/' + id, options).map(res=>res.json());
+    return this.http.post(this.apiBase+'reservations/arrived/' + id, null, options).map(res=>res.json());
   }
 
 
