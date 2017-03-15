@@ -28,14 +28,20 @@ export class RoomEditComponent implements OnInit {
     this.room.Spaces.forEach((cSpace)=>{
       this.spaces.push(cSpace);
       this.generateObjects(cSpace);
+      this.space = cSpace;
     })
   }
 
-  updateObject(id, objectName){
+  updateObject(id, objectName, minPers, pers, enabled){
     var object = document.getElementById(id);
     //object.style.backgroundColor = "red";
-   // object.setAttribute('id', objectName);
-    object.textContent = objectName;
+    object.setAttribute('id', objectName);
+    object.setAttribute('minPers', minPers);
+    object.setAttribute('numPers', pers);
+    object.setAttribute('enabled', enabled);
+    object.textContent = this.space.Name + "(" + this.space.Persons + "pers.)"
+      + " min: " + this.space.MinPersons + "pers.";
+    this.space.oldName = this.space.Name;
     //object.textContent = "test";
   }
 
@@ -53,7 +59,9 @@ export class RoomEditComponent implements OnInit {
 
     objectToDrag.style.left = space.X + "px";
     objectToDrag.style.top = space.Y + "px";
+    space.oldName = space.Name;
       objectToDrag.setAttribute('id', space.Name);
+      objectToDrag.setAttribute('oldId', space.Name);
     objectToDrag.setAttribute('minPers', space.MinPersons.toString());
     objectToDrag.setAttribute('numPers', space.Persons.toString());
     objectToDrag.setAttribute('enabled', space.Enabled.toString());

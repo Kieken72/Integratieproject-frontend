@@ -193,7 +193,7 @@ const appRoutes: Routes = [
     BookerReservationdetailComponent,
     BookerMapComponent,
     PhonePipe,
-    RoomsListComponent
+    RoomsListComponent,
     PhonePipe,
     ReviewsComponent,
     MessagesComponent,

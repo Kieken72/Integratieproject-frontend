@@ -4,6 +4,7 @@ import {Newreservation} from "../../../../shared/model/newreservation";
  */
 export class Space{
   Id: number;
+  oldName: string;
   Name:string;
   Enabled: string;
   Persons: number;

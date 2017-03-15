@@ -74,7 +74,7 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-default" [disabled]="!newPoolForm.form.valid" data-dismiss="modal" id="updateObject" (click)="updateObject(space.Name, PoolName.value)">Wijzigen</button>
+            <button class="btn btn-default" [disabled]="!newPoolForm.form.valid" data-dismiss="modal" id="updateObject" (click)="updateObject(space.oldName, poolName.value, poolPersMin.value, poolPers.value, poolEnabled.value)">Wijzigen</button>
           </div>
         </div>
       </div>
