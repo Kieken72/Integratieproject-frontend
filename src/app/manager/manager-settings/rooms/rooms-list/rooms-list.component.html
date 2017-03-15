@@ -1,0 +1,24 @@
+
+<h3>Jouw branches</h3>
+
+
+<div *ngIf="branches!=null">
+
+  <div *ngFor="let branch of branches">
+    <div class="col-md-4">{{branch.Name}}</div>
+    <div class="col-md-8">
+      <button class="btn btn-default" [routerLink]="['../new', branch.Id]" > Nieuwe kamer </button>
+    </div>
+    <div *ngIf="rooms!=null">
+      <div *ngFor="let room of rooms">
+        <ul>
+
+          <div *ngIf="room.BranchId == branch.Id">
+            <li><a [routerLink]="['../edit', room.Id]">{{room.Name}} <b>{{room.Id}}</b></a></li>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>

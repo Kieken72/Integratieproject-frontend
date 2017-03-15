@@ -1,13 +1,91 @@
+
 <div *ngIf="room != null">
 <h1>Beheer je ruimte: {{room.Name}}</h1>
 
 
-  <h1>Alle spaces:</h1>
-    <div *ngFor="let space of room.Spaces">
-      {{space.Name}}
-    </div>
+  <div *ngFor="let space of room.Spaces">
+    <div id="{{space.Id}}" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">{{space.Name}} aanpassen</h4>
+          </div>
+          <div class="modal-body">
+            <form #newPoolForm="ngForm" class="form-horizontal">
+              <div class="form-group">
+                <label for="poolName" class="col-sm-3 control-label" id="lblPoolName">Baan naam:</label>
+                <div class="col-sm-9">
+                  <input class="form-control" id="poolName" required [(ngModel)]="space.Name" name="poolName" #poolName="ngModel" #PoolName/>
+                  <div *ngIf="poolName.errors && (poolName.dirty || poolName.touched)"
+                       class="alert alert-danger">
+                    <div [hidden]="!poolName.errors.required">
+                      Naam van de mag baan niet leeg zijn.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="poolPers" class="col-sm-3 control-label" id="lblPoolPers">Aantal personen:</label>
+                <div class="col-sm-9">
+                  <select required [(ngModel)]="space.Persons" name="poolPers" #poolPers="ngModel" #PoolPers class="form-control" id="poolPers">
+                    <option *ngFor="let person of persons" [ngValue]="person">{{person}} personen</option>
+                  </select>
+                  <div *ngIf="poolPers.errors && (poolPers.dirty || poolPers.touched)"
+                       class="alert alert-danger">
+                    <div [hidden]="!poolPers.errors.required">
+                      Aantal personen mag niet leeg zijn.
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-  <div class="btn btn-default" id="updateBtn" >Wijzigingen opslagen</div>
+              <div class="form-group">
+                <label for="poolPersMin" class="col-sm-3 control-label" id="lblPoolPersMin">Aantal min personen:</label>
+                <div class="col-sm-9">
+                  <select required [(ngModel)]="space.MinPersons" name="poolPersMin" #poolPersMin="ngModel" #PoolPersMin class="form-control" id="poolPersMin">
+                    <option *ngFor="let person of persons" [ngValue]="person">{{person}} personen</option>
+                  </select>
+                  <div *ngIf="poolPersMin.errors && (poolPersMin.dirty || poolPersMin.touched)"
+                       class="alert alert-danger">
+                    <div [hidden]="!poolPersMin.errors.required">
+                      Aantal min personen mag niet leeg zijn.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="poolEnabled" class="col-sm-3 control-label" id="lblPoolEnabled">Beschikbaar:</label>
+                <div class="col-sm-9">
+                  <select required [(ngModel)]="space.Enabled" name="poolEnabled" #poolEnabled="ngModel" #PoolEnabled class="form-control" id="poolEnabled">
+                    <option  [ngValue]="true" >Ja</option>
+                    <option  [ngValue]="false" >Neen</option>
+                  </select>
+                  <div *ngIf="poolEnabled.errors && (poolEnabled.dirty || poolEnabled.touched)"
+                       class="alert alert-danger">
+                    <div [hidden]="!poolEnabled.errors.required">
+                      Er moet een keuze gemaakt worden.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" [disabled]="!newPoolForm.form.valid" data-dismiss="modal" id="updateObject" (click)="updateObject(space.Name, PoolName.value)">Wijzigen</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+<div class="btn btn-default" id="updateBtn" >Wijzigingen opslagen</div>
 
 
 <div class="col-md-9">
@@ -15,8 +93,6 @@
     <!--<div class="object" [ng2-draggable]="true"  (click)="click($event)"></div>-->
 
   </div>
-</div>
-
 </div>
 
 

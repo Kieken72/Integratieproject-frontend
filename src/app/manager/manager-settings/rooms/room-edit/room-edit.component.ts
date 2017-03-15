@@ -11,10 +11,11 @@ import {Space} from "../model/space";
 })
 export class RoomEditComponent implements OnInit {
   private room:Room;
-
+  private persons: number[];
   private spaces:Space[] = new Array();
+  private space: Space  = new Space();
 
-  constructor(private route: ActivatedRoute, private roomService:RoomService) { }
+  constructor(private route: ActivatedRoute, private roomService:RoomService) {    this.persons = [1,2,3,4,5,6,7,8,9,10,11,12,13,15]; }
 
   ngOnInit() {
     this.route.params
@@ -24,13 +25,18 @@ export class RoomEditComponent implements OnInit {
 
   whenRoomLoads(cRoom){
     this.room = cRoom;
-
     this.room.Spaces.forEach((cSpace)=>{
       this.spaces.push(cSpace);
       this.generateObjects(cSpace);
     })
+  }
 
-
+  updateObject(id, objectName){
+    var object = document.getElementById(id);
+    //object.style.backgroundColor = "red";
+   // object.setAttribute('id', objectName);
+    object.textContent = objectName;
+    //object.textContent = "test";
   }
 
   generateObjects(space:Space){
@@ -52,10 +58,13 @@ export class RoomEditComponent implements OnInit {
     objectToDrag.setAttribute('numPers', space.Persons.toString());
     objectToDrag.setAttribute('enabled', space.Enabled.toString());
 
+    //data-toggle="modal" data-target="#poolModal"
+
+    objectToDrag.setAttribute('data-toggle', 'modal');
+    objectToDrag.setAttribute('data-target', '#'+space.Id);
+
     objectToDrag.textContent = space.Name + "(" + space.Persons + "pers.)"
       + " min: " + space.MinPersons + "pers.";
-
-    //TO test:
 
     var startMousePos = {x: space.X, y: space.Y}
     var startDivPos = {x: space.X, y: space.Y}
@@ -94,6 +103,10 @@ export class RoomEditComponent implements OnInit {
       dragging = false;
     }
 
+    objectToDrag.ondblclick =  function(event){
+      alert('dubble');
+    }
+
     room.appendChild(objectToDrag);
 
     var saveBtn = document.getElementById('updateBtn');
@@ -116,6 +129,8 @@ export class RoomEditComponent implements OnInit {
         parseInt(objectToDrag.getAttribute('numPers')), parseInt(objectToDrag.getAttribute('minPers')),
         cRoom, parseInt(left), parseInt(top), spaceType ).subscribe((data)=>console.log(data) );
     });
+
+
   }
 
 

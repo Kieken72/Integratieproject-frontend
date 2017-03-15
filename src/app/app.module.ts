@@ -65,6 +65,7 @@ import { BookerMapComponent } from './booker/booker-map/booker-map.component';
 import {ManagerService} from "./manager/manager.service";
 import {RoomService} from "./shared/room.service";
 import { PhonePipe } from './shared/phone.pipe';
+import { RoomsListComponent } from './manager/manager-settings/rooms/rooms-list/rooms-list.component';
 
 const appRoutes: Routes = [
 
@@ -101,6 +102,7 @@ const appRoutes: Routes = [
       { path: 'rooms', component: RoomsComponent,  children:[
         { path: 'new/:id', component: RoomNewComponent },
         { path: 'edit/:id', component: RoomEditComponent },
+        { path: 'list', component: RoomsListComponent},
         { path: '', redirectTo: 'new', pathMatch: 'full'},
       ]},
       { path: 'spaces', component: SpacesComponent, canActivate: [ManagerGuard], children:[
@@ -185,7 +187,8 @@ const appRoutes: Routes = [
     BookerReviewComponent,
     BookerReservationdetailComponent,
     BookerMapComponent,
-    PhonePipe
+    PhonePipe,
+    RoomsListComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
