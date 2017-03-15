@@ -191,8 +191,6 @@ const appRoutes: Routes = [
     PhonePipe,
     ReviewsComponent,
     MessagesComponent,
-    MessagesComponent,
-    ReviewsComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
