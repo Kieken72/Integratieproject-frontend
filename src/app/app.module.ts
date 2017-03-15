@@ -65,8 +65,8 @@ import { BookerMapComponent } from './booker/booker-map/booker-map.component';
 import {ManagerService} from "./manager/manager.service";
 import {RoomService} from "./shared/room.service";
 import { PhonePipe } from './shared/phone.pipe';
-import { ReviewsComponent } from './manager/manager-messages/reviews/reviews.component';
-import { MessagesComponent } from './manager/manager-messages/messages/messages.component';
+//import { ReviewsComponent } from './manager/manager-messages/reviews/reviews.component';
+//import { MessagesComponent } from './manager/manager-messages/messages/messages.component';
 
 const appRoutes: Routes = [
 
@@ -189,8 +189,8 @@ const appRoutes: Routes = [
     BookerReservationdetailComponent,
     BookerMapComponent,
     PhonePipe,
-    ReviewsComponent,
-    MessagesComponent
+    //ReviewsComponent,
+    //MessagesComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
