@@ -29,7 +29,7 @@ import { LoggedInGuard } from "./shared/logged-in.guard";
 import { Typeahead } from "ng2-typeahead";
 import {
   AlertModule, TimepickerModule, DatepickerModule, TabsModule, ModalModule, AccordionModule,
-  TooltipModule, CarouselModule
+  TooltipModule, CarouselModule, PopoverModule
 } from "ng2-bootstrap";
 import { AccountComponent } from './account/account.component';
 import { AccountDetailComponent } from './account/account-detail/account-detail.component';
@@ -66,6 +66,8 @@ import {ManagerService} from "./manager/manager.service";
 import {RoomService} from "./shared/room.service";
 import { PhonePipe } from './shared/phone.pipe';
 import { RoomsListComponent } from './manager/manager-settings/rooms/rooms-list/rooms-list.component';
+//import { ReviewsComponent } from './manager/manager-messages/reviews/reviews.component';
+//import { MessagesComponent } from './manager/manager-messages/messages/messages.component';
 
 const appRoutes: Routes = [
 
@@ -84,11 +86,11 @@ const appRoutes: Routes = [
     { path: 'messages', component: ManagerMessagesComponent,  canActivate:[LoggedInGuard] },
     { path: 'guests', component: ManagerGuestsComponent,  canActivate:[ManagerGuard] },
     { path: 'statistics', component: ManagerStatisticsComponent,  canActivate:[ManagerGuard] },
-    { path: 'company', component: CompanyComponent,  canActivate:[ManagerGuard], children:[
-      { path: "list" , component: CompanyListComponent, canActivate: [ManagerGuard] },
-      { path: 'edit/:id', component: CompanyEditComponent,  canActivate:[ManagerGuard] },
-      { path: 'detail/:id', component: CompanyDetailComponent,  canActivate:[ManagerGuard] },
-      { path: 'new', component: CompanyNewComponent,  canActivate:[ManagerGuard] },
+    { path: 'company', component: CompanyComponent,  canActivate:[LoggedInGuard], children:[
+      { path: "list" , component: CompanyListComponent, canActivate: [LoggedInGuard] },
+      { path: 'edit/:id', component: CompanyEditComponent,  canActivate:[LoggedInGuard] },
+      { path: 'detail/:id', component: CompanyDetailComponent,  canActivate:[LoggedInGuard] },
+      { path: 'new', component: CompanyNewComponent,  canActivate:[LoggedInGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
     { path: 'branch', component: BranchComponent,  canActivate:[LoggedInGuard], children:[
@@ -137,6 +139,7 @@ const appRoutes: Routes = [
      AccordionModule.forRoot(),
      TooltipModule.forRoot(),
      CarouselModule.forRoot(),
+     PopoverModule.forRoot(),
      AgmCoreModule.forRoot({
        apiKey: 'AIzaSyCiJDhAZiQWh-hTj-EBeDB7YR9EXmijx9g'
      }),
@@ -189,6 +192,9 @@ const appRoutes: Routes = [
     BookerMapComponent,
     PhonePipe,
     RoomsListComponent
+    PhonePipe,
+    //ReviewsComponent,
+    //MessagesComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },

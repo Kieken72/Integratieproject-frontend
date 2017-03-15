@@ -47,7 +47,7 @@
                 <td>{{reservation.DateTime | date: 'shortTime'}}</td>
                 <td><a [routerLink]="['../../booker/reservation/' , reservation.Id]">Berichten <span class="badge">{{reservation.Messages.length}}</span></a></td>
                 <td >
-                  <button *ngIf="!reservation.Passed" class="btn btn-default" (click)="cancelReservation(reservation.Id)" id="btnAnnuleer">Annuleer</button>
+                  <button *ngIf="!reservation.Passed && !reservation.Cancelled" class="btn btn-default" (click)="cancelReservation(reservation.Id)" id="btnAnnuleer">Annuleer</button>
                 </td>
               </tr>
             </tbody>

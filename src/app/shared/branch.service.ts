@@ -50,7 +50,7 @@ export class BranchService {
   }
 
   public putBranch (_id: number,_name:string,_street:string, _streetNumber:string, _box:string,_cityId:string
-    ,_branchePhoneNumber:string, _brancheEmail:string, _branchDescription:string,_branchAdditionalInfo:AdditionalInfo[],_branchOpeningHours: OperationHour[]){
+    ,_branchePhoneNumber:string, _brancheEmail:string, _branchDescription:string){
     //let cityids = _cityId.split(":");
     this.branchToPut.Id = _id;
     this.branchToPut.Name = _name;
@@ -61,14 +61,29 @@ export class BranchService {
     this.branchToPut.Email = _brancheEmail;
     this.branchToPut.PhoneNumber = _branchePhoneNumber;
     this.branchToPut.Description= _branchDescription;
-    this.branchToPut.OpeningHours=_branchOpeningHours;
-    this.branchToPut.AdditionalInfos=_branchAdditionalInfo;
     console.log(this.branchToPut);
 
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let headers = new Headers();
+    headers.append('Content-Type','application/json')
     headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
     let options = new RequestOptions({ headers: headers });
-    return this.http.put(this.apiBase+'companies/'+_id, JSON.stringify(this.branchToPut), options).map((res:Response)=>res);
+    return this.http.put(this.apiBase+'branches/'+_id, JSON.stringify(this.branchToPut), options).map((res:Response)=>res);
+  }
+
+  putAdditionalInfo(id: number,additionalInfo:AdditionalInfo[]){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json')
+    headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(this.apiBase+'branches/additionalinfo/'+id, JSON.stringify(additionalInfo), options).map((res:Response)=>res);
+  }
+
+  putOpeningHours(id: number,openhours: OperationHour[]){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json')
+    headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(this.apiBase+'branches/operationhours/'+id, JSON.stringify(openhours), options).map((res:Response)=>res);
   }
 
   getBranch(number: number) {

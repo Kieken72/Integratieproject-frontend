@@ -3,6 +3,19 @@
   -LIJST + BEELD</alert>
 
 <h2>{{managerService.branchId}}</h2>
+
+<div>
+  <div class="btn-group">
+    <button type="button" class="btn btn-default" (click)="removeDay()"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
+    <button type="button" class="btn btn-success" (click)="open()">{{ date | date:'dd-MMMM-yyyy' }}</button>
+    <button type="button" class="btn btn-default" (click)="addDay()"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+  </div>
+  <button type="button" class="btn btn-default" (click)="today()">Vandaag</button>
+  <ul class="datepicker-ul" role="menu" *ngIf="opened">
+    <datepicker [(ngModel)]="date" [minDate]="minDate" [showWeeks]="false" (selectionDone)="onSelectionDone($event)"></datepicker>
+  </ul>
+  <p></p>
+</div>
 <tabset>
   <tab heading='Per Uur'>
     <h3>18:00</h3>

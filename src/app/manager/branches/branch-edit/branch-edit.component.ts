@@ -67,9 +67,15 @@ export class BranchEditComponent implements OnInit {
   editBranch(){
     this.branchService.putBranch(
       this.branch.Id, this.branch.Name, this.branch.Street, this.branch.Number, this.branch.Box,
-      this.branch.CityId, this.branch.PhoneNumber, this.branch.Email,this.branch.Description,this.branch.AdditionalInfos,this.branch.OpeningHours) ;
+      this.branch.CityId, this.branch.PhoneNumber, this.branch.Email,this.branch.Description).subscribe((data)=>console.log(data)) ;
   }
 
+  editAdditionalInfo(){
+    this.branchService.putAdditionalInfo(this.branch.Id,this.branch.AdditionalInfos).subscribe((data)=>console.log(data));
+  }
+  editOpeningHours(){
+    this.branchService.putOpeningHours(this.branch.Id,this.branch.OpeningHours).subscribe();
+  }
   removeOperationHour(entity){
     this.branch.OpeningHours = this.branch.OpeningHours.filter(item => item !== entity);
   }
