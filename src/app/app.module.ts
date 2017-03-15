@@ -190,7 +190,9 @@ const appRoutes: Routes = [
     BookerMapComponent,
     PhonePipe,
     ReviewsComponent,
-    MessagesComponent
+    MessagesComponent,
+    MessagesComponent,
+    ReviewsComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
