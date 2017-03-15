@@ -92,6 +92,7 @@ export class UserService{
     //let roles = this.getRoles();
     //return this.checkRoles(roles);
   }
+
   checkRoles(roles){
     var _roles = JSON.parse(roles);
     if(_roles !=null){
@@ -105,4 +106,22 @@ export class UserService{
 
   }
 
+  postFavorite(id:number){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', 'Bearer '+authToken);
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.apiBase+'accounts/favorite/'+id, JSON.stringify(id), options).map((res:Response)=>res.json());
+
+  }
+  deleteFavorite(id:number){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', 'Bearer '+authToken);
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.delete(this.apiBase+'accounts/favorite/'+id, options).map((res:Response)=>res.json());
+
+  }
 }

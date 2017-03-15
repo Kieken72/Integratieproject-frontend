@@ -13,6 +13,8 @@ import {Newreservation} from "../../shared/model/newreservation";
 import {DisplayFacility} from "../../shared/model/additional-info";
 import {DisplayOperationHour} from "../../shared/model/operationhour";
 import {FacebookService, FacebookInitParams} from "ng2-facebook-sdk";
+import {ProfileService} from "../../account/shared/profile.service";
+import {User} from "../../account/account-detail/model/user";
 
 @Component({
   selector: 'app-booker-detail',
@@ -28,7 +30,7 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
   private operationHours:DisplayOperationHour[];
 
   private isLogged:boolean;
-
+  private isFavorite:boolean= false;
   private reservationResponse: Branch;
   private paymentFacilities: DisplayFacility[];
   private otherFacilities: DisplayFacility[];
@@ -36,6 +38,7 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
   private reservation: Reservation;
   public CheckMessage = CheckMessage;
   private reservationCount: number;
+  private user: User;
 
   private latitude : any;
   private longitude: any;
@@ -44,6 +47,7 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
     private searchService: SearchService,
     private branchService: BranchService,
     private userService: UserService,
+    private profileService: ProfileService,
     private reservationService: ReservationService,
     private route: ActivatedRoute,
     private location: Location,
@@ -66,8 +70,21 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
 
     this.isLogged = this.userService.isLoggedIn();
 
+
+  }
+  getUserProfile(){
+    this.profileService.getProfile().subscribe(data=>(this.getUserFavorite(data)));
   }
 
+  getUserFavorite(user:any){
+    user.Favorites.forEach((fav)=>{
+      if(this.isFavorite == false){
+          if(fav.Id == this.branch.Id){
+            this.isFavorite=true;
+          }
+        }
+      })
+  }
   getCoordinates(branch:Branch){
     this.branchService.getCoordinates(branch).subscribe((data)=>this.setCoordinates(data))
   }
@@ -87,7 +104,9 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
     var good = this.branch.Reviews.filter(e=>e.Result).length;
     var total = this.branch.Reviews.length;
     this.reservationCount = good/total*5;
+    this.getUserProfile();
     this.getCoordinates(this.branch);
+
   }
   private dateChanged(newDate) {
     this.search.date= new Date(newDate);
@@ -140,5 +159,16 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
       method: 'share',
       href: 'https://integratieproject.herokuapp.com/booker/detail/'+this.branch.Id
     });
+  }
+
+
+  setFavorite(){
+    this.userService.postFavorite(this.branch.Id)
+      .subscribe(data =>console.log(data),error=>console.log(error),()=>this.isFavorite=true);
+  }
+
+  removeFavorite(){
+    this.userService.deleteFavorite(this.branch.Id)
+      .subscribe(data =>console.log(data),error=>console.log(error),()=>this.isFavorite=false);
   }
 }

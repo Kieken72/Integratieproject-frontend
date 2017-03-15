@@ -48,7 +48,8 @@
 
   </div>
   <div class="col-md-4">
-    <button class="btn btn-default">favoriet</button>
+    <button *ngIf="isLogged && !isFavorite" class="btn btn-default" (click)="setFavorite()"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+    <button *ngIf="isLogged && isFavorite" class="btn btn-default" (click)="removeFavorite()"><i class="fa fa-heart" aria-hidden="true"></i></button>
     <div class="row">
     <div class="form-horizontal well col-md-12">
       <h3>Reserveren via Leisurebooker</h3>
