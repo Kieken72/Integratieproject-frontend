@@ -27,6 +27,19 @@
         </div>
       </div>
     </div>
+
+    <div class="form-group">
+      <label for="accountPhoneNumber" class="col-sm-3 control-label" id="lblaccountPhoneNumber">Telefoonnummer:</label>
+      <div class="col-sm-3">
+        <input class="form-control" id="accountPhoneNumber" required [(ngModel)]="user.PhoneNumber" name="phoneNumber" #phoneNumber="ngModel" #PhoneNumber/>
+        <div *ngIf="phoneNumber.errors && (phoneNumber.dirty || phoneNumber.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!phoneNumber.errors.required">
+            Telefoonnummer mag niet leeg zijn.
+          </div>
+        </div>
+      </div>
+    </div>
   </form>
 
 
@@ -36,6 +49,48 @@
               (click)="editAccount()" id="btnSendAccount">Wijzig</button>
     </div>
   </div>
+
+  <br/><br/>
+
+  <form #passwordEditForm="ngForm" class="form-horizontal">
+    <div class="form-group">
+      <label for="OldPassword" class="col-sm-3 control-label" id="lblOldPassword">Huidig wachtwoord:</label>
+      <div class="col-sm-3">
+        <input type="password" class="form-control" id="OldPassword" required [(ngModel)]="OldPassword" name="oldPassword" #oldPassword="ngModel" />
+        <small [hidden]="oldPassword.valid || (oldPassword.pristine && !passwordEditForm.submitted)">
+          Huidig wachtwoord mag niet leeg zijn.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="NewPassword" class="col-sm-3 control-label" id="lblNewPassword">Nieuw wachtwoord:</label>
+      <div class="col-sm-3">
+        <input type="password" class="form-control" id="NewPassword" required [(ngModel)]="NewPassword" name="newPassword" #newPassword="ngModel" required validateEqual="confirmPassword" reverse="true" />
+        <small [hidden]="newPassword.valid || (newPassword.pristine && !passwordEditForm.submitted)">
+          Nieuw wachtwoord mag niet leeg zijn.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="ConfirmPassword" class="col-sm-3 control-label" id="lblConfirmPassword">Bevestig nieuw wachtwoord:</label>
+      <div class="col-sm-3">
+        <input type="password" class="form-control" id="ConfirmPassword" required [(ngModel)]="ConfirmPassword" name="confirmPassword" #confirmPassword="ngModel" required validateEqual="newPassword"/>
+        <small [hidden]="confirmPassword.valid ||  (confirmPassword.pristine && !passwordEditForm.submitted)">
+          Wachtwoord is niet hetzelfde.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <button class="btn btn-default" [disabled]="!passwordEditForm.form.valid"
+                (click)="editPassword()" id="btnChangePassword">Wijzig wachtwoord</button>
+      </div>
+    </div>
+
+  </form>
 
 
 </div>

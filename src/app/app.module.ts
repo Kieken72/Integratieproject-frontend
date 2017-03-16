@@ -69,6 +69,7 @@ import { ReviewsComponent } from './manager/manager-messages/reviews/reviews.com
 import { MessagesComponent } from './manager/manager-messages/messages/messages.component';
 import { RoomsListComponent } from './manager/manager-settings/rooms/rooms-list/rooms-list.component';
 import { SortPipe } from './shared/sort.pipe';
+import {EqualValidator} from "./account/account-edit/equal-validator";
 //import { ReviewsComponent } from './manager/manager-messages/reviews/reviews.component';
 //import { MessagesComponent } from './manager/manager-messages/messages/messages.component';
 
@@ -199,6 +200,7 @@ const appRoutes: Routes = [
     ReviewsComponent,
     MessagesComponent,
     SortPipe,
+    EqualValidator
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
