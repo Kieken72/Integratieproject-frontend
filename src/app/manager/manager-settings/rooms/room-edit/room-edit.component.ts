@@ -49,6 +49,7 @@ export class RoomEditComponent implements OnInit {
     var objectToDrag = document.createElement('div');
     var croomService = this.roomService;
     var cRoom = this.room.Id;
+    var allSpaces = this.spaces;
 
     if(space.Type == 0){
       objectToDrag.setAttribute('class', 'object');
@@ -132,9 +133,17 @@ export class RoomEditComponent implements OnInit {
       var top = objectToDrag.style.top
       top.substring(0, top.length-2);
 
-      croomService.putSpace(space.Id,objectToDrag.id, objectToDrag.getAttribute('enabled'),
-        parseInt(objectToDrag.getAttribute('numPers')), parseInt(objectToDrag.getAttribute('minPers')),
-        cRoom, parseInt(left), parseInt(top), spaceType ).subscribe((data)=>console.log(data) );
+
+      allSpaces.forEach((cSpace)=>{
+        if(cSpace.Id == space.Id){
+          croomService.putSpace(space.Id,objectToDrag.id, objectToDrag.getAttribute('enabled'),
+            parseInt(objectToDrag.getAttribute('numPers')), parseInt(objectToDrag.getAttribute('minPers')),
+            cRoom, parseInt(left), parseInt(top), spaceType ).subscribe((data)=>console.log(data) );
+
+          alert(objectToDrag.id + "is aangepast!");
+        }
+      });
+
     });
 
 

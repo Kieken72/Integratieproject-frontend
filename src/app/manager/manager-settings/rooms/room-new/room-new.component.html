@@ -1,5 +1,5 @@
 
- <h1>Beheer je ruimte</h1>
+ <h1>Nieuwe ruimte</h1>
  <div class="form-group">
    <label for="roomEnabled" class="col-sm-3 control-label" id="lblRoomEnabled">Beschikbaar:</label>
    <div class="col-sm-9">
@@ -15,10 +15,14 @@
      <input class="form-control" id="roomName" required [(ngModel)]="room.name" name="roomName" #roomName="ngModel" #RoomName/>
    </div>
  </div>
- <div class="btn btn-default" data-toggle="modal" data-target="#poolModal" >Nieuwe baan</div>
- <div class="btn btn-default" data-toggle="modal" data-target="#tableModal">Nieuwe tafel</div>
- <div class="btn btn-default" (click)="newRoom()" >Maak kamer</div>
- <div class="btn btn-default" id="saveBtn" >Slaag kamer op</div>
+ <div class="form-group">
+   <div class="btn btn-default" (click)="newRoom()" >Maak kamer</div>
+ </div>
+ <h1>Beheer je nieuwe ruimte</h1>
+ <div class="btn btn-default disabled" data-toggle="modal" data-target="#poolModal" id="btnNewPool" >Nieuwe baan</div>
+ <div class="btn btn-default disabled" data-toggle="modal" data-target="#tableModal" id="btnNewTable">Nieuwe tafel</div>
+
+ <div class="btn btn-default disabled" id="saveBtn" >Slaag kamer op</div>
 
 
   <div class="col-md-9">

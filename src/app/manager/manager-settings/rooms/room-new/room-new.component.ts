@@ -36,6 +36,12 @@ export class RoomNewComponent implements OnInit {
   newRoom(){
     var postedRoom;
     this.roomService.postRoom(this.branch.Id, this.room.enabled, "60", "70", this.room.name).subscribe((data)=>this.postedRoom = data );
+    var buttonNewPool = document.getElementById('btnNewPool');
+    var buttonNewTable = document.getElementById('btnNewTable');
+    var buttonSave = document.getElementById('saveBtn');
+    buttonNewPool.setAttribute('class', 'btn btn-default');
+    buttonNewTable.setAttribute('class', 'btn btn-default');
+    buttonSave.setAttribute('class', 'btn btn-default');
   }
 
   add(event) {
@@ -113,7 +119,7 @@ export class RoomNewComponent implements OnInit {
           + " Beschikbaar: " + objectToDrag.getAttribute('enabled')
           + "Room enabled" + cRoom.enabled
           + "Room naam" + cRoom.name);*/
-        alert(cRoom);
+        alert(objectToDrag.id + " is aangemaakt!");
 
       var spaceType;
       if(objectToDrag.getAttribute('class') == "object"){
