@@ -28,20 +28,20 @@ export class RoomEditComponent implements OnInit {
     this.room.Spaces.forEach((cSpace)=>{
       this.spaces.push(cSpace);
       this.generateObjects(cSpace);
-      this.space = cSpace;
+      //this.space = cSpace;
     })
   }
 
-  updateObject(id){
-    var object = document.getElementById(id);
-    object.setAttribute('id', this.space.Name);
-    object.setAttribute('minPers', this.space.MinPersons.toString());
-    object.setAttribute('numPers', this.space.Persons.toString());
-    object.setAttribute('enabled', this.space.Enabled);
-    object.textContent = this.space.Name + "(" + this.space.Persons + "pers.)"
-      + " min: " + this.space.MinPersons + "pers.";
-    this.space.oldName = this.space.Name;
-
+  updateObject(cSpace){
+    var object = document.getElementById(cSpace.oldName);
+    object.setAttribute('id', cSpace.Name);
+    object.setAttribute('oldid', cSpace.oldName);
+    object.setAttribute('minPers', cSpace.MinPersons.toString());
+    object.setAttribute('numPers', cSpace.Persons.toString());
+    object.setAttribute('enabled', cSpace.Enabled);
+    object.textContent = cSpace.Name + "(" + cSpace.Persons + "pers.)"
+      + " min: " + cSpace.MinPersons + "pers.";
+    cSpace.oldName = cSpace.Name;
   }
 
   generateObjects(space:Space){
@@ -49,6 +49,7 @@ export class RoomEditComponent implements OnInit {
     var objectToDrag = document.createElement('div');
     var croomService = this.roomService;
     var cRoom = this.room.Id;
+    var allSpaces = this.spaces;
 
     if(space.Type == 0){
       objectToDrag.setAttribute('class', 'object');
@@ -132,9 +133,17 @@ export class RoomEditComponent implements OnInit {
       var top = objectToDrag.style.top
       top.substring(0, top.length-2);
 
-      croomService.putSpace(space.Id,objectToDrag.id, objectToDrag.getAttribute('enabled'),
-        parseInt(objectToDrag.getAttribute('numPers')), parseInt(objectToDrag.getAttribute('minPers')),
-        cRoom, parseInt(left), parseInt(top), spaceType ).subscribe((data)=>console.log(data) );
+
+      allSpaces.forEach((cSpace)=>{
+        if(cSpace.Id == space.Id){
+          croomService.putSpace(space.Id,objectToDrag.id, objectToDrag.getAttribute('enabled'),
+            parseInt(objectToDrag.getAttribute('numPers')), parseInt(objectToDrag.getAttribute('minPers')),
+            cRoom, parseInt(left), parseInt(top), spaceType ).subscribe((data)=>console.log(data) );
+
+          alert(objectToDrag.id + "is aangepast!");
+        }
+      });
+
     });
 
 

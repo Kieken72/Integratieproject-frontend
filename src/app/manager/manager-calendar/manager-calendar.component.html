@@ -22,38 +22,15 @@
     <div class="table-responsive">
       <table class="table table-striped">
         <tbody>
-          <tr>
-            <th scope="row">Naam reservé</th>
-              <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 5</td>
-              <td>BAAN</td>
-              <td>ROOM</td>
-              <td>'STATUS'</td>
-              <td>GERESERVEERD OP</td>
-          </tr>
-          <tr>
-            <th scope="row">Naam reservé</th>
-            <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 5</td>
-            <td>BAAN</td>
-            <td>ROOM</td>
-            <td>'STATUS'</td>
-            <td>GERESERVEERD OP</td>
-          </tr>
-          <tr>
-
-            <th scope="row">Naam reservé</th>
-            <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 5</td>
-            <td>BAAN</td>
-            <td>ROOM</td>
-            <td>'STATUS'</td>
-            <td>GERESERVEERD OP</td>
-          </tr>
-          <tr *ngFor="let reservation of reservations" (click)="showModal(reservation.Id)">
-            <th scope="row">{{reservation.User.Name}} {{reservation.User.Lastname}}</th>
+        <tr *ngIf="reservations?.length == 0"><td>Geen reservaties beschikbaar.</td></tr>
+          <tr *ngFor="let reservation of reservations | sort: 'DateTime'" (click)="showModal(reservation.Id)">
+            <th scope="row">{{reservation.DateTime | date: 'shortTime'}}</th>
+            <td>{{reservation.User.Name}} {{reservation.User.Lastname}}</td>
             <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{reservation.AmountOfPersons}}</td>
             <td>{{reservation.SpaceId}}</td>
             <td></td>
             <td>{{reservation.Cancelled}}</td>
-            <td>{{reservation.DateTime | date}}</td>
+            <td>{{reservation.CreatedOn | date}}</td>
           </tr>
         </tbody>
       </table>
