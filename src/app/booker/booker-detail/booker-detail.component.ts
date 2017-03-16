@@ -164,11 +164,11 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
 
   setFavorite(){
     this.userService.postFavorite(this.branch.Id)
-      .subscribe(data =>console.log(data),error=>console.log(error),()=>this.isFavorite=true);
+      .subscribe(res=>this.isFavorite=true);
   }
 
   removeFavorite(){
     this.userService.deleteFavorite(this.branch.Id)
-      .subscribe(data =>console.log(data),error=>console.log(error),()=>this.isFavorite=false);
+      .subscribe(res=>this.isFavorite=false);
   }
 }

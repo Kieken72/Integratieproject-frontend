@@ -112,7 +112,7 @@ export class UserService{
     headers.append('Authorization', 'Bearer '+authToken);
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.apiBase+'accounts/favorite/'+id, JSON.stringify(id), options).map((res:Response)=>res.json());
+    return this.http.post(this.apiBase+'accounts/favorite/'+id, JSON.stringify(id), options).map((res:Response)=>res);
 
   }
   deleteFavorite(id:number){
@@ -121,7 +121,7 @@ export class UserService{
     headers.append('Authorization', 'Bearer '+authToken);
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.delete(this.apiBase+'accounts/favorite/'+id, options).map((res:Response)=>res.json());
+    return this.http.delete(this.apiBase+'accounts/favorite/'+id, options).map((res:Response)=>res);
 
   }
 }
