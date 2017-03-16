@@ -66,19 +66,18 @@ export class ManagerCalendarComponent implements OnInit {
   }
   public addDay():void{
     let newDate = new Date();
-    newDate.setDate(this.date.getDate()+1);
+    newDate.setTime(this.date.getTime()+(1000 * 60 * 60 * 24));
     this.date = newDate
     this.refreshReservations();
   }
   public removeDay():void{
     let newDate = new Date();
-    newDate.setDate(this.date.getDate()-1);
+    newDate.setTime(this.date.getTime()-(1000 * 60 * 60 * 24));
     this.date = newDate
     this.refreshReservations();
   }
   public today(){
     let newDate = new Date();
-    newDate.setDate(this.date.getDate());
     this.date = newDate
     this.refreshReservations();
   }
@@ -87,4 +86,5 @@ export class ManagerCalendarComponent implements OnInit {
     this.close();
     this.refreshReservations();
   }
+
 }
