@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ManagerService} from "../manager.service";
+import {ShortUser} from "../../shared/model/short-user";
 
 @Component({
   selector: 'app-manager-guests',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagerGuestsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private managerService:ManagerService) { }
 
+  private users:ShortUser[];
   ngOnInit() {
+
+    this.managerService.getGuestsByBranch(this.managerService.branchId).subscribe(data => this.getUsers(data));
   }
 
+  getUsers(users:ShortUser[]){
+    this.users = users;
+    console.log(this.users)
+  }
 }

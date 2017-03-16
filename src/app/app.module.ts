@@ -87,7 +87,7 @@ const appRoutes: Routes = [
     { path: 'dashboard', component: ManagerDashboardComponent, canActivate:[LoggedInGuard] },
     { path: 'calendar', component: ManagerCalendarComponent, canActivate:[LoggedInGuard] },
     { path: 'messages', component: ManagerMessagesComponent,  canActivate:[LoggedInGuard] },
-    { path: 'guests', component: ManagerGuestsComponent,  canActivate:[ManagerGuard] },
+    { path: 'guests', component: ManagerGuestsComponent,  canActivate:[LoggedInGuard] },
     { path: 'statistics', component: ManagerStatisticsComponent,  canActivate:[ManagerGuard] },
     { path: 'company', component: CompanyComponent,  canActivate:[LoggedInGuard], children:[
       { path: "list" , component: CompanyListComponent, canActivate: [LoggedInGuard] },

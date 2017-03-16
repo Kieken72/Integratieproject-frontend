@@ -21,7 +21,7 @@
               <th scope="row">{{message.User.Lastname}} {{message.User.Name}} </th>
               <td>Bericht bij reservering</td>
               <td><a [routerLink]="['../../booker/reservation/', message.ReservationId]">{{message.ReservationId}}</a></td>
-              <td>{{message.DateTime}}</td>
+              <td>{{message.DateTime | date:'ShortDate'}}</td>
             </tr>
 
             </tbody>
