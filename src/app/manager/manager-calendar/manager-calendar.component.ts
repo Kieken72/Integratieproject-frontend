@@ -3,6 +3,7 @@ import {ReservationService} from "../../shared/reservation.service";
 import {Reservation} from "../../shared/model/reservation";
 import {ManagerService} from "../manager.service";
 import {ModalDirective} from "ng2-bootstrap";
+import {ShortUser} from "../../shared/model/short-user";
 
 @Component({
   selector: 'app-manager-calendar',
@@ -16,6 +17,7 @@ export class ManagerCalendarComponent implements OnInit {
 
   private reservations:Reservation[];
   private date:Date = new Date();
+  private users: ShortUser[];
 
   private currentReservation:Reservation;
   constructor(private reservationService:ReservationService, private managerService: ManagerService) { }
@@ -23,8 +25,15 @@ export class ManagerCalendarComponent implements OnInit {
   ngOnInit() {
     console.log(this.managerService.branchId);
     this.refreshReservations();
+    this.managerService.getGuestsByBranch(this.managerService.branchId).subscribe(data => this.getUsers(data));
 
   }
+
+  getUsers(users:ShortUser[]){
+    this.users = users;
+    console.log(this.users)
+  }
+
   refreshReservations(){
     console.log(this.date);
     this.reservationService.getReservationByBranch(this.managerService.branchId, this.date).subscribe(data=>this.setReservations(data));

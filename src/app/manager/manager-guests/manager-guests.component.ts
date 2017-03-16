@@ -13,7 +13,6 @@ export class ManagerGuestsComponent implements OnInit {
 
   private users:ShortUser[];
   ngOnInit() {
-
     this.managerService.getGuestsByBranch(this.managerService.branchId).subscribe(data => this.getUsers(data));
   }
 
