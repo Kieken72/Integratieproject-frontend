@@ -1,7 +1,7 @@
 
 <div *ngIf="room != null">
 <h1>Beheer je ruimte: {{room.Name}}</h1>
-
+  <div class="btn btn-default" data-toggle="modal" data-target="#poolModal" id="btnNewPool" >Nieuwe baan</div>
 
   <div *ngFor="let space of room.Spaces">
     <div id="{{space.Id}}" class="modal fade" role="dialog">
@@ -95,5 +95,81 @@
   </div>
 </div>
 
+
+<div id="poolModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Nieuwe baan</h4>
+      </div>
+      <div class="modal-body">
+        <form #newPoolForm="ngForm" class="form-horizontal">
+          <div class="form-group">
+            <label for="newpoolName" class="col-sm-3 control-label" id="lblnewPoolName">Baan naam:</label>
+            <div class="col-sm-9">
+              <input class="form-control" id="newpoolName" required [(ngModel)]="space.Name" name="newpoolName" #newpoolName="ngModel" #newPoolName/>
+              <div *ngIf="newpoolName.errors && (newpoolName.dirty || newpoolName.touched)"
+                   class="alert alert-danger">
+                <div [hidden]="!newpoolName.errors.required">
+                  Naam van de mag baan niet leeg zijn.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="newpoolPers" class="col-sm-3 control-label" id="lblnewPoolPers">Aantal personen:</label>
+            <div class="col-sm-9">
+              <select required [(ngModel)]="space.Persons" name="newpoolPers" #newpoolPers="ngModel" #newPoolPers class="form-control" id="newpoolPers">
+                <option *ngFor="let person of persons" [ngValue]="person">{{person}} personen</option>
+              </select>
+              <div *ngIf="newpoolPers.errors && (newpoolPers.dirty || newpoolPers.touched)"
+                   class="alert alert-danger">
+                <div [hidden]="!newpoolPers.errors.required">
+                  Aantal personen mag niet leeg zijn.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="newpoolPersMin" class="col-sm-3 control-label" id="lblnewPoolPersMin">Aantal min personen:</label>
+            <div class="col-sm-9">
+              <select required [(ngModel)]="space.MinPersons" name="newpoolPersMin" #newpoolPersMin="ngModel" #newPoolPersMin class="form-control" id="newpoolPersMin">
+                <option *ngFor="let person of persons" [ngValue]="person">{{person}} personen</option>
+              </select>
+              <div *ngIf="newpoolPersMin.errors && (newpoolPersMin.dirty || newpoolPersMin.touched)"
+                   class="alert alert-danger">
+                <div [hidden]="!newpoolPersMin.errors.required">
+                  Aantal min personen mag niet leeg zijn.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="newpoolEnabled" class="col-sm-3 control-label" id="lblnewPoolEnabled">Beschikbaar:</label>
+            <div class="col-sm-9">
+              <select required [(ngModel)]="space.Enabled" name="newpoolEnabled" #newpoolEnabled="ngModel" #newPoolEnabled class="form-control" id="newpoolEnabled">
+                <option  [ngValue]="true" >Ja</option>
+                <option  [ngValue]="false" >Neen</option>
+              </select>
+              <div *ngIf="newpoolEnabled.errors && (newpoolEnabled.dirty || newpoolEnabled.touched)"
+                   class="alert alert-danger">
+                <div [hidden]="!newpoolEnabled.errors.required">
+                  Er moet een keuze gemaakt worden.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" [disabled]="!newPoolForm.form.valid" data-dismiss="modal" id="1" (click)="add($event)">Nieuwe baan</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 

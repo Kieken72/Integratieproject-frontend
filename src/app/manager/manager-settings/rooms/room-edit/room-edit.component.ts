@@ -15,6 +15,7 @@ export class RoomEditComponent implements OnInit {
   private spaces:Space[] = new Array();
   private space: Space  = new Space();
 
+
   constructor(private route: ActivatedRoute, private roomService:RoomService) {    this.persons = [1,2,3,4,5,6,7,8,9,10,11,12,13,15]; }
 
   ngOnInit() {
@@ -134,20 +135,114 @@ export class RoomEditComponent implements OnInit {
       top.substring(0, top.length-2);
 
 
-      allSpaces.forEach((cSpace)=>{
-        if(cSpace.Id == space.Id){
           croomService.putSpace(space.Id,objectToDrag.id, objectToDrag.getAttribute('enabled'),
             parseInt(objectToDrag.getAttribute('numPers')), parseInt(objectToDrag.getAttribute('minPers')),
             cRoom, parseInt(left), parseInt(top), spaceType ).subscribe((data)=>console.log(data) );
 
           alert(objectToDrag.id + "is aangepast!");
-        }
-      });
+
+
+
+
 
     });
 
 
   }
+
+  add(event) {
+    var croomService = this.roomService;
+    var target = event.target;
+    var id = target.attributes.id.value;
+    var cRoom = this.room.Id;
+    if(id == 1){
+      var objectToDrag = document.createElement('div');
+      objectToDrag.setAttribute('class', 'object');
+    }else{
+      var objectToDrag = document.createElement('div');
+      objectToDrag.setAttribute('class', 'object2');
+    }
+
+    objectToDrag.setAttribute('id', this.space.Name);
+    objectToDrag.setAttribute('minPers', this.space.MinPersons.toString());
+    objectToDrag.setAttribute('numPers', this.space.Persons.toString());
+    objectToDrag.setAttribute('enabled', this.space.Enabled.toString());
+
+    var room = document.getElementById('room');
+    room.appendChild(objectToDrag);
+
+    var startMousePos = {x: 0, y: 0}
+    var startDivPos = {x: 0, y: 0}
+    var dragging = false;
+    var outOfArea = false;
+
+    objectToDrag.onmousedown = function (event) {
+      startMousePos.x = event.clientX;
+      startMousePos.y = event.clientY;
+      startDivPos.x = objectToDrag.offsetLeft;
+      startDivPos.y = objectToDrag.offsetTop;
+      dragging = true;
+    }
+
+    objectToDrag.textContent = this.space.Name + "(" + this.space.Persons + "pers.)"
+      + " min: " + this.space.MinPersons + "pers.";
+
+    objectToDrag.onmousemove = function (event) {
+      if (dragging) {
+        let deltaX = event.clientX - startMousePos.x;
+        let deltaY = event.clientY - startMousePos.y;
+
+        objectToDrag.style.left = (deltaX + startDivPos.x) + "px";
+        objectToDrag.style.top = (deltaY + startDivPos.y) + "px";
+
+        var parentRect = room.getBoundingClientRect();
+        var childRect = objectToDrag.getBoundingClientRect();
+        if (!(parentRect.left <= childRect.left && parentRect.right >= childRect.right && parentRect.bottom >= childRect.bottom && parentRect.top <= childRect.top)) {
+          outOfArea = true;
+          objectToDrag.style.backgroundColor = "red";
+        }else{
+          outOfArea = false;
+          objectToDrag.style.backgroundColor = "black";
+        }
+      }
+    }
+
+    objectToDrag.onmouseup = function (event) {
+      dragging = false;
+    }
+    var saveBtn = document.getElementById('updateBtn');
+    saveBtn.addEventListener('click',function(){
+      /*alert("Naam nieuwe baan: " +    objectToDrag.id
+       + " Linkse positie: "  + objectToDrag.style.left
+       + " Top positie: "  + objectToDrag.style.top
+       + " Min pers: " + objectToDrag.getAttribute('minPers')
+       + " Aantal pers: " + objectToDrag.getAttribute('numPers')
+       + " Beschikbaar: " + objectToDrag.getAttribute('enabled')
+       + "Room enabled" + cRoom.enabled
+       + "Room naam" + cRoom.name);*/
+      alert(objectToDrag.id + " is aangemaakt!");
+
+      var spaceType;
+      if(objectToDrag.getAttribute('class') == "object"){
+        spaceType = 0;
+      }else{
+        spaceType = 1;
+      }
+
+      var left = objectToDrag.style.left
+      left.substring(0, left.length-2);
+
+      var top = objectToDrag.style.top
+      top.substring(0, top.length-2);
+
+      croomService.postSpaces(objectToDrag.id, objectToDrag.getAttribute('enabled'),
+        parseInt(objectToDrag.getAttribute('numPers')), parseInt(objectToDrag.getAttribute('minPers')),
+        cRoom, parseInt(left), parseInt(top), spaceType ).subscribe((data)=>console.log(data) );
+
+
+    });
+  }
+
 
 
 }
