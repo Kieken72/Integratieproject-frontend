@@ -59,8 +59,11 @@ app-root, app-booker{
   border: solid 1px;
   background-color: black;
   position: absolute;
-  color: white;
+  color: black;
+  background-image: url("bowlingLane.jpg");
 }
+
+
 
 .object2{
   cursor: grab;
@@ -81,7 +84,9 @@ app-root, app-booker{
   border: solid 1px;
   background-color: black;
   position: absolute;
-  color: white;
+  color: black;
+  background-image: url("table.jpg");
+
 }
 /*Google Maps*/
 .sebm-google-map-container {
