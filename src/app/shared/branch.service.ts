@@ -87,7 +87,7 @@ export class BranchService {
   }
 
   getBranch(number: number) {
-    return this.http.get(this.apiBase+'branches/'+number).map(res => res.json());
+    return this.http.get(this.apiBase+'branches/'+number).map(res=>res.json());
   }
 
   public openingHours(branch:Branch){

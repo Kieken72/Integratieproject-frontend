@@ -29,7 +29,6 @@ export class BookerReviewComponent implements OnInit {
 
   getReservationId(number:number){
       return this.review.ReservationId = number;
-
   }
 
   postReview(text : string){

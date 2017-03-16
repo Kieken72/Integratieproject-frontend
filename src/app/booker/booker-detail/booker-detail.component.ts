@@ -121,11 +121,9 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
     date.setHours(this.search.time.getHours()+1);
     date.setMinutes(this.search.time.getMinutes());
     return date;
-
   }
 
   refreshPlace(){
-
     if(this.branch!=null){
       this.reservationResponse = null;
 
@@ -163,12 +161,10 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
 
 
   setFavorite(){
-    this.userService.postFavorite(this.branch.Id)
-      .subscribe(res=>this.isFavorite=true);
+    this.userService.postFavorite(this.branch.Id).subscribe(res=>this.isFavorite=true);
   }
 
   removeFavorite(){
-    this.userService.deleteFavorite(this.branch.Id)
-      .subscribe(res=>this.isFavorite=false);
+    this.userService.deleteFavorite(this.branch.Id).subscribe(res=>this.isFavorite=false);
   }
 }
