@@ -32,17 +32,16 @@ export class RoomEditComponent implements OnInit {
     })
   }
 
-  updateObject(id, objectName, minPers, pers, enabled){
+  updateObject(id){
     var object = document.getElementById(id);
-    //object.style.backgroundColor = "red";
-    object.setAttribute('id', objectName);
-    object.setAttribute('minPers', minPers);
-    object.setAttribute('numPers', pers);
-    object.setAttribute('enabled', enabled);
+    object.setAttribute('id', this.space.Name);
+    object.setAttribute('minPers', this.space.MinPersons.toString());
+    object.setAttribute('numPers', this.space.Persons.toString());
+    object.setAttribute('enabled', this.space.Enabled);
     object.textContent = this.space.Name + "(" + this.space.Persons + "pers.)"
       + " min: " + this.space.MinPersons + "pers.";
     this.space.oldName = this.space.Name;
-    //object.textContent = "test";
+
   }
 
   generateObjects(space:Space){
