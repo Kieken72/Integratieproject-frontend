@@ -1,32 +1,50 @@
-<div class="col-md-6">
-  <canvas baseChart
-          [data]="doughnutChartData"
-          [labels]="doughnutChartLabels"
-          [legend]="doughnutChartLegend"
-          [chartType]="doughnutChartType"
-          [colors] ="doughnutChartColor"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-</div>
+<tabset>
+  <tab heading='Klantentevredenheid'>
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Klantentevredenheid</h2>
+        <canvas baseChart
+                [data]="doughnutChartData"
+                [labels]="doughnutChartLabels"
+                [legend]="doughnutChartLegend"
+                [chartType]="doughnutChartType"
+                [colors] ="doughnutChartColor"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+      </div>
+    </div>
+  </tab>
+  <tab heading='Aantal Gasten'>
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Aantal Gasten</h2>
+        <canvas baseChart
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+                [colors] = "pieChartColor"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+      </div>
+    </div>
+  </tab>
 
-<div class="col-md-6">
-  <canvas baseChart
-          [datasets]="barChartData"
-          [labels]="barChartLabels"
-          [options]="barChartOptions"
-          [legend]="barChartLegend"
-          [chartType]="barChartType"
-          [colors] = "barChartColor"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-</div>
+  <tab heading='Reservaties per weekdag'>
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Reservaties per weekdag</h2>
+        <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"
+                [colors] = "barChartColor"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+      </div>
+    </div>
+  </tab>
 
-<div class="col-md-6">
-  <canvas baseChart
-          [data]="pieChartData"
-          [labels]="pieChartLabels"
-          [chartType]="pieChartType"
-          [colors] = "pieChartColor"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-</div>
+</tabset>
+
