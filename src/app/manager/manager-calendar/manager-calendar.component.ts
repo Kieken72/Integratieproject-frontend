@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ReservationService} from "../../shared/reservation.service";
 import {Reservation} from "../../shared/model/reservation";
-import {ManagerService} from "../manager.service";
+import {ManagerService} from "../shared/manager.service";
 import {ModalDirective} from "ng2-bootstrap";
 import {ShortUser} from "../../shared/model/short-user";
 

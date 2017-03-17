@@ -5,8 +5,11 @@ import {Http, Headers, RequestOptions} from "@angular/http";
 export class ManagerService {
 
   public branchId: number;
+  public companyId: number;
+
   constructor(private http:Http,@Inject('ApiBase') private apiBase:string) {
     this.branchId = 1;
+    this.companyId = 1;
   }
 
   getMessagesByBranch(branchId:number){
