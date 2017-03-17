@@ -2,7 +2,7 @@ import {Injectable, Inject} from "@angular/core";
 import {Http, Headers, RequestOptions, Response} from "@angular/http";
 import {Newreservation} from "./model/newreservation";
 import {Checkbranch} from "./model/checkbranch";
-import {Message} from "../booker/booker-reservationdetail/model/message";
+import {Message} from "../booker/shared/model/message";
 import {Review} from "./model/review";
 
 
