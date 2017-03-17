@@ -16,7 +16,7 @@
           <td>{{review.Text}}</td>
           <td><i class="float-xs-right fa"
                  [ngClass]="{'fa-thumbs-down': !review.Result, 'fa-thumbs-up': review.Result}"></i></td>
-          <td>{{review.DateTime | date:'shortDate'}}</td>
+          <td>{{review.DateTime | amTimeAgo }}</td>
         </tr>
         </tbody>
       </table>
