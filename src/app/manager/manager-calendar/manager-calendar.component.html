@@ -13,7 +13,7 @@
   </div>
   <button type="button" class="btn btn-default" (click)="today()">Vandaag</button>
 
-  <button type="button" class="btn btn-success" (click)="lgModal.show()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+  <!--<button type="button" class="btn btn-success" (click)="lgModal.show()"><i class="fa fa-plus" aria-hidden="true"></i></button>
   <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" (onShow)="refreshPlace()">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -23,6 +23,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+
         <div class="modal-body">
           <div class="form-horizontal">
             <div *ngIf="reservation==null">
@@ -63,7 +64,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 
 
   <ul class="datepicker-ul" role="menu" *ngIf="opened">
@@ -73,7 +74,7 @@
 </div>
 <tabset>
   <tab heading='Per Uur'>
-    <h3>18:00</h3>
+    <h3>Reservaties</h3>
     <div class="table-responsive">
       <table class="table table-striped">
         <tbody>
