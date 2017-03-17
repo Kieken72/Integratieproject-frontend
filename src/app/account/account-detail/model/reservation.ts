@@ -1,4 +1,4 @@
-import {Message} from "../../../booker/booker-reservationdetail/model/message";
+import {Message} from "../../../booker/shared/model/message";
 export class Reservation{
   public Id: string;
   public AmountOfPersons: number;

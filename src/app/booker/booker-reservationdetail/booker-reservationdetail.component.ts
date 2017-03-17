@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Reservation} from "../../account/account-detail/model/reservation";
-import {Message} from "./model/message";
+import {Message} from "../shared/model/message";
 import {ProfileService} from "../../account/shared/profile.service";
 import {BranchService} from "../../shared/branch.service";
 import {User} from "../../account/account-detail/model/user";
