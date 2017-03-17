@@ -2,7 +2,9 @@
   <canvas baseChart
           [data]="doughnutChartData"
           [labels]="doughnutChartLabels"
+          [legend]="doughnutChartLegend"
           [chartType]="doughnutChartType"
+          [colors] ="doughnutChartColor"
           (chartHover)="chartHovered($event)"
           (chartClick)="chartClicked($event)"></canvas>
 </div>
@@ -14,6 +16,17 @@
           [options]="barChartOptions"
           [legend]="barChartLegend"
           [chartType]="barChartType"
+          [colors] = "barChartColor"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+</div>
+
+<div class="col-md-6">
+  <canvas baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          [colors] = "pieChartColor"
           (chartHover)="chartHovered($event)"
           (chartClick)="chartClicked($event)"></canvas>
 </div>
