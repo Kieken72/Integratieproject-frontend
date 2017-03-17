@@ -38,15 +38,18 @@ export class ManagerStatisticsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.statisticService.getReviewStatistics(this.managerService.branchId).subscribe(data => this.processData(data));
-    this.statisticService.getWeekdayStatistics(this.managerService.branchId).subscribe(data => this.processData(data));
+    this.statisticService.getReviewStatistics(this.managerService.branchId).subscribe(data => this.processDataDoughnut(data));
+    this.statisticService.getWeekdayStatistics(this.managerService.branchId).subscribe(data => this.processDataBar(data));
   }
 
-  private processData(data){
+  private processDataDoughnut(data){
     this.reviewStats = data;
     this.doughnutChartData = [this.reviewStats.negative, this.reviewStats.positive];
-    this.barChartData = [this.weekdayStats.monday, this.weekdayStats.tuesday, this.weekdayStats.wednesday, this.weekdayStats.thursday, this.weekdayStats.friday, this.weekdayStats.saturday, this.weekdayStats.sunday];
   }
+  private processDataBar(data){
+    this.weekdayStats = data;
+    this.barChartData = [this.weekdayStats.monday, this.weekdayStats.tuesday, this.weekdayStats.wednesday, this.weekdayStats.thursday, this.weekdayStats.friday, this.weekdayStats.saturday, this.weekdayStats.sunday];
+}
 
   // events
   public chartClicked(e:any):void {
