@@ -72,6 +72,7 @@ import { SortPipe } from './shared/sort.pipe';
 import {EqualValidator} from "./account/account-edit/equal-validator";
 import {ChartsModule} from "ng2-charts";
 import {StatisticService} from "./shared/statistics.service";
+import {MomentModule} from "angular2-moment";
 //import { ReviewsComponent } from './manager/manager-messages/reviews/reviews.component';
 //import { MessagesComponent } from './manager/manager-messages/messages/messages.component';
 
@@ -137,6 +138,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
+     MomentModule,
      AlertModule.forRoot(),
      TimepickerModule.forRoot(),
      DatepickerModule.forRoot(),
