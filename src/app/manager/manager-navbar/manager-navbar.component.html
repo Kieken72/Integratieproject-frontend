@@ -15,7 +15,15 @@
         <li [routerLinkActive]="['active']"><a [routerLink]="['calendar']">Kalender</a></li>
         <li [routerLinkActive]="['active']"><a [routerLink]="['messages']">Berichten</a></li>
         <li [routerLinkActive]="['active']"><a [routerLink]="['guests']">Gasten</a></li>
-        <li [routerLinkActive]="['active']"><a [routerLink]="['statistics']">Statistieken</a></li>
+        <!--<li [routerLinkActive]="['active']"><a [routerLink]="['statistics']">Statistieken</a></li>-->
+        <li [routerLinkActive]="['active']" class="dropdown">
+          <a [routerLink]="['statistics']" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Statistieken <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a [routerLink]="['statistics/feedback']" >Tevredenheid</a></li>
+            <li><a [routerLink]="['statistics/weekdays']" >Reservaties per weekdag</a></li>
+            <li><a [routerLink]="['statistics/guests']" >Aantal gasten</a></li>
+          </ul>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li [routerLinkActive]="['active']"><a [routerLink]="['settings']">Instellingen</a></li>

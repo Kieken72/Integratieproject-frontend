@@ -2,7 +2,8 @@
  * Created by Emmanuel on 24/02/2017.
  */
 export class UserToEdit{
-  FirstName: string;
+  Name: string;
   LastName: string;
+  PhoneNumber: string;
 }
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Message} from "../model/message";
+import {ManagerService} from "../../manager.service";
 
 @Component({
   selector: 'app-messages',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessagesComponent implements OnInit {
 
-  constructor() { }
+  private messages: Message[];
+  constructor(private managerService:ManagerService) { }
 
   ngOnInit() {
+    this.managerService.getMessagesByBranch(this.managerService.branchId).subscribe(
+      (data)=>this.messages=data);
   }
 
 }

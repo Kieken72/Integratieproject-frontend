@@ -1,39 +1,10 @@
-<alert type="info">LINKS KEUZE RECHTS BERICHTEN/REVIEUWS</alert>
-
-
 <tabset>
   <tab heading='Berichten'>
-
-    <div class="row messages-margin">
-      <div class="col-md-12">
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-            <tr>
-              <th>Van</th>
-              <th>Onderwerp</th>
-              <th>Reservering</th>
-              <th>Ontvangen op</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let message of messages">
-              <th scope="row">{{message.User.Lastname}} {{message.User.Name}} </th>
-              <td>Bericht bij reservering</td>
-              <td><a [routerLink]="['../../booker/reservation/', message.ReservationId]">{{message.ReservationId}}</a></td>
-              <td>{{message.DateTime | date:'ShortDate'}}</td>
-            </tr>
-
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    <app-messages></app-messages>
   </tab>
   <tab heading='Reviews'>
     <app-reviews></app-reviews>
   </tab>
-
 </tabset>
 
 

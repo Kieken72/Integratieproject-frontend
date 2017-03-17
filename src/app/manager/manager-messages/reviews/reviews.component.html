@@ -5,18 +5,18 @@
         <thead>
         <tr>
           <th>Van</th>
-          <th>Text</th>
+          <th>Bericht</th>
           <th>Resultaat</th>
-          <th>Ontvangen op</th>
+          <th>Ontvangen</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let review of reviews">
+        <tr *ngFor="let review of reviews | sortDesc: 'DateTime'">
           <th scope="row">{{review.User.Lastname}} {{review.User.Name}} </th>
           <td>{{review.Text}}</td>
           <td><i class="float-xs-right fa"
                  [ngClass]="{'fa-thumbs-down': !review.Result, 'fa-thumbs-up': review.Result}"></i></td>
-          <td>{{review.DateTime | date:'shortDate'}}</td>
+          <td>{{review.DateTime | amTimeAgo }}</td>
         </tr>
         </tbody>
       </table>

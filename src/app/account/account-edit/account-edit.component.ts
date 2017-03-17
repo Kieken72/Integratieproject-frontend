@@ -11,6 +11,10 @@ import {Router} from "@angular/router";
 })
 export class AccountEditComponent implements OnInit {
   private user: User;
+  private OldPassword: string;
+  private NewPassword: string;
+  private ConfirmPassword: string;
+
   constructor( private profileService:ProfileService, private route:Router){
   };
 
@@ -22,9 +26,11 @@ export class AccountEditComponent implements OnInit {
   };
 
   editAccount(){
-    this.profileService.putAccount(this.user.Name, this.user.Lastname).subscribe((data)=>console.log(data),(error)=>console.log(error),()=>this.route.navigate(['../account/details']));
+    this.profileService.putAccount(this.user.Name, this.user.Lastname, this.user.PhoneNumber).subscribe((data)=>console.log(data),(error)=>console.log(error),()=>this.route.navigate(['../account/details']));
 
   }
 
-
+  editPassword() {
+    this.profileService.changePassword(this.OldPassword, this.NewPassword, this.ConfirmPassword).subscribe((data) => console.log(data), (error) => console.log(error), () => this.route.navigate(['../account/details']));
+  }
 }
