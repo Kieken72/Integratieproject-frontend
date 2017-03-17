@@ -62,7 +62,7 @@ import { BookerReservationdetailComponent } from './booker/booker-reservationdet
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { FacebookService} from "ng2-facebook-sdk";
 import { BookerMapComponent } from './booker/booker-map/booker-map.component';
-import { ManagerService} from "./manager/manager.service";
+import { ManagerService} from "./manager/shared/manager.service";
 import { RoomService} from "./shared/room.service";
 import { PhonePipe } from './shared/phone.pipe';
 import { ReviewsComponent } from './manager/manager-messages/reviews/reviews.component';
@@ -223,6 +223,9 @@ const appRoutes: Routes = [
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
+
+    //{ provide:'ApiBase',useValue:"http://localhost:53073/api/" },
+    //{ provide:'AuthBase',useValue:"http://localhost:53073/oauth/" },
     { provide:'ApiBase',useValue:"https://leisurebooker.azurewebsites.net/api/" },
     { provide:'AuthBase',useValue:"https://leisurebooker.azurewebsites.net/oauth/" },
     CompanyService,

@@ -82,7 +82,7 @@
             <td>{{reservation.SpaceId}}</td>
             <td></td>
             <td>{{reservation.Cancelled}}</td>
-            <td>{{reservation.CreatedOn | date}}</td>
+            <td>{{reservation.CreatedOn | amTimeAgo}}</td>
           </tr>
         </tbody>
       </table>
@@ -141,10 +141,26 @@
       </div>
     </div>
   </tab>
-  <tab heading='Groepen'>
-    Tab 2 content
-  </tab>
   <tab heading='Recente reserveringen'>
-    Tab 3 content
+    <h3>Reservaties</h3>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <tbody>
+        <tr *ngIf="recentReservations?.length == 0"><td>Geen reservaties beschikbaar.</td></tr>
+        <tr *ngFor="let reservation of recentReservations | sortDesc: 'CreatedOn'" (click)="showModal(reservation.Id)">
+          <th scope="row">{{reservation.DateTime | date: 'shortTime'}}</th>
+          <td>{{reservation.User.Name}} {{reservation.User.Lastname}}</td>
+          <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{reservation.AmountOfPersons}}</td>
+          <td>{{reservation.SpaceId}}</td>
+          <td></td>
+          <td>{{reservation.Cancelled}}</td>
+          <td>{{reservation.CreatedOn | amTimeAgo}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </tab>
+  <tab heading='Kamerplan'>
+    Tab 2 content
   </tab>
 </tabset>

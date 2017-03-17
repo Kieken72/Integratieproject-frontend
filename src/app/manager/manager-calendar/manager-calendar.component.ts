@@ -16,6 +16,7 @@ export class ManagerCalendarComponent implements OnInit {
   @ViewChild('reservationDetailModal') public reservationDetailModal:ModalDirective;
 
   private reservations:Reservation[];
+  private recentReservations:Reservation[];
   private date:Date = new Date();
   private users: ShortUser[];
 
@@ -36,12 +37,12 @@ export class ManagerCalendarComponent implements OnInit {
 
   refreshReservations(){
     console.log(this.date);
-    this.reservationService.getReservationByBranch(this.managerService.branchId, this.date).subscribe(data=>this.setReservations(data));
+    this.reservationService.getReservationByBranch(this.managerService.branchId, this.date).subscribe(data=> this.setReservations(data));
   }
 
   setReservations(data){
-    console.log(data);
     this.reservations = data;
+    this.reservationService.getRecentReservationByBranch(this.managerService.branchId).subscribe(da=> this.recentReservations = da);
   }
 
   showModal(id:number) :void{

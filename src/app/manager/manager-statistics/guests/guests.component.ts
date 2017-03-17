@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {StatisticService} from "../../../shared/statistics.service";
-import {ManagerService} from "../../manager.service";
 import {GuestStatistics} from "../../../shared/guests-statistics";
+import {ManagerService} from "../../shared/manager.service";
 
 @Component({
   selector: 'app-guests',

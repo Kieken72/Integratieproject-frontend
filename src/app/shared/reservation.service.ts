@@ -33,6 +33,13 @@ export class ReservationService {
     let options = new RequestOptions({ headers: headers });
     return this.http.get(this.apiBase+'reservations/branch/'+branchId+'/'+date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear(),options).map(res => res.json());
   }
+  getRecentReservationByBranch(branchId:number){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', 'Bearer '+authToken);
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(this.apiBase+'reservations/recent/'+branchId,options).map(res => res.json());
+  }
 
   postReview(review:Review){
     let headers = new Headers();

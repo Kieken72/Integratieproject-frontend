@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {WeekdayStatistics} from "../../../shared/weekday-statistics";
 import {StatisticService} from "../../../shared/statistics.service";
-import {ManagerService} from "../../manager.service";
+import {ManagerService} from "../../shared/manager.service";
 
 @Component({
   selector: 'app-weekdays',
@@ -17,7 +17,7 @@ export class WeekdaysComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels:string[] = ['Ma', 'Di', 'Woe', 'Do', 'Vr', 'Za', 'Zo'];
+  public barChartLabels:string[] = ['Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag', 'Zondag'];
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
   public barChartColor:Array<any> = [
