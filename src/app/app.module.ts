@@ -18,7 +18,7 @@ import { ManagerDashboardComponent } from './manager/manager-dashboard/manager-d
 import { ManagerMessagesComponent } from './manager/manager-messages/manager-messages.component';
 import { ManagerCalendarComponent } from './manager/manager-calendar/manager-calendar.component';
 import { ManagerGuestsComponent } from './manager/manager-guests/manager-guests.component';
-import { ManagerStatisticsComponent } from './manager/manager-statistics/manager-statistics.component';
+import { ManagerStatisticsComponent} from './manager/manager-statistics/manager-statistics.component';
 import { BookerListComponent } from './booker/booker-list/booker-list.component';
 import { SearchService} from "./booker/shared/search.service";
 import { DefaultPipe } from './shared/default.pipe';
@@ -70,6 +70,7 @@ import { MessagesComponent } from './manager/manager-messages/messages/messages.
 import { RoomsListComponent } from './manager/manager-settings/rooms/rooms-list/rooms-list.component';
 import { SortPipe } from './shared/sort.pipe';
 import {EqualValidator} from "./account/account-edit/equal-validator";
+import {ChartsModule} from "ng2-charts";
 //import { ReviewsComponent } from './manager/manager-messages/reviews/reviews.component';
 //import { MessagesComponent } from './manager/manager-messages/messages/messages.component';
 
@@ -89,7 +90,7 @@ const appRoutes: Routes = [
     { path: 'calendar', component: ManagerCalendarComponent, canActivate:[LoggedInGuard] },
     { path: 'messages', component: ManagerMessagesComponent,  canActivate:[LoggedInGuard] },
     { path: 'guests', component: ManagerGuestsComponent,  canActivate:[LoggedInGuard] },
-    { path: 'statistics', component: ManagerStatisticsComponent,  canActivate:[ManagerGuard] },
+    { path: 'statistics', component: ManagerStatisticsComponent,  canActivate:[LoggedInGuard] },
     { path: 'company', component: CompanyComponent,  canActivate:[LoggedInGuard], children:[
       { path: "list" , component: CompanyListComponent, canActivate: [LoggedInGuard] },
       { path: 'edit/:id', component: CompanyEditComponent,  canActivate:[LoggedInGuard] },
@@ -147,7 +148,8 @@ const appRoutes: Routes = [
      AgmCoreModule.forRoot({
        apiKey: 'AIzaSyCiJDhAZiQWh-hTj-EBeDB7YR9EXmijx9g'
      }),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+     ChartsModule
   ],
   declarations: [
     AppComponent,
