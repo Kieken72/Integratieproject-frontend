@@ -18,6 +18,16 @@ export class FeedbackComponent implements OnInit {
   public doughnutChartType:string = 'doughnut';
   public doughnutChartLegend:boolean = true;
   public doughnutChartData:number[] = [0,0];
+  public doughnutChartColor:Array<any> = [
+    {
+      backgroundColor: ["#DC3912", "#5BB75B"],
+      borderColor: ["#DC3912", "#5BB75B"],
+      pointBackgroundColor: ["#DC3912", "#5BB75B"],
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: ["#DC3912", "#5BB75B"]
+    }
+  ];
 
   constructor(
     private statisticService:StatisticService,
