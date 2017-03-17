@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {StatisticService} from "../../shared/statistics.service";
 import {ManagerService} from "../manager.service";
 import {ReviewStatistics} from "../../shared/review-statistics";
+import {WeekdayStatistics} from "../../shared/weekday-statistics";
 
 @Component({
   selector: 'app-manager-statistics',
@@ -11,6 +12,22 @@ import {ReviewStatistics} from "../../shared/review-statistics";
 export class ManagerStatisticsComponent implements OnInit {
 
   private reviewStats:ReviewStatistics;
+  private weekdayStats:WeekdayStatistics;
+
+  //BarChart
+  public barChartOptions:any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  public barChartLabels:string[] = ['Ma', 'Di', 'Woe', 'Do', 'Vr', 'Za', 'Zo'];
+  public barChartType:string = 'bar';
+  public barChartLegend:boolean = true;
+
+  public barChartData:any[] = [
+    {data: [0,0,0,0,0,0,0], label: 'Aantal Reservaties'},
+  ];
+
+  //DoughnutChart
   public doughnutChartLabels:string[] = ['Negatieve', 'Positieve'];
   public doughnutChartType:string = 'doughnut';
   public doughnutChartData:number[] = [0,0];
@@ -22,12 +39,13 @@ export class ManagerStatisticsComponent implements OnInit {
 
   ngOnInit() {
     this.statisticService.getReviewStatistics(this.managerService.branchId).subscribe(data => this.processData(data));
-
+    this.statisticService.getWeekdayStatistics(this.managerService.branchId).subscribe(data => this.processData(data));
   }
 
   private processData(data){
     this.reviewStats = data;
     this.doughnutChartData = [this.reviewStats.negative, this.reviewStats.positive];
+    this.barChartData = [this.weekdayStats.monday, this.weekdayStats.tuesday, this.weekdayStats.wednesday, this.weekdayStats.thursday, this.weekdayStats.friday, this.weekdayStats.saturday, this.weekdayStats.sunday];
   }
 
   // events
