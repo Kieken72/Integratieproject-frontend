@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2>Klantentevredenheid</h2>
+    <canvas baseChart
+            [data]="doughnutChartData"
+            [labels]="doughnutChartLabels"
+            [legend]="doughnutChartLegend"
+            [chartType]="doughnutChartType"
+            [colors] ="doughnutChartColor"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+  </div>
+</div>

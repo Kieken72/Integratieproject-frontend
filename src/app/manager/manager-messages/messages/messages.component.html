@@ -1,3 +1,25 @@
-<p>
-  messages works!
-</p>
+<div class="row messages-margin">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Van</th>
+          <th>Inhoud</th>
+          <th>Reservatie</th>
+          <th>Ontvangen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let message of messages | sortDesc: 'DateTime'">
+          <th scope="row">{{message.User.Lastname}} {{message.User.Name}} </th>
+          <td>{{message.Text}}</td>
+          <td><a [routerLink]="['../../booker/reservation/', message.ReservationId]">{{message.ReservationId}}</a></td>
+          <td>{{message.DateTime | amTimeAgo}}</td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

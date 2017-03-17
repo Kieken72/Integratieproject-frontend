@@ -60,19 +60,23 @@ import { AccountNavbarComponent } from './account/account-navbar/account-navbar.
 import { BookerReservationdetailComponent } from './booker/booker-reservationdetail/booker-reservationdetail.component';
 
 import { AgmCoreModule } from 'angular2-google-maps/core';
-import {FacebookService} from "ng2-facebook-sdk";
+import { FacebookService} from "ng2-facebook-sdk";
 import { BookerMapComponent } from './booker/booker-map/booker-map.component';
-import {ManagerService} from "./manager/manager.service";
-import {RoomService} from "./shared/room.service";
+import { ManagerService} from "./manager/manager.service";
+import { RoomService} from "./shared/room.service";
 import { PhonePipe } from './shared/phone.pipe';
 import { ReviewsComponent } from './manager/manager-messages/reviews/reviews.component';
 import { MessagesComponent } from './manager/manager-messages/messages/messages.component';
 import { RoomsListComponent } from './manager/manager-settings/rooms/rooms-list/rooms-list.component';
 import { SortPipe } from './shared/sort.pipe';
-import {EqualValidator} from "./account/account-edit/equal-validator";
-import {ChartsModule} from "ng2-charts";
-import {StatisticService} from "./shared/statistics.service";
-import {MomentModule} from "angular2-moment";
+import { EqualValidator } from "./account/account-edit/equal-validator";
+import { ChartsModule } from "ng2-charts";
+import { StatisticService } from "./shared/statistics.service";
+import { MomentModule } from "angular2-moment";
+import { SortDescPipe } from './shared/sort-desc.pipe';
+import { GuestsComponent } from './manager/manager-statistics/guests/guests.component';
+import { WeekdaysComponent } from './manager/manager-statistics/weekdays/weekdays.component';
+import { FeedbackComponent } from './manager/manager-statistics/feedback/feedback.component';
 //import { ReviewsComponent } from './manager/manager-messages/reviews/reviews.component';
 //import { MessagesComponent } from './manager/manager-messages/messages/messages.component';
 
@@ -92,7 +96,12 @@ const appRoutes: Routes = [
     { path: 'calendar', component: ManagerCalendarComponent, canActivate:[LoggedInGuard] },
     { path: 'messages', component: ManagerMessagesComponent,  canActivate:[LoggedInGuard] },
     { path: 'guests', component: ManagerGuestsComponent,  canActivate:[LoggedInGuard] },
-    { path: 'statistics', component: ManagerStatisticsComponent,  canActivate:[LoggedInGuard] },
+    { path: 'statistics', component: ManagerStatisticsComponent,  canActivate:[LoggedInGuard], children: [
+      { path: 'guests', component: GuestsComponent, canActivate:[LoggedInGuard]},
+      { path: 'feedback', component: FeedbackComponent, canActivate:[LoggedInGuard]},
+      { path: 'weekdays', component: WeekdaysComponent, canActivate:[LoggedInGuard]},
+      { path: '', redirectTo: 'guests', pathMatch: 'full'},
+    ]},
     { path: 'company', component: CompanyComponent,  canActivate:[LoggedInGuard], children:[
       { path: "list" , component: CompanyListComponent, canActivate: [LoggedInGuard] },
       { path: 'edit/:id', component: CompanyEditComponent,  canActivate:[LoggedInGuard] },
@@ -135,9 +144,9 @@ const appRoutes: Routes = [
 
 @NgModule({
    imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
+     BrowserModule,
+     FormsModule,
+     HttpModule,
      MomentModule,
      AlertModule.forRoot(),
      TimepickerModule.forRoot(),
@@ -151,7 +160,7 @@ const appRoutes: Routes = [
      AgmCoreModule.forRoot({
        apiKey: 'AIzaSyCiJDhAZiQWh-hTj-EBeDB7YR9EXmijx9g'
      }),
-    RouterModule.forRoot(appRoutes),
+     RouterModule.forRoot(appRoutes),
      ChartsModule
   ],
   declarations: [
@@ -205,7 +214,12 @@ const appRoutes: Routes = [
     ReviewsComponent,
     MessagesComponent,
     SortPipe,
-    EqualValidator
+    EqualValidator,
+    SortDescPipe,
+    GuestsComponent,
+    ReviewsComponent,
+    WeekdaysComponent,
+    FeedbackComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
