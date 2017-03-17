@@ -27,8 +27,8 @@ export class WeekdaysComponent implements OnInit {
       pointBackgroundColor: 'rgba(91,183,91,0.8)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(91,183,91,0.8)'
-    }];
+      pointHoverBorderColor: 'rgba(91,183,91,0.8)'}];
+
 
   public barChartData:any[] = [
     {data: [0,0,0,0,0,0,0], label: 'Aantal Reservaties'},

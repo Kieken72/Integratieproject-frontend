@@ -31,8 +31,7 @@ export class ManagerStatisticsComponent implements OnInit {
     pointBackgroundColor: 'rgba(91,183,91,0.8)',
     pointBorderColor: '#fff',
     pointHoverBackgroundColor: '#fff',
-    pointHoverBorderColor: 'rgba(91,183,91,0.8)'
-  }];
+    pointHoverBorderColor: 'rgba(91,183,91,0.8)'}];
 
   public barChartData:any[] = [
     {data: [0,0,0,0,0,0,0], label: 'Aantal Reservaties'},
@@ -43,31 +42,31 @@ export class ManagerStatisticsComponent implements OnInit {
   public doughnutChartType:string = 'doughnut';
   public doughnutChartLegend:boolean = true;
   public doughnutChartData:number[] = [0,0];
-  /*public doughnutChartColor: Array<any> = [
-    { // positive color
-      backgroundColor: 'rgba(91,183,91,0.8)',
-      borderColor: 'rgba(91,183,91,0.8)',
-      pointBackgroundColor: 'rgba(91,183,91,0.8)',
+  public doughnutChartColor:Array<any> = [
+    {
+      backgroundColor: ["#DC3912", "#5BB75B"],
+      borderColor: ["#DC3912", "#5BB75B"],
+      pointBackgroundColor: ["#DC3912", "#5BB75B"],
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(91,183,91,0.8)'
-
-    },
-    { // negative color
-      backgroundColor: 'rgba(225,10,24,0.2)',
-      borderColor: 'rgba(225,10,24,0.2)',
-      pointBackgroundColor: 'rgba(225,10,24,0.2)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(225,10,24,0.2)'
-    }];*/
+      pointHoverBorderColor: ["#DC3912", "#5BB75B"]
+    }
+  ];
 
   // Pie
   public pieChartLabels:string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '+10'];
   public pieChartData:number[] = [0,0,0,0,0,0,0,0,0,0,0];
   public pieChartType:string = 'pie';
-  public pieChartColor: Array<any> = [
-
+  public pieChartLegend: boolean = true;
+  public pieChartColor:Array<any> = [
+    {
+      backgroundColor: ["#4286f4", "#5BB75B", "#ad4787", "#efe44c", "#ffa19e", "#9effff", "#777c7c", "#3930a5", "#efa51c", "#eb1cef", "#1cefcf"],
+      borderColor: ["#4286f4", "#5BB75B", "#ad4787", "#efe44c", "#ffa19e", "#9effff", "#777c7c", "#3930a5", "#efa51c", "#eb1cef", "#1cefcf"],
+      pointBackgroundColor: ["#4286f4", "#5BB75B", "#ad4787", "#efe44c", "#ffa19e", "#9effff", "#777c7c", "#3930a5", "#efa51c", "#eb1cef", "#1cefcf"],
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: ["#4286f4", "#5BB75B", "#ad4787", "#efe44c", "#ffa19e", "#9effff", "#777c7c", "#3930a5", "#efa51c", "#eb1cef", "#1cefcf"]
+    }
   ];
 
   constructor(
