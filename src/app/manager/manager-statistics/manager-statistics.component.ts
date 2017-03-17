@@ -11,6 +11,9 @@ import {ReviewStatistics} from "../../shared/review-statistics";
 export class ManagerStatisticsComponent implements OnInit {
 
   private reviewStats:ReviewStatistics;
+  public doughnutChartLabels:string[] = ['Negatieve', 'Positieve'];
+  public doughnutChartType:string = 'doughnut';
+  public doughnutChartData:number[] = [0,0];
   constructor(
     private statisticService:StatisticService,
     private managerService: ManagerService
@@ -18,21 +21,20 @@ export class ManagerStatisticsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.statisticService.getReviewStatistics(this.managerService.branchId).subscribe(data => this.reviewStats = data);
+    this.statisticService.getReviewStatistics(this.managerService.branchId).subscribe(data => this.processData(data));
+
   }
 
-  // Doughnut
-  public doughnutChartLabels:string[] = ['Positieve', 'Negatieve'];
-  public doughnutChartData:number[] = [this.reviewStats.negative, this.reviewStats.positive];
-  public doughnutChartType:string = 'doughnut';
+  private processData(data){
+    this.reviewStats = data;
+    this.doughnutChartData = [this.reviewStats.negative, this.reviewStats.positive];
+  }
 
   // events
   public chartClicked(e:any):void {
-    console.log(e);
   }
 
   public chartHovered(e:any):void {
-    console.log(e);
   }
 
 
