@@ -11,6 +11,7 @@ import {ManagerService} from "../../shared/manager.service";
 export class FeedbackComponent implements OnInit {
 
   private reviewStats:ReviewStatistics;
+  private refreshing: boolean;
 
 
   //DoughnutChart
@@ -33,7 +34,8 @@ export class FeedbackComponent implements OnInit {
     private statisticService:StatisticService,
     private managerService: ManagerService
 
-  ) {}
+  ) {
+    this.refreshing = true;}
 
   ngOnInit() {
     this.statisticService.getReviewStatistics(this.managerService.branchId).subscribe(data => this.processDataDoughnut(data));
@@ -42,6 +44,7 @@ export class FeedbackComponent implements OnInit {
   private processDataDoughnut(data){
     this.reviewStats = data;
     this.doughnutChartData = [this.reviewStats.negative, this.reviewStats.positive];
+    this.refreshing = false;
   }
 
   // events

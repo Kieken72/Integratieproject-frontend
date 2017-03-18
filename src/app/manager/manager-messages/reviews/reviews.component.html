@@ -1,4 +1,5 @@
 <div class="row review-margin">
+  <h3>Reviews  <i *ngIf="refreshing" class="fa fa-spinner fa-pulse fa-fw"></i></h3>
   <div class="col-md-12">
     <div class="table-responsive">
       <table class="table table-striped">
@@ -11,6 +12,8 @@
         </tr>
         </thead>
         <tbody>
+        <tr *ngIf="reviews?.length == 0"><td colspan="4" class="text-center">Geen reviews beschikbaar.</td></tr>
+        <tr *ngIf="!reviews"><td colspan="4"  class="text-center">Geen reviews beschikbaar.</td></tr>
         <tr *ngFor="let review of reviews | sortDesc: 'DateTime'">
           <th scope="row">{{review.User.Lastname}} {{review.User.Name}} </th>
           <td>{{review.Text}}</td>

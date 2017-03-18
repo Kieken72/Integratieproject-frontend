@@ -9,7 +9,10 @@ import {ManagerService} from "../shared/manager.service";
 })
 export class ManagerGuestsComponent implements OnInit {
 
-  constructor(private managerService:ManagerService) { }
+  private refreshing: boolean;
+  constructor(private managerService:ManagerService) {
+    this.refreshing = true;
+  }
 
   private users:ShortUser[];
   ngOnInit() {
@@ -18,6 +21,6 @@ export class ManagerGuestsComponent implements OnInit {
 
   getUsers(users:ShortUser[]){
     this.users = users;
-    console.log(this.users)
+    this.refreshing = false;
   }
 }

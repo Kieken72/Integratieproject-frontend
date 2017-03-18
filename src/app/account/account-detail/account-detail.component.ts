@@ -16,11 +16,13 @@ import {Reservation} from "../../shared/model/reservation";
 export class AccountDetailComponent implements OnInit {
   private user: User;
   private branches: Branch[];
+  private refreshing: boolean;
 
   private type: string[];
 
 
   constructor( private profileService:ProfileService, private branchService:BranchService){
+    this.refreshing = true;
   };
 
   ngOnInit() {
@@ -37,7 +39,7 @@ export class AccountDetailComponent implements OnInit {
       });
     });
     this.user = data;
-    console.log(this.user);
+    this.refreshing = false;
   };
 
   getBranches():void{
