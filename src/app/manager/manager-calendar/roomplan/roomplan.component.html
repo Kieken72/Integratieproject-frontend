@@ -1,0 +1,10 @@
+
+<h3>Reservaties</h3>
+<div class="col-md-3">
+  <ul>
+    <li *ngFor="let space of room?.Spaces">{{space.Name}} ({{space.X}},{{space.Y}}) <span class="badge">{{space.Reservations?.length}}</span> </li>
+  </ul>
+</div>
+<div class="col-md-9">
+  <canvas #roomPlan></canvas>
+</div>
