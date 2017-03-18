@@ -77,7 +77,7 @@
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <button *ngIf="isLogged==false" class="btn btn-warning" [routerLink]="['../../../account/login']">Aanmelden</button>
-          <button *ngIf="isLogged==true" class="btn btn-success" (click)="lgModal.show()">Reserveren</button>
+          <button *ngIf="isLogged==true" id="btnRes" class="btn btn-success" (click)="lgModal.show()">Reserveren</button>
         </div>
       </div>
 
@@ -87,7 +87,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title pull-left">Reservatie bij: {{branch?.Name}}</h4>
-              <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+              <button type="button" id="close" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
