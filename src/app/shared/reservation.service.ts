@@ -100,7 +100,7 @@ export class ReservationService {
     headers.append('Content-Type','application/json');
     headers.append('Authorization', 'Bearer '+authToken);
     let options = new RequestOptions({ headers: headers });
-    return this.http.delete(this.apiBase+'reservations/' + id,options).map(res=>res.json());
+    return this.http.delete(this.apiBase+'reservations/' + id,options).map(res=>res);
   }
 
   cancelManagerReservation(id:number){

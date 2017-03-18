@@ -5,6 +5,7 @@ import {BranchService} from "../../shared/branch.service";
 import {Branch} from "../../shared/model/branch";
 import {forEach} from "@angular/router/src/utils/collection";
 import {Reservation} from "../../shared/model/reservation";
+import {ReservationService} from "../../shared/reservation.service";
 
 
 @Component({
@@ -21,7 +22,7 @@ export class AccountDetailComponent implements OnInit {
   private type: string[];
 
 
-  constructor( private profileService:ProfileService, private branchService:BranchService){
+  constructor( private profileService:ProfileService, private branchService:BranchService ,private reservationService : ReservationService){
     this.refreshing = true;
   };
 
@@ -46,6 +47,9 @@ export class AccountDetailComponent implements OnInit {
     this.branchService.getBranches().subscribe(data => this.branches = data);
   }
 
+  cancelReservation(id: number){
+    this.reservationService.cancelReservation(id).subscribe();
+  }
 
 
 }
