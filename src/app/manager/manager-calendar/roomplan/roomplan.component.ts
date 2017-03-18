@@ -38,7 +38,6 @@ export class RoomplanComponent implements OnInit {
     this.canvas = this.canvasRef.nativeElement;
     this.canvas.width = 1000;
     this.canvas.height = 1000;
-    this.draw();
   }
   drawRoom(){
     if (this.canvas.getContext) {
