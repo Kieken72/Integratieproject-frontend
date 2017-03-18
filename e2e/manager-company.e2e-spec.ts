@@ -1,54 +1,80 @@
-import {browser, by, element} from "protractor";
+import {browser, by, element,protractor} from "protractor";
 /**
  * Created by Emmanuel on 23/02/2017.
  */
 describe('companyTest', ()=> {
-  browser.ignoreSynchronization = true;
+    browser.ignoreSynchronization = true;
 
-  it('should show login page', () => {
-    browser.get('./manager/dashboard');
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/account/login');
-  });
+    it('should show login page', () => {
+        browser.get('./manager/dashboard');
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/account/login');
+    });
 
-  it('should login successfull', () => {
-    browser.get('./account/login');
-    const userNameElement = element(by.id('textinputUserName'));
-    userNameElement.sendKeys("hello@leisurebooker.me");
-    const passElement = element(by.id('textinputPassword'));
-    passElement.sendKeys("MySuperP@ssword!");
-    const buttonElement = element(by.id('singlebutton'));
-    buttonElement.click();
-    browser.sleep(2000);
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/manager/dashboard');
-  })
+    it('should login successfull', () => {
+        browser.get('./manager/dashboard');
+        const userNameElement = element(by.id('textinputUserName'));
+        userNameElement.sendKeys("hello@leisurebooker.me");
+        const passElement = element(by.id('textinputPassword'));
+        passElement.sendKeys("MySuperP@ssword!");
+        const buttonElement = element(by.id('singlebutton'));
+        buttonElement.click();
+        browser.sleep(2000);
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/booker/search');
+    })
 
-  //todo: Validatie fixen + red
-  it('should check the form for create company', () => {
-    browser.get('./manager/company');
-    browser.sleep(2000);
-    const cityElement = element(by.id('companyCity'));
-    const nameElement = element(by.id('companyName'));
-    const vatElement = element(by.id('companyVat'));
-    const streetElement = element(by.id('companyStreet'));
-    const companyStreetNumberElement = element(by.id('companyStreetNumber'));
-    const boxElement = element(by.id('companyBox'));
-    const buttonElement = element(by.id('btnSendCompany'));
+    //todo: Validatie fixen + red
+    it('should check the form for create company', () => {
+        browser.get('./manager/company/new');
+        browser.sleep(2000);
+        const cityElement = element(by.id('companyCity'));
+        const nameElement = element(by.id('companyName'));
+        const vatElement = element(by.id('companyVat'));
+        const streetElement = element(by.id('companyStreet'));
+        const companyStreetNumberElement = element(by.id('companyStreetNumber'));
+        const boxElement = element(by.id('companyBox'));
+        const buttonElement = element(by.id('btnSendCompany'));
 
-    const cityChoice = element.all(by.tagName('option'))
-      .then(function(cityChoice){
-        cityChoice[3].click();
-      })
+        const vatError = element(by.id('vatError'));
+        const nameError = element(by.id('nameError'));
+        const companyStreetError = element(by.id('companyStreetError'));
+        const companyStreetNumberError = element(by.id('companyStreetNumberError'));
 
-    nameElement.sendKeys('BedrijfE2E');
-    vatElement.sendKeys('BE123456789');
-    streetElement.sendKeys('E2estraat');
-    companyStreetNumberElement.sendKeys('1');
-    boxElement.sendKeys('3');
 
-    //buttonElement.click();
+        nameElement.click();
+        vatElement.click();
+        expect(nameError.getText()).toBe("Naam mag niet leeg zijn.");
+        streetElement.click();
+        expect(vatError.getText()).toBe("BTW mag niet leeg zijn.");
+        companyStreetNumberElement.click();
+        expect(companyStreetError.getText()).toBe("Straat mag niet leeg zijn.");
+        boxElement.click();
+        expect(companyStreetNumberError.getText()).toBe("Nummer mag niet leeg zijn.")
+        nameElement.click();
 
-    expect(cityElement.getText()).toBe('1040 | Etterbeek');
-  });
+        const cityChoice = element.all(by.tagName('option'))
+            .then(function (cityChoice) {
+                cityChoice[0].click();
+            })
+        const companyName = 'BedrijfE2E' + Math.floor(Math.random() * (999999 - 100000))
+        nameElement.sendKeys(companyName);
+        vatElement.sendKeys('BE012345678');
+
+        expect(vatError.getText()).toBe("BTW nummer moet beginnen met \"BE\" en gevolgd worden door 10 cijfers.");
+        vatElement.sendKeys("9");
+        streetElement.sendKeys('E2estraat');
+        companyStreetNumberElement.sendKeys('1');
+        boxElement.sendKeys('3');
+
+        expect(cityElement.getText()).toBe('1000 | Brussel');
+        nameElement.clear();
+
+        /*        buttonElement.click();
+
+         browser.get('http://localhost:4200/manager/company/list');
+         browser.sleep(2000)
+         const listElement = element(by.xpath(".//!*[.='"+companyName+"']"))
+         expect(listElement.getText()).toBe(companyName);*/
+    });
 
 })
 

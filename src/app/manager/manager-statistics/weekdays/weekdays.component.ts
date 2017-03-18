@@ -11,6 +11,7 @@ import {ManagerService} from "../../shared/manager.service";
 export class WeekdaysComponent implements OnInit {
 
   private weekdayStats:WeekdayStatistics;
+  private refreshing: boolean;
 
   //BarChart
   public barChartOptions:any = {
@@ -39,7 +40,9 @@ export class WeekdaysComponent implements OnInit {
     private statisticService:StatisticService,
     private managerService: ManagerService
 
-  ) {}
+  ) {
+    this.refreshing = true;
+  }
 
   ngOnInit() {
     this.statisticService.getWeekdayStatistics(this.managerService.branchId).subscribe(data => this.processDataBar(data));
@@ -47,7 +50,8 @@ export class WeekdaysComponent implements OnInit {
   private processDataBar(data){
     this.weekdayStats = data;
     this.barChartData = [this.weekdayStats.monday, this.weekdayStats.tuesday, this.weekdayStats.wednesday, this.weekdayStats.thursday, this.weekdayStats.friday, this.weekdayStats.saturday, this.weekdayStats.sunday];
-  }
+
+    this.refreshing = false;}
 
   // events
   public chartClicked(e:any):void {

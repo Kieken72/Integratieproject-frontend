@@ -13,7 +13,7 @@
   <p></p>
 </div>
 
-<h3>Reservaties</h3>
+<h3>Reservaties voor {{date | date: 'd MMMM y'}} <i *ngIf="refreshing" class="fa fa-spinner fa-pulse fa-fw"></i></h3>
 <div class="table-responsive">
   <table class="table table-striped">
     <tbody>

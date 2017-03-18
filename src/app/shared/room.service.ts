@@ -13,11 +13,11 @@ export class RoomService{
   private space:Space = new Space();
 
   postRoom(_branchId:number, _enabled:boolean, _height:string, _width:string, _name:string){
-    this.room.branchId = _branchId;
-    this.room.enabled = _enabled;
-    this.room.height = _height;
-    this.room.width = _width;
-    this.room.name = _name;
+    this.room.BranchId = _branchId;
+    this.room.Enabled = _enabled;
+    this.room.Height = _height;
+    this.room.Width = _width;
+    this.room.Name = _name;
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let authToken = localStorage.getItem('auth_token');

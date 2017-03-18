@@ -11,8 +11,11 @@ import {ManagerService} from "../../shared/manager.service";
 })
 export class ReviewsComponent implements OnInit {
 
-  constructor(private branchService: BranchService, private managerService:ManagerService) { }
+  constructor(private branchService: BranchService, private managerService:ManagerService) {
+    this.refreshing = true;
+  }
 
+  private refreshing: boolean;
   private branch: Branch;
   private reviews: Review[];
 
@@ -24,6 +27,6 @@ export class ReviewsComponent implements OnInit {
 
   getReviews(branch:Branch){
     this.reviews = branch.Reviews;
-    console.log(this.reviews);
+    this.refreshing = false;
   }
 }
