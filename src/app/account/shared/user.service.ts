@@ -22,18 +22,17 @@ export class UserService{
   private registrationResponse = new Register();
 
 
-  register(_firstName: string,_lastName: string, _email:string, _password:string,_confirmedPassword:string){
+  register(_firstName: string,_lastName: string, _email:string,_phonenumber, _password:string,_confirmedPassword:string){
 
-    this.registration.Firstname = _firstName;
+    this.registration.Name = _firstName;
     this.registration.Lastname = _lastName;
-    this.registration.Username =_email;
     this.registration.Email = _email;
+    this.registration.PhoneNumber = _phonenumber;
     this.registration.Password = _password;
     this.registration.ConfirmPassword = _confirmedPassword;
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-
-
+    console.log(JSON.stringify(this.registration));
     return this.http.post(this.apiBase+'accounts/create',JSON.stringify(this.registration),options).map((res:Response)=>res.json());
   };
 

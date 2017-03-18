@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private http:Http,
     private userService : UserService,
-    private router:Router,
+    private router:Router
   ) { }
 
 
@@ -23,9 +23,9 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  createAccount(_firstName: string,_lastName: string, _email:string, _password:string,_confirmedPassword:string){
+  createAccount(_firstName: string,_lastName: string, _email:string,_phonenumber, _password:string,_confirmedPassword:string){
     //TODO: checken of registratie gelukt is en dan redirect naar pagina
-    this.userService.register(_firstName,_lastName,_email,_password,_confirmedPassword).subscribe
+    this.userService.register(_firstName,_lastName,_email,_phonenumber,_password,_confirmedPassword).subscribe
     ((data=>this.isCompleted(data)),err=>console.log(err));
 
   }
