@@ -12,7 +12,14 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li [routerLinkActive]="['active']"><a [routerLink]="['dashboard']">Dashboard</a></li>
-        <li [routerLinkActive]="['active']"><a [routerLink]="['calendar']">Kalender</a></li>
+        <li [routerLinkActive]="['active']" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Kalender <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a [routerLink]="['calendar/hourly']" >Per uur</a></li>
+            <li><a [routerLink]="['calendar/recent']" >Recent</a></li>
+            <li><a [routerLink]="['calendar/roomplan']" >Kamerplan</a></li>
+          </ul>
+        </li>
         <li [routerLinkActive]="['active']"><a [routerLink]="['messages']">Berichten</a></li>
         <li [routerLinkActive]="['active']"><a [routerLink]="['guests']">Gasten</a></li>
         <li [routerLinkActive]="['active']" class="dropdown">

@@ -11,4 +11,5 @@ export class Room{
   branchId:number;
   Spaces:Space[];
 
+
 }

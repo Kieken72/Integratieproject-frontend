@@ -1,4 +1,4 @@
-import {Newreservation} from "../../../../shared/model/newreservation";
+import {Reservation} from "../../../../shared/model/reservation";
 /**
  * Created by Emmanuel on 09/03/2017.
  */
@@ -13,6 +13,6 @@ export class Space{
   X:number;
   Y:number;
   Type:number;
-  reservations: Newreservation[];
+  Reservations: Reservation[];
 
 }
