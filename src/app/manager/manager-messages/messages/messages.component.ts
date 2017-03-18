@@ -9,12 +9,20 @@ import {ManagerService} from "../../shared/manager.service";
 })
 export class MessagesComponent implements OnInit {
 
+  private refreshing: boolean;
   private messages: Message[];
-  constructor(private managerService:ManagerService) { }
+  constructor(private managerService:ManagerService) {
+    this.refreshing = true;
+  }
 
   ngOnInit() {
     this.managerService.getMessagesByBranch(this.managerService.branchId).subscribe(
-      (data)=>this.messages=data);
+      (data)=>this.getData(data));
+  }
+
+  getData(data){
+    this.messages = data;
+    this.refreshing = false;
   }
 
 }

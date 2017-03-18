@@ -4,6 +4,8 @@ import {Newreservation} from "./model/newreservation";
 import {Checkbranch} from "./model/checkbranch";
 import {Message} from "../booker/shared/model/message";
 import {Review} from "./model/review";
+import {ManagerCheckbranch} from "./model/manager-checkbranch";
+import {ManagerReservation} from "./model/ManagerReservation";
 
 
 @Injectable()
@@ -13,8 +15,12 @@ export class ReservationService {
   //private branch:Branch = new Branch();
   //private branchResponse:Branch = new Branch();
 
-  isBranchAvailable(branchId: number, check: Checkbranch){
+   isBranchAvailable(branchId: number, check: Checkbranch){
     return this.http.get(this.apiBase+'reservations/'+branchId+'/?DateTime='+check.DateTime.toJSON()+'&Amount='+check.Amount).map(res => res.json());
+  }
+
+  isBranchAvailableManager(branchId: number, check: ManagerCheckbranch){
+    return this.http.get(this.apiBase+'reservations/manager/'+branchId+'/?DateTime='+check.StartDate.toJSON()+'&EndDateTime='+check.EndDate.toJSON()+'&Amount='+check.Amount).map(res => res.json());
   }
 
   postNewReservation(reservation:Newreservation){
@@ -24,6 +30,14 @@ export class ReservationService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.apiBase+'reservations', JSON.stringify(reservation), options).map((res:Response)=>res.json());
+  }
+  postManagerReservation(reservation:ManagerReservation){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', 'Bearer '+authToken);
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.apiBase+'reservations/manager', JSON.stringify(reservation), options).map((res:Response)=>res.json());
   }
 
   getReservationByBranch(branchId:number, date:Date){

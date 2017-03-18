@@ -3,9 +3,10 @@
         <div class="panel panel-default">
           <div class="panel-heading resume-heading">
             <div class="row">
-              <div class="col-lg-12">
+              <div class="col-lg-12" [class.text-center]="refreshing">
+                <i *ngIf="refreshing" class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
                 <div class="col-xs-12 col-sm-4">
-                  <figure>
+                  <figure *ngIf="!refreshing">
                     <img class="img-circle img-responsive" alt="" src="assets/user.jpg">
                   </figure>
                 </div>
@@ -15,8 +16,7 @@
                     <li class="list-group-item"><i class="fa fa-phone"></i> {{user.PhoneNumber}}</li>
                     <li class="list-group-item"><i class="fa fa-envelope"></i> {{user.Email}}</li>
                     <li class="list-group-item"><i class="fa  fa-calendar-check-o"></i> Aantal reservaties <span class="badge">{{user.Reservations.length}}</span></li>
-                    <li class="list-group-item"><i class="fa fa-star"></i> Aantal favorieten <span class="badge">0</span></li>
-                    <li *ngFor="let role of user.Roles" class="list-group-item"><i class="fa fa-user-plus"></i> {{role}}</li>
+                    <li class="list-group-item"><i class="fa fa-star"></i> Aantal favorieten <span class="badge">{{user.Favorites.length}}</span></li>
                     <li class="list-group-item"><button id="editAccount" class="btn btn-info" [routerLink]="['../edit']">Pas mijn account aan</button></li>
                   </ul>
                 </div>
@@ -40,6 +40,8 @@
               </tr>
             </thead>
             <tbody>
+            <tr *ngIf="user.Reservations?.length == 0"><td colspan="6" class="text-center">Geen reservaties beschikbaar.</td></tr>
+            <tr *ngIf="!user.Reservations"><td colspan="6" class="text-center">Geen reservaties beschikbaar.</td></tr>
               <tr *ngFor="let reservation of user.Reservations | sortDesc: 'DateTime'" [class.cancelled]="reservation.Cancelled">
                 <th scope="row">{{reservation.DateTime | date: 'fullDate'}}</th>
                 <td><a [routerLink]="['../../booker/detail/' , reservation.BranchId]">{{reservation.BranchName}}</a></td>

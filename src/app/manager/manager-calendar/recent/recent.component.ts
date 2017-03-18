@@ -14,14 +14,21 @@ export class RecentComponent implements OnInit {
   @ViewChild('reservationDetailModal') public reservationDetailModal:ModalDirective;
   private recentReservations:Reservation[];
   private currentReservation:Reservation;
+  private refreshing: boolean;
 
-  constructor(private reservationService:ReservationService, private managerService: ManagerService) { }
+  constructor(private reservationService:ReservationService, private managerService: ManagerService) {
+    this.refreshing = true;
+  }
 
   ngOnInit() {
     this.refreshReservations();
   }
   refreshReservations(){
-    this.reservationService.getRecentReservationByBranch(this.managerService.branchId).subscribe(data=> this.recentReservations = data);
+    this.reservationService.getRecentReservationByBranch(this.managerService.branchId).subscribe(data=> this.showData(data));
+  }
+  showData(data){
+    this.recentReservations = data;
+    this.refreshing = false;
   }
 
   showModal(id:number) :void{

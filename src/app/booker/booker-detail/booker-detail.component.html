@@ -40,12 +40,13 @@
       <div class="col-md-4">
         <ul><li *ngFor="let fac of otherFacilities"><i class="fa fa-{{fac.Class}}" aria-hidden="true"></i></li><li *ngFor="let fac of accesFacilities"><i class="fa fa-{{fac.Class}}" aria-hidden="true"></i></li></ul>
       </div>
+     <div class="col-md-12">
+       <h2>Onze Locatie : {{branch.Street}} {{branch.Number}}, {{branch.City.PostalCode}} {{branch.City.Name}}</h2>
+      <sebm-google-map [zoom]="18" [scrollwheel]="false" class="sebm-google-map-container" [latitude]="latitude" [longitude]="longitude">
+        <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude"></sebm-google-map-marker>
+      </sebm-google-map>
     </div>
-    <h2>Onze Locatie</h2>
-    <sebm-google-map [zoom]="18" [scrollwheel]="false" class="sebm-google-map-container" [latitude]="latitude" [longitude]="longitude">
-      <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude"></sebm-google-map-marker>
-    </sebm-google-map>
-
+    </div>
   </div>
   <div class="col-md-4">
     <button *ngIf="isLogged && !isFavorite" class="btn btn-default" (click)="setFavorite()"><i class="fa fa-heart-o" aria-hidden="true"></i></button>

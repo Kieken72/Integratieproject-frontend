@@ -15,7 +15,7 @@ export class RoomplanComponent implements OnInit {
   private date:Date = new Date();
   private opened:boolean = false;
   private room: Room;
-  private roomId:number;
+  private roomId:number = 1;
   private branch: Branch;
   private reservations:Reservation[];
   @ViewChild('roomPlan') canvasRef:ElementRef;
@@ -53,17 +53,23 @@ export class RoomplanComponent implements OnInit {
     this.drawRoom();
   }
   ngOnInit() {
-    this.refreshReservations();
     this.reservations = [];
+    setTimeout(() => {
+      this.branch = this.managerService.branch;
+      this.roomId = this.branch.Rooms[0].Id;
+      this.refreshReservations();
+      console.log(this.roomId);
+    }, 1000);
+
+    console.log(this.roomId)
+
   }
   refreshReservations(){this.refreshing = true;
-    this.reservationService.getRecentReservationByRoom(1, this.date).subscribe(data=> this.getData(data));
+    this.reservationService.getRecentReservationByRoom(this.roomId, this.date).subscribe(data=> this.getData(data));
   }
 
   getData(data){
     this.room = data;
-    this.branch = this.managerService.branch;
-    this.roomId = this.branch.Rooms[0].Id;
     this.canvas.width = this.room.Width;
     this.canvas.height = this.room.Height;
     this.clearCanvas();

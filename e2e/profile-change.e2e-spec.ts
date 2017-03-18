@@ -77,7 +77,7 @@ describe('profileTest', ()=> {
     const buttonElement = element(by.id('singlebutton'));
     buttonElement.click();
     browser.sleep(2000);
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/account/details');
+    expect(browser.getCurrentUrl()).toBe('http://localhost:4200/account/details');
     browser.sleep(5000);
   });
 

@@ -2,6 +2,7 @@ import {Component, OnInit, Injectable, OnDestroy} from '@angular/core';
 import {Router} from "@angular/router";
 import {UserService} from "../../account/shared/user.service";
 import {ManagerService} from "../shared/manager.service";
+import {Branch} from "../../shared/model/branch";
 
 @Component({
   selector: 'app-manager-navbar',
@@ -18,14 +19,19 @@ export class ManagerNavbarComponent implements OnInit,OnDestroy {
 
   private title = "LeisureManager";
   private branchId:number;
+  private branches:Branch[];
+
   constructor(public router: Router, private userService: UserService, private managerService: ManagerService) { }
 
-  changeBranch(event){
+  changeBranch(){
     this.managerService.branchId = this.branchId;
-    console.log(this.branchId);
+    this.managerService.refresh();
   }
   ngOnInit() {
     this.branchId = this.managerService.branchId;
+    setTimeout(() => {
+      this.branches = this.managerService.branches;
+    }, 1000);
   }
 
   logout() {

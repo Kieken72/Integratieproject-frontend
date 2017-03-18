@@ -11,6 +11,7 @@ import {ManagerService} from "../../shared/manager.service";
 export class GuestsComponent implements OnInit {
 
   private guestStats: GuestStatistics;
+  private refreshing: boolean;
 
 
   public pieChartLabels:string[] = ['1 gast', '2 gasten', '3 gasten', '4 gasten', '5 gasten', '6 gasten', '7 gasten', '8 gasten', '9 gasten', '10 gasten', '10+ gasten'];
@@ -31,7 +32,8 @@ export class GuestsComponent implements OnInit {
     private statisticService:StatisticService,
     private managerService: ManagerService
 
-  ) {}
+  ) {
+    this.refreshing = true;}
 
   ngOnInit() {
     this.statisticService.getGuestStatistics(this.managerService.branchId).subscribe(data => this.processDataPie(data));
@@ -41,7 +43,8 @@ export class GuestsComponent implements OnInit {
     this.guestStats = data;
     console.log(data);
     this.pieChartData = [this.guestStats.one, this.guestStats.two, this.guestStats.three, this.guestStats.four, this.guestStats.five, this.guestStats.six, this.guestStats.seven, this.guestStats.eight, this.guestStats.nine, this.guestStats.ten, this.guestStats.more];
-  }
+
+    this.refreshing = false;}
 
   // events
   public chartClicked(e:any):void {

@@ -23,7 +23,7 @@
     <label for="companyName" class="col-sm-3 control-label" id="lblCompanyName">Name:</label>
     <div class="col-sm-9">
       <input class="form-control" id="companyName" required [(ngModel)]="company.Name" name="name" #name="ngModel" #CompanyName/>
-      <div *ngIf="name.errors && (name.dirty || name.touched)"
+      <div id="nameError" *ngIf="name.errors && (name.dirty || name.touched)"
            class="alert alert-danger">
         <div [hidden]="!name.errors.required">
           Naam mag niet leeg zijn.
@@ -35,7 +35,7 @@
     <label for="companyVat" class="col-sm-3 control-label">VAT:</label>
     <div class="col-sm-9">
       <input class="form-control" id="companyVat" pattern="[(BE)[0-9]{12}]*" required [(ngModel)]="company.VATNumber" name="vat" #vat="ngModel" #CompanyVAT/>
-      <div *ngIf="vat.errors && (vat.dirty || vat.touched)"
+      <div id="vatError" *ngIf="vat.errors && (vat.dirty || vat.touched)"
            class="alert alert-danger">
         <div [hidden]="!vat.errors.required">
           BTW mag niet leeg zijn.
@@ -50,7 +50,7 @@
     <label for="companyStreet" class="col-sm-3 control-label">Street:</label>
     <div class="col-sm-9">
       <input class="form-control" id="companyStreet" required [(ngModel)]="company.Street" name="street" #street="ngModel" #CompanyStreet/>
-      <div *ngIf="street.errors && (street.dirty || street.touched)"
+      <div id="companyStreetError" *ngIf="street.errors && (street.dirty || street.touched)"
            class="alert alert-danger">
         <div [hidden]="!street.errors.required">
           Straat mag niet leeg zijn.
@@ -63,7 +63,7 @@
     <label for="companyStreetNumber" class="col-sm-3 control-label">Number:</label>
     <div class="col-sm-9">
       <input class="form-control" id="companyStreetNumber" type="number" required [(ngModel)]="company.Number" name="num" #num="ngModel" #CompanyStreetNumber/>
-      <div *ngIf="num.errors && (num.dirty || num.touched)"
+      <div id="companyStreetNumberError" *ngIf="num.errors && (num.dirty || num.touched)"
            class="alert alert-danger">
         <div [hidden]="!num.errors.required">
           Nummer mag niet leeg zijn.
