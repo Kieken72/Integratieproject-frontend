@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ReviewStatistics} from "../../../shared/review-statistics";
-import {ManagerService} from "../../manager.service";
 import {StatisticService} from "../../../shared/statistics.service";
+import {ManagerService} from "../../shared/manager.service";
 
 @Component({
   selector: 'app-feedback',

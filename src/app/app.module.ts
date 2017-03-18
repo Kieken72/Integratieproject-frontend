@@ -62,7 +62,7 @@ import { BookerReservationdetailComponent } from './booker/booker-reservationdet
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { FacebookService} from "ng2-facebook-sdk";
 import { BookerMapComponent } from './booker/booker-map/booker-map.component';
-import { ManagerService} from "./manager/manager.service";
+import { ManagerService} from "./manager/shared/manager.service";
 import { RoomService} from "./shared/room.service";
 import { PhonePipe } from './shared/phone.pipe';
 import { ReviewsComponent } from './manager/manager-messages/reviews/reviews.component';
@@ -77,6 +77,9 @@ import { SortDescPipe } from './shared/sort-desc.pipe';
 import { GuestsComponent } from './manager/manager-statistics/guests/guests.component';
 import { WeekdaysComponent } from './manager/manager-statistics/weekdays/weekdays.component';
 import { FeedbackComponent } from './manager/manager-statistics/feedback/feedback.component';
+import { RecentComponent } from './manager/manager-calendar/recent/recent.component';
+import { RoomplanComponent } from './manager/manager-calendar/roomplan/roomplan.component';
+import { HourlyComponent } from './manager/manager-calendar/hourly/hourly.component';
 //import { ReviewsComponent } from './manager/manager-messages/reviews/reviews.component';
 //import { MessagesComponent } from './manager/manager-messages/messages/messages.component';
 
@@ -93,7 +96,12 @@ const appRoutes: Routes = [
   ]},
   { path: 'manager', component: ManagerComponent,  children:[
     { path: 'dashboard', component: ManagerDashboardComponent, canActivate:[LoggedInGuard] },
-    { path: 'calendar', component: ManagerCalendarComponent, canActivate:[LoggedInGuard] },
+    { path: 'calendar', component: ManagerCalendarComponent, canActivate:[LoggedInGuard], children: [
+      { path: 'recent', component: RecentComponent, canActivate: [LoggedInGuard]},
+      { path: 'hourly', component: HourlyComponent, canActivate: [LoggedInGuard]},
+      { path: 'roomplan', component: RoomplanComponent, canActivate: [LoggedInGuard]},
+      { path: '', redirectTo: 'hourly', pathMatch: 'full'},
+    ]},
     { path: 'messages', component: ManagerMessagesComponent,  canActivate:[LoggedInGuard] },
     { path: 'guests', component: ManagerGuestsComponent,  canActivate:[LoggedInGuard] },
     { path: 'statistics', component: ManagerStatisticsComponent,  canActivate:[LoggedInGuard], children: [
@@ -219,10 +227,16 @@ const appRoutes: Routes = [
     GuestsComponent,
     ReviewsComponent,
     WeekdaysComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    RecentComponent,
+    RoomplanComponent,
+    HourlyComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
+
+    //{ provide:'ApiBase',useValue:"http://localhost:53073/api/" },
+    //{ provide:'AuthBase',useValue:"http://localhost:53073/oauth/" },
     { provide:'ApiBase',useValue:"https://leisurebooker.azurewebsites.net/api/" },
     { provide:'AuthBase',useValue:"https://leisurebooker.azurewebsites.net/oauth/" },
     CompanyService,

@@ -1,0 +1,66 @@
+<h3>Recente reservaties</h3>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <tbody>
+    <tr *ngIf="recentReservations?.length == 0"><td>Geen reservaties beschikbaar.</td></tr>
+    <tr *ngIf="!recentReservations"><td>Geen reservaties beschikbaar.</td></tr>
+    <tr *ngFor="let reservation of recentReservations | sortDesc: 'CreatedOn'" (click)="showModal(reservation.Id)">
+      <th scope="row">{{reservation.DateTime | date: 'shortTime'}}</th>
+      <td>{{reservation.User.Name}} {{reservation.User.Lastname}}</td>
+      <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{reservation.AmountOfPersons}}</td>
+      <td>{{reservation.SpaceId}}</td>
+      <td>{{reservation.CreatedOn | amTimeAgo}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div bsModal #reservationDetailModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left" *ngIf="currentReservation!=null"><strong>{{currentReservation.AmountOfPersons}} gasten - {{currentReservation.DateTime | date: 'd MMMM y HH:mm'}}</strong> - {{currentReservation.EndDateTime | date: 'HH:mm'}}</h4>
+        <button type="button" class="close pull-right" (click)="reservationDetailModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row" *ngIf="currentReservation!=null">
+          <div class="col-md-4">
+            <h2>Reservatie:</h2>
+            <p>
+              <strong>Space:</strong>
+              <br>
+              {{currentReservation.SpaceId}}
+            </p>
+            <p>
+              <strong>Datum:</strong>
+              <br>
+              {{currentReservation.DateTime | date: 'shortDate'}}
+            </p>
+            <p>
+              <strong>Tijd:</strong>
+              <br>
+              {{currentReservation.DateTime | date: 'shortTime'}}
+            </p>
+
+          </div>
+          <div class="col-md-4">
+            <h2>Gast:</h2>
+            <p>
+              {{currentReservation.User.Name}} {{currentReservation.User.Lastname}}<br />
+              {{currentReservation.User.Email}}<br />
+              {{currentReservation.User.PhoneNumber}}
+            </p>
+          </div>
+          <div class="col-md-4">
+            <p><button  class="btn btn-danger btn-modal btn-lg" (click)="Cancel(currentReservation.Id)">Annuleer</button></p>
+          </div>
+        </div>
+        <h3>Activiteiten</h3>
+        <p *ngIf="currentReservation!=null">
+          Reservatie aangemaakt door klant via website. {{currentReservation.CreatedOn | date: 'd MMMM y HH:mm'}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

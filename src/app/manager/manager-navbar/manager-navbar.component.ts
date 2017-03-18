@@ -1,7 +1,7 @@
 import {Component, OnInit, Injectable, OnDestroy} from '@angular/core';
 import {Router} from "@angular/router";
 import {UserService} from "../../account/shared/user.service";
-import {ManagerService} from "../manager.service";
+import {ManagerService} from "../shared/manager.service";
 
 @Component({
   selector: 'app-manager-navbar',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {BranchService} from "../../../shared/branch.service";
 import {Review} from "../../../shared/model/review";
-import {ManagerService} from "../../manager.service";
 import {Branch} from "../../../shared/model/branch";
+import {ManagerService} from "../../shared/manager.service";
 
 @Component({
   selector: 'app-reviews',

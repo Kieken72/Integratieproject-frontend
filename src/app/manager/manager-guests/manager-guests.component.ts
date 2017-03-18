@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ManagerService} from "../manager.service";
 import {ShortUser} from "../../shared/model/short-user";
+import {ManagerService} from "../shared/manager.service";
 
 @Component({
   selector: 'app-manager-guests',

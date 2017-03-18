@@ -12,11 +12,17 @@ export class CompanyService {
   private companyToPut:Company = new Company();
 
   getCompanies(){
-    return this.http.get(this.apiBase+'companies').map(res => res.json());
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(this.apiBase+'companies',options).map(res => res.json());
   }
 
   getCompany(number: number){
-    return this.http.get(this.apiBase+'companies/'+number).map(res => res.json());
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(this.apiBase+'companies/'+number,options).map(res => res.json());
   }
 
 
