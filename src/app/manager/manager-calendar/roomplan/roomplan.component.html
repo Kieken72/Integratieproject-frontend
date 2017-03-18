@@ -1,10 +1,54 @@
 
-<h3>Reservaties</h3>
+<div class="row">
+<div class="col-md-12">
+  <div class="col-sm-8">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default" (click)="removeDay()"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-success" (click)="open()">{{ date | date:'dd-MMMM-yyyy' }}</button>
+        <button type="button" class="btn btn-default" (click)="addDay()"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+
+      </div>
+      <button type="button" class="btn btn-default" (click)="today()">Vandaag</button>
+
+      <ul class="datepicker-ul" role="menu" *ngIf="opened">
+        <datepicker [(ngModel)]="date" [minDate]="minDate" [showWeeks]="false" (selectionDone)="onSelectionDone($event)"></datepicker>
+      </ul>
+  </div>
+  <div class="form-group">
+    <label for="amount" class="col-sm-2 control-label">Kamer</label>
+    <div class="col-sm-2" *ngIf="branch">
+      <select [(ngModel)]="roomId" class="form-control" id="amount">
+        <option *ngFor="let room of branch.Rooms" [ngValue]="room.Id" [attr.selected]="room.Id == roomId ? true : null">{{room.Name}}</option>
+      </select>
+    </div>
+  </div>
+</div>
+</div>
+<div class="row">
+  <h3>Reservaties voor {{date | date: 'd MMMM y'}} <i *ngIf="refreshing" class="fa fa-spinner fa-pulse fa-fw"></i></h3>
 <div class="col-md-3">
-  <ul>
-    <li *ngFor="let space of room?.Spaces">{{space.Name}} ({{space.X}},{{space.Y}}) <span class="badge">{{space.Reservations?.length}}</span> </li>
-  </ul>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <tbody>
+      <tr *ngIf="reservations?.length == 0"><td>Geen reservaties beschikbaar.</td></tr>
+      <tr *ngFor="let reservation of reservations | sort: 'DateTime'" (click)="showModal(reservation.Id)" (mouseover)="hover(reservation.SpaceId)" (mouseleave)="hoverLeave()">
+        <th scope="row">{{reservation.DateTime | date: 'shortTime'}}</th>
+        <td>{{reservation.User.Name}} {{reservation.User.Lastname}}</td>
+        <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{reservation.AmountOfPersons}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 <div class="col-md-9">
   <canvas #roomPlan></canvas>
+</div>
+  <div class="col-md-12">
+    <alert type="info">
+      <strong>DEBUG</strong><br>
+      <ul>
+        <li *ngFor="let space of room?.Spaces">{{space.Name}} ({{space.X}},{{space.Y}}) <span class="badge">{{space.Reservations?.length}} - {{room.Width}}/{{room.Height}}</span> </li>
+      </ul>
+    </alert>
+  </div>
 </div>

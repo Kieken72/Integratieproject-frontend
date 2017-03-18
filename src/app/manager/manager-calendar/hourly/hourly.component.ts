@@ -17,14 +17,23 @@ export class HourlyComponent implements OnInit {
   private reservations:Reservation[];
   private currentReservation:Reservation;
   private opened:boolean = false;
+  private refreshing: boolean;
 
-  constructor(private reservationService:ReservationService, private managerService: ManagerService) { }
+  constructor(private reservationService:ReservationService, private managerService: ManagerService) {
+    this.refreshing = true;
+  }
 
   ngOnInit() {
     this.refreshReservations();
   }
   refreshReservations(){
-    this.reservationService.getReservationByBranch(this.managerService.branchId, this.date).subscribe(data=> this.reservations = data);
+    this.refreshing = true;
+    this.reservationService.getReservationByBranch(this.managerService.branchId, this.date).subscribe(data=> this.loadData(data));
+  }
+
+  loadData(data){
+    this.reservations = data;
+    this.refreshing = false;
   }
   showModal(id:number) :void{
     this.currentReservation  = this.reservations.filter(e=>e.Id == id)[0];

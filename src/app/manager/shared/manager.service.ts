@@ -1,15 +1,20 @@
 import {Injectable, Inject} from '@angular/core';
 import {Http, Headers, RequestOptions} from "@angular/http";
+import {BranchService} from "../../shared/branch.service";
+import {Branch} from "../../shared/model/branch";
 
 @Injectable()
 export class ManagerService {
 
   public branchId: number;
+  public branch: Branch;
   public companyId: number;
 
-  constructor(private http:Http,@Inject('ApiBase') private apiBase:string) {
+  constructor(private http:Http,@Inject('ApiBase') private apiBase:string, private branchService:BranchService) {
     this.branchId = 1;
     this.companyId = 1;
+    this.branchService.getBranch(this.branchId).subscribe(data=>this.branch = data);
+
   }
 
   getMessagesByBranch(branchId:number){

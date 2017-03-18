@@ -4,11 +4,11 @@ import {Space} from "./space";
  */
 export class Room{
   Id:number;
-  name: string;
-  enabled: boolean;
-  width:string;
-  height:string;
-  branchId:number;
+  Name: string;
+  Enabled: boolean;
+  Width:string;
+  Height:string;
+  BranchId:number;
   Spaces:Space[];
 
 
