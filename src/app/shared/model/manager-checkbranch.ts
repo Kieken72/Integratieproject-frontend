@@ -4,6 +4,6 @@
 export class ManagerCheckbranch {
   public StartDate: Date;
   public Amount: number;
-  public EndDate: Date
+  public EndDate: Date;
 }
 
