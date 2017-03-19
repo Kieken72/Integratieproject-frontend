@@ -6,10 +6,15 @@ export class Room{
   Id:number;
   Name: string;
   Enabled: boolean;
-  Width:string;
-  Height:string;
+  Width:number;
+  Height:number;
   BranchId:number;
   Spaces:Space[];
+  new:boolean;
+
+  constructor(){
+    this.new = false;
+  }
 
 
 }

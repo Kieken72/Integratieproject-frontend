@@ -9,6 +9,7 @@
       <th>VAT Number</th>
       <th>Address</th>
       <th></th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
       <td>{{company.VATNumber}}</td>
       <td>{{company.Street}} {{company.Number}} {{company.Box}}, {{company.City.PostalCode}} {{company.City.Name}}</td>
       <td><button class="btn btn-info" [routerLink]="['../edit',company.Id]">Bekijk</button></td>
+      <td><button class="btn btn-warning" [routerLink]="['../../branch/new',company.Id]">Nieuw filiaal</button></td>
     </tr>
     </tbody>
   </table>

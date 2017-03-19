@@ -35,7 +35,7 @@ export class RoomNewComponent implements OnInit {
 
   newRoom(){
     var postedRoom;
-    this.roomService.postRoom(this.branch.Id, this.room.Enabled, "60", "70", this.room.Name).subscribe((data)=>this.postedRoom = data );
+    this.roomService.postRoom(this.branch.Id, this.room.Enabled, 60, 70, this.room.Name).subscribe((data)=>this.postedRoom = data );
     var buttonNewPool = document.getElementById('btnNewPool');
     var buttonNewTable = document.getElementById('btnNewTable');
     var buttonSave = document.getElementById('saveBtn');

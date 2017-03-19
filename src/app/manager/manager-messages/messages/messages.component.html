@@ -14,7 +14,7 @@
         <tbody>
         <tr *ngIf="messages?.length == 0"><td colspan="4" class="text-center">Geen berichten beschikbaar.</td></tr>
         <tr *ngIf="!messages"><td colspan="4"  class="text-center">Geen berichten beschikbaar.</td></tr>
-        <tr *ngFor="let message of messages | sortDesc: 'DateTime'">
+        <tr *ngFor="let message of messages |filterUser: user?.Id |sortDesc: 'DateTime'" (click)="showModal(message.ReservationId, message.BranchId)">
           <th scope="row">{{message.User.Lastname}} {{message.User.Name}} </th>
           <td>{{message.Text}}</td>
           <td><a [routerLink]="['../../booker/reservation/', message.ReservationId]">{{message.ReservationId}}</a></td>
@@ -26,3 +26,57 @@
     </div>
   </div>
 </div>
+
+<div bsModal #messageModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Conversatie</h4>
+        <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="conversation!=null"  class="row" style="display: block;">
+          <div class="chat">
+            <div class="chat-history">
+              <ul class="chat-ul">
+                <div *ngFor="let mess of conversation | sort:'DateTime'">
+
+                  <div *ngIf="user.Id!=mess.UserId">
+                    <li>
+                      <div class="message-data">
+                        <span class="message-data-name"><i class="fa fa-circle you"></i> {{mess.User.Name}} {{mess.User.Lastname}} ({{mess.DateTime | amTimeAgo}}) </span>
+                      </div>
+                      <div class="message you-message">
+                        {{mess.Text}}
+                      </div>
+                    </li>
+                  </div>
+                  <div *ngIf="user.Id==mess.UserId">
+                    <li class="clearfix">
+                      <div class="message-data align-right">
+                        <span class="message-data-name"> {{mess.User.Name}} {{mess.User.Surname}} ({{mess.DateTime | amTimeAgo}}) </span> <i class="fa fa-circle me"></i>
+                      </div>
+                      <div class="message me-message float-right">  {{mess.Text}}  </div>
+                    </li>
+                  </div>
+                </div>
+              </ul>
+
+            </div> <!-- end chat-history -->
+
+            <div class="col-md-9">
+              <textarea [(ngModel)]="message.text"  class="form-control"  id="text" #TextNew></textarea>
+            </div>
+            <div class="col-md-2">
+              <button id="send" class="btn btn-primary btn-lg"  (click)="sendMessage()">Stuur bericht!</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

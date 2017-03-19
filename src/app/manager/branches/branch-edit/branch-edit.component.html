@@ -188,6 +188,54 @@
       </div>
       </form>
     </tab>
+    <tab heading='Kamers'>
+      <div class="row">
+        <h2>Kamers</h2>
+        <alert type="success" *ngIf="edited">Branch succesvol bewerkt!</alert>
+        <div class="col-md-12">
+          <alert type="warning"><b>Opgelet</b> Bij wijzigingen gelieve elke Kamer apart op te slaan!!</alert>
+          <div *ngFor="let room of branch.Rooms">
+                        <div class="col-sm-3">
+              <div class="form-group">
+                <input class="form-control" name={{room.Name}} [(ngModel)]="room.Name" placeholder="Kamer naam" /><div class="input-group-btn">
+              </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <select [(ngModel)]="room.Enabled" name="{{room.Enabled}}" class="form-control">
+                  <option [attr.value]="true" [attr.selected]="room.Enabled == true ? true : null">Ja</option>
+                  <option [attr.value]="false" [attr.selected]="room.Enabled == false ? true : null">Nee</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon2"><i class="fa fa-arrows-h" aria-hidden="true"></i></span>
+                <input class="form-control" name={{room.Width}} [(ngModel)]="room.Width" /><div class="input-group-btn">
+              </div>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><i class="fa fa-arrows-v" aria-hidden="true"></i></span>
+                <input class="form-control" name={{room.Height}} [(ngModel)]="room.Height" /><div class="input-group-btn">
+
+              </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="btn-group">
+                <button class="btn btn-danger" type="button" [routerLink]="['../../../settings/rooms/edit',room.Id]"> <i class="fa fa-arrows" aria-hidden="true"></i> </button>
+                <button class="btn btn-primary" (click)="editRoom(room)" id="btnSendInfoRoom"> <i class="fa fa-floppy-o" aria-hidden="true"></i> </button>
+                <button class="btn btn-success" (click)="addRoom()"><i class="fa fa-plus" aria-hidden="true"></i> </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </tab>
   </tabset>
 </div>
 </div>

@@ -8,6 +8,7 @@ import {ManagerCheckbranch} from "../../shared/model/manager-checkbranch";
 import {Branch, CheckMessage} from "../../shared/model/branch";
 import {ReservationService} from "../../shared/reservation.service";
 import {Reservation} from "../../shared/model/reservation";
+import {BranchService} from "../../shared/branch.service";
 
 @Component({
   selector: 'app-manager-dashboard',
@@ -25,14 +26,22 @@ export class ManagerDashboardComponent implements OnInit {
   public CheckMessage = CheckMessage;
   private reservationResponse: Branch;
 
-  constructor(private searchService : SearchService, private managerService : ManagerService, private reservationService: ReservationService) { }
+  private currentBranch:Branch;
+
+  constructor(private searchService : SearchService,
+              private managerService : ManagerService,
+              private reservationService: ReservationService
+  ) { }
 
   ngOnInit() {
-
     this.managerService.getGuestsByBranch(this.managerService.branchId).subscribe(data => this.setUsers(data));
     this.currentTime = Observable.interval(1000).map(x=>new Date()).share();
     this.persons = this.searchService.persons;
     this.managerReservation.Amount = 2;
+    setTimeout(()=>{
+      this.currentBranch = this.managerService.branch;
+      console.log(this.currentBranch);
+    },2000)
   }
 
   setUsers(data){

@@ -80,8 +80,7 @@ import { RecentComponent } from './manager/manager-calendar/recent/recent.compon
 import { RoomplanComponent } from './manager/manager-calendar/roomplan/roomplan.component';
 import { HourlyComponent } from './manager/manager-calendar/hourly/hourly.component';
 import { LimitPipe } from './shared/limit.pipe';
-//import { ReviewsComponent } from './manager/manager-messages/reviews/reviews.component';
-//import { MessagesComponent } from './manager/manager-messages/messages/messages.component';
+import { FilterUserPipe } from './shared/filter-user.pipe';
 
 const appRoutes: Routes = [
 
@@ -229,7 +228,8 @@ const appRoutes: Routes = [
     RecentComponent,
     RoomplanComponent,
     HourlyComponent,
-    LimitPipe
+    LimitPipe,
+    FilterUserPipe
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },

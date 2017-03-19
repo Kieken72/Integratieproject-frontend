@@ -10,6 +10,8 @@ import {RoomService} from "../../../../shared/room.service";
   styleUrls: ['./rooms-list.component.css']
 })
 export class RoomsListComponent implements OnInit {
+
+
   private branches: Branch[] = new Array();
   private fullBranches: Branch[] = new Array();
   private rooms: Room[] = new Array();
@@ -19,7 +21,6 @@ export class RoomsListComponent implements OnInit {
     this.branchService.getBranches().subscribe((data)=>{
       data.forEach((cBranch)=>{
         if(cBranch.CompanyId == "2"){
-          //this.getfullBranches(cBranch.Id);
           this.branches.push(cBranch);
 
         }
