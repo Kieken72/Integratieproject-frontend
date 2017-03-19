@@ -11,6 +11,7 @@ export class Reservation {
   public User: ShortUser;
   public CreatedOn: Date;
   public Arrived : boolean;
+  public NoShow : boolean;
   public Passed: boolean;
   public Cancelled: boolean;
 }

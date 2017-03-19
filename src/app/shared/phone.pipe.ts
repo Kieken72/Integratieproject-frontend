@@ -6,6 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class PhonePipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
+    if(value==null){
+      return value;
+    }
+
     var value = value.toString().trim().replace(/^\+/, '');
     switch (value.length) {
       case 10: // 04XX XX XX XX

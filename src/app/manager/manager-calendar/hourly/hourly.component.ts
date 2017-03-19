@@ -38,6 +38,7 @@ export class HourlyComponent implements OnInit {
   }
   showModal(id:number) :void{
     this.currentReservation  = this.reservations.filter(e=>e.Id == id)[0];
+    console.log(this.currentReservation);
     this.reservationDetailModal.show();
   }
 
@@ -90,4 +91,31 @@ export class HourlyComponent implements OnInit {
     this.refreshReservations();
   }
 
+  public get currentReservationStatus(){
+    if(this.currentReservation){
+      if(this.currentReservation.Arrived){
+        return "Aangekomen"
+      }
+      if(this.currentReservation.NoShow){
+        return "Niet opgedaagd"
+      }if(this.currentReservation.Cancelled){
+        return "Geannuleerd"
+      }
+    }
+    return "";
+  }
+
+  public get currentStatus(){
+    if(this.currentReservation){
+      if(this.currentReservation.Arrived){
+        return "Arrived"
+      }
+      if(this.currentReservation.NoShow){
+        return "NoShow"
+      }if(this.currentReservation.Cancelled){
+        return "Cancel"
+      }
+    }
+    return "";
+  }
 }

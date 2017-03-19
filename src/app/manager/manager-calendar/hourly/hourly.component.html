@@ -18,7 +18,11 @@
   <table class="table table-striped">
     <tbody>
     <tr *ngIf="reservations?.length == 0"><td>Geen reservaties beschikbaar.</td></tr>
-    <tr *ngFor="let reservation of reservations | sort: 'DateTime'" (click)="showModal(reservation.Id)" [class.warning]="reservation.NoShow" [class.cancelled]="reservation.Cancelled" [class.success]="reservation.Arrived">
+    <tr *ngFor="let reservation of reservations | sort: 'DateTime'"
+        (click)="showModal(reservation.Id)"
+        [class.warning]="reservation.NoShow"
+        [class.cancelled]="reservation.Cancelled"
+        [class.success]="reservation.Arrived">
       <th scope="row">{{reservation.DateTime | date: 'shortTime'}}</th>
       <td>{{reservation.User.Name}} {{reservation.User.Lastname}}</td>
       <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{reservation.AmountOfPersons}}</td>
@@ -63,17 +67,21 @@
             <h2>Gast:</h2>
             <p>
               {{currentReservation.User.Name}} {{currentReservation.User.Lastname}}<br />
-              {{currentReservation.User.Email}}<br />
-              {{currentReservation.User.PhoneNumber}}
+              <a href="mailto:{{currentReservation.User.Email}}">{{currentReservation.User.Email}}</a><br />
+              {{currentReservation.User.PhoneNumber | phone}}
             </p>
+            <h3>{{currentReservationStatus}}</h3>
           </div>
           <div class="col-md-4">
-            <p><button class="btn btn-success btn-modal btn-lg" (click)="Arrived(currentReservation.Id)">Aangekomen</button></p>
-            <p><button  class="btn btn-warning btn-modal btn-lg" (click)="NoShow(currentReservation.Id)">Niet opgedaagd</button></p>
+            <p><button class="btn btn-success btn-modal btn-lg" (click)="Arrived(currentReservation.Id)" [disabled]="currentReservation.Arrived">Aangekomen</button></p>
+            <p><button  class="btn btn-warning btn-modal btn-lg" (click)="NoShow(currentReservation.Id)" [disabled]="currentReservation.NoShow">Niet opgedaagd</button></p>
             <p><button  class="btn btn-danger btn-modal btn-lg" (click)="Cancel(currentReservation.Id)">Annuleer</button></p>
           </div>
         </div>
         <h3>Activiteiten</h3>
+        <p *ngIf='currentStatus!=""'>
+          {{currentStatus}}
+        </p>
         <p *ngIf="currentReservation!=null">
           Reservatie aangemaakt door klant via website. {{currentReservation.CreatedOn | date: 'd MMMM y HH:mm'}}
         </p>
