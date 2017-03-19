@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import {ProfileService} from "../shared/profile.service";
 import {User} from "./model/user";
 import {BranchService} from "../../shared/branch.service";
 import {Branch} from "../../shared/model/branch";
 import {ReservationService} from "../../shared/reservation.service";
+import {ModalDirective} from "ng2-bootstrap";
 
 
 @Component({
@@ -13,6 +14,8 @@ import {ReservationService} from "../../shared/reservation.service";
   providers: [ProfileService]
 })
 export class AccountDetailComponent implements OnInit {
+
+  @ViewChild('favoritesDetailModal') public favoritesDetailModal:ModalDirective;
   private user: User;
   private branches: Branch[];
   private refreshing: boolean;
@@ -44,6 +47,10 @@ export class AccountDetailComponent implements OnInit {
     this.user = data;
     this.refreshing = false;
   };
+
+  showModal(){
+    this.favoritesDetailModal.show();
+  }
 
   getBranches():void{
     this.branchService.getBranches().subscribe(data => this.branches = data);

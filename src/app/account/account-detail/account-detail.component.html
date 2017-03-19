@@ -18,7 +18,7 @@
                     <li class="list-group-item"><i class="fa fa-phone"></i> {{user.PhoneNumber | phone}}</li>
                     <li class="list-group-item"><i class="fa fa-envelope"></i> {{user.Email}}</li>
                     <li class="list-group-item"><i class="fa  fa-calendar-check-o"></i> Aantal reservaties <span class="badge">{{user.Reservations.length}}</span></li>
-                    <li class="list-group-item"><i class="fa fa-star"></i> Aantal favorieten <span class="badge">{{user.Favorites.length}}</span></li>
+                    <li class="list-group-item" (click)="showModal()"><i class="fa fa-star"></i> Aantal favorieten <span class="badge">{{user.Favorites.length}}</span></li>
                     <li class="list-group-item"><button id="editAccount" class="btn btn-info" [routerLink]="['../edit']">Pas mijn account aan</button></li>
                   </ul>
                 </div>
@@ -60,6 +60,28 @@
           </table>
         </div>
     </div>
+</div>
+<div bsModal #favoritesDetailModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left" *ngIf="user!=null">Mijn favorieten: </h4>
+        <button type="button" class="close pull-right" (click)="favoritesDetailModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row" *ngIf="user!=null">
+         <div class="col-md-12" *ngFor="let favo of user.Favorites">
+         <div class="col-md-12">
+           <p class="col-md-7">{{favo.Name}}</p>
+           <button class="btn btn-success pull-right" [routerLink]="['../../booker/detail/' , favo.Id]">Reserveer</button>
+         </div>
+         </div>
+        </div>
+       </div>
+    </div>
+</div>
 </div>
 
 
