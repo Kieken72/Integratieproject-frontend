@@ -22,20 +22,17 @@ export class RoomsListComponent implements OnInit {
       data.forEach((cBranch)=>{
         if(cBranch.CompanyId == "2"){
           this.branches.push(cBranch);
-
         }
       })
     },(error)=>console.log(error),()=>this.getfullBranch(this.branches));
-
   }
 
   getfullBranch(branches:Branch[]){
     branches.forEach((cBranch)=>{
       this.roomService.getFullBranch(cBranch.Id).subscribe((data)=> {
         this.fullBranches.push(data);
-        this.appendRooms();
+        this.appendRooms(data);
       });
-
     })
   }
   getfullBranches(id:number){
@@ -47,12 +44,10 @@ export class RoomsListComponent implements OnInit {
     });
   };
 
-  appendRooms(){
-    this.fullBranches.forEach((cBranch)=>{
-      cBranch.Rooms.forEach((cRoom)=>{
-        this.rooms.push(cRoom);
+  appendRooms(data){
+    data.Rooms.forEach((cRoom)=>{
+      this.rooms.push(cRoom);
       })
-    })
   };
 }
 

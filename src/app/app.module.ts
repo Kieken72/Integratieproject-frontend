@@ -124,16 +124,16 @@ const appRoutes: Routes = [
       { path: 'new/:id', component: BranchNewComponent,  canActivate:[LoggedInGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
-    { path: 'settings', component: ManagerSettingsComponent, children: [
-      { path: 'rooms', component: RoomsComponent,  children:[
-        { path: 'new/:id', component: RoomNewComponent },
-        { path: 'edit/:id', component: RoomEditComponent },
-        { path: 'list', component: RoomsListComponent},
+    { path: 'settings', component: ManagerSettingsComponent,canActivate:[LoggedInGuard], children: [
+      { path: 'rooms', component: RoomsComponent,canActivate:[LoggedInGuard],  children:[
+        { path: 'new/:id', component: RoomNewComponent,canActivate:[LoggedInGuard] },
+        { path: 'edit/:id', component: RoomEditComponent,canActivate:[LoggedInGuard] },
+        { path: 'list', component: RoomsListComponent,canActivate:[LoggedInGuard]},
         { path: '', redirectTo: 'new', pathMatch: 'full'},
       ]},
-      { path: 'spaces', component: SpacesComponent, canActivate: [ManagerGuard], children:[
-        { path: 'new', component: SpaceNewComponent, canActivate: [ManagerGuard] },
-        { path: 'arrange', component: SpaceArrangeComponent, canActivate: [ManagerGuard] },
+      { path: 'spaces', component: SpacesComponent, canActivate: [LoggedInGuard], children:[
+        { path: 'new', component: SpaceNewComponent, canActivate: [LoggedInGuard] },
+        { path: 'arrange', component: SpaceArrangeComponent, canActivate: [LoggedInGuard] },
         { path: '', redirectTo: 'new', pathMatch: 'full'},
       ]},
     ]},
