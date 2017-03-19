@@ -37,7 +37,7 @@
               <div class="form-group">
                 <label id="lblUser"  class="col-sm-2 control-label">Gast</label>
                 <div class="col-sm-10">
-                  <select [(ngModel)]="managerReservation.Id" name="user" class="form-control">
+                  <select [(ngModel)]="managerReservation.UserId" name="user" class="form-control">
                     <option *ngFor="let user of users" [(ngValue)]="user.Id">{{user.Name}} {{user.Lastname}}</option>
                   </select>
                 </div>

@@ -50,23 +50,23 @@ export class ManagerDashboardComponent implements OnInit {
 
   updateDate(newDate){
     var date = newDate.currentTarget.valueAsDate;
-    this.managerReservation.StartDate = date;
-    this.managerReservation.StartDate.setHours(this.date.getHours());
-    this.managerReservation.StartDate.setMinutes(this.date.getMinutes());
-    this.date = this.managerReservation.StartDate;
-    return this.managerReservation.StartDate;
+    this.managerReservation.DateTime = date;
+    this.managerReservation.DateTime.setHours(this.date.getHours());
+    this.managerReservation.DateTime.setMinutes(this.date.getMinutes());
+    this.date = this.managerReservation.DateTime;
+    return this.managerReservation.DateTime;
   }
   updateHour(newHour){
     var date = newHour ;
-    this.managerReservation.StartDate = date;
-    this.managerReservation.StartDate.setHours(this.date.getHours());
-    this.managerReservation.StartDate.setMinutes(this.date.getMinutes());
+    this.managerReservation.DateTime = date;
+    this.managerReservation.DateTime.setHours(this.date.getHours());
+    this.managerReservation.DateTime.setMinutes(this.date.getMinutes());
   }
 
   private processDate(){
-    var date = this.managerReservation.StartDate;
-    date.setHours(this.managerReservation.StartDate.getHours()+1);
-    date.setMinutes(this.managerReservation.StartDate.getMinutes());
+    var date = this.managerReservation.DateTime;
+    date.setHours(this.managerReservation.DateTime.getHours()+1);
+    date.setMinutes(this.managerReservation.DateTime.getMinutes());
     return date;
   }
   private processEndDate(endDate:Date){
@@ -78,12 +78,12 @@ export class ManagerDashboardComponent implements OnInit {
 
   refreshReservation(){
       this.reservationResponse = null;
-      this.managerReservation.EndDate = new Date(this.managerReservation.StartDate);
-      this.managerReservation.EndDate.setHours(this.managerReservation.EndDate.getHours()+3);
-      this.managerReservation.EndDate.setMinutes(this.managerReservation.EndDate.getMinutes());
+      this.managerReservation.EndDateTime = new Date(this.managerReservation.DateTime);
+      this.managerReservation.EndDateTime.setHours(this.managerReservation.EndDateTime.getHours()+2);
+      this.managerReservation.EndDateTime.setMinutes(this.managerReservation.EndDateTime.getMinutes());
       var param = new ManagerCheckbranch();
       param.StartDate = this.processDate();
-      param.EndDate = this.managerReservation.EndDate;
+      param.EndDate = this.managerReservation.EndDateTime;
       param.Amount = this.managerReservation.Amount;
       this.reservationService.isBranchAvailableManager(this.managerService.branchId, param).subscribe(data=>this.processIsPlace(data));
 
@@ -91,6 +91,7 @@ export class ManagerDashboardComponent implements OnInit {
 
   reservePlace(){
     this.managerReservation.BranchId = this.managerService.branchId;
+    console.log(this.managerReservation);
     this.reservationService.postManagerReservation(this.managerReservation).subscribe(data=>this.reservation=data,err=>console.log(err));
   }
 
