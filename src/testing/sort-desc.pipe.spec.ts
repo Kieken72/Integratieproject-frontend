@@ -6,7 +6,7 @@ import { SortDescPipe } from '../app/shared/sort-desc.pipe';
 describe('SortDescPipe', () => {
 
   let pipe = new SortDescPipe();
-  console.log("Sortpipe");
+  console.log("Sortpipe Desc");
   it('create an instance', () => {
     const pipe = new SortDescPipe();
     expect(pipe).toBeTruthy();
@@ -17,6 +17,6 @@ describe('SortDescPipe', () => {
   });
 
   it('Sort list', ()=>{
-    expect(pipe.transform(['Seppe','Test','Nico'],null)).toBe(['Test','Seppe','Nico']);
+    expect(pipe.transform(['Seppe','Test','Nico'],null)).toEqual(['Test','Seppe','Nico']);
   });
 });
