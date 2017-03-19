@@ -5,6 +5,7 @@ import {ModalDirective} from "ng2-bootstrap";
 import {User} from "../../../account/account-detail/model/user";
 import {ProfileService} from "../../../account/shared/profile.service";
 import {ReservationService} from "../../../shared/reservation.service";
+import {Reservation} from "../../../shared/model/reservation";
 
 @Component({
   selector: 'app-messages',
@@ -17,6 +18,7 @@ export class MessagesComponent implements OnInit {
   private refreshing: boolean;
   private messages: Message[];
   private message:Message = new Message();
+  private reservations : Reservation[];
 
   private user:User = null;
 
@@ -32,6 +34,7 @@ export class MessagesComponent implements OnInit {
       this.profileService.getProfile().subscribe(
         data=>this.user = data);
     },1000);
+    this.getReservations();
   }
 
   getData(data){
@@ -55,6 +58,11 @@ export class MessagesComponent implements OnInit {
   onComplete(data){
     console.log(data);
     this.reservationService.getMessages(data.ReservationId).subscribe((data) => this.conversation = data,(err)=>console.log(err),()=>console.log(this.conversation));
+  }
+
+  getReservations(){
+    this.reservationService.getRecentReservationByBranch(this.managerService.branchId).subscribe((data) => this.reservations = data);
+    //this.reservationService.getRecentReservationByBranch(this.managerService.branchId).subscribe((data) => console.log(data));
   }
 
 }
