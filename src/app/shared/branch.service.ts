@@ -25,7 +25,7 @@ export class BranchService {
     return this.http.get(this.apiBase+'branches/by-postal/'+postalCode).map(res=>res.json());
   }
 
-  public postBranche (_branchName: string, _branchStreet: string, _branchNumber: string, _branchBox:string, _cityId:string, _branchPhoneNumber:string, _branchEmail:string){
+  public postBranche (_companyId:number,_branchName: string, _branchStreet: string, _branchNumber: string, _branchBox:string, _cityId:string, _branchPhoneNumber:string, _branchEmail:string){
     //let cityids = _cityId.split(":");
     this.branch.Name = _branchName;
     this.branch.Street = _branchStreet;
@@ -34,7 +34,7 @@ export class BranchService {
     this.branch.CityId = _cityId;
     this.branch.PhoneNumber = _branchPhoneNumber;
     this.branch.Email = _branchEmail;
-    this.branch.CompanyId = "1"; //TODO: CompanyId to fix
+    this.branch.CompanyId = _companyId; //TODO: CompanyId to fix
 
     console.log(this.branch);
 

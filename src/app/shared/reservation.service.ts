@@ -83,7 +83,7 @@ export class ReservationService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiBase+'messages/', JSON.stringify(this.message), options).map((res:Response)=>res);
+    return this.http.post(this.apiBase+'messages/', JSON.stringify(this.message), options).map((res:Response)=>res.json());
   }
 
   getMessages(number:number){

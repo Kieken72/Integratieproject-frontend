@@ -1,8 +1,7 @@
-<h2>My Companies</h2>
+<h2>Bedrijven</h2>
 
 <div class="table-responsive">
   <table class="table table-hover">
-    <caption>Caption here?</caption>
     <thead>
     <tr>
       <th>#</th>
@@ -18,7 +17,7 @@
       <td>{{company.Name}}</td>
       <td>{{company.VATNumber}}</td>
       <td>{{company.Street}} {{company.Number}} {{company.Box}}, {{company.City.PostalCode}} {{company.City.Name}}</td>
-      <td><button class="btn btn-default">Wijzig</button></td>
+      <td><button class="btn btn-info" [routerLink]="['../edit',company.Id]">Bekijk</button></td>
     </tr>
     </tbody>
   </table>

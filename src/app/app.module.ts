@@ -37,7 +37,6 @@ import { RegisterComponent } from './account/register/register.component';
 import { ReservationService } from "./shared/reservation.service";
 import { CompanyEditComponent } from './manager/company/company-edit/company-edit.component';
 import { CompanyNewComponent } from './manager/company/company-new/company-new.component';
-import { CompanyDetailComponent } from './manager/company/company-detail/company-detail.component';
 import { CompanyListComponent } from './manager/company/company-list/company-list.component';
 import { BranchListComponent } from './manager/branches/branch-list/branch-list.component';
 import { BranchDetailComponent } from './manager/branches/branch-detail/branch-detail.component';
@@ -114,7 +113,6 @@ const appRoutes: Routes = [
     { path: 'company', component: CompanyComponent,  canActivate:[LoggedInGuard], children:[
       { path: "list" , component: CompanyListComponent, canActivate: [LoggedInGuard] },
       { path: 'edit/:id', component: CompanyEditComponent,  canActivate:[LoggedInGuard] },
-      { path: 'detail/:id', component: CompanyDetailComponent,  canActivate:[LoggedInGuard] },
       { path: 'new', component: CompanyNewComponent,  canActivate:[LoggedInGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
@@ -122,7 +120,7 @@ const appRoutes: Routes = [
       { path: "list" , component: BranchListComponent, canActivate: [LoggedInGuard] },
       { path: 'edit/:id', component: BranchEditComponent,  canActivate:[LoggedInGuard] },
       { path: 'detail/:id', component: BranchDetailComponent,  canActivate:[LoggedInGuard] },
-      { path: 'new', component: BranchNewComponent,  canActivate:[LoggedInGuard] },
+      { path: 'new/:id', component: BranchNewComponent,  canActivate:[LoggedInGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
     { path: 'settings', component: ManagerSettingsComponent, children: [
@@ -198,7 +196,6 @@ const appRoutes: Routes = [
     RegisterComponent,
     CompanyEditComponent,
     CompanyNewComponent,
-    CompanyDetailComponent,
     CompanyListComponent,
     BranchListComponent,
     BranchDetailComponent,

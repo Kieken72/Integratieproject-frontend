@@ -16,7 +16,7 @@ export class Branch{
   public City: City;
   public PhoneNumber: string;
   public Email: string;
-  public CompanyId: string;
+  public CompanyId: number;
   public Picture: string;
   public Description: string;
   public AdditionalInfos: AdditionalInfo[];

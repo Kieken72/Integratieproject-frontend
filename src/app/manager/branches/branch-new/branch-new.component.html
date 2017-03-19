@@ -1,3 +1,5 @@
+<h2>Nieuw Filiaal voor: {{company?.Name}}</h2>
+
 <form #branchForm="ngForm" class="form-horizontal">
   <div class="form-group">
     <label for="brancheName" class="col-sm-3 control-label">Filiaal naam:</label>
@@ -42,17 +44,19 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="companyCity" class="col-sm-3 control-label">City:</label>
+    <label for="cityWhere" class="col-sm-3 control-label">City:</label>
     <div class="col-sm-9">
-      <select class="form-control" name="cityId" [(ngModel)]="branch.CityId" required [(ngModel)]="branch.City" name="city" #city="ngModel" #CityId >
-        <option id="companyCity" *ngFor="let city of cities" [ngValue]="city.Id">{{city.PostalCode}} | {{city.Name}}</option>
-      </select>
-      <div *ngIf="city.errors && (city.dirty || city.touched)"
-           class="alert alert-danger">
-        <div [hidden]="!city.errors.required">
-          Plaats mag niet leeg zijn.
-        </div>
-      </div>
+      <typeahead
+        id="where"
+        [(ngModel)]="selectedCity"
+        [list]="cities"
+        [searchProperty]="'Name'" [displayProperty]="'Name'"
+        [maxSuggestions]="10"
+        (suggestionSelected)="citySelected($event)"
+        placeholder="Begin typing a city"
+        required
+        name="cityWhere" #cityWhere="ngModel" id="cityWhere">
+      </typeahead>
     </div>
   </div>
   <div class="form-group">
