@@ -28,6 +28,7 @@ export class HourlyComponent implements OnInit {
   }
   refreshReservations(){
     this.refreshing = true;
+    console.log("refreshing..");
     this.reservationService.getReservationByBranch(this.managerService.branchId, this.date).subscribe(data=> this.loadData(data));
   }
 
@@ -40,19 +41,27 @@ export class HourlyComponent implements OnInit {
     this.reservationDetailModal.show();
   }
 
+  actionAfterModalChange(){
+    console.log(this.reservationDetailModal);
+    this.reservationDetailModal.hide();
+    this.refreshReservations;
+  }
   Arrived(id:number){
     console.log(id);
-    this.reservationService.arrivedReservation(id).subscribe(data=>console.log(data));
+    this.reservationService.arrivedReservation(id).subscribe(
+      this.actionAfterModalChange);
   }
 
   NoShow(id:number){
 
     console.log(id);
-    this.reservationService.noShowReservation(id).subscribe(data=>console.log(data));
+    this.reservationService.noShowReservation(id).subscribe(
+      this.actionAfterModalChange);
   }
   Cancel(id:number){
     console.log(id);
-    this.reservationService.cancelManagerReservation(id).subscribe(data=>console.log(data));
+    this.reservationService.cancelManagerReservation(id).subscribe(
+      this.actionAfterModalChange);
   }
 
   public open():void {

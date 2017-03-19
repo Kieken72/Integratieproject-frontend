@@ -19,8 +19,11 @@ export class ReviewsComponent implements OnInit {
   private reviews: Review[];
 
   ngOnInit() {
-  this.branchService.getReviews(this.managerService.branchId)
-    .subscribe(data => this.getReviews(data),error =>console.log(error));
+    setTimeout(()=>{
+      //Delay loading so server doesn't get overloaded.;
+      this.branchService.getReviews(this.managerService.branchId)
+        .subscribe(data => this.getReviews(data),error =>console.log(error));
+    },2000);
 
   }
 

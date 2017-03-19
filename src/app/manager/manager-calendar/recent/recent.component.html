@@ -5,11 +5,10 @@
     <tr *ngIf="recentReservations?.length == 0"><td>Geen reservaties beschikbaar.</td></tr>
     <tr *ngIf="!recentReservations"><td>Geen reservaties beschikbaar.</td></tr>
     <tr *ngFor="let reservation of recentReservations | sortDesc: 'CreatedOn'" (click)="showModal(reservation.Id)">
-      <th scope="row">{{reservation.DateTime | date: 'shortTime'}}</th>
+      <th scope="row">{{reservation.DateTime | date: 'd MMMM y HH:mm'}}</th>
       <td>{{reservation.User.Name}} {{reservation.User.Lastname}}</td>
       <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{reservation.AmountOfPersons}}</td>
-      <td>{{reservation.SpaceId}}</td>
-      <td>{{reservation.CreatedOn | amTimeAgo}}</td>
+      <td>{{reservation.DateTime | amTimeAgo}}</td>
     </tr>
     </tbody>
   </table>

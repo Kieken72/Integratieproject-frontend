@@ -12,10 +12,10 @@ import {CityService} from "../../../shared/cityservice/city.service";
 })
 export class CompanyEditComponent implements OnInit {
   private company: Company;
-  cities: City[];
+  private cities: City[];
   private selectedCity:any;
-  //cityid: number;
-  city: City;
+  private edited = false;
+  private city: City;
   constructor(private route: ActivatedRoute, private companyService: CompanyService,  private cityService:CityService) { }
 
   ngOnInit() {
@@ -39,6 +39,11 @@ export class CompanyEditComponent implements OnInit {
 
   editCompany(){
     //(_id: string,_name:string,_VAT:string,_street:string, _streetNumber:string, _box:string,_cityId:string){
-    this.companyService.putCompany(this.company.Id, this.company.Name,this.company.VATNumber,this.company.Street, this.company.Number,this.company.Box,this.selectedCity.Id).subscribe(data=>console.log(data));
+    this.companyService.putCompany(this.company.Id, this.company.Name,this.company.VATNumber,this.company.Street, this.company.Number,this.company.Box,this.city.Id)
+      .subscribe(
+        data=>console.log(data),
+        (err)=>console.log(err),
+        ()=> this.edited = true
+      );
   }
 }

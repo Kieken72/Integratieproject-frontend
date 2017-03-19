@@ -6,6 +6,8 @@ import {CityService} from "../../../shared/cityservice/city.service";
 import {City} from "../../../shared/cityservice/city";
 import {OperationHour} from "../../../shared/model/operationhour";
 import {AdditionalInfo} from "../../../shared/model/additional-info";
+import {Room} from "../../manager-settings/rooms/model/room";
+import {RoomService} from "../../../shared/room.service";
 
 export class Weekday{
   public Id: number;
@@ -33,7 +35,7 @@ export class BranchEditComponent implements OnInit {
   private selectedCity:any;
   //cityid: number;
   city: City;
-  constructor(private route: ActivatedRoute,private branchService: BranchService, private cityService:CityService) {
+  constructor(private route: ActivatedRoute,private branchService: BranchService, private cityService:CityService, private roomService:RoomService) {
     this.days = [
       new Weekday(0,"Sunday"),
       new Weekday(1,"Monday"),
@@ -92,5 +94,19 @@ export class BranchEditComponent implements OnInit {
   addAdditionalInfo(){
   this.branch.AdditionalInfos.push(new AdditionalInfo());
 }
+  addRoom(){
+    var newRoom = new Room();
+    newRoom.new = true;
+    newRoom.BranchId = this.branch.Id;
+    this.branch.Rooms.push(newRoom);
+}
+
+  editRoom(room:Room){
+    if(room.new){
+      this.roomService.postRoom(room.BranchId,room.Enabled,room.Height,room.Width,room.Name).subscribe(data=>room = data);
+      return;
+    }
+    this.roomService.putRoom(room).subscribe(data=>console.log(data));
+  }
 
 }

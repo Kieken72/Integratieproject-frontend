@@ -51,13 +51,17 @@ export class BookerReservationdetailComponent implements OnInit {
 
             };
           })
-          this.reservationService.getMessages(cReservation.Id).subscribe((data) => this.messages = data,(error)=>console.log(error),()=>this.refreshing = false);
+          this.reservationService.getMessages(cReservation.Id).subscribe((data) => this.messages = data,(error)=>this.onError(error),()=>this.refreshing = false);
           this.reservations.push(cReservation);
           this.currentReservationId = cReservation.Id;
         }
       });
     });
     return this.reservations;
+  }
+  onError(error){
+    console.log(error);this.refreshing = false
+    console.log(this.reservation);
   }
 
   getUser(data){
@@ -72,14 +76,14 @@ export class BookerReservationdetailComponent implements OnInit {
     this.branchService.getBranches().subscribe(data => this.branches = data);
   }
 
+  onComplete(data){
+    console.log(data);
+    this.reservationService.getMessages(data.ReservationId).subscribe((data) => this.messages = data,(err)=>console.log(err),()=>console.log(this.messages));
+  }
   sendMessage(){
     this.reservations.forEach((cRes)=>{
-      this.reservationService.postMessage(cRes.Id, cRes.BranchId, this.message.text).subscribe((data)=>console.log(data));
-
-      this.reservationService.getMessages(cRes.Id).subscribe((data) => this.messages = data);
+      console.log("Loop res");
+      this.reservationService.postMessage(cRes.Id, cRes.BranchId, this.message.text).subscribe((data)=>this.onComplete(data));
     });
-    location.reload();
-    //this.rout.navigate(['../../manager/reservationdetail/', this.currentReservationId]);
-
   }
 }

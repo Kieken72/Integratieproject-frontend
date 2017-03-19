@@ -17,21 +17,29 @@ export class ManagerNavbarComponent implements OnInit,OnDestroy {
     this.managerService.branchId = this.branchId;
   }
 
-  private title = "LeisureManager";
+  private refreshing:boolean = false;
   private branchId:number;
   private branches:Branch[];
 
   constructor(public router: Router, private userService: UserService, private managerService: ManagerService) { }
 
   changeBranch(){
+    this.refreshing = true;
+    console.log(this.refreshing);
     this.managerService.branchId = this.branchId;
     this.managerService.refresh();
+
+    setTimeout(()=>{
+      this.router.navigateByUrl('/manager/dashboard');
+      this.refreshing = false;
+    },1000);
   }
+
   ngOnInit() {
     this.branchId = this.managerService.branchId;
     setTimeout(() => {
       this.branches = this.managerService.branches;
-    }, 1000);
+    }, 1500);
   }
 
   logout() {

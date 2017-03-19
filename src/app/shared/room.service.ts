@@ -12,7 +12,7 @@ export class RoomService{
   private room:Room = new Room();
   private space:Space = new Space();
 
-  postRoom(_branchId:number, _enabled:boolean, _height:string, _width:string, _name:string){
+  postRoom(_branchId:number, _enabled:boolean, _height:number, _width:number, _name:string){
     this.room.BranchId = _branchId;
     this.room.Enabled = _enabled;
     this.room.Height = _height;
@@ -25,6 +25,15 @@ export class RoomService{
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.apiBase+'branches/room', JSON.stringify(this.room), options).map((res:Response)=>res.json());
+  }
+
+  putRoom(room:Room){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', 'Bearer '+authToken);
+    let options = new RequestOptions({ headers: headers });
+    console.log(room);
+    return this.http.put(this.apiBase+'branches/room/'+room.Id, JSON.stringify(room), options).map((res:Response)=>res);
   }
 
   postSpaces(_name:string, _enabled:string, _persons:number, _minPersons:number, _roomId:number, _x:number, _y:number, _type:number){

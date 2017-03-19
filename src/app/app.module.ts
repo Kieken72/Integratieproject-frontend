@@ -37,7 +37,6 @@ import { RegisterComponent } from './account/register/register.component';
 import { ReservationService } from "./shared/reservation.service";
 import { CompanyEditComponent } from './manager/company/company-edit/company-edit.component';
 import { CompanyNewComponent } from './manager/company/company-new/company-new.component';
-import { CompanyDetailComponent } from './manager/company/company-detail/company-detail.component';
 import { CompanyListComponent } from './manager/company/company-list/company-list.component';
 import { BranchListComponent } from './manager/branches/branch-list/branch-list.component';
 import { BranchDetailComponent } from './manager/branches/branch-detail/branch-detail.component';
@@ -73,6 +72,8 @@ import { EqualValidator } from "./account/account-edit/equal-validator";
 import { ChartsModule } from "ng2-charts";
 import { StatisticService } from "./shared/statistics.service";
 import { MomentModule } from "angular2-moment";
+import * as moment from 'moment';
+
 import { SortDescPipe } from './shared/sort-desc.pipe';
 import { GuestsComponent } from './manager/manager-statistics/guests/guests.component';
 import { WeekdaysComponent } from './manager/manager-statistics/weekdays/weekdays.component';
@@ -81,8 +82,7 @@ import { RecentComponent } from './manager/manager-calendar/recent/recent.compon
 import { RoomplanComponent } from './manager/manager-calendar/roomplan/roomplan.component';
 import { HourlyComponent } from './manager/manager-calendar/hourly/hourly.component';
 import { LimitPipe } from './shared/limit.pipe';
-//import { ReviewsComponent } from './manager/manager-messages/reviews/reviews.component';
-//import { MessagesComponent } from './manager/manager-messages/messages/messages.component';
+import { FilterUserPipe } from './shared/filter-user.pipe';
 
 const appRoutes: Routes = [
 
@@ -114,7 +114,6 @@ const appRoutes: Routes = [
     { path: 'company', component: CompanyComponent,  canActivate:[LoggedInGuard], children:[
       { path: "list" , component: CompanyListComponent, canActivate: [LoggedInGuard] },
       { path: 'edit/:id', component: CompanyEditComponent,  canActivate:[LoggedInGuard] },
-      { path: 'detail/:id', component: CompanyDetailComponent,  canActivate:[LoggedInGuard] },
       { path: 'new', component: CompanyNewComponent,  canActivate:[LoggedInGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
@@ -122,19 +121,19 @@ const appRoutes: Routes = [
       { path: "list" , component: BranchListComponent, canActivate: [LoggedInGuard] },
       { path: 'edit/:id', component: BranchEditComponent,  canActivate:[LoggedInGuard] },
       { path: 'detail/:id', component: BranchDetailComponent,  canActivate:[LoggedInGuard] },
-      { path: 'new', component: BranchNewComponent,  canActivate:[LoggedInGuard] },
+      { path: 'new/:id', component: BranchNewComponent,  canActivate:[LoggedInGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
-    { path: 'settings', component: ManagerSettingsComponent, children: [
-      { path: 'rooms', component: RoomsComponent,  children:[
-        { path: 'new/:id', component: RoomNewComponent },
-        { path: 'edit/:id', component: RoomEditComponent },
-        { path: 'list', component: RoomsListComponent},
+    { path: 'settings', component: ManagerSettingsComponent,canActivate:[LoggedInGuard], children: [
+      { path: 'rooms', component: RoomsComponent,canActivate:[LoggedInGuard],  children:[
+        { path: 'new/:id', component: RoomNewComponent,canActivate:[LoggedInGuard] },
+        { path: 'edit/:id', component: RoomEditComponent,canActivate:[LoggedInGuard] },
+        { path: 'list', component: RoomsListComponent,canActivate:[LoggedInGuard]},
         { path: '', redirectTo: 'new', pathMatch: 'full'},
       ]},
-      { path: 'spaces', component: SpacesComponent, canActivate: [ManagerGuard], children:[
-        { path: 'new', component: SpaceNewComponent, canActivate: [ManagerGuard] },
-        { path: 'arrange', component: SpaceArrangeComponent, canActivate: [ManagerGuard] },
+      { path: 'spaces', component: SpacesComponent, canActivate: [LoggedInGuard], children:[
+        { path: 'new', component: SpaceNewComponent, canActivate: [LoggedInGuard] },
+        { path: 'arrange', component: SpaceArrangeComponent, canActivate: [LoggedInGuard] },
         { path: '', redirectTo: 'new', pathMatch: 'full'},
       ]},
     ]},
@@ -198,7 +197,6 @@ const appRoutes: Routes = [
     RegisterComponent,
     CompanyEditComponent,
     CompanyNewComponent,
-    CompanyDetailComponent,
     CompanyListComponent,
     BranchListComponent,
     BranchDetailComponent,
@@ -232,7 +230,8 @@ const appRoutes: Routes = [
     RecentComponent,
     RoomplanComponent,
     HourlyComponent,
-    LimitPipe
+    LimitPipe,
+    FilterUserPipe
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
@@ -255,8 +254,12 @@ const appRoutes: Routes = [
     RoomService,
     StatisticService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 
 })
 
-export class AppModule {}
+export class AppModule {
+  constructor(){
+    moment.locale('nl-BE');
+  }
+}

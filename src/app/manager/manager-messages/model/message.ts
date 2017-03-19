@@ -1,9 +1,9 @@
 import {User} from "../../../account/account-detail/model/user";
 export class Message {
-  reservationId: string;
-  branchId: string;
-  userId: string;
+  ReservationId: number;
+  BranchId: number;
+  UserId: string;
   text: string;
-  dateTime: Date;
+  DateTime: Date;
   user: User
 }

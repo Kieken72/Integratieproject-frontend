@@ -1,14 +1,11 @@
 <div class="row" *ngIf="company!=null">
-  <h1>Edit company ID: {{company.Name}}</h1>
-  {{company.Name}}
-  {{company.Id}}
+  <h1>Bewerk bedrijf: {{company.Name}}</h1>
+
+  <alert *ngIf="edited" type="success">Bedrijf succesvol bewerkt.</alert>
 
   <form #companyEditForm="ngForm" class="form-horizontal">
     <div class="form-group">
       <label for="where" class="col-sm-3 control-label">City:</label>
-      <!-- <div class="col-sm-9">
-       <input id="companyCity" name="CityId" class="form-control" auto-complete [(ngModel)]="company.CityId"  [source]="cities"  />
-       </div>-->
       <div class="col-sm-9">
         <typeahead
           id="where"
@@ -21,15 +18,6 @@
           required
           name="cityWhere" #cityWhere="ngModel">
         </typeahead>
-        <!--<select name="cityId" id="cid" [(ngModel)]="cityid" class="form-control" required [(ngModel)]="company.City" name="city" #city="ngModel" #CityId>
-          <option id="companyCity"  *ngFor="let city of cities" [ngValue]="city.Id" >{{city.PostalCode}} | {{city.Name}}</option>
-        </select>
-        <div *ngIf="city.errors && (city.dirty || city.touched)"
-             class="alert alert-danger">
-          <div [hidden]="!city.errors.required">
-            Plaats mag niet leeg zijn.
-          </div>
-        </div>-->
 
       </div>
     </div>
@@ -96,7 +84,7 @@
   </form>
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
-      <button class="btn btn-default" [disabled]="!companyEditForm.form.valid"
+      <button class="btn btn-primary btn-lg" [disabled]="!companyEditForm.form.valid"
               (click)="editCompany()" id="btnSendCompany">Wijzig</button>
     </div>
   </div>

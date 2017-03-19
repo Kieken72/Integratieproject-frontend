@@ -4,7 +4,8 @@
 export class ManagerReservation {
   public Id:string;
   public Amount: number;
-  public StartDate: Date;
-  public EndDate: Date;
+  public DateTime: Date;
+  public EndDateTime: Date;
   public BranchId: number;
+  public UserId: string;
 }

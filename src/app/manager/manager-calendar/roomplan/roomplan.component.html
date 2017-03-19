@@ -17,7 +17,7 @@
   <div class="form-group">
     <label for="amount" class="col-sm-2 control-label">Kamer</label>
     <div class="col-sm-2" *ngIf="branch">
-      <select [(ngModel)]="roomId" class="form-control" id="amount">
+      <select [(ngModel)]="roomId" class="form-control" (ngModelChange)="refreshReservations()" id="amount">
         <option *ngFor="let room of branch.Rooms" [ngValue]="room.Id" [attr.selected]="room.Id == roomId ? true : null">{{room.Name}}</option>
       </select>
     </div>
@@ -43,12 +43,4 @@
 <div class="col-md-9">
   <canvas #roomPlan></canvas>
 </div>
-  <div class="col-md-12">
-    <alert type="info">
-      <strong>DEBUG</strong><br>
-      <ul>
-        <li *ngFor="let space of room?.Spaces">{{space.Name}} ({{space.X}},{{space.Y}}) <span class="badge">{{space.Reservations?.length}} - {{room.Width}}/{{room.Height}}</span> </li>
-      </ul>
-    </alert>
-  </div>
 </div>
