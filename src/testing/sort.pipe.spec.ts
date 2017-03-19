@@ -16,6 +16,6 @@ describe('SortPipe', () => {
   });
 
   it('Sort list', ()=>{
-    expect(pipe.transform(['Seppe','Test','Nico'],null)).toBe(['Nico','Seppe','Test']);
+    expect(pipe.transform(['Seppe','Test','Nico'],null)).toEqual(['Nico','Seppe','Test']);
   });
 });

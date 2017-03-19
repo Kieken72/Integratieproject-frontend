@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class LimitPipe implements PipeTransform {
 
-  transform(value: any, args:number): any {
+  transform(value: any, args:number = 5): any {
     return value ? value.slice(0,args): [];
   }
 
