@@ -21,22 +21,26 @@ export class BookerReservationdetailComponent implements OnInit {
   private messages:Message[];
   private user:User;
   private branches: Branch[];
+
+  private refreshing:boolean = true;
+
   constructor( private route: ActivatedRoute, private rout:Router, private profileService: ProfileService, private branchService:BranchService, private reservationService:ReservationService) { }
 
   ngOnInit() {
     this.getBranches();
-    this.route.params
-      .switchMap((params: Params) => this.getReservation(+params['id']))
-      .subscribe(reservation => this.whenDetailsLoads(reservation));
-    this.getUser();
+
+
+    this.profileService.getProfileWithToken(localStorage.getItem('auth_token')).subscribe(data=>this.getUser(data));
 
   }
 
   whenDetailsLoads(reservation){
     this.reservation = reservation;
+    console.log(reservation);
   }
 
   getReservation(number:number){
+    console.log("loading..");
     this.profileService.getProfile().subscribe((data)=>{
       //this.getUser();
       data.Reservations.forEach((cReservation) => {
@@ -47,18 +51,21 @@ export class BookerReservationdetailComponent implements OnInit {
 
             };
           })
-          this.reservationService.getMessages(cReservation.Id).subscribe((data) => this.messages = data);
+          this.reservationService.getMessages(cReservation.Id).subscribe((data) => this.messages = data,(error)=>console.log(error),()=>this.refreshing = false);
           this.reservations.push(cReservation);
           this.currentReservationId = cReservation.Id;
-         // this.getMessages(cReservation.Id);
         }
       });
     });
     return this.reservations;
   }
 
-  getUser(){
-    this.profileService.getProfileWithToken(localStorage.getItem('auth_token')).subscribe((data)=>this.user = data);
+  getUser(data){
+    this.user= data;
+
+    this.route.params
+      .switchMap((params: Params) => this.getReservation(+params['id']))
+      .subscribe(reservation => this.whenDetailsLoads(reservation),(err)=>console.log(err),()=>console.log(this.reservation));
   }
 
   getBranches():void{
