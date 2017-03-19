@@ -234,10 +234,10 @@ const appRoutes: Routes = [
   providers: [
     { provide: LOCALE_ID, useValue: "nl-BE" },
 
-    { provide:'ApiBase',useValue:"http://localhost:53073/api/" },
-    { provide:'AuthBase',useValue:"http://localhost:53073/oauth/" },
-    //{ provide:'ApiBase',useValue:"https://leisurebooker.azurewebsites.net/api/" },
-    //{ provide:'AuthBase',useValue:"https://leisurebooker.azurewebsites.net/oauth/" },
+    //{ provide:'ApiBase',useValue:"http://localhost:53073/api/" },
+    //{ provide:'AuthBase',useValue:"http://localhost:53073/oauth/" },
+    { provide:'ApiBase',useValue:"https://leisurebooker.azurewebsites.net/api/" },
+    { provide:'AuthBase',useValue:"https://leisurebooker.azurewebsites.net/oauth/" },
     CompanyService,
     CityService,
     BranchService,
