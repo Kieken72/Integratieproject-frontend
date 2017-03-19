@@ -25,6 +25,8 @@ export class RoomEditComponent implements OnInit {
   }
 
   whenRoomLoads(cRoom){
+    console.log(cRoom);
+
     this.room = cRoom;
     this.room.Spaces.forEach((cSpace)=>{
       this.spaces.push(cSpace);
@@ -139,7 +141,9 @@ export class RoomEditComponent implements OnInit {
             parseInt(objectToDrag.getAttribute('numPers')), parseInt(objectToDrag.getAttribute('minPers')),
             cRoom, parseInt(left), parseInt(top), spaceType ).subscribe((data)=>console.log(data) );
 
-          alert(objectToDrag.id + "is aangepast!");
+          setTimeout(()=>{
+            console.log(objectToDrag.id + "is aangepast!")
+          },1500);
 
 
 

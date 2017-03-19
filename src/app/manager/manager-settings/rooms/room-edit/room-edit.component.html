@@ -1,8 +1,9 @@
 
-<div *ngIf="room != null">
-<h1>Beheer je ruimte: {{room.Name}}</h1>
-  <div class="btn btn-default " data-toggle="modal" data-target="#poolModal" id="btnNewPool" >Nieuwe baan</div>
-
+<div >
+<h1>Beheer je ruimte: {{room?.Name}}</h1>
+  <div class="btn btn-success" id="updateBtn">Wijzigingen opslagen</div>
+  <div class="btn btn-primary " data-toggle="modal" data-target="#poolModal" id="btnNewPool" >Nieuwe baan</div>
+<div *ngIf="room">
   <div *ngFor="let space of room.Spaces">
     <div id="{{space.Id}}" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -79,13 +80,13 @@
         </div>
       </div>
     </div>
-  </div>
+  </div></div>
 
 
 
 </div>
 
-<div class="btn btn-default" id="updateBtn" >Wijzigingen opslagen</div>
+
 
 
 <div class="col-md-9">

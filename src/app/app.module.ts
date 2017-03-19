@@ -39,7 +39,6 @@ import { CompanyEditComponent } from './manager/company/company-edit/company-edi
 import { CompanyNewComponent } from './manager/company/company-new/company-new.component';
 import { CompanyListComponent } from './manager/company/company-list/company-list.component';
 import { BranchListComponent } from './manager/branches/branch-list/branch-list.component';
-import { BranchDetailComponent } from './manager/branches/branch-detail/branch-detail.component';
 import { BranchEditComponent } from './manager/branches/branch-edit/branch-edit.component';
 import { BranchNewComponent } from './manager/branches/branch-new/branch-new.component';
 import { ManagerSettingsComponent } from './manager/manager-settings/manager-settings.component';
@@ -120,7 +119,6 @@ const appRoutes: Routes = [
     { path: 'branch', component: BranchComponent,  canActivate:[LoggedInGuard], children:[
       { path: "list" , component: BranchListComponent, canActivate: [LoggedInGuard] },
       { path: 'edit/:id', component: BranchEditComponent,  canActivate:[LoggedInGuard] },
-      { path: 'detail/:id', component: BranchDetailComponent,  canActivate:[LoggedInGuard] },
       { path: 'new/:id', component: BranchNewComponent,  canActivate:[LoggedInGuard] },
       { path: '', redirectTo: 'list', pathMatch: 'full'},
     ] },
@@ -199,7 +197,6 @@ const appRoutes: Routes = [
     CompanyNewComponent,
     CompanyListComponent,
     BranchListComponent,
-    BranchDetailComponent,
     BranchEditComponent,
     BranchNewComponent,
     ManagerSettingsComponent,
