@@ -8,7 +8,7 @@ describe('Test manager messages.', ()=> {
     browser.ignoreSynchronization = true;
 
     it('should login successfull', () => {
-        browser.get('./manager/dashboard');
+        browser.get('./account/login');
         const userNameElement = element(by.id('textinputUserName'));
         userNameElement.sendKeys("hello@leisurebooker.me");
         const passElement = element(by.id('textinputPassword'));
@@ -16,14 +16,14 @@ describe('Test manager messages.', ()=> {
         const buttonElement = element(by.id('singlebutton'));
         buttonElement.click();
         browser.sleep(2000);
-        expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/booker/search');
     })
 
     it('should check if messages and reviews show up', () => {
         browser.get("./manager/messages");
         // todo
         //test messages
-
+        const messages = element.all(by.xpath(".//table[@id='messages']/tbody/tr"))
+        expect(messages.count()).toBeGreaterThan(0);
         //test reviews
         const reviewTab = element(by.xpath(".//*[.='Reviews']"))
         reviewTab.click();

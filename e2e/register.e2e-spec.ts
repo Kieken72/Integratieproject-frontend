@@ -21,12 +21,11 @@ describe('Test register.', ()=> {
         lastNameElement.sendKeys("testing")
         emailElement.sendKeys(firstname+".testing@testing.com");
         phonenumber.sendKeys("0473228041");
-        passwordElement.sendKeys("Test@123");
-        confirmPasswordElement.sendKeys("Test@123");
+        passwordElement.sendKeys("Test@1234");
+        confirmPasswordElement.sendKeys("Test@1234");
 
         registerButton.click();
         browser.sleep(1000)
         expect(browser.getCurrentUrl()).toBe('http://localhost:4200/account/login');
-
     })
 })

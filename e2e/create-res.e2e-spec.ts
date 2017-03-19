@@ -11,7 +11,7 @@ describe('profileTest', ()=> {
     const userNameElement = element(by.id('textinputUserName'));
     userNameElement.sendKeys("lotte.verbraeken@student.kdg.be");
     const passElement = element(by.id('textinputPassword'));
-    passElement.sendKeys("Test@123");
+    passElement.sendKeys("Test!123");
     const buttonElement = element(by.id('singlebutton'));
     buttonElement.click();
     browser.sleep(2000);
