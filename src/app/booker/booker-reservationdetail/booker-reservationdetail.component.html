@@ -1,74 +1,90 @@
 <!--GOED! Nu kijken of reservatie inderdaad van deze persoon is-->
 
-<div class="row" >
-  <div *ngIf="reservations!=null">
-
-    <div class = "panel panel-default" *ngFor=" let reservation of reservations">
-      <div class="panel-heading resume-heading">
-      Reservatie ID: {{reservation.Id}} | <a [routerLink]="['../../../booker/detail/' , reservation.BranchId]">Filaal ID: {{reservation.BranchName}} </a>| Ruimte ID: {{reservation.SpaceId}} <br/>
-      Aantal personen: {{reservation.AmountOfPersons}}<br/>
-      Datum: {{reservation.DateTime}} | Tot: {{reservation.EndDateTime}}<br/>
-      </div>
-
-      <button *ngIf="reservation.Arrived" id="review" class="btn btn-default"  [routerLink]="['../../review/' , reservation.Id]">Schrijf een review</button>
-
-    </div>
+<div class="row" style="margin-top: 20px;" >
+  <p  *ngIf="refreshing" class="text-center"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></p>
+  <div *ngIf="!refreshing" class="col-md-4">
+    <h3>Mijn reservatie</h3>
+    <div class="well" *ngFor=" let reservation of reservations">
+      <b>Uw reservatie in</b> <a [routerLink]="['../../../booker/detail/' , reservation.BranchId]">{{reservation.BranchName}} </a><br/>
+      <b><i class="fa fa-users" aria-hidden="true"></i> Aantal personen:</b> {{reservation.AmountOfPersons}}<br/>
+      <b><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Op:</b> {{reservation.DateTime | date: 'd MMMM y'}}<br/>
+      <b><i class="fa fa-clock-o" aria-hidden="true"></i> Om:</b> {{reservation.DateTime | date: 'HH:mm'}} ({{reservation.DateTime | amTimeAgo}})<br/>
+      <br/>
+      <button *ngIf="reservation.Arrived" id="review" class="btn btn-primary"  [routerLink]="['../../review/' , reservation.Id]">Geef feedback over je bezoek!</button>
 
 
-  </div>
-  <div *ngIf="messages==null">
-    <div class="col-md-11">
-      Stuur een eerste bericht
-      <textarea [(ngModel)]="message.text"  class="form-control"  id="textNew" #TextNew></textarea>
 
-      <button id="sendNew" class="btn btn-default"  (click)="sendMessage()">Verzend</button>
 
     </div>
   </div>
+  <div *ngIf="!refreshing" class="col-md-8">
+    <h3>Berichten</h3>
+    <div *ngIf="messages!=null">
 
 
-  <div *ngIf="messages!=null">
+      <div class="chat">
+        <div class="chat-history">
+          <ul class="chat-ul">
+            <div *ngFor="let mess of messages">
 
-
-    <div class="chat">
-      <div class="chat-history">
-        <ul class="chat-ul">
-          <div *ngFor="let mess of messages">
-            <div *ngIf="user.Id!=mess.UserId">
-          <li>
-            <div class="message-data">
-              <span class="message-data-name"><i class="fa fa-circle you"></i> {{mess.User.Name}} {{mess.User.Surname}} ({{mess.DateTime | date: 'medium'}}) </span>
-            </div>
-            <div class="message you-message">
-              {{mess.Text}}
-            </div>
-          </li>
-          </div>
-            <div *ngIf="user.Id==mess.UserId">
-            <li class="clearfix">
-              <div class="message-data align-right">
-                <span class="message-data-name"> {{mess.User.Name}} {{mess.User.Surname}} ({{mess.DateTime | date: 'medium'}}) </span> <i class="fa fa-circle me"></i>
+              <div *ngIf="user.Id!=mess.UserId">
+                <li>
+                  <div class="message-data">
+                    <span class="message-data-name"><i class="fa fa-circle you"></i> {{mess.User.Name}} {{mess.User.Surname}} ({{mess.DateTime | amTimeAgo}}) </span>
+                  </div>
+                  <div class="message you-message">
+                    {{mess.Text}}
+                  </div>
+                </li>
               </div>
-              <div class="message me-message float-right">  {{mess.Text}}  </div>
-            </li>
+              <div *ngIf="user.Id==mess.UserId">
+                <li class="clearfix">
+                  <div class="message-data align-right">
+                    <span class="message-data-name"> {{mess.User.Name}} {{mess.User.Surname}} ({{mess.DateTime | amTimeAgo}}) </span> <i class="fa fa-circle me"></i>
+                  </div>
+                  <div class="message me-message float-right">  {{mess.Text}}  </div>
+                </li>
+              </div>
             </div>
-          </div>
-          <div class="col-md-11">
+          </ul>
 
-              <textarea [(ngModel)]="message.text"  class="form-control"  id="text" #Text></textarea>
-
-              <button id="send" class="btn btn-default"  (click)="sendMessage()">Verzend</button>
-
-          </div>
-        </ul>
-
-      </div> <!-- end chat-history -->
+        </div> <!-- end chat-history -->
 
 
 
-    </div> <!-- end chat -->
+      </div> <!-- end chat -->
 
+      <div class="col-md-12" *ngIf="reservations!=null">
+
+        <div class="col-md-10">
+          <textarea [(ngModel)]="message.text"  class="form-control"  id="text" #TextNew></textarea>
+        </div>
+        <div class="col-md-2">
+          <button id="send" class="btn btn-primary btn-lg"  (click)="sendMessage()">Stuur bericht!</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div *ngIf="messages==null">
+      <div class="col-md-12">
+        Stuur een eerste bericht
+        <div class="col-md-10">
+          <textarea [(ngModel)]="message.text"  class="form-control"  id="textNew" #TextNew></textarea>
+        </div>
+        <div class="col-md-2">
+          <button id="sendNew" class="btn btn-primary btn-lg"  (click)="sendMessage()">Stuur bericht!</button>
+        </div>
+
+      </div>
+    </div>
   </div>
+
+
+
+
+
+
 
 
 </div>

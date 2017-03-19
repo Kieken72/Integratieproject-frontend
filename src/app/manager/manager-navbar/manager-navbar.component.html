@@ -10,20 +10,20 @@
       <a class="navbar-brand" [routerLink]="['dashboard']"><img src="assets/leisurebooker.png" alt="LeisureManager"/></a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <!--<li [routerLinkActive]="['active']"><a [routerLink]="['dashboard']">Dashboard</a></li>-->
+      <ul class="nav navbar-nav"><!--
+        <li [routerLinkActive]="['active']"><a [routerLink]="['dashboard']">Dashboard</a></li>-->
         <li [routerLinkActive]="['active']" class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Kalender <span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="fa fa-calendar" aria-hidden="true"></i> Kalender <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a [routerLink]="['calendar/hourly']" >Per uur</a></li>
             <li><a [routerLink]="['calendar/recent']" >Recent</a></li>
             <li><a [routerLink]="['calendar/roomplan']" >Kamerplan</a></li>
           </ul>
         </li>
-        <li [routerLinkActive]="['active']"><a [routerLink]="['messages']">Berichten</a></li>
-        <li [routerLinkActive]="['active']"><a [routerLink]="['guests']">Gasten</a></li>
+        <li [routerLinkActive]="['active']"><a [routerLink]="['messages']"><i class="fa fa-comments" aria-hidden="true"></i> Berichten</a></li>
+        <li [routerLinkActive]="['active']"><a [routerLink]="['guests']"><i class="fa fa-users" aria-hidden="true"></i> Gasten</a></li>
         <li [routerLinkActive]="['active']" class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Statistieken <span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="fa fa-bar-chart" aria-hidden="true"></i> Statistieken <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a [routerLink]="['statistics/feedback']" >Tevredenheid</a></li>
             <li><a [routerLink]="['statistics/weekdays']" >Reservaties per weekdag</a></li>
@@ -33,16 +33,16 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li [routerLinkActive]="['active']" class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Instellingen <span class="caret"></span></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="fa fa-cog" aria-hidden="true"></i> <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a [routerLink]="['branch/edit/',branchId]" >Bewerk Filiaal</a></li>
           <li><a [routerLink]="['settings/rooms/list']" >Bewerk Kamers</a></li>
         </ul>
       </li>
-        <li [routerLinkActive]="['active']"><a [routerLink]="['../account/details']">Gebruiker</a></li>
-        <li [routerLinkActive]="['active']"><a [routerLink]="['../account/login']" (click)="logout()">Logout</a></li>
+        <li [routerLinkActive]="['active']"><a [routerLink]="['../account/details']" ><i class="fa fa-user" aria-hidden="true" tooltip="My Profile"  placement="bottom"></i></a></li>
+        <li [routerLinkActive]="['active']"><a [routerLink]="['../account/login']" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true" tooltip="Logout"  placement="bottom"></i></a></li>
       </ul>
-      <form class="navbar-form  form-inline">
+      <form class="navbar-form  form-inline navbar-right">
         <div class="form-group">
           <!--<input type="number" [(ngModel)]="branchId" name="branchId" (ngModelChange)="changeBranch()">-->
 
