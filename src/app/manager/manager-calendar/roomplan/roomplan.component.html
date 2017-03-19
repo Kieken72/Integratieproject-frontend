@@ -31,7 +31,7 @@
     <table class="table table-striped">
       <tbody>
       <tr *ngIf="reservations?.length == 0"><td>Geen reservaties beschikbaar.</td></tr>
-      <tr *ngFor="let reservation of reservations | sort: 'DateTime'" (click)="showModal(reservation.Id)" (mouseover)="hover(reservation.SpaceId)" (mouseleave)="hoverLeave()">
+      <tr *ngFor="let reservation of reservations | sort: 'DateTime'" (click)="showModal(reservation.Id)" (mouseover)="hover(reservation.SpaceId)" (mouseleave)="hoverLeave()"  [class.warning]="reservation.NoShow" [class.cancelled]="reservation.Cancelled" [class.success]="reservation.Arrived">
         <th scope="row">{{reservation.DateTime | date: 'shortTime'}}</th>
         <td>{{reservation.User.Name}} {{reservation.User.Lastname}}</td>
         <td><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{reservation.AmountOfPersons}}</td>

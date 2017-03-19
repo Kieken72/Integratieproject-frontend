@@ -41,27 +41,24 @@ export class HourlyComponent implements OnInit {
     this.reservationDetailModal.show();
   }
 
-  actionAfterModalChange(){
-    console.log(this.reservationDetailModal);
+  actionAfterModalChange(data){
+    console.log(data);
     this.reservationDetailModal.hide();
-    this.refreshReservations;
+    this.refreshReservations();
   }
   Arrived(id:number){
     console.log(id);
-    this.reservationService.arrivedReservation(id).subscribe(
-      this.actionAfterModalChange);
+    this.reservationService.arrivedReservation(id).subscribe(data=>this.actionAfterModalChange(data));
   }
 
   NoShow(id:number){
 
     console.log(id);
-    this.reservationService.noShowReservation(id).subscribe(
-      this.actionAfterModalChange);
+    this.reservationService.noShowReservation(id).subscribe(data=>this.actionAfterModalChange(data));
   }
   Cancel(id:number){
     console.log(id);
-    this.reservationService.cancelManagerReservation(id).subscribe(
-      this.actionAfterModalChange);
+    this.reservationService.cancelManagerReservation(id).subscribe(data=>this.actionAfterModalChange(data));
   }
 
   public open():void {

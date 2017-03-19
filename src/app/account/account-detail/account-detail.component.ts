@@ -28,6 +28,12 @@ export class AccountDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getBranches();
+    this.refresh();
+  }
+
+  refresh(){
+    this.user = null;
+    this.refreshing = true;
     this.profileService.getProfileWithToken(localStorage.getItem('auth_token')).subscribe((data)=>this.getBranchName(data));
   }
 
@@ -48,7 +54,7 @@ export class AccountDetailComponent implements OnInit {
   }
 
   cancelReservation(id: number){
-    this.reservationService.cancelReservation(id).subscribe();
+    this.reservationService.cancelReservation(id).subscribe(data=> this.refresh());
   }
 
 

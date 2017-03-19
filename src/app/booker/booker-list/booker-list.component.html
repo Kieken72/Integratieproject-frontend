@@ -9,7 +9,7 @@
           [searchProperty]="'Name'" [displayProperty]="'Name'"
           [maxSuggestions]="10"
           (suggestionSelected)="citySelected($event)"
-          placeholder="Begin typing a city">
+          placeholder="Begin een gemeente te typen">
         </typeahead>
       </div>
     </div>
@@ -35,9 +35,8 @@
       <div class="profile-info">
         <h2 class="hvr-underline-from-center">{{branch.Name}}</h2>
         <div>{{branch.Description}}</div>
-        <a tooltip="{{branch.PhoneNumber}}"><i class="glyphicon glyphicon-earphone"></i></a>
+        <a tooltip="{{branch.PhoneNumber | phone}}"><i class="glyphicon glyphicon-earphone"></i></a>
         <a tooltip="{{branch.Email}}" href="mailto:{{branch.Email}}"><i class="glyphicon glyphicon-envelope"></i></a>
-        <a><i class="glyphicon glyphicon-star"></i></a>
         <div class="btn btn-success" [routerLink]="['../detail/', branch.Id]">Reserveren</div>
       </div>
 

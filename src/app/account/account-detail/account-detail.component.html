@@ -15,7 +15,7 @@
                 <div class="col-xs-12 col-sm-8">
                   <ul class="list-group" *ngIf="user!=null">
                     <li class="list-group-item">{{user.Name}} {{user.Lastname}}</li>
-                    <li class="list-group-item"><i class="fa fa-phone"></i> {{user.PhoneNumber}}</li>
+                    <li class="list-group-item"><i class="fa fa-phone"></i> {{user.PhoneNumber | phone}}</li>
                     <li class="list-group-item"><i class="fa fa-envelope"></i> {{user.Email}}</li>
                     <li class="list-group-item"><i class="fa  fa-calendar-check-o"></i> Aantal reservaties <span class="badge">{{user.Reservations.length}}</span></li>
                     <li class="list-group-item"><i class="fa fa-star"></i> Aantal favorieten <span class="badge">{{user.Favorites.length}}</span></li>

@@ -134,7 +134,7 @@ export class BranchService {
     var payments: DisplayFacility[]=[];
 
     for(var fa of facilities){
-      var displayFacility = new DisplayFacility(fa.Type);
+      var displayFacility = new DisplayFacility(fa.Type,fa.Value);
       switch (fa.Value){
         case "MASTERCARD":
           displayFacility.Class="cc-mastercard";
@@ -163,7 +163,7 @@ export class BranchService {
     var accesabilities: DisplayFacility[]=[];
 
     for(var fa of facilities){
-      var displayFacility = new DisplayFacility(fa.Type);
+      var displayFacility = new DisplayFacility(fa.Type, fa.Value);
       switch (fa.Value){
         case "WHEELCHAIR":
           displayFacility.Class="wheelchair";
@@ -183,7 +183,7 @@ export class BranchService {
     var others: DisplayFacility[]=[];
 
     for(var fa of facilities){
-      var displayFacility = new DisplayFacility(fa.Type);
+      var displayFacility = new DisplayFacility(fa.Type, fa.Value);
       switch (fa.Value){
         case "WIFI":
           displayFacility.Class="wifi";
