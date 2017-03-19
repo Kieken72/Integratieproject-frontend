@@ -6,3 +6,7 @@
   width: 270px;
   padding: 10px 0 0;
 }
+
+.cancelled{
+  text-decoration: line-through;
+}

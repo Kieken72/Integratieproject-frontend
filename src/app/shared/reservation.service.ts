@@ -109,7 +109,7 @@ export class ReservationService {
     headers.append('Content-Type','application/json');
     headers.append('Authorization', 'Bearer '+authToken);
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiBase+'reservations/cancel/' + id, null, options).map(res=>res.json());
+    return this.http.post(this.apiBase+'reservations/cancel/' + id, null, options).map(res=>res);
   }
   noShowReservation(id:number){
     let headers = new Headers();
@@ -117,7 +117,7 @@ export class ReservationService {
     headers.append('Content-Type','application/json');
     headers.append('Authorization', 'Bearer '+authToken);
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiBase+'reservations/noshow/' + id, null, options).map(res=>res.json());
+    return this.http.post(this.apiBase+'reservations/noshow/' + id, null, options).map(res=>res);
   }
   arrivedReservation(id:number){
     let headers = new Headers();
@@ -126,7 +126,7 @@ export class ReservationService {
     headers.append('Authorization', 'Bearer '+authToken);
     let options = new RequestOptions({ headers: headers });
     console.log(options);
-    return this.http.post(this.apiBase+'reservations/arrived/' + id, null, options).map(res=>res.json());
+    return this.http.post(this.apiBase+'reservations/arrived/' + id, null, options).map(res=>res);
   }
 
 

@@ -72,6 +72,8 @@ import { EqualValidator } from "./account/account-edit/equal-validator";
 import { ChartsModule } from "ng2-charts";
 import { StatisticService } from "./shared/statistics.service";
 import { MomentModule } from "angular2-moment";
+import * as moment from 'moment';
+
 import { SortDescPipe } from './shared/sort-desc.pipe';
 import { GuestsComponent } from './manager/manager-statistics/guests/guests.component';
 import { WeekdaysComponent } from './manager/manager-statistics/weekdays/weekdays.component';
@@ -252,8 +254,12 @@ const appRoutes: Routes = [
     RoomService,
     StatisticService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 
 })
 
-export class AppModule {}
+export class AppModule {
+  constructor(){
+    moment.locale('nl-BE');
+  }
+}
