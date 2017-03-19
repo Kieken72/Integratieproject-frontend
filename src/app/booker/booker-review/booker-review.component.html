@@ -1,18 +1,18 @@
-<div class="form-horizontal well col-md-5" *ngIf="user!=null">
+<div class="row">
+  <div class="col-md-12">
+<div class="form-horizontal well" *ngIf="user!=null">
+
+  <p *ngIf="branch">
+    Uw afgelopen reservatie in <b>{{branch.Name}}</b> op <b>{{reservation.DateTime | date: 'd MMMM y'}}</b> met <b>{{reservation.AmountOfPersons}} personen</b>. Hopelijk is alles vlot verlopen en heeft u een fijne avond gehad. Hier kan u feedback geven op u bezoek.
+  </p>
   <div class="form-group">
-    <label id="lblSurname" for="surname" class="col-sm-2 control-label">Achternaam</label>
+    <label id="lblSurname" for="surname" class="col-sm-2 control-label">Naam</label>
     <div class="col-sm-10">
-      <label id="surname" class="form-control">{{user.Lastname}}</label>
-    </div>
-  </div>
-  <div class="form-group">
-    <label id="lblName" for="name" class="col-sm-2 control-label">Voornaam</label>
-    <div class="col-sm-10">
-      <label id="name"  class="form-control">{{user.Name}}</label>
+      <label id="surname" class="form-control">{{user.Name}} {{user.Lastname}}</label>
     </div>
   </div>
   <div class="form-group " >
-    <label id="lblbeoordeling" class="col-sm-2 control-label">beoordeling</label>
+    <label id="lblbeoordeling" class="col-sm-2 control-label">Beoordeling</label>
     <div class="col-sm-10">
       <select name="result" id="cid"  class="form-control" required [(ngModel)]="review.Result" name="result"  #Result>
         <option  [ngValue]="true" >Goed</option>
@@ -21,9 +21,19 @@
     </div>
 
   </div>
+  <div class="form-group " >
+  <label id="lblPublic" class="col-sm-2 control-label">Zichtbaarheid</label>
+  <div class="col-sm-10">
+    <select name="result" id="zichtbaarheid"  class="form-control" required [(ngModel)]="review.Public" name="zichtbaarheid"  #zichtbaarheid>
+      <option  [ngValue]="true" >Openbaar</option>
+      <option  [ngValue]="false" >Enkel voor {{branch?.Name}}</option>
+    </select>
+  </div>
+
+</div>
 
   <div class="form-group">
-    <label id="lblText" for="text" class="col-sm-2 control-label">Text</label>
+    <label id="lblText" for="text" class="col-sm-2 control-label">Feedback</label>
     <div class="col-sm-10">
       <textarea [ngModel]="review.Text"  class="form-control"  id="text" #Text></textarea>
     </div>
@@ -35,4 +45,6 @@
   </div>
 
 
+</div>
+  </div>
 </div>

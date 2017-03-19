@@ -90,6 +90,13 @@ export class BranchService {
     return this.http.get(this.apiBase+'branches/'+number).map(res=>res.json());
   }
 
+  getReviews(number: number) {let headers = new Headers();
+    headers.append('Content-Type','application/json')
+    headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(this.apiBase+'reviews/by-branch/'+number, options).map(res=>res.json());
+  }
+
   public openingHours(branch:Branch){
     var weekdagen = ["Zondag", "Maandag", "Dinsdag","Woensdag","Donderdag","Vrijdag","Zaterdag"];
     var operationHours: any[] = [];

@@ -16,17 +16,16 @@ export class ReviewsComponent implements OnInit {
   }
 
   private refreshing: boolean;
-  private branch: Branch;
   private reviews: Review[];
 
   ngOnInit() {
-  this.branchService.getBranch(this.managerService.branchId)
-    .subscribe(data => this.branch = data,error =>console.log(error),()=>this.getReviews(this.branch));
+  this.branchService.getReviews(this.managerService.branchId)
+    .subscribe(data => this.getReviews(data),error =>console.log(error));
 
   }
 
-  getReviews(branch:Branch){
-    this.reviews = branch.Reviews;
+  getReviews(data){
+    this.reviews = data;
     this.refreshing = false;
   }
 }

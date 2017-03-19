@@ -1,11 +1,11 @@
 import {Message} from "../../../booker/shared/model/message";
 export class Reservation{
-  public Id: string;
+  public Id: number;
   public AmountOfPersons: number;
   public DateTime: string;
   public EndDateTime: string;
-  public SpaceId: string;
-  public BranchId: string;
+  public SpaceId: number;
+  public BranchId: number;
   public BranchName: string;
   public AccountId: string;
   public Messages: Message[];

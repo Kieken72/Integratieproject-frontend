@@ -1,6 +1,6 @@
 import {UserRole} from "./userRole";
-import {Reservation} from "./reservation";
 import {Branch} from "../../../shared/model/branch";
+import {Reservation} from "../../../shared/model/reservation";
 /**
  * Created by Emmanuel on 24/02/2017.
  */

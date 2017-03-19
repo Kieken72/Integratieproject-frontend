@@ -75,7 +75,7 @@ export class ReservationService {
 
   }
 
-  postMessage(resId: string, branchId: string, text: string){
+  postMessage(resId: number, branchId: number, text: string){
     this.message.branchId = branchId;
     this.message.reservationId = resId;
     this.message.text = text;
@@ -86,7 +86,7 @@ export class ReservationService {
     return this.http.post(this.apiBase+'messages/', JSON.stringify(this.message), options).map((res:Response)=>res);
   }
 
-  getMessages(number:string){
+  getMessages(number:number){
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Authorization', 'Bearer '+localStorage.getItem('auth_token'));
     let options = new RequestOptions({ headers: headers });

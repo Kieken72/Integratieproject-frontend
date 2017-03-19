@@ -5,6 +5,9 @@ import {User} from "../../account/account-detail/model/user";
 import {ReservationService} from "../../shared/reservation.service";
 import {ShortUser} from "../../shared/model/short-user";
 import {ActivatedRoute, Params} from "@angular/router";
+import {Reservation} from "../../shared/model/reservation";
+import {BranchService} from "../../shared/branch.service";
+import {Branch} from "../../shared/model/branch";
 
 @Component({
   selector: 'app-booker-review',
@@ -13,9 +16,11 @@ import {ActivatedRoute, Params} from "@angular/router";
 })
 export class BookerReviewComponent implements OnInit {
 
-  constructor(private profileService:ProfileService,private reservationService:ReservationService, private route:ActivatedRoute) { }
+  constructor(private profileService:ProfileService,private reservationService:ReservationService, private route:ActivatedRoute, private branchService: BranchService) { }
   private review : Review = new Review();
+  private reservation: Reservation;
   private user: User;
+  private branch: Branch;
   private shortUser: ShortUser = new ShortUser();
   ngOnInit() {
     this.profileService.getProfile().subscribe((data)=>this.getUser(data));
@@ -27,8 +32,14 @@ export class BookerReviewComponent implements OnInit {
       .subscribe((params: Params) => this.getReservationId(params['id']));
   }
 
+  getBranch(id):void{
+    this.branchService.getBranch(id).subscribe(data => this.branch = data);
+  }
   getReservationId(number:number){
-      return this.review.ReservationId = number;
+      this.review.ReservationId = number;
+      this.reservation = this.user.Reservations.filter(res=>res.Id == this.review.ReservationId)[0];
+      this.getBranch(this.reservation.BranchId);
+      console.log(this.reservation);
   }
 
   postReview(text : string){
