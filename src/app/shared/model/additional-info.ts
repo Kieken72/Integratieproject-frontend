@@ -11,7 +11,9 @@ export class AdditionalInfo {
 export class DisplayFacility{
   public Type:number;
   public Class:string;
-  constructor(type:number){
+  public Value: string;
+  constructor(type:number, value:string){
     this.Type = type;
+    this.Value = value;
   }
 }

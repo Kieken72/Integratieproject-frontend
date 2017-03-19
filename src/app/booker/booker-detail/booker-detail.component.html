@@ -23,11 +23,11 @@
               </slide>-->
             </carousel>
             <!--<img class="img-responsive" src="http://leisurebooker.azurewebsites.net/{{branch.Picture | default: 'Content/bowling.jpg'}}">-->
-          </tab>
+          </tab><!--
           <tab>
             <template tabHeading><i class="fa fa-video-camera" aria-hidden="true"></i></template>
             If video video
-          </tab>
+          </tab>-->
         </tabset>
 
         <h2>{{branch.Name}}</h2>
@@ -35,10 +35,20 @@
       </div>
 
       <div class="col-md-4">
-        <ul><li *ngFor="let pay of paymentFacilities"><i class="fa fa-{{pay.Class}}" aria-hidden="true"></i></li></ul>
+        <b>Betalingsmogelijkheden</b>
+        <ul class="facilities"><li *ngFor="let pay of paymentFacilities"><i class="fa fa-{{pay.Class}}" aria-hidden="true" tooltip="{{pay.Value}}"></i></li></ul>
       </div>
       <div class="col-md-4">
-        <ul><li *ngFor="let fac of otherFacilities"><i class="fa fa-{{fac.Class}}" aria-hidden="true"></i></li><li *ngFor="let fac of accesFacilities"><i class="fa fa-{{fac.Class}}" aria-hidden="true"></i></li></ul>
+        <b>Faciliteiten & Toegankelijkheid</b>
+        <ul  class="facilities"><li *ngFor="let fac of otherFacilities"><i class="fa fa-{{fac.Class}}" aria-hidden="true" tooltip="{{fac.Value}}"></i></li><li *ngFor="let fac of accesFacilities"><i class="fa fa-{{fac.Class}}" aria-hidden="true"  tooltip="{{fac.Value}}"></i></li></ul>
+      </div>
+
+      <div class="col-md-4">
+        <b>Onze contactgegevens:</b>
+        <ul class="facilities">
+          <li>{{branch?.PhoneNumber | phone}}</li>
+          <li><a href="mailto:{{branch?.Email}}">{{branch?.Email}}</a></li>
+        </ul>
       </div>
      <div class="col-md-12">
        <h2>Onze Locatie : {{branch.Street}} {{branch.Number}}, {{branch.City.PostalCode}} {{branch.City.Name}}</h2>
@@ -49,8 +59,6 @@
     </div>
   </div>
   <div class="col-md-4">
-    <button *ngIf="isLogged && !isFavorite" class="btn btn-default" (click)="setFavorite()"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
-    <button *ngIf="isLogged && isFavorite" class="btn btn-default" (click)="removeFavorite()"><i class="fa fa-heart" aria-hidden="true"></i></button>
     <div class="row">
     <div class="form-horizontal well col-md-12">
       <h3>Reserveren via Leisurebooker</h3>
@@ -79,6 +87,8 @@
         <div class="col-sm-offset-2 col-sm-10">
           <button *ngIf="isLogged==false" class="btn btn-warning" [routerLink]="['../../../account/login']">Aanmelden</button>
           <button *ngIf="isLogged==true" id="btnRes" class="btn btn-success" (click)="lgModal.show()">Reserveren</button>
+          <button *ngIf="isLogged && !isFavorite" class="btn btn-danger float-right" (click)="setFavorite()"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+          <button *ngIf="isLogged && isFavorite" class="btn btn-danger float-right" (click)="removeFavorite()"><i class="fa fa-heart" aria-hidden="true"></i></button>
         </div>
       </div>
 
@@ -157,7 +167,7 @@
               <i class="pull-right float-xs-right fa"
                  [ngClass]="{'fa-thumbs-down': !review.Result, 'fa-thumbs-up': review.Result}"></i></div>
             </div>
-            {{review.Text}}
+              {{review.Text}}
           </accordion-group>
         </accordion>
       </div>

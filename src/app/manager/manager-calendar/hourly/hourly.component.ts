@@ -38,30 +38,28 @@ export class HourlyComponent implements OnInit {
   }
   showModal(id:number) :void{
     this.currentReservation  = this.reservations.filter(e=>e.Id == id)[0];
+    console.log(this.currentReservation);
     this.reservationDetailModal.show();
   }
 
-  actionAfterModalChange(){
-    console.log(this.reservationDetailModal);
+  actionAfterModalChange(data){
+    console.log(data);
     this.reservationDetailModal.hide();
-    this.refreshReservations;
+    this.refreshReservations();
   }
   Arrived(id:number){
     console.log(id);
-    this.reservationService.arrivedReservation(id).subscribe(
-      this.actionAfterModalChange);
+    this.reservationService.arrivedReservation(id).subscribe(data=>this.actionAfterModalChange(data));
   }
 
   NoShow(id:number){
 
     console.log(id);
-    this.reservationService.noShowReservation(id).subscribe(
-      this.actionAfterModalChange);
+    this.reservationService.noShowReservation(id).subscribe(data=>this.actionAfterModalChange(data));
   }
   Cancel(id:number){
     console.log(id);
-    this.reservationService.cancelManagerReservation(id).subscribe(
-      this.actionAfterModalChange);
+    this.reservationService.cancelManagerReservation(id).subscribe(data=>this.actionAfterModalChange(data));
   }
 
   public open():void {
@@ -93,4 +91,31 @@ export class HourlyComponent implements OnInit {
     this.refreshReservations();
   }
 
+  public get currentReservationStatus(){
+    if(this.currentReservation){
+      if(this.currentReservation.Arrived){
+        return "Aangekomen"
+      }
+      if(this.currentReservation.NoShow){
+        return "Niet opgedaagd"
+      }if(this.currentReservation.Cancelled){
+        return "Geannuleerd"
+      }
+    }
+    return "";
+  }
+
+  public get currentStatus(){
+    if(this.currentReservation){
+      if(this.currentReservation.Arrived){
+        return "Arrived"
+      }
+      if(this.currentReservation.NoShow){
+        return "NoShow"
+      }if(this.currentReservation.Cancelled){
+        return "Cancel"
+      }
+    }
+    return "";
+  }
 }

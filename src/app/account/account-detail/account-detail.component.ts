@@ -3,8 +3,6 @@ import {ProfileService} from "../shared/profile.service";
 import {User} from "./model/user";
 import {BranchService} from "../../shared/branch.service";
 import {Branch} from "../../shared/model/branch";
-import {forEach} from "@angular/router/src/utils/collection";
-import {Reservation} from "../../shared/model/reservation";
 import {ReservationService} from "../../shared/reservation.service";
 
 
@@ -19,8 +17,6 @@ export class AccountDetailComponent implements OnInit {
   private branches: Branch[];
   private refreshing: boolean;
 
-  private type: string[];
-
 
   constructor( private profileService:ProfileService, private branchService:BranchService ,private reservationService : ReservationService){
     this.refreshing = true;
@@ -28,6 +24,12 @@ export class AccountDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getBranches();
+    this.refresh();
+  }
+
+  refresh(){
+    this.user = null;
+    this.refreshing = true;
     this.profileService.getProfileWithToken(localStorage.getItem('auth_token')).subscribe((data)=>this.getBranchName(data));
   }
 
@@ -48,7 +50,7 @@ export class AccountDetailComponent implements OnInit {
   }
 
   cancelReservation(id: number){
-    this.reservationService.cancelReservation(id).subscribe();
+    this.reservationService.cancelReservation(id).subscribe(data=> this.refresh());
   }
 
 

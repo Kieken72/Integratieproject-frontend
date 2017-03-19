@@ -4,6 +4,7 @@ import {ManagerService} from "../../shared/manager.service";
 import {ReservationService} from "../../../shared/reservation.service";
 import {Reservation} from "../../../shared/model/reservation";
 import {Branch} from "../../../shared/model/branch";
+import {ModalDirective} from "ng2-bootstrap";
 
 @Component({
   selector: 'app-roomplan',
@@ -18,9 +19,40 @@ export class RoomplanComponent implements OnInit {
   private roomId:number = 1;
   private branch: Branch;
   private reservations:Reservation[];
+  private currentReservation:Reservation;
+
+  @ViewChild('reservationDetailModal') public reservationDetailModal:ModalDirective;
   @ViewChild('roomPlan') canvasRef:ElementRef;
   private canvas: any;
   private refreshing: boolean;
+
+  public get currentReservationStatus(){
+    if(this.currentReservation){
+      if(this.currentReservation.Arrived){
+        return "Aangekomen"
+      }
+      if(this.currentReservation.NoShow){
+        return "Niet opgedaagd"
+      }if(this.currentReservation.Cancelled){
+        return "Geannuleerd"
+      }
+    }
+    return "";
+  }
+
+  public get currentStatus(){
+    if(this.currentReservation){
+      if(this.currentReservation.Arrived){
+        return "Arrived"
+      }
+      if(this.currentReservation.NoShow){
+        return "NoShow"
+      }if(this.currentReservation.Cancelled){
+        return "Cancel"
+      }
+    }
+    return "";
+  }
 
   constructor(private reservationService:ReservationService, private managerService: ManagerService) {
     this.refreshing = true;
@@ -149,5 +181,30 @@ export class RoomplanComponent implements OnInit {
   public onSelectionDone() {
     this.close();
     this.refreshReservations();
+  }
+  showModal(id:number) :void{
+    this.currentReservation  = this.reservations.filter(e=>e.Id == id)[0];
+    console.log(id+' '+this.currentReservation);
+    this.reservationDetailModal.show();
+  }
+
+  actionAfterModalChange(data){
+    console.log(data);
+    this.reservationDetailModal.hide();
+    this.refreshReservations();
+  }
+  Arrived(id:number){
+    console.log(id);
+    this.reservationService.arrivedReservation(id).subscribe(data=>this.actionAfterModalChange(data));
+  }
+
+  NoShow(id:number){
+
+    console.log(id);
+    this.reservationService.noShowReservation(id).subscribe(data=>this.actionAfterModalChange(data));
+  }
+  Cancel(id:number){
+    console.log(id);
+    this.reservationService.cancelManagerReservation(id).subscribe(data=>this.actionAfterModalChange(data));
   }
 }
