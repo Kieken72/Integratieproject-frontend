@@ -1,7 +1,7 @@
 /**
  * Created by Emmanuel on 23/02/2017.
  */
-import { MyAppPage } from './app.po';
+/*import { MyAppPage } from './app.po';
 import {browser, element, by, protractor} from "protractor";
 
 describe('Testbooker2', ()=> {
@@ -30,5 +30,5 @@ describe('Testbooker2', ()=> {
     const branchElement = element(branchNameLocator);
     expect(branchElement.getText()).toBe('Filiaal Kontich');
   });
-})
+})*/
 
