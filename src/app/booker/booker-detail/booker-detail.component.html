@@ -151,7 +151,7 @@
       <div class="well col-md-12" *ngIf="branch!=null">
         <!--<strong>{{reservationCount | number : '1.0'}}</strong>-->
         <accordion>
-          <accordion-group *ngFor="let review of (branch.Reviews ? branch.Reviews.slice(0,3): [])">
+          <accordion-group *ngFor="let review of branch.Reviews | sortDesc: 'DateTime' | limit: 3">
             <div accordion-heading>
               {{review.User.Name}}
               <i class="pull-right float-xs-right fa"

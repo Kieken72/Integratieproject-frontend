@@ -11,7 +11,7 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li [routerLinkActive]="['active']"><a [routerLink]="['dashboard']">Dashboard</a></li>
+        <!--<li [routerLinkActive]="['active']"><a [routerLink]="['dashboard']">Dashboard</a></li>-->
         <li [routerLinkActive]="['active']" class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Kalender <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -32,7 +32,13 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li [routerLinkActive]="['active']"><a [routerLink]="['settings']">Instellingen</a></li>
+        <li [routerLinkActive]="['active']" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Instellingen <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a [routerLink]="['branch/edit/',branchId]" >Bewerk Filiaal</a></li>
+          <li><a [routerLink]="['settings/rooms/list']" >Bewerk Kamers</a></li>
+        </ul>
+      </li>
         <li [routerLinkActive]="['active']"><a [routerLink]="['../account/details']">Gebruiker</a></li>
         <li [routerLinkActive]="['active']"><a [routerLink]="['../account/login']" (click)="logout()">Logout</a></li>
       </ul>
@@ -45,6 +51,6 @@
           </select>
         </div>
       </form>
-    </div><!--/.nav-collapse -->
+    </div>
   </div>
 </nav>

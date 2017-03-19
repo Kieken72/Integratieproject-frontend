@@ -27,6 +27,7 @@ export class BranchEditComponent implements OnInit {
 
   private branch :Branch;
   private days: Weekday[];
+  private edited: boolean = false;
 
   cities: City[];
   private selectedCity:any;
@@ -67,7 +68,10 @@ export class BranchEditComponent implements OnInit {
   editBranch(){
     this.branchService.putBranch(
       this.branch.Id, this.branch.Name, this.branch.Street, this.branch.Number, this.branch.Box,
-      this.branch.CityId, this.branch.PhoneNumber, this.branch.Email,this.branch.Description).subscribe((data)=>console.log(data)) ;
+      this.branch.CityId, this.branch.PhoneNumber, this.branch.Email,this.branch.Description).subscribe((data)=>console.log(data),(err)=>console.log(err),()=>this.Edited()) ;
+  }
+  Edited(){
+    this.edited = true;
   }
 
   editAdditionalInfo(){

@@ -145,7 +145,7 @@ export class BookerDetailComponent implements OnInit, OnDestroy {
     newReservation.BranchId = this.branch.Id;
     newReservation.Amount = this.search.amount;
     newReservation.DateTime = this.processDate();
-    this.reservationService.postNewReservation(newReservation).subscribe(data=>this.reservation=data,err=>console.log(err));
+    this.reservationService.postNewReservation(newReservation).subscribe(data=>this.reservation=data,err=>console.log(err),()=>console.log(this.reservation));
   }
   ngOnDestroy(){
     this.searchService.searchParameters = this.search;
