@@ -19,7 +19,6 @@ export class CompanyEditComponent implements OnInit {
   constructor(private route: ActivatedRoute, private companyService: CompanyService,  private cityService:CityService) { }
 
   ngOnInit() {
-    this.getCities();
     this.route.params
       .switchMap((params: Params) => this.companyService.getCompany(+params['id']))
       .subscribe(company => this.whenCompanyLoads(company));
@@ -27,7 +26,7 @@ export class CompanyEditComponent implements OnInit {
 
   whenCompanyLoads(company){
     this.company = company;
-    console.log(this.company);
+    this.getCities();
   }
 
   getCities():void{
@@ -35,11 +34,11 @@ export class CompanyEditComponent implements OnInit {
   }
 
   public citySelected(city){
-    this.city = city ? city : null;
+    this.selectedCity = city ? city : null;
   }
 
   editCompany(){
     //(_id: string,_name:string,_VAT:string,_street:string, _streetNumber:string, _box:string,_cityId:string){
-    this.companyService.putCompany(this.company.Id, this.company.Name,this.company.VATNumber,this.company.Street, this.company.Number,this.company.Box,this.city.Id).subscribe(data=>console.log(data));
+    this.companyService.putCompany(this.company.Id, this.company.Name,this.company.VATNumber,this.company.Street, this.company.Number,this.company.Box,this.selectedCity.Id).subscribe(data=>console.log(data));
   }
 }

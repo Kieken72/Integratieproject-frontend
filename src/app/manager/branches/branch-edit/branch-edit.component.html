@@ -1,193 +1,220 @@
 <div class="row" *ngIf="branch!=null">
-<div class="col-md-12">
-  <tabset>
-    <tab heading='Algemene gegevens'>
-      <form #edit="ngForm" class="form-horizontal row">
-        <div class="col-md-12">
-          <h2>Algemene Info</h2>
+  <div class="col-md-12">
+    <tabset>
+      <tab heading='Algemene gegevens'>
+        <form #edit="ngForm" class="form-horizontal row">
+          <div class="col-md-12">
+            <h2>Algemene Info</h2>
+            <alert type="success" *ngIf="edited">
+              <div id="branchAlert">Branch succesvol bewerkt!</div>
+            </alert>
+            <div class="form-group">
+              <label for="where" class="col-sm-3 control-label">City:</label>
+
+              <div class="col-sm-9">
+                <typeahead
+                  id="where"
+                  [(ngModel)]="selectedCity"
+                  [list]="cities"
+                  [searchProperty]="'Name'" [displayProperty]="'Name'"
+                  [maxSuggestions]="10"
+                  (suggestionSelected)="citySelected($event)"
+                  placeholder="Begin typing a city"
+                  required
+                  name="cityWhere" #cityWhere="ngModel">
+                </typeahead>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="companyName" class="col-sm-3 control-label" id="lblCompanyName">Name:</label>
+
+              <div class="col-sm-9">
+                <input class="form-control" id="companyName" required [(ngModel)]="branch.Name" name="name"
+                       #name="ngModel" #CompanyName/>
+
+                <div *ngIf="name.errors && (name.dirty || name.touched)"
+                     class="alert alert-danger">
+                  <div [hidden]="!name.errors.required">
+                    Naam mag niet leeg zijn.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="companyStreet" class="col-sm-3 control-label">Street:</label>
+
+              <div class="col-sm-9">
+                <input class="form-control" id="companyStreet" required [(ngModel)]="branch.Street" name="street"
+                       #street="ngModel" #CompanyStreet/>
+
+                <div *ngIf="street.errors && (street.dirty || street.touched)"
+                     class="alert alert-danger">
+                  <div [hidden]="!street.errors.required">
+                    Straat mag niet leeg zijn.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="companyStreetNumber" class="col-sm-3 control-label">Number:</label>
+
+              <div class="col-sm-9">
+                <input class="form-control" id="companyStreetNumber" type="number" required [(ngModel)]="branch.Number"
+                       name="num" #num="ngModel" #CompanyStreetNumber/>
+
+                <div *ngIf="num.errors && (num.dirty || num.touched)"
+                     class="alert alert-danger">
+                  <div [hidden]="!num.errors.required">
+                    Nummer mag niet leeg zijn.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="companyBox" class="col-sm-3 control-label">Box:</label>
+
+              <div class="col-sm-9">
+                <input class="form-control" id="companyBox" name="box" [(ngModel)]="branch.Box"/>
+
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="branchPhone" class="col-sm-3 control-label">Telefoon:</label>
+
+              <div class="col-sm-9">
+                <input class="form-control" id="branchPhone" name="phone" [(ngModel)]="branch.PhoneNumber"/>
+
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="branchEmail" class="col-sm-3 control-label">Email:</label>
+
+              <div class="col-sm-9">
+                <input class="form-control" id="branchEmail" name="email" [(ngModel)]="branch.Email"/>
+
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="branchDescription" class="col-sm-3 control-label">Beschrijving:</label>
+
+              <div class="col-sm-9">
+                <textarea class="form-control" id="branchDescription" name="description"
+                          [(ngModel)]="branch.Description"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-3 col-sm-9">
+                <button class="btn btn-default" [disabled]="!edit.form.valid"
+                        (click)="editBranch()" id="btnSend">Wijzig
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </tab>
+      <tab heading='Openingsuren'>
+        <form #oh="ngForm" class="row">
+          <h2>Openingsuren</h2>
           <alert type="success" *ngIf="edited">Branch succesvol bewerkt!</alert>
-        <div class="form-group">
-          <label for="where" class="col-sm-3 control-label">City:</label>
-          <div class="col-sm-9">
-            <typeahead
-              id="where"
-              [(ngModel)]="selectedCity"
-              [list]="cities"
-              [searchProperty]="'Name'" [displayProperty]="'Name'"
-              [maxSuggestions]="10"
-              (suggestionSelected)="citySelected($event)"
-              placeholder="Begin typing a city"
-              required
-              name="cityWhere" #cityWhere="ngModel">
-            </typeahead>
+          <div class="col-md-12">
+            <div id="openingHours" *ngFor="let opening of branch.OpeningHours">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <select [(ngModel)]="opening.Day" name="dag{{opening.Day}}" class="form-control">
+                    <option [attr.value]="1" [attr.selected]="opening.Day == 1 ? true : null">Maandag</option>
+                    <option [attr.value]="2" [attr.selected]="opening.Day == 2 ? true : null">Dinsdag</option>
+                    <option [attr.value]="3" [attr.selected]="opening.Day == 3 ? true : null">Woensdag</option>
+                    <option [attr.value]="4" [attr.selected]="opening.Day == 4 ? true : null">Donderdag</option>
+                    <option [attr.value]="5" [attr.selected]="opening.Day == 5 ? true : null">Vrijdag</option>
+                    <option [attr.value]="6" [attr.selected]="opening.Day == 6 ? true : null">Zaterdag</option>
+                    <option [attr.value]="0" [attr.selected]="opening.Day == 0 ? true : null">Zondag</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <input class="form-control" name="{{opening.Day}}|{{opening.FromTime}}"
+                         [(ngModel)]="opening.FromTime"/>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <div class="input-group">
+                    <input class="form-control" name="{{opening.Day}}|{{opening.ToTime}}" [(ngModel)]="opening.ToTime"/>
 
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="companyName" class="col-sm-3 control-label" id="lblCompanyName">Name:</label>
-          <div class="col-sm-9">
-            <input class="form-control" id="companyName" required [(ngModel)]="branch.Name" name="name" #name="ngModel" #CompanyName/>
-            <div *ngIf="name.errors && (name.dirty || name.touched)"
-                 class="alert alert-danger">
-              <div [hidden]="!name.errors.required">
-                Naam mag niet leeg zijn.
+                    <div class="input-group-btn">
+                      <button class="btn btn-danger" type="button" (click)="removeOperationHour(opening)"><i
+                        class="fa fa-trash-o" aria-hidden="true"></i></button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="companyStreet" class="col-sm-3 control-label">Street:</label>
-          <div class="col-sm-9">
-            <input class="form-control" id="companyStreet" required [(ngModel)]="branch.Street" name="street" #street="ngModel" #CompanyStreet/>
-            <div *ngIf="street.errors && (street.dirty || street.touched)"
-                 class="alert alert-danger">
-              <div [hidden]="!street.errors.required">
-                Straat mag niet leeg zijn.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="companyStreetNumber" class="col-sm-3 control-label">Number:</label>
-          <div class="col-sm-9">
-            <input class="form-control" id="companyStreetNumber" type="number" required [(ngModel)]="branch.Number" name="num" #num="ngModel" #CompanyStreetNumber/>
-            <div *ngIf="num.errors && (num.dirty || num.touched)"
-                 class="alert alert-danger">
-              <div [hidden]="!num.errors.required">
-                Nummer mag niet leeg zijn.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="companyBox" class="col-sm-3 control-label">Box:</label>
-          <div class="col-sm-9">
-            <input class="form-control" id="companyBox" name="box"  [(ngModel)]="branch.Box" />
-
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="branchPhone" class="col-sm-3 control-label">Telefoon:</label>
-          <div class="col-sm-9">
-            <input class="form-control" id="branchPhone" name="phone"  [(ngModel)]="branch.PhoneNumber" />
-
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="branchEmail" class="col-sm-3 control-label">Email:</label>
-          <div class="col-sm-9">
-            <input class="form-control" id="branchEmail" name="email"  [(ngModel)]="branch.Email" />
-
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="branchDescription" class="col-sm-3 control-label">Beschrijving:</label>
-          <div class="col-sm-9">
-            <textarea class="form-control" id="branchDescription" name="description"  [(ngModel)]="branch.Description"></textarea>
-          </div>
-        </div>
-          <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9">
-              <button class="btn btn-default" [disabled]="!edit.form.valid"
-                      (click)="editBranch()" id="btnSend">Wijzig</button>
-            </div>
-          </div>
-        </div>
-      </form>
-    </tab>
-    <tab heading='Openingsuren'>
-      <form #oh="ngForm" class="row">
-        <h2>Openingsuren</h2>
-        <alert type="success" *ngIf="edited">Branch succesvol bewerkt!</alert>
-        <div class="col-md-12">
-          <div *ngFor="let opening of branch.OpeningHours">
-          <div class="col-sm-4">
             <div class="form-group">
-              <select [(ngModel)]="opening.Day" name="dag{{opening.Day}}" class="form-control">
-                <option [attr.value]="1" [attr.selected]="opening.Day == 1 ? true : null">Maandag</option>
-                <option [attr.value]="2" [attr.selected]="opening.Day == 2 ? true : null">Dinsdag</option>
-                <option [attr.value]="3" [attr.selected]="opening.Day == 3 ? true : null">Woensdag</option>
-                <option [attr.value]="4" [attr.selected]="opening.Day == 4 ? true : null">Donderdag</option>
-                <option [attr.value]="5" [attr.selected]="opening.Day == 5 ? true : null">Vrijdag</option>
-                <option [attr.value]="6" [attr.selected]="opening.Day == 6 ? true : null">Zaterdag</option>
-                <option [attr.value]="0" [attr.selected]="opening.Day == 0 ? true : null">Zondag</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-sm-4" >
-            <div class="form-group">
-              <input class="form-control"  name="{{opening.Day}}|{{opening.FromTime}}" [(ngModel)]="opening.FromTime"/>
-            </div>
-          </div>
-          <div class="col-sm-4" >
-            <div class="form-group">
-              <div class="input-group">
-                <input class="form-control"  name="{{opening.Day}}|{{opening.ToTime}}"  [(ngModel)]="opening.ToTime"/>
-                <div class="input-group-btn">
-                  <button class="btn btn-danger" type="button"  (click)="removeOperationHour(opening)"> <i class="fa fa-trash-o" aria-hidden="true"></i> </button>
+              <div class="col-sm-offset-10 col-sm-2">
+                <div class="btn-group pull-right" role="group">
+                  <button id="addOperationHour" class="btn btn-success" (click)="addOperationHour()"><i
+                    class="fa fa-plus" aria-hidden="true"></i></button>
+                  <button class="btn btn-primary" [disabled]="!oh.form.valid"
+                          (click)="editOpeningHours()" id="btnSendOh"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-          <div class="form-group">
-            <div class="col-sm-offset-10 col-sm-2">
-              <div class="btn-group pull-right" role="group">
-                <button class="btn btn-success" (click)="addOperationHour()"> <i class="fa fa-plus" aria-hidden="true"></i> </button>
-                <button class="btn btn-primary" [disabled]="!oh.form.valid"
-                      (click)="editOpeningHours()" id="btnSendOh"> <i class="fa fa-floppy-o" aria-hidden="true"></i> </button>
+        </form>
+      </tab>
+      <tab heading='Extra Info'>
+        <form #info="ngForm" class="row">
+          <h2>Extra Info</h2>
+          <alert type="success" *ngIf="edited">Branch succesvol bewerkt!</alert>
+          <div class="col-md-12">
+            <div id="additionalInfo" *ngFor="let addInfo of branch.AdditionalInfos">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <select [(ngModel)]="addInfo.Type" name="{{addInfo.Type}}" class="form-control">
+                    <option [attr.value]="0" [attr.selected]="addInfo.Type == 0 ? true : null">Payment Method</option>
+                    <option [attr.value]="1" [attr.selected]="addInfo.Type == 1 ? true : null">Facility</option>
+                    <option [attr.value]="2" [attr.selected]="addInfo.Type == 2 ? true : null">Accessibility</option>
+                    <option [attr.value]="3" [attr.selected]="addInfo.Type == 3 ? true : null">Atmosphere</option>
+                    <option [attr.value]="4" [attr.selected]="addInfo.Type == 4 ? true : null">Image</option>
+                    <option [attr.value]="5" [attr.selected]="addInfo.Type == 5 ? true : null">Video</option>
+                    <option [attr.value]="6" [attr.selected]="addInfo.Type == 6 ? true : null">Homepage</option>
+                    <option [attr.value]="7" [attr.selected]="addInfo.Type == 7 ? true : null">Facebook</option>
+                    <option [attr.value]="8" [attr.selected]="addInfo.Type == 8 ? true : null">Twitter</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="input-group">
+                  <input class="form-control" id="{{addInfo.Type}}" name={{addInfo.Value}} [(ngModel)]="addInfo.Value"/>
+
+                  <div class="input-group-btn">
+                    <button class="btn btn-danger" type="button" (click)="removeAdditionalInfo(addInfo)"><i
+                      class="fa fa-trash-o" aria-hidden="true"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-10 col-sm-2">
+                <div class="btn-group pull-right" role="group">
+                  <button class="btn btn-success" (click)="addAdditionalInfo()" id="btnAddAdditionalInfo"><i class="fa fa-plus"
+                                                                                   aria-hidden="true"></i></button>
+                  <button class="btn btn-primary" [disabled]="!info.form.valid"
+                          (click)="editAdditionalInfo()" id="btnSendInfo"><i class="fa fa-floppy-o"
+                                                                             aria-hidden="true"></i></button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </form>
-    </tab>
-    <tab heading='Extra Info'>
-      <form #info="ngForm" class="row">
-        <h2>Extra Info</h2>
-        <alert type="success" *ngIf="edited">Branch succesvol bewerkt!</alert>
-        <div class="col-md-12">
-          <div *ngFor="let addInfo of branch.AdditionalInfos">
-            <div class="col-sm-6">
-              <div class="form-group">
-                <select [(ngModel)]="addInfo.Type" name="{{addInfo.Type}}" class="form-control">
-                  <option [attr.value]="0" [attr.selected]="addInfo.Type == 0 ? true : null">Payment Method</option>
-                  <option [attr.value]="1" [attr.selected]="addInfo.Type == 1 ? true : null">Facility</option>
-                  <option [attr.value]="2" [attr.selected]="addInfo.Type == 2 ? true : null">Accessibility</option>
-                  <option [attr.value]="3" [attr.selected]="addInfo.Type == 3 ? true : null">Atmosphere</option>
-                  <option [attr.value]="4" [attr.selected]="addInfo.Type == 4 ? true : null">Image</option>
-                  <option [attr.value]="5" [attr.selected]="addInfo.Type == 5 ? true : null">Video</option>
-                  <option [attr.value]="6" [attr.selected]="addInfo.Type == 6 ? true : null">Homepage</option>
-                  <option [attr.value]="7" [attr.selected]="addInfo.Type == 7 ? true : null">Facebook</option>
-                  <option [attr.value]="8" [attr.selected]="addInfo.Type == 8 ? true : null">Twitter</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="input-group">
-                <input class="form-control" id="{{addInfo.Type}}"  name={{addInfo.Value}} [(ngModel)]="addInfo.Value"/><div class="input-group-btn">
-                <button class="btn btn-danger" type="button"  (click)="removeAdditionalInfo(addInfo)"> <i class="fa fa-trash-o" aria-hidden="true"></i> </button>
-              </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-offset-10 col-sm-2">
-              <div class="btn-group pull-right" role="group">
-                <button class="btn btn-success" (click)="addAdditionalInfo()"><i class="fa fa-plus" aria-hidden="true"></i> </button>
-                <button class="btn btn-primary" [disabled]="!info.form.valid"
-                        (click)="editAdditionalInfo()" id="btnSendInfo"> <i class="fa fa-floppy-o" aria-hidden="true"></i> </button>
-              </div>
-            </div>
-          </div>
-      </div>
-      </form>
-    </tab>
-  </tabset>
-</div>
+        </form>
+      </tab>
+    </tabset>
+  </div>
 </div>
