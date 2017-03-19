@@ -153,9 +153,9 @@
         <accordion>
           <accordion-group *ngFor="let review of branch.Reviews | sortDesc: 'DateTime' | limit: 5">
             <div accordion-heading>
-              {{review.User.Name}}
+              <div id="userReview">{{review.User.Name}}
               <i class="pull-right float-xs-right fa"
-                 [ngClass]="{'fa-thumbs-down': !review.Result, 'fa-thumbs-up': review.Result}"></i>
+                 [ngClass]="{'fa-thumbs-down': !review.Result, 'fa-thumbs-up': review.Result}"></i></div>
             </div>
             {{review.Text}}
           </accordion-group>
