@@ -1,15 +1,11 @@
 <div class="row" *ngIf="branch!=null">
-  <h1>Edit company ID: {{branch.Name}}</h1>
-  {{branch.Name}}
-  {{branch.Id}}
-
-
-
 <div class="col-md-12">
   <tabset>
     <tab heading='Algemene gegevens'>
       <form #edit="ngForm" class="form-horizontal row">
         <div class="col-md-12">
+          <h2>Algemene Info</h2>
+          <alert type="success" *ngIf="edited">Branch succesvol bewerkt!</alert>
         <div class="form-group">
           <label for="where" class="col-sm-3 control-label">City:</label>
           <div class="col-sm-9">
@@ -107,6 +103,7 @@
     <tab heading='Openingsuren'>
       <form #oh="ngForm" class="row">
         <h2>Openingsuren</h2>
+        <alert type="success" *ngIf="edited">Branch succesvol bewerkt!</alert>
         <div class="col-md-12">
           <div *ngFor="let opening of branch.OpeningHours">
           <div class="col-sm-4">
@@ -153,6 +150,7 @@
     <tab heading='Extra Info'>
       <form #info="ngForm" class="row">
         <h2>Extra Info</h2>
+        <alert type="success" *ngIf="edited">Branch succesvol bewerkt!</alert>
         <div class="col-md-12">
           <div *ngFor="let addInfo of branch.AdditionalInfos">
             <div class="col-sm-6">
