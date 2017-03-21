@@ -7,7 +7,7 @@
         <tr>
           <th>Van</th>
           <th>Inhoud</th>
-          <th>Reservatie</th>
+         <!-- <th>Reservatie</th>-->
           <th>Ontvangen</th>
         </tr>
         </thead>
@@ -17,7 +17,7 @@
         <tr *ngFor="let message of messages |filterUser: user?.Id |sortDesc: 'DateTime'" (click)="showModal(message.ReservationId, message.BranchId)">
           <th scope="row">{{message.User.Lastname}} {{message.User.Name}} </th>
           <td>{{message.Text}}</td>
-          <td><a [routerLink]="['../../booker/reservation/', message.ReservationId]">{{message.ReservationId}}</a></td>
+          <!--<td><a [routerLink]="['../../booker/reservation/', message.ReservationId]">{{message.ReservationId}}</a></td>-->
           <td>{{message.DateTime | amTimeAgo}}</td>
         </tr>
 

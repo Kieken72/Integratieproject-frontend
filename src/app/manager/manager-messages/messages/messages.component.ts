@@ -29,7 +29,9 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit() {
     this.managerService.getMessagesByBranch(this.managerService.branchId).subscribe(
-      (data)=>this.getData(data));
+      (data)=>this.getData(data),
+      (err)=>this.getData([])
+    );
     setTimeout(()=>{
       this.profileService.getProfile().subscribe(
         data=>this.user = data);
@@ -62,7 +64,6 @@ export class MessagesComponent implements OnInit {
 
   getReservations(){
     this.reservationService.getRecentReservationByBranch(this.managerService.branchId).subscribe((data) => this.reservations = data);
-    //this.reservationService.getRecentReservationByBranch(this.managerService.branchId).subscribe((data) => console.log(data));
   }
 
 }
